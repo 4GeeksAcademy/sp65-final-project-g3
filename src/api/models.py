@@ -17,6 +17,25 @@ class Users(db.Model):
         return {'id': self.id,
                 'email': self.email,
                 'is_active': self.is_active}
+   
+
+class Soundscapes(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120), unique=False, nullable=False)
+    duration= db.Column(db.Integer, unique=False, nullable=False)
+    genre = db.Column(db.String(120), unique=False, nullable=False)
+    url_jamendo = db.Column(db.String, unique=False, nullable=True)
+    accumulator_concurrency = db.Column(db.String, unique=False, nullable=True)
+
+    def __repr__(self):
+        return f'<User {self.name}>'
+
+    def serialize(self):
+        return {'id': self.id,
+                'name': self.name,
+                'duration': self.duration,
+                'genre': self.genre,
+                'url_jamendo': self.url_jamendo}
 
 
 class Mixes(db.Model):
@@ -28,7 +47,6 @@ class Mixes(db.Model):
     date = db.Column(db.Date)
     acumulator_concurrency = db.Column(db.Integer)
 
-
     def __repr__(self):
         return f'<Mixes {self.mix_title}>'
 
@@ -39,8 +57,8 @@ class Mixes(db.Model):
                 'track_1_url': self.track_1_url,
                 'binaural_id': self.binaural_id,
                 'date': self.date,
-                'acumulator_concurrency': self.acumulator_concurrency
-                }
+                'acumulator_concurrency': self.acumulator_concurrency}
+                
 
 class Tutorials(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -51,7 +69,6 @@ class Tutorials(db.Model):
     video_url = db.Column(db.String)
     audio_url = db.Column(db.String)
     last_modified = db.Column(db.Date)
-
 
     def __repr__(self):
         return f'<Tutorials {self.title}>'
@@ -64,5 +81,4 @@ class Tutorials(db.Model):
                 'body': self.body,
                 'video_url': self.video_url,
                 'audio_url': self.audio_url,
-                'last_modified': self.last_modified
-                }
+                'last_modified': self.last_modified}
