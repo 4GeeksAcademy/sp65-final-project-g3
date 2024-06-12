@@ -1,10 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
 
-
 db = SQLAlchemy()
 
-
-class Users(db.Model):
+class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
@@ -17,7 +15,8 @@ class Users(db.Model):
         return {'id': self.id,
                 'email': self.email,
                 'is_active': self.is_active}
-   
+      
+
 
 class Soundscapes(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -25,7 +24,7 @@ class Soundscapes(db.Model):
     duration= db.Column(db.Integer, unique=False, nullable=False)
     genre = db.Column(db.String(120), unique=False, nullable=False)
     url_jamendo = db.Column(db.String, unique=False, nullable=True)
-    accumulator_concurrency = db.Column(db.String, unique=False, nullable=True)
+    accumulator_concurrency = db.Column(db.Integer, unique=False, nullable=True)
 
     def __repr__(self):
         return f'<User {self.name}>'
@@ -35,7 +34,8 @@ class Soundscapes(db.Model):
                 'name': self.name,
                 'duration': self.duration,
                 'genre': self.genre,
-                'url_jamendo': self.url_jamendo}
+                'url_jamendo': self.url_jamendo,
+                'acumulator_concurrency': self.acumulator_concurrency}
 
 
 class Mixes(db.Model):
@@ -46,7 +46,7 @@ class Mixes(db.Model):
     binaural_id = db.Column(db.Integer)
     date = db.Column(db.Date)
     acumulator_concurrency = db.Column(db.Integer)
-
+    
     def __repr__(self):
         return f'<Mixes {self.mix_title}>'
 
@@ -58,6 +58,23 @@ class Mixes(db.Model):
                 'binaural_id': self.binaural_id,
                 'date': self.date,
                 'acumulator_concurrency': self.acumulator_concurrency}
+             
+
+class Binaural(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    type = db.Column(db.Enum, unique=False )
+    user_jamendo = db.Column(db.String(120), unique=False, nullable=False)
+    acumulador_concurrency = db.Column(db.Integer)
+    
+    def __repr__(self):
+        return f'<Binaural {self.id}>'
+
+    def serialize(self):
+        return {'id': self.id,
+                'type': self.type,
+                'url_jamendo': self.url_jamendo,
+                'acumulador_concurrency': self.acumulador_concurrency}              
+     
                 
 
 class Tutorials(db.Model):
