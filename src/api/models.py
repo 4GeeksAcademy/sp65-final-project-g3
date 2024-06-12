@@ -42,22 +42,27 @@ class Mixes(db.Model):
                 'acumulator_concurrency': self.acumulator_concurrency
                 }
 
-class Soundscapes(db.Model):
-    
-    def __repr__(self):
-        return f'<Soundscapes {self.email}>'
-
-    def serialize(self):
-        return {'id': self.id,
-                'email': self.email,
-                'is_active': self.is_active}
-
 class Tutorials(db.Model):
-    
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer)
+    type = db.Column(db.enum)
+    title = db.Column(db.String)
+    body = db.Column(db.String)
+    video_url = db.Column(db.String)
+    audio_url = db.Column(db.String)
+    last_modified = db.Column(db.Date)
+
+
     def __repr__(self):
-        return f'<Tutorials {self.email}>'
+        return f'<Tutorials {self.title}>'
 
     def serialize(self):
         return {'id': self.id,
-                'email': self.email,
-                'is_active': self.is_active}
+                'user_id': self.user_id,
+                'type': self.type,
+                'title': self.title,
+                'body': self.body,
+                'video_url': self.video_url,
+                'audio_url': self.audio_url,
+                'last_modified': self.last_modified
+                }
