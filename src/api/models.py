@@ -2,7 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-class User(db.Model):
+class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     first_name = db.Column(db.String(120), unique=False, nullable=False)
@@ -14,7 +14,7 @@ class User(db.Model):
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
     def __repr__(self):
-        return f'<User {self.email}>'
+        return f'<Users {self.email}>'
 
     def serialize(self):
         return {'id': self.id,
@@ -37,7 +37,7 @@ class Soundscapes(db.Model):
     accumulator_concurrency = db.Column(db.Integer, unique=False, nullable=True)
 
     def __repr__(self):
-        return f'<User {self.name}>'
+        return f'<Soundscapes {self.name}>'
 
     def serialize(self):
         return {'id': self.id,
@@ -72,7 +72,7 @@ class Mixes(db.Model):
 
 class Binaural(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    type = db.Column(db.Enum, unique=False )
+    type = db.Column(db.Enum("Alpha", "Theta", "Delta", name="binaural_type"), unique=False )
     user_jamendo = db.Column(db.String(120), unique=False, nullable=False)
     acumulador_concurrency = db.Column(db.Integer)
     
@@ -90,7 +90,7 @@ class Binaural(db.Model):
 class Tutorials(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer)
-    type = db.Column(db.enum)
+    type = db.Column(db.Enum("Meditation", "Sleep", "Focus", name="tutorial_type"))
     title = db.Column(db.String)
     body = db.Column(db.String)
     video_url = db.Column(db.String)
