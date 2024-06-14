@@ -12,6 +12,7 @@ class Users(db.Model):
     date_of_birth = db.Column(db.Date, unique=False, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+    is_admin = db.Column(db.Bollean(), unique=False, nullable=False)
 
     def __repr__(self):
         return f'<Users {self.email}>'
@@ -24,7 +25,8 @@ class Users(db.Model):
                 'last_name': self.last_name,
                 'country': self.country,
                 'date_of_birth': self.date_of_birth,
-                'is_active': self.is_active}
+                'is_active': self.is_active,
+                'is_admin': self.is_admin}
       
 
 
@@ -72,16 +74,22 @@ class Mixes(db.Model):
 
 class Binaural(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    type = db.Column(db.Enum("Alpha", "Theta", "Delta", name="binaural_type"), unique=False )
+    type = db.Column(db.Enum("Alpha", "Theta", "Delta", name="type"), unique=False )
+    name = db.Column(db.String(120), unique=False, nullable=False)
+    duration = db.Column(db.Integer, unique=False, nullable=False)
+    description = db.Column(db.String, unique=False, nullable=False)
     user_jamendo = db.Column(db.String(120), unique=False, nullable=False)
     acumulador_concurrency = db.Column(db.Integer)
     
     def __repr__(self):
-        return f'<Binaural {self.id}>'
+        return f'<Binaural {self.name}>'
 
     def serialize(self):
         return {'id': self.id,
                 'type': self.type,
+                'name': self.name,
+                'duration': self.duration,
+                'description': self.description,
                 'url_jamendo': self.url_jamendo,
                 'acumulador_concurrency': self.acumulador_concurrency}              
      
@@ -90,7 +98,7 @@ class Binaural(db.Model):
 class Tutorials(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer)
-    type = db.Column(db.Enum("Meditation", "Sleep", "Focus", name="tutorial_type"))
+    type = db.Column(db.Enum("Meditation", "Sleep", "Focus", name="type"))
     title = db.Column(db.String)
     body = db.Column(db.String)
     video_url = db.Column(db.String)
