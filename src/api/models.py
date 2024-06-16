@@ -78,8 +78,9 @@ class Binaural(db.Model):
     name = db.Column(db.String(120), unique=False, nullable=False)
     duration = db.Column(db.Integer, unique=False, nullable=False)
     description = db.Column(db.String, unique=False, nullable=False)
-    user_jamendo = db.Column(db.String(120), unique=False, nullable=False)
-    acumulador_concurrency = db.Column(db.Integer)
+    track_url = db.Column(db.String, unique=False, nullable=False)
+    date_publication = db.Column(db.Date, unique=False, nullable=False)
+    accumulator_concurrency = db.Column(db.Integer)
     
     def __repr__(self):
         return f'<Binaural {self.name}>'
@@ -90,8 +91,9 @@ class Binaural(db.Model):
                 'name': self.name,
                 'duration': self.duration,
                 'description': self.description,
-                'url_jamendo': self.url_jamendo,
-                'acumulador_concurrency': self.acumulador_concurrency}              
+                'track_url': self.track_url,
+                'date_publication': self.date_publication,
+                'accumulator_concurrency': self.accumulator_concurrency}              
      
                 
 
