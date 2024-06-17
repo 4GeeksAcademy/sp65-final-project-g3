@@ -13,6 +13,27 @@ from flask_jwt_extended import get_jwt_identity
 api = Blueprint('api', __name__)
 CORS(api)  # Allow CORS requests to this API
 
+@api.route('/signup', methods=['POST'])
+def signup():
+    response_body = {}
+    email = request.json.get("email", None).lower()
+    password = request.json.get("password", None)
+    first_name = request.json.get("first_name", "")  
+    last_name = request.json.get("last_name", "") 
+    # logica de validación de email valido y password valida
+    user = Users()
+    user.email = email
+    user.first_name = first_name
+    user.last_name = last_name   
+    user.password = password
+    user.is_active = True
+    db.session.add(user)
+    db.session.commit()
+    access_token = create_access_token(identity={'user_id' : user.id, 'user_is_admin' : user.is_admin})
+    response_body["message"] = "User Created & Logged in"
+    response_body["access_token"] = access_token
+    return response_body, 200
+
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
