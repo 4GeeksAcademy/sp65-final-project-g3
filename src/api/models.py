@@ -5,13 +5,14 @@ db = SQLAlchemy()
 class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    first_name = db.Column(db.String(120), unique=False, nullable=False)
-    last_name = db.Column(db.String(120), unique=False, nullable=False)
-    country = db.Column(db.String(120), unique=False, nullable=False)
-    city = db.Column(db.String(120), unique=False, nullable=False)
-    date_of_birth = db.Column(db.Date, unique=False, nullable=False)
-    password = db.Column(db.String(80), unique=False, nullable=False)
-    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+    first_name = db.Column(db.String(120), unique=False, nullable=True)
+    last_name = db.Column(db.String(120), unique=False, nullable=True)
+    country = db.Column(db.String(120), unique=False, nullable=True)
+    city = db.Column(db.String(120), unique=False, nullable=True)
+    date_of_birth = db.Column(db.Date, unique=False, nullable=True)
+    password = db.Column(db.String(80), unique=False, nullable=True)
+    is_active = db.Column(db.Boolean(), unique=False, nullable=True)
+    is_admin = db.Column(db.Boolean(), unique=False, nullable=True)
 
     def __repr__(self):
         return f'<Users {self.email}>'
@@ -24,7 +25,8 @@ class Users(db.Model):
                 'last_name': self.last_name,
                 'country': self.country,
                 'date_of_birth': self.date_of_birth,
-                'is_active': self.is_active}
+                'is_active': self.is_active,
+                'is_admin': self.is_admin}
       
 
 
@@ -72,25 +74,33 @@ class Mixes(db.Model):
 
 class Binaural(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    type = db.Column(db.Enum("Alpha", "Theta", "Delta", name="binaural_type"), unique=False )
-    user_jamendo = db.Column(db.String(120), unique=False, nullable=False)
-    acumulador_concurrency = db.Column(db.Integer)
+    type = db.Column(db.Enum("Alpha", "Theta", "Delta", name="type"), unique=False )
+    name = db.Column(db.String(120), unique=False, nullable=False)
+    duration = db.Column(db.Integer, unique=False, nullable=False)
+    description = db.Column(db.String, unique=False, nullable=False)
+    track_url = db.Column(db.String, unique=False, nullable=False)
+    date_publication = db.Column(db.Date, unique=False, nullable=False)
+    accumulator_concurrency = db.Column(db.Integer)
     
     def __repr__(self):
-        return f'<Binaural {self.id}>'
+        return f'<Binaural {self.name}>'
 
     def serialize(self):
         return {'id': self.id,
                 'type': self.type,
-                'url_jamendo': self.url_jamendo,
-                'acumulador_concurrency': self.acumulador_concurrency}              
+                'name': self.name,
+                'duration': self.duration,
+                'description': self.description,
+                'track_url': self.track_url,
+                'date_publication': self.date_publication,
+                'accumulator_concurrency': self.accumulator_concurrency}              
      
                 
 
 class Tutorials(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer)
-    type = db.Column(db.Enum("Meditation", "Sleep", "Focus", name="tutorial_type"))
+    type = db.Column(db.Enum("Meditation", "Sleep", "Focus", name="type"))
     title = db.Column(db.String)
     body = db.Column(db.String)
     video_url = db.Column(db.String)

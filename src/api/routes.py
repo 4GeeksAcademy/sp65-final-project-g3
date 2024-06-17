@@ -28,6 +28,7 @@ def signup():
     user.last_name = last_name   
     user.password = password
     user.is_active = True
+    user.is_admin = False
     db.session.add(user)
     db.session.commit()
     access_token = create_access_token(identity={'user_id' : user.id, 'user_is_admin' : user.is_admin})
@@ -41,7 +42,6 @@ def handle_hello():
     response_body = {}
     response_body["message"] = "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
     return response_body, 200
-
 
 @api.route('/mixes', methods=['GET'])
 def handle_mixes():
@@ -132,6 +132,7 @@ def handle_binaural():
     current_user = get_jwt_identity()
     user_id = current_user['user_id']
     print(current_user)
+    print(user_id)
 
     if request.method == 'GET':
         rows =db.session.execute(db.select(Binaural)).scalars()
