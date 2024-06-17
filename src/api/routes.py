@@ -31,14 +31,14 @@ def handle_mixes():
 
     if request.method == 'POST':
         data = request.json
-        row = Mixes(
-            mix_title=data['mix_title'],
-            user_id=data['user_id'],
-            track_1_url=data['track_1_url'],
-            binaural_id=data['binaural_id'],
-            image_url=data.get('image_url', None),
-            date=datetime.today(),
-            acumulator_concurrency=data.get('acumulator_concurrency', 0))
+        row = Mixes()
+        mix_title = data['mix_title'],
+        user_id = data['user_id'],
+        track_1_url = data['track_1_url'],
+        binaural_id = data['binaural_id'],
+        image_url = data.get('image_url', None),
+        date = datetime.today(),
+        acumulator_concurrency = data.get('acumulator_concurrency', 0)
         db.session.add(row)
         db.session.commit()
         response_body['results'] = row.serialize()
