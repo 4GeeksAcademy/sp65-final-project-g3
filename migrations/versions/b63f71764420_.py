@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 81ae29c652e0
+Revision ID: b63f71764420
 Revises: 
-Create Date: 2024-06-17 18:04:37.596357
+Create Date: 2024-06-17 19:20:12.860746
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '81ae29c652e0'
+revision = 'b63f71764420'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -33,12 +33,13 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('mix_title', sa.String(length=120), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
-    sa.Column('track_1_url', sa.Integer(), nullable=True),
+    sa.Column('track_1_url', sa.String(), nullable=False),
     sa.Column('binaural_id', sa.Integer(), nullable=True),
     sa.Column('date', sa.Date(), nullable=True),
     sa.Column('acumulator_concurrency', sa.Integer(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('mix_title')
+    sa.UniqueConstraint('mix_title'),
+    sa.UniqueConstraint('track_1_url')
     )
     op.create_table('soundscapes',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -63,14 +64,14 @@ def upgrade():
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('email', sa.String(length=120), nullable=False),
-    sa.Column('first_name', sa.String(length=120), nullable=False),
-    sa.Column('last_name', sa.String(length=120), nullable=False),
-    sa.Column('country', sa.String(length=120), nullable=False),
-    sa.Column('city', sa.String(length=120), nullable=False),
-    sa.Column('date_of_birth', sa.Date(), nullable=False),
-    sa.Column('password', sa.String(length=80), nullable=False),
-    sa.Column('is_active', sa.Boolean(), nullable=False),
-    sa.Column('is_admin', sa.Boolean(), nullable=False),
+    sa.Column('first_name', sa.String(length=120), nullable=True),
+    sa.Column('last_name', sa.String(length=120), nullable=True),
+    sa.Column('country', sa.String(length=120), nullable=True),
+    sa.Column('city', sa.String(length=120), nullable=True),
+    sa.Column('date_of_birth', sa.Date(), nullable=True),
+    sa.Column('password', sa.String(length=80), nullable=True),
+    sa.Column('is_active', sa.Boolean(), nullable=True),
+    sa.Column('is_admin', sa.Boolean(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email')
     )
