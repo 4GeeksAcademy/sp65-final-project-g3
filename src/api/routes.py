@@ -77,7 +77,7 @@ def handle_binaural():
 
 @api.route('/binaural/<int:binaural_id>', methods=['GET', 'PUT'])
 @jwt_required()
-def handle_binaural(binaural_id):
+def handle_binaural_id(binaural_id):
     response_body = {}
     current_user = get_jwt_identity()
     user_id = current_user['user_id']
