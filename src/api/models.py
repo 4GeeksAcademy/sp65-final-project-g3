@@ -52,7 +52,7 @@ class Mixes(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     mix_title = db.Column(db.String(120), unique=True, nullable=False)
     user_id = db.Column(db.Integer)
-    track_1_url = db.Column(db.Integer)
+    track_1_url = db.Column(db.String, unique=True, nullable=False)
     binaural_id = db.Column(db.Integer)
     date = db.Column(db.Date)
     acumulator_concurrency = db.Column(db.Integer)
