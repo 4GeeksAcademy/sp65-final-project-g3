@@ -345,7 +345,7 @@ def handle_tutorial():
             data = request.json
             row = Tutorials()
             row.user_id = current_user['user_id']
-            row.type = data['type']
+            row.tutorials_type = data['tutorials_type']
             row.title = data['title']
             row.body = data['body']            
             row.video_url = data['video_url']
@@ -387,7 +387,7 @@ def handle_tutorial_id(tutorial_id):
             tutorial = db.session.execute(db.select(Tutorials).where(Tutorials.id == tutorial_id)).scalar()
             if tutorial:
                 tutorial.user_id = current_user['user_id']
-                tutorial.type = data['type']
+                tutorial.tutorials_type = data['tutorials_type']
                 tutorial.title = data['title']
                 tutorial.body = data['body']            
                 tutorial.video_url = data['video_url']
@@ -409,7 +409,7 @@ def handle_tutorial_id(tutorial_id):
             if tutorial:
                 db.session.delete(tutorial)
                 db.session.commit()
-                response_body['message'] = 'tutorialsuccesfully eliminated'
+                response_body['message'] = 'tutorial succesfully eliminated'
                 response_body['results'] = {}
                 return response_body, 200
             response_body['message'] = 'No such existing Tutorial'
