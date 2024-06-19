@@ -12,7 +12,8 @@ from api.models import db, Users, Soundscapes, Mixes, Tutorials, Binaural
 from datetime import datetime
 
 api = Blueprint('api', __name__)
-CORS(api)  # Allow CORS requests to this API
+CORS(api)  # Allow CORS requests to this API.  ¡'09876ui
+'0'
 
 @api.route('/signup', methods=['POST'])
 def signup():
@@ -36,6 +37,28 @@ def signup():
     response_body["access_token"] = access_token
     return response_body, 200
 
+@api.route("/login", methods=['POST'])
+def login():
+    response_body = {}
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+    user = db.session.execute(db.select(Users).where(Users.email == email, Users.password == password, Users.is_active == True)).scalar()
+    if user:
+        access_token = create_access_token(identity={'user_id' : user.id, 'is_admin' : user.is_admin})
+        response_body["message"] = "Login Succesful"
+        response_body["access_token"] = access_token
+        return response_body, 200
+    response_body["message"] = "Bad username or password"
+    return response_body, 401
+
+@api.route("/profile", methods=["GET"])
+@jwt_required()
+def profile():
+    response_body = {}
+    current_user = get_jwt_identity()
+    print(current_user)
+    response_body["message"] = f'User succesfully logged in as: {current_user}'
+    return response_body, 200
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
@@ -125,7 +148,17 @@ def handle_mixes_id(mixes_id):
         response_body['results'] = {}
         return response_body, 200
 
-@api.route('/binaural', methods=['GET', 'POST'])
+
+@api.route('/binaural', methods=['GET'])
+def handle_binaurals():
+    response_body = {}
+    rows =db.session.execute(db.select(Binaural)).scalars()
+    results = [row.serialize() for row in rows]
+    response_body['results'] = results
+    response_body['message'] = 'Binaural List get succesful'
+    return response_body, 200
+
+@api.route('/binaural', methods=['POST'])
 @jwt_required()
 def handle_binaural():
     response_body = {}
@@ -133,13 +166,7 @@ def handle_binaural():
     user_id = current_user['user_id']
     print(current_user)
     print(user_id)
-
-    if request.method == 'GET':
-        rows =db.session.execute(db.select(Binaural)).scalars()
-        results = [row.serialize() for row in rows]
-        response_body['results'] = results
-        response_body['message'] = 'Binaural List get succesful'
-        return response_body, 200
+ 
     if request.method == 'POST':
         if current_user.get('is_admin', False): 
             data = request.json
@@ -190,7 +217,6 @@ def handle_binaural_id(binaural_id):
                 binaural.name = data['name']
                 binaural.date_publication = data['date_publication']
                 binaural.track_url = data['track_url']
-                binaural.accumulator_concurrency = data['accumulator_concurrency']
                 db.session.commit()
                 response_body['message'] = 'BInaural track succesfully edited'
                 response_body['results'] = binaural.serialize()
