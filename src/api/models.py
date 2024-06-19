@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import Enum
 
 db = SQLAlchemy()
 
@@ -32,11 +33,10 @@ class Users(db.Model):
 class Soundscapes(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), unique=False, nullable=False)
-    duration = db.Column(db.Integer, unique=False, nullable=False)
-    genre = db.Column(db.String(120), unique=False, nullable=False)
+    duration = db.Column(db.Integer, unique=False, nullable=True)
+    genre = db.Column(db.String(120), unique=False, nullable=True)
     url_jamendo = db.Column(db.String, unique=False, nullable=True)
-    accumulator_concurrency = db.Column(db.Integer, unique=False, nullable=True)
-
+    
     def __repr__(self):
         return f'<Soundscapes {self.name}>'
 
@@ -45,8 +45,8 @@ class Soundscapes(db.Model):
                 'name': self.name,
                 'duration': self.duration,
                 'genre': self.genre,
-                'url_jamendo': self.url_jamendo,
-                'acumulator_concurrency': self.acumulator_concurrency}
+                'url_jamendo': self.url_jamendo}
+                
 
 
 class Mixes(db.Model):
@@ -97,7 +97,7 @@ class Binaural(db.Model):
 class Tutorials(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer)
-    type = db.Column(db.Enum("Meditation", "Sleep", "Focus", name="type"))
+    tutorials_type = db.Column(db.Enum("Meditation", "Sleep", "Focus", name="tutorials_type"))
     title = db.Column(db.String)
     body = db.Column(db.String)
     video_url = db.Column(db.String)
@@ -110,7 +110,7 @@ class Tutorials(db.Model):
     def serialize(self):
         return {'id': self.id,
                 'user_id': self.user_id,
-                'type': self.type,
+                'type': self.tutorials_type,
                 'title': self.title,
                 'body': self.body,
                 'video_url': self.video_url,
