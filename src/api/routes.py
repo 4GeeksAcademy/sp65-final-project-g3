@@ -12,7 +12,8 @@ from api.models import db, Users, Soundscapes, Mixes, Tutorials, Binaural
 from datetime import datetime
 
 api = Blueprint('api', __name__)
-CORS(api)  # Allow CORS requests to this API
+CORS(api)  # Allow CORS requests to this API.  ¡'09876ui
+'0'
 
 @api.route('/signup', methods=['POST'])
 def signup():
@@ -37,11 +38,37 @@ def signup():
     return response_body, 200
 
 
+@api.route("/login", methods=['POST'])
+def login():
+    response_body = {}
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+    user = db.session.execute(db.select(Users).where(Users.email == email, Users.password == password, Users.is_active == True)).scalar()
+    if user:
+        access_token = create_access_token(identity={'user_id' : user.id, 'is_admin' : user.is_admin})
+        response_body["message"] = "Login Succesful"
+        response_body["access_token"] = access_token
+        return response_body, 200
+    response_body["message"] = "Bad username or password"
+    return response_body, 401
+
+
+@api.route("/profile", methods=["GET"])
+@jwt_required()
+def profile():
+    response_body = {}
+    current_user = get_jwt_identity()
+    print(current_user)
+    response_body["message"] = f'User succesfully logged in as: {current_user}'
+    return response_body, 200
+
+
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
     response_body = {}
     response_body["message"] = "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
     return response_body, 200
+
 
 @api.route('/mixes', methods=['GET'])
 def handle_mixes():
@@ -52,6 +79,7 @@ def handle_mixes():
     response_body['results'] = results
     response_body['message'] = 'Mixes List. These are indeed the mixes you are looking for!!!'
     return response_body, 200
+
 
 @api.route('/mixes', methods=['POST'])
 @jwt_required()
@@ -73,7 +101,8 @@ def handle_mixes_post():
     response_body['results'] = row.serialize()
     response_body['message'] = 'Mix successfully created'
     return jsonify(response_body), 200
-    
+
+
 @api.route('/mixes/<int:mixes_id>', methods=['GET', 'PUT', 'DELETE'])
 @jwt_required()
 def handle_mixes_id(mixes_id):
@@ -125,7 +154,18 @@ def handle_mixes_id(mixes_id):
         response_body['results'] = {}
         return response_body, 200
 
-@api.route('/binaural', methods=['GET', 'POST'])
+
+@api.route('/binaural', methods=['GET'])
+def handle_binaurals():
+    response_body = {}
+    rows =db.session.execute(db.select(Binaural)).scalars()
+    results = [row.serialize() for row in rows]
+    response_body['results'] = results
+    response_body['message'] = 'Binaural List get succesful'
+    return response_body, 200
+
+
+@api.route('/binaural', methods=['POST'])
 @jwt_required()
 def handle_binaural():
     response_body = {}
@@ -133,13 +173,7 @@ def handle_binaural():
     user_id = current_user['user_id']
     print(current_user)
     print(user_id)
-
-    if request.method == 'GET':
-        rows =db.session.execute(db.select(Binaural)).scalars()
-        results = [row.serialize() for row in rows]
-        response_body['results'] = results
-        response_body['message'] = 'Binaural List get succesful'
-        return response_body, 200
+ 
     if request.method == 'POST':
         if current_user.get('is_admin', False): 
             data = request.json
@@ -159,6 +193,7 @@ def handle_binaural():
         else:
             response_body['message'] = 'You must be and Admin to post a track'
             return jsonify(response_body), 403
+
 
 @api.route('/binaural/<int:binaural_id>', methods=['GET', 'PUT'])
 @jwt_required()
@@ -180,7 +215,6 @@ def handle_binaural_id(binaural_id):
     if request.method == 'PUT':
         if current_user.get('is_admin', False):
             data = request.json
-            # TODO: Validación de datos recibidos 
             print(data)
             binaural = db.session.execute(db.select(Binaural).where(Binaural.id == binaural_id)).scalar()
             if binaural:
@@ -190,9 +224,8 @@ def handle_binaural_id(binaural_id):
                 binaural.name = data['name']
                 binaural.date_publication = data['date_publication']
                 binaural.track_url = data['track_url']
-                binaural.accumulator_concurrency = data['accumulator_concurrency']
                 db.session.commit()
-                response_body['message'] = 'Binaural track succesfully edited'
+                response_body['message'] = 'BInaural track succesfully edited'
                 response_body['results'] = binaural.serialize()
                 return response_body, 200
             response_body['message'] = 'Binaural Track Not Found or Nonexistent'
@@ -201,6 +234,89 @@ def handle_binaural_id(binaural_id):
         else:
             response_body['message'] = 'Unauthorized: Admin privileges required'
             return jsonify(response_body), 403
+
+
+@api.route('/soundscapes', methods=['GET'])
+@jwt_required()
+def handle_soundscapes():
+    response_body = {}
+    if request.method == 'GET':
+        rows =db.session.execute(db.select(Soundscapes)).scalars()
+        results = [row.serialize() for row in rows]
+        response_body['results'] = results
+        response_body['message'] = 'Soundscapes List get succesful'
+        return response_body, 200
+    
+
+@api.route('/soundscapes', methods=['POST'])
+@jwt_required()
+def handle_soundscapes():
+    response_body = {}
+    current_user = get_jwt_identity()
+    user_id = current_user['user_id']
+    print(current_user)
+    print(user_id)
+
+    if request.method == 'POST':
+        if current_user.get('is_admin', False): 
+            data = request.json
+            row = Soundscapes()
+            row.name = data['name']
+            row.duration = data['duration']
+            row.genre = data['genre']
+            row.url_jamendo = data['url_jamendo']
+            row.acumulator_concurrency = data['accumulator_concurrency']
+            row.user_id = current_user['user_id']  
+            row.is_admin = current_user['is_admin']  
+            db.session.add(row)
+            db.session.commit()
+            response_body['results'] = row.serialize()
+            response_body['message'] = 'Soundscapes Track successfully created'
+            return jsonify(response_body), 200
+        else:
+            response_body['message'] = 'You must be and Admin to post a track'
+            return jsonify(response_body), 403
+
+
+@api.route('/soundscapes/<int:soundscapes_id>', methods=['GET', 'PUT'])  
+@jwt_required()
+def handle_soundscapes_id(soundscapes_id):
+    response_body = {}
+    current_user = get_jwt_identity()
+    user_id = current_user['user_id']
+    print(current_user)
+    if request.method == 'GET':
+        soundscapes = db.session.execute(db.select(Soundscapes).where(Soundscapes.id == soundscapes_id)).scalar()  
+        if soundscapes:
+            response_body['results'] = soundscapes.serialize()
+            response_body['message'] = "soundscapes Track Found"
+            return response_body, 200
+        response_body['results'] = {}  
+        response_body['message'] = ("Unable to find track or track inexistent")
+        return response_body, 404
+    
+    if request.method == 'PUT':
+        if current_user.get('is_admin', False):
+            data = request.json
+            print(data)
+            soundscapes = db.session.execute(db.select(Soundscapes).where(Soundscapes.id == soundscapes_id)).scalar()
+            if soundscapes:
+                soundscapes.name = data['name']
+                soundscapes.duration = data['duration']
+                soundscapes.genre = data['genre']
+                soundscapes.url_jamendo = data['url_jamendo']
+                soundscapes.acumulator_concurrency = data['accumulator_concurrency']
+                db.session.commit()
+                response_body['message'] = 'Soundscapes track succesfully edited'
+                response_body['results'] = soundscapes.serialize()
+                return response_body, 200
+            response_body['message'] = 'Soundscapes Track Not Found or Nonexistent'
+            response_body['results'] = {}
+            return response_body, 404
+        else:
+            response_body['message'] = 'Unauthorized: Admin privileges required'
+            return jsonify(response_body), 403
+
 
 @api.route('/tutorials', methods=['GET', 'POST'])
 @jwt_required()
@@ -237,6 +353,7 @@ def handle_tutorial():
         else:
             response_body['message'] = 'You must be and Admin to post a tutorial'
             return jsonify(response_body), 403
+
 
 @api.route('/tutorials/<int:tutorial_id>', methods=['GET', 'PUT'])
 @jwt_required()
