@@ -261,7 +261,6 @@ def handle_soundscape():
             row.duration = data['duration']
             row.genre = data['genre']
             row.url_jamendo = data['url_jamendo']
-            row.acumulator_concurrency = data['accumulator_concurrency']
             row.user_id = current_user['user_id']  
             row.is_admin = current_user['is_admin']  
             db.session.add(row)
@@ -274,7 +273,7 @@ def handle_soundscape():
             return jsonify(response_body), 403
 
 
-@api.route('/soundscapes/<int:soundscapes_id>', methods=['GET', 'PUT'])  
+@api.route('/soundscapes/<int:soundscapes_id>', methods=['GET', 'PUT', 'DELETE' ])  
 @jwt_required()
 def handle_soundscapes_id(soundscapes_id):
     response_body = {}
@@ -301,7 +300,6 @@ def handle_soundscapes_id(soundscapes_id):
                 soundscapes.duration = data['duration']
                 soundscapes.genre = data['genre']
                 soundscapes.url_jamendo = data['url_jamendo']
-                soundscapes.acumulator_concurrency = data['accumulator_concurrency']
                 db.session.commit()
                 response_body['message'] = 'Soundscapes track succesfully edited'
                 response_body['results'] = soundscapes.serialize()
@@ -312,6 +310,19 @@ def handle_soundscapes_id(soundscapes_id):
         else:
             response_body['message'] = 'Unauthorized: Admin privileges required'
             return jsonify(response_body), 403
+
+    if request.method == 'DELETE':
+        if current_user.get('is_admin', False):            
+            soundscapes = db.session.execute(db.select(Soundscapes).where(Soundscapes.id == soundscapes_id)).scalar()
+            if soundscapes:
+                db.session.delete(soundscapes)
+                db.session.commit()
+                response_body['message'] = 'Soundscape succesfully eliminated'
+                response_body['results'] = {}
+                return response_body, 200
+            response_body['message'] = 'No such existing Soundscape'
+            response_body['results'] = {}
+            return response_body, 200
 
 
 @api.route('/tutorials', methods=['GET', 'POST'])
@@ -351,7 +362,7 @@ def handle_tutorial():
             return jsonify(response_body), 403
 
 
-@api.route('/tutorials/<int:tutorial_id>', methods=['GET', 'PUT'])
+@api.route('/tutorials/<int:tutorial_id>', methods=['GET', 'PUT', 'DELETE'])
 @jwt_required()
 def handle_tutorial_id(tutorial_id):
     response_body = {}
@@ -392,4 +403,15 @@ def handle_tutorial_id(tutorial_id):
         else:
             response_body['message'] = 'Unauthorized: Admin privileges required'
             return jsonify(response_body), 403
-        
+    if request.method == 'DELETE':
+        if current_user.get('is_admin', False):            
+            tutorial = db.session.execute(db.select(Tutorials).where(Tutorials.id == tutorial_id)).scalar()
+            if tutorial:
+                db.session.delete(tutorial)
+                db.session.commit()
+                response_body['message'] = 'tutorialsuccesfully eliminated'
+                response_body['results'] = {}
+                return response_body, 200
+            response_body['message'] = 'No such existing Tutorial'
+            response_body['results'] = {}
+            return response_body, 200
