@@ -60,31 +60,6 @@ def profile():
     response_body["message"] = f'User succesfully logged in as: {current_user}'
     return response_body, 200
 
-@api.route("/login", methods=['POST'])
-def login():
-    response_body = {}
-    email = request.json.get("email", None)
-    password = request.json.get("password", None)
-    user = db.session.execute(db.select(Users).where(Users.email == email, Users.password == password, Users.is_active == True)).scalar()
-    if user:
-        access_token = create_access_token(identity={'user_id' : user.id, 'is_admin' : user.is_admin})
-        response_body["message"] = "Login Succesful"
-        response_body["access_token"] = access_token
-        return response_body, 200
-    response_body["message"] = "Bad username or password"
-    return response_body, 401
-
-
-@api.route("/profile", methods=["GET"])
-@jwt_required()
-def profile():
-    response_body = {}
-    current_user = get_jwt_identity()
-    print(current_user)
-    response_body["message"] = f'User succesfully logged in as: {current_user}'
-    return response_body, 200
-
-
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
     response_body = {}
@@ -95,7 +70,6 @@ def handle_hello():
 @api.route('/mixes', methods=['GET'])
 def handle_mixes():
     response_body = {}
-
     rows =db.session.execute(db.select(Mixes)).scalars()
     results = [row.serialize() for row in rows]
     response_body['results'] = results
