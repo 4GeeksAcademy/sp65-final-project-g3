@@ -60,6 +60,31 @@ def profile():
     response_body["message"] = f'User succesfully logged in as: {current_user}'
     return response_body, 200
 
+@api.route("/login", methods=['POST'])
+def login():
+    response_body = {}
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+    user = db.session.execute(db.select(Users).where(Users.email == email, Users.password == password, Users.is_active == True)).scalar()
+    if user:
+        access_token = create_access_token(identity={'user_id' : user.id, 'is_admin' : user.is_admin})
+        response_body["message"] = "Login Succesful"
+        response_body["access_token"] = access_token
+        return response_body, 200
+    response_body["message"] = "Bad username or password"
+    return response_body, 401
+
+
+@api.route("/profile", methods=["GET"])
+@jwt_required()
+def profile():
+    response_body = {}
+    current_user = get_jwt_identity()
+    print(current_user)
+    response_body["message"] = f'User succesfully logged in as: {current_user}'
+    return response_body, 200
+
+
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
     response_body = {}
@@ -151,6 +176,7 @@ def handle_mixes_id(mixes_id):
         response_body['results'] = {}
         return response_body, 200
 
+
 @api.route('/binaural', methods=['GET'])
 def handle_binaurals():
     response_body = {}
@@ -160,6 +186,7 @@ def handle_binaurals():
     response_body['message'] = 'Binaural List get succesful'
     return response_body, 200
 
+  
 @api.route('/binaural', methods=['POST'])
 @jwt_required()
 def handle_binaural():
@@ -231,14 +258,10 @@ def handle_binaural_id(binaural_id):
             return jsonify(response_body), 403
 
 
-@api.route('/soundscapes', methods=['GET', 'POST'])
+@api.route('/soundscapes', methods=['GET'])
 @jwt_required()
 def handle_soundscapes():
     response_body = {}
-    current_user = get_jwt_identity()
-    user_id = current_user['user_id']
-    print(current_user)
-    print(user_id)
 
     if request.method == 'GET':
         rows =db.session.execute(db.select(Soundscapes)).scalars()
@@ -246,6 +269,16 @@ def handle_soundscapes():
         response_body['results'] = results
         response_body['message'] = 'Soundscapes List get succesful'
         return response_body, 200
+
+@api.route('/soundscapes', methods=['POST'])
+@jwt_required()
+def handle_soundscapes():
+    response_body = {}
+    current_user = get_jwt_identity()
+    user_id = current_user['user_id']
+    print(current_user)
+    print(user_id)
+    
     if request.method == 'POST':
         if current_user.get('is_admin', False): 
             data = request.json
@@ -267,7 +300,7 @@ def handle_soundscapes():
             return jsonify(response_body), 403
 
 
-@api.route('/soundscapes/<int:soundscapes_id>', methods=['GET', 'PUT'])  # Matias, si Soundscapes es sólo modificable por el Admin, estaría correcto seguir la lógica de Binaurals en lugar de Mixes ¿no?
+@api.route('/soundscapes/<int:soundscapes_id>', methods=['GET', 'PUT'])  
 @jwt_required()
 def handle_soundscapes_id(soundscapes_id):
     response_body = {}
@@ -300,6 +333,86 @@ def handle_soundscapes_id(soundscapes_id):
                 response_body['results'] = soundscapes.serialize()
                 return response_body, 200
             response_body['message'] = 'Soundscapes Track Not Found or Nonexistent'
+            response_body['results'] = {}
+            return response_body, 404
+        else:
+            response_body['message'] = 'Unauthorized: Admin privileges required'
+            return jsonify(response_body), 403
+
+
+@api.route('/tutorials', methods=['GET', 'POST'])
+@jwt_required()
+def handle_tutorial():
+    response_body = {}
+    current_user = get_jwt_identity()
+    user_id = current_user['user_id']
+    print(current_user)
+    print(user_id)
+
+    if request.method == 'GET':
+        rows =db.session.execute(db.select(Tutorials)).scalars()
+        results = [row.serialize() for row in rows]
+        response_body['results'] = results
+        response_body['message'] = 'Tutorials List get succesful'
+        return response_body, 200
+    if request.method == 'POST':
+        if current_user.get('is_admin', False): 
+            data = request.json
+            row = Tutorials()
+            row.user_id = current_user['user_id']
+            row.type = data['type']
+            row.title = data['title']
+            row.body = data['body']            
+            row.video_url = data['video_url']
+            row.audio_url = data['audio_url']
+            row.last_modified = datetime.today() 
+            row.is_admin = current_user['is_admin']  
+            db.session.add(row)
+            db.session.commit()
+            response_body['results'] = row.serialize()
+            response_body['message'] = 'Tutorial video successfully created'
+            return jsonify(response_body), 200
+        else:
+            response_body['message'] = 'You must be and Admin to post a tutorial'
+            return jsonify(response_body), 403
+
+
+@api.route('/tutorials/<int:tutorial_id>', methods=['GET', 'PUT'])
+@jwt_required()
+def handle_tutorial_id(tutorial_id):
+    response_body = {}
+    current_user = get_jwt_identity()
+    user_id = current_user['user_id']
+    print(current_user)
+    if request.method == 'GET':
+        tutorial = db.session.execute(db.select(Tutorials).where(Tutorials.id == tutorial_id)).scalar()
+        if tutorial:
+            response_body['results'] = tutorial.serialize()
+            response_body['message'] = "Tutorial Track Found"
+            return response_body, 200
+        response_body['results'] = {}  
+        response_body['message'] = ("Unable to find track or track inexistent")
+        return response_body, 404
+    
+    if request.method == 'PUT':
+        if current_user.get('is_admin', False):
+            data = request.json
+            # TODO: Validación de datos recibidos 
+            print(data)
+            tutorial = db.session.execute(db.select(Tutorials).where(Tutorials.id == tutorial_id)).scalar()
+            if tutorial:
+                tutorial.user_id = current_user['user_id']
+                tutorial.type = data['type']
+                tutorial.title = data['title']
+                tutorial.body = data['body']            
+                tutorial.video_url = data['video_url']
+                tutorial.audio_url = data['audio_url']
+                tutorial.last_modified = datetime.today() 
+                db.session.commit()
+                response_body['message'] = 'Tutorial video succesfully edited'
+                response_body['results'] = tutorial.serialize()
+                return response_body, 200
+            response_body['message'] = 'Tutorial video Not Found or Nonexistent'
             response_body['results'] = {}
             return response_body, 404
         else:

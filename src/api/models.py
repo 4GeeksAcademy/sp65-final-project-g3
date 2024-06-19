@@ -94,7 +94,6 @@ class Binaural(db.Model):
                 'date_publication': self.date_publication}
                 # 'accumulator_concurrency': self.accumulator_concurrency}              
                 
-
 class Tutorials(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer)
