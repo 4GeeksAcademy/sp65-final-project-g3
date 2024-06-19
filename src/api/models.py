@@ -29,7 +29,6 @@ class Users(db.Model):
                 'is_admin': self.is_admin}
       
 
-
 class Soundscapes(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), unique=False, nullable=False)
@@ -76,11 +75,11 @@ class Binaural(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.Enum("Alpha", "Theta", "Delta", name="type"), unique=False )
     name = db.Column(db.String(120), unique=False, nullable=False)
-    duration = db.Column(db.Integer, unique=False, nullable=False)
-    description = db.Column(db.String, unique=False, nullable=False)
-    track_url = db.Column(db.String, unique=False, nullable=False)
-    date_publication = db.Column(db.Date, unique=False, nullable=False)
-    accumulator_concurrency = db.Column(db.Integer)
+    duration = db.Column(db.Integer, unique=False, nullable=True)
+    description = db.Column(db.String, unique=False, nullable=True)
+    track_url = db.Column(db.String, unique=False, nullable=True)
+    date_publication = db.Column(db.Date, unique=False, nullable=True)
+    # accumulator_concurrency = db.Column(db.Integer)
     
     def __repr__(self):
         return f'<Binaural {self.name}>'
@@ -92,9 +91,8 @@ class Binaural(db.Model):
                 'duration': self.duration,
                 'description': self.description,
                 'track_url': self.track_url,
-                'date_publication': self.date_publication,
-                'accumulator_concurrency': self.accumulator_concurrency}              
-     
+                'date_publication': self.date_publication}
+                # 'accumulator_concurrency': self.accumulator_concurrency}              
                 
 
 class Tutorials(db.Model):
