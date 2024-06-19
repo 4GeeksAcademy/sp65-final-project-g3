@@ -32,7 +32,7 @@ class Users(db.Model):
 class Soundscapes(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), unique=False, nullable=False)
-    duration= db.Column(db.Integer, unique=False, nullable=False)
+    duration = db.Column(db.Integer, unique=False, nullable=False)
     genre = db.Column(db.String(120), unique=False, nullable=False)
     url_jamendo = db.Column(db.String, unique=False, nullable=True)
     accumulator_concurrency = db.Column(db.Integer, unique=False, nullable=True)
