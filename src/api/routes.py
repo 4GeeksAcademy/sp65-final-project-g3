@@ -246,7 +246,7 @@ def handle_soundscapes():
 
 @api.route('/soundscapes', methods=['POST'])
 @jwt_required()
-def handle_soundscapes():
+def handle_soundscape():
     response_body = {}
     current_user = get_jwt_identity()
     user_id = current_user['user_id']
