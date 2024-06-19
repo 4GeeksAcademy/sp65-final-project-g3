@@ -29,7 +29,6 @@ class Users(db.Model):
                 'is_admin': self.is_admin}
       
 
-
 class Soundscapes(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), unique=False, nullable=False)
@@ -96,7 +95,6 @@ class Binaural(db.Model):
                 'accumulator_concurrency': self.accumulator_concurrency}              
      
                 
-
 class Tutorials(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer)

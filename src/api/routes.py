@@ -192,7 +192,7 @@ def handle_binaural_id(binaural_id):
                 binaural.track_url = data['track_url']
                 binaural.accumulator_concurrency = data['accumulator_concurrency']
                 db.session.commit()
-                response_body['message'] = 'BInaural track succesfully edited'
+                response_body['message'] = 'Binaural track succesfully edited'
                 response_body['results'] = binaural.serialize()
                 return response_body, 200
             response_body['message'] = 'Binaural Track Not Found or Nonexistent'
@@ -201,4 +201,82 @@ def handle_binaural_id(binaural_id):
         else:
             response_body['message'] = 'Unauthorized: Admin privileges required'
             return jsonify(response_body), 403
+
+@api.route('/tutorials', methods=['GET', 'POST'])
+@jwt_required()
+def handle_tutorial():
+    response_body = {}
+    current_user = get_jwt_identity()
+    user_id = current_user['user_id']
+    print(current_user)
+    print(user_id)
+
+    if request.method == 'GET':
+        rows =db.session.execute(db.select(Tutorials)).scalars()
+        results = [row.serialize() for row in rows]
+        response_body['results'] = results
+        response_body['message'] = 'Tutorials List get succesful'
+        return response_body, 200
+    if request.method == 'POST':
+        if current_user.get('is_admin', False): 
+            data = request.json
+            row = Tutorials()
+            row.user_id = current_user['user_id']
+            row.type = data['type']
+            row.title = data['title']
+            row.body = data['body']            
+            row.video_url = data['video_url']
+            row.audio_url = data['audio_url']
+            row.last_modified = datetime.today() 
+            row.is_admin = current_user['is_admin']  
+            db.session.add(row)
+            db.session.commit()
+            response_body['results'] = row.serialize()
+            response_body['message'] = 'Tutorial video successfully created'
+            return jsonify(response_body), 200
+        else:
+            response_body['message'] = 'You must be and Admin to post a tutorial'
+            return jsonify(response_body), 403
+
+@api.route('/tutorials/<int:tutorial_id>', methods=['GET', 'PUT'])
+@jwt_required()
+def handle_tutorial_id(tutorial_id):
+    response_body = {}
+    current_user = get_jwt_identity()
+    user_id = current_user['user_id']
+    print(current_user)
+    if request.method == 'GET':
+        tutorial = db.session.execute(db.select(Tutorials).where(Tutorials.id == tutorial_id)).scalar()
+        if tutorial:
+            response_body['results'] = tutorial.serialize()
+            response_body['message'] = "Tutorial Track Found"
+            return response_body, 200
+        response_body['results'] = {}  
+        response_body['message'] = ("Unable to find track or track inexistent")
+        return response_body, 404
     
+    if request.method == 'PUT':
+        if current_user.get('is_admin', False):
+            data = request.json
+            # TODO: Validación de datos recibidos 
+            print(data)
+            tutorial = db.session.execute(db.select(Tutorials).where(Tutorials.id == tutorial_id)).scalar()
+            if tutorial:
+                tutorial.user_id = current_user['user_id']
+                tutorial.type = data['type']
+                tutorial.title = data['title']
+                tutorial.body = data['body']            
+                tutorial.video_url = data['video_url']
+                tutorial.audio_url = data['audio_url']
+                tutorial.last_modified = datetime.today() 
+                db.session.commit()
+                response_body['message'] = 'Tutorial video succesfully edited'
+                response_body['results'] = tutorial.serialize()
+                return response_body, 200
+            response_body['message'] = 'Tutorial video Not Found or Nonexistent'
+            response_body['results'] = {}
+            return response_body, 404
+        else:
+            response_body['message'] = 'Unauthorized: Admin privileges required'
+            return jsonify(response_body), 403
+        
