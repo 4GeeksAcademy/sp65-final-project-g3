@@ -1,7 +1,7 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
-from flask import Flask, request, jsonify, url_for, Blueprint
+from flask import Flask, request, jsonify, url_for, Blueprint, session, redirect
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from datetime import datetime
@@ -10,10 +10,50 @@ from flask_jwt_extended import jwt_required
 from flask_jwt_extended import get_jwt_identity
 from api.models import db, Users, Soundscapes, Mixes, Tutorials, Binaural
 from datetime import datetime
+from spotipy import Spotify
+from spotipy.oauth2 import SpotifyOAuth
+from spotipy.cache_handler import FlaskSessionCacheHandler
 
 api = Blueprint('api', __name__)
 CORS(api)  # Allow CORS requests to this API.  ¡'09876ui
 '0'
+
+
+@app.route('/')  # Así sería el login de Spotify para la obtención del token del usuario.
+def home():
+    if not sp_oauth.validate_token(cache_handler.get_cached_token()):
+        auth_url = sp_oauth.get_authorize_url()
+        return redirect(auth_url)
+    return redirect(url_for('get_playlists'))
+
+
+@app.route('/logout')  # Así sería el logout de Spotify que redirigiría a la página inicial del login (o donde queramos redirigirlo).
+def logout():
+    session.clear()
+    return redirect(url_for('home'))    
+
+
+@app.route('/callback')  # Este Endpoint sirve para evitar el continuo relogin del usuario; refresca el token de acceso de forma automática.
+def callback():
+    sp_oauth.get_access_token(request.args['code'])
+    return redirect(url_for('get_playlists'))
+
+
+@app.route('/get_playlists', methods=['GET'])  # Este Endpoint sirve para traer las playlists del usuario (al menos en teoría)
+def get_playlists():
+    if not sp_oauth.validate_token(cache_handler.get_cached_token()):
+        auth_url = sp_oauth.get_authorize_url()
+        return redirect(auth_url)
+
+    playlists = sp.current_user.get_playlists()
+    playlists_info = [(pl['name'], pl['external_urls']['spotify']) for pl in playlists ['items']]
+    playlists_html = '<br>'.join([f'{name}: {url}' for name, url in playlists_info])
+
+    return playlists_display
+
+
+# @app.route('/spotify', methods=['GET'])
+
 
 @api.route('/signup', methods=['POST'])
 def signup():
@@ -37,6 +77,7 @@ def signup():
     response_body["access_token"] = access_token
     return response_body, 200
 
+
 @api.route("/login", methods=['POST'])
 def login():
     response_body = {}
@@ -51,6 +92,7 @@ def login():
     response_body["message"] = "Bad username or password"
     return response_body, 401
 
+
 @api.route("/profile", methods=["GET"])
 @jwt_required()
 def profile():
@@ -59,6 +101,7 @@ def profile():
     print(current_user)
     response_body["message"] = f'User succesfully logged in as: {current_user}'
     return response_body, 200
+
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
@@ -244,6 +287,7 @@ def handle_soundscapes():
         response_body['message'] = 'Soundscapes List get succesful'
         return response_body, 200
 
+
 @api.route('/soundscapes', methods=['POST'])
 @jwt_required()
 def handle_soundscape():
@@ -415,3 +459,5 @@ def handle_tutorial_id(tutorial_id):
             response_body['message'] = 'No such existing Tutorial'
             response_body['results'] = {}
             return response_body, 200
+
+
