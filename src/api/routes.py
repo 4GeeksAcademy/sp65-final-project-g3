@@ -415,3 +415,58 @@ def handle_tutorial_id(tutorial_id):
             response_body['message'] = 'No such existing Tutorial'
             response_body['results'] = {}
             return response_body, 200
+
+@api.route('/users', methods=['GET', 'POST'])
+def handle_users():
+    response_body = {}
+    if request.method == 'GET':
+        rows =db.session.execute(db.select(Users)).scalars()
+        results = [row.serialize() for row in rows]
+        response_body['results'] = results
+        response_body['message'] = 'This are the Users'
+        return response_body, 200
+    if request.method == 'POST':
+        response_body['message'] = 'Invalid endpoint, Please sign up'
+        return response_body, 200
+
+@api.route('/users/<int:user_id>', methods=['GET', 'PUT', 'DELETE'])
+def handle_user(user_id):
+    response_body = {}
+    if request.method == 'GET':
+        user = db.session.execute(db.select(Users).where(Users.id == user_id)).scalar()
+        if user:
+            response_body['results'] = user.serialize()
+            response_body['message'] = 'User Found'
+            return response_body, 200
+        response_body['message'] = 'Unexistent User'
+        response_body['results'] = {}
+        return response_body, 404
+    if request.method == 'PUT':
+        data = request.json
+        # TODO: Validación de datos recibidos 
+        print(data)
+        user = db.session.execute(db.select(Users).where(Users.id == user_id)).scalar()
+        if user:
+            user.email = data['email']
+            user.is_active = data['is_active']
+            user.last_name = data['last_name']
+            user.first_name = data['first_name']
+            db.session.commit()
+            response_body['message'] = 'User updated'
+            response_body['results'] = user.serialize()
+            return response_body, 200
+        response_body['message'] = 'This is not the user you are looking for'
+        response_body['results'] = {}
+        return response_body, 404
+    if request.method == 'DELETE':
+        user = db.session.execute(db.select(Users).where(Users.id == user_id)).scalar()
+        if user:
+            # db.session.delete(user)
+            user.is_active = False
+            db.session.commit()
+            response_body['message'] = 'Usuario eliminado'
+            response_body['results'] = {}
+        response_body['message'] = 'Usuario inexistente'
+        response_body['results'] = {}
+        return response_body, 200
+
