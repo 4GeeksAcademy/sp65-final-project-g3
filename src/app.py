@@ -12,6 +12,10 @@ from api.commands import setup_commands
 from api.models import db
 # from models import Person
 from flask_jwt_extended import JWTManager
+# Spotify importations
+from spotipy import Spotify
+from spotipy.oauth2 import SpotifyOAuth
+from spotipy.cache_handler import FlaskSessionCacheHandler
 # from google.cloud import storage
 
 
@@ -35,6 +39,20 @@ app.register_blueprint(api, url_prefix='/api')  # Add all endpoints form the API
 # Setup the Flask-JWT-Extended extension
 app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")  # Change this!
 jwt = JWTManager(app)
+
+
+# Config Spotify
+cache_handler = FlaskSessionCacheHandler(session)
+sp_oauth = SpotifyOAuth(
+    cliend_id = os.getenv("client_id"),
+    client_secret = os.getenv("client_secret"),
+    redirect_uri = os.getenv("redirect_uri"),
+    scope = os.getenv("scope"),
+    cache_handler = os.getenv("cache_handler"),
+    show_dialog = True)
+
+sp = Spotify(auth_manager = sp_oauth)
+
 
 # Todo lo referente al Google Cloud Storage
 """ 
@@ -72,6 +90,7 @@ files_dict = list_blobs(bucket_name)
 for file_name, url in files_dict.items():
     print(f"{file_name}: {url}")
      """
+
 # Handle/serialize errors like a JSON object
 @app.errorhandler(APIException)
 def handle_invalid_usage(error):
@@ -94,7 +113,7 @@ def serve_any_other_file(path):
     response = send_from_directory(static_file_dir, path)
     response.cache_control.max_age = 0  # avoid cache memory
     return response
-
+    
 
 # This only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':
