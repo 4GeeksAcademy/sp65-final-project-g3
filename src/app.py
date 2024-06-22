@@ -12,6 +12,7 @@ from api.commands import setup_commands
 from api.models import db
 # from models import Person
 from flask_jwt_extended import JWTManager
+# from google.cloud import storage
 
 
 ENV = "development" if os.getenv("FLASK_DEBUG") == "1" else "production"
@@ -35,6 +36,42 @@ app.register_blueprint(api, url_prefix='/api')  # Add all endpoints form the API
 app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")  # Change this!
 jwt = JWTManager(app)
 
+# Todo lo referente al Google Cloud Storage
+""" 
+def authenticate_with_service_account(json_keyfile_path, project_id):
+"""     """
+Authenticate using a service account key file.
+    """ """
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = json_keyfile_path
+    storage_client = storage.Client(project=project_id)
+    return storage_client
+
+def list_blobs(bucket_name):
+    
+    Lists all the blobs in the bucket and returns a dictionary with file names and their URLs.
+   
+    storage_client = authenticate_with_service_account('path/to/your/service-account-file.json', 'your-project-id')
+
+    bucket = storage_client.bucket(bucket_name)
+    blobs = bucket.list_blobs()
+
+    files_dict = {}
+    for blob in blobs:
+        files_dict[blob.name] = blob.generate_signed_url(expiration=3600)  # URL válida por una hora
+
+    return files_dict
+""" 
+"""
+# Especifica el nombre de tu bucket
+bucket_name = "your-bucket-name"
+
+# Llama a la función para listar los archivos y obtener sus URLs
+files_dict = list_blobs(bucket_name)
+
+# Imprime la lista de archivos y sus URLs
+for file_name, url in files_dict.items():
+    print(f"{file_name}: {url}")
+     """
 # Handle/serialize errors like a JSON object
 @app.errorhandler(APIException)
 def handle_invalid_usage(error):

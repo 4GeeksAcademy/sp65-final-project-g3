@@ -2,7 +2,8 @@ const getState = ({getStore, getActions, setStore}) => {
 	return {
 		store: {
 			message: null,
-			demo: [{title: "FIRST", background: "white", initial: "white"}]
+			demo: [{title: "FIRST", background: "white", initial: "white"}],
+			isLogin: false
 		},
 		actions: {
 			exampleFunction: () => {getActions().changeColor(0, "green");},  // Use getActions to call a function within a fuction
@@ -16,7 +17,7 @@ const getState = ({getStore, getActions, setStore}) => {
 				setStore({ demo: demo });  // Reset the global store
 			},
 			getMessage: async () => {
-					const response = await fetch(process.env.BACKEND_URL + "/api/hello")
+					const response = await fetch(process.env.BACKEND_URL + "api/hello")
 					if (!response.ok) {
 						console.log("Error loading message from backend", response.status, response.statusText)
 						return
@@ -24,7 +25,37 @@ const getState = ({getStore, getActions, setStore}) => {
 					const data = await response.json()
 					setStore({ message: data.message })
 					return data;  // Don't forget to return something, that is how the async resolves
-			}
+			},
+			getUsers: async () => {
+				const uri = getStore().apiContact + 'agendas/' + getStore().agenda
+				const response = await fetch(uri);
+				if (!response.ok) {
+					console.log('Error on Agenda', response.status, response.statusText);
+					return
+				}
+				const data = await response.json();
+				setStore({ Users: data.Users });
+				console.log('Recruits on Agenda', data.Users);
+
+			},
+			addContact: async (dataToSend) => {
+				const uri = `${getStore().apiContact}agendas/${getStore().agenda}/Users`
+				const options = {
+					method: 'POST',
+					headers: {
+						'Content-type': 'application/json'
+					},
+					body: JSON.stringify(dataToSend)
+				}
+				const response = await fetch(uri, options);
+				if (!response.ok) {
+					console.log('Add Contact Error', response.status, response.statusText);
+					return
+				}
+				// const data = await response.json();
+				getActions().getUsers();
+			},
+			setIsLogin: (login) => {setStore({ isLogin: login})}
 		}
 	};
 };
