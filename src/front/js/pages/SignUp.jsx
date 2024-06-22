@@ -6,6 +6,7 @@ export const SignUp = () => {
   const { actions } = useContext(Context)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [agreeTerms, setAgreeTerms] = useState (false);
   const navigate = useNavigate();
 
 
@@ -16,6 +17,14 @@ export const SignUp = () => {
   const handlePasswordChange = async (e) => {
     setPassword(e.target.value);
   };
+
+  const handleAgreeTerms = e => setAgreeTerms(e.target.checked);
+
+  const handleReset = () => {
+    setEmail('');
+    setPassword('');
+    setRememberMe(false);
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,52 +53,37 @@ export const SignUp = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <div className="row justify-content-center">
-        <div className="col-md-6">
-          <div className="card">
-            <div className="card-body">
-              <h2 className="card-title text-center mb-3 display-5">
-                Sign Up
-              </h2>
-              <form onSubmit={handleSubmit}>
-                <div className="form-group mt-3 h6">
-                  <label htmlFor="email" className="mb-1">
-                    Email Address:
-                  </label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="email"
-                    value={email}
-                    onChange={handleEmailChange}
-                    required
-                  />
-                </div>
-                <div className="form-group mt-3 h6">
-                  <label htmlFor="password" className="mb-1">
-                    Password:
-                  </label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    id="password"
-                    value={password}
-                    onChange={handlePasswordChange}
-                    required
-                  />
-                </div>
-                <div className="text-center">
-                  <button type="submit" className="btn btn-primary mt-5">
-                    Sign Up To Binaurapp
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
+    <form className="form" onSubmit={handleSubmit}>
+      <p id="heading">Sign Up To Binaurapp</p>
+      <div className="field"  onSubmit={handleSubmit}>
+        <span className="material-symbols-outlined">alternate_email</span>
+          <input autocomplete="off" placeholder="Username" className="form-control" type="email" value={email} onChange={handleEmailChange} />
       </div>
-    </div>
+      <div className="field">
+        <span className="material-symbols-outlined">lock</span>
+            <input placeholder="Password" required="true" className="form-control" type="password" id="password" value={password} onChange={handlePasswordChange} />
+      </div>
+      <div className="field">
+        <span className="material-symbols-outlined">password</span>
+            <input placeholder="Confirm Password" required="true" className="form-control" type="password" id="password" value={password} onChange={handlePasswordChange} />
+      </div>
+      <div className="mb-3 form-check">
+          <input type="radio" className="form-check-input" id="termsAgreement" checked={agreeTerms} onChange={handleAgreeTerms}></input>
+          <label className="form-check-label text-muted" for="termsAgreement">I agree the Terms of Privacy Policy</label>
+        </div>
+      <div className="d-flex justify-content">
+          <button className="button1 mx-auto">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sign up&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </button>
+          <button type="reset" className="button1 mx-auto" onClick={handleReset}>&nbsp;&nbsp;&nbsp;&nbsp;Cancel&nbsp;&nbsp;&nbsp;&nbsp;</button>
+        </div>
+        <div className="d-flex mx-auto justify-content-center text-white mb-2">
+          <div className="border align-self-center"></div>
+          <span>Or sign up with</span>
+          <div className="border align-self-center"></div>
+        </div>
+        <button type="reset" className="button1 text-success mb-3"><b>Spotify</b></button> 
+        {/* <p className="text-muted" id="termsPolicy">By registering, you are agreeing to Binaurapp's Privacy Policy and Terms of Use.</p> */}
+</form>
   );
 };
-
