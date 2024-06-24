@@ -55,15 +55,15 @@ export const Login = () => {
         <p id="heading">Login To Binaurapp</p>
         <div className="field">
         <span className="material-symbols-outlined">alternate_email</span>
-          <input autocomplete="off" placeholder="Username" className="form-control" type="email" value={email} onChange={handleEmailChange} />
+          <input autoComplete="off" placeholder="Username" className="form-control" type="email" value={email} onChange={handleEmailChange} />
         </div>
         <div className="field">
         <span className="material-symbols-outlined">lock</span>
-          <input placeholder="Password" required="true" className="form-control" type="password" id="password" value={password} onChange={handlePasswordChange} />
+          <input placeholder="Password" required={true} className="form-control" type="password" id="password" value={password} onChange={handlePasswordChange} />
         </div>
         <div className="mb-3 form-check">
           <input type="radio" className="form-check-input" id="rememberPassword" checked={rememberMe} onChange={handleRememberMe}></input>
-          <label className="form-check-label text-white" for="rememberPassword">Remember me</label>
+          <label className="form-check-label text-white" htmlFor="rememberPassword">Remember me</label>
         </div>
         <div className="d-flex justify-content">
           <button className="button1 mx-auto">

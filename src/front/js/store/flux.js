@@ -17,7 +17,7 @@ const getState = ({getStore, getActions, setStore}) => {
 				setStore({ demo: demo });  // Reset the global store
 			},
 			getMessage: async () => {
-					const response = await fetch(process.env.BACKEND_URL + "api/hello")
+					const response = await fetch(process.env.BACKEND_URL + "/api/hello")
 					if (!response.ok) {
 						console.log("Error loading message from backend", response.status, response.statusText)
 						return
