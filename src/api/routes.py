@@ -19,7 +19,7 @@ CORS(api)  # Allow CORS requests to this API.  ¡'09876ui
 '0'
 
 
-@app.route('/')  # Así sería el login de Spotify para la obtención del token del usuario.
+@api.route('/')  # Así sería el login de Spotify para la obtención del token del usuario.
 def home():
     if not sp_oauth.validate_token(cache_handler.get_cached_token()):
         auth_url = sp_oauth.get_authorize_url()
@@ -27,19 +27,19 @@ def home():
     return redirect(url_for('get_playlists'))
 
 
-@app.route('/logout')  # Así sería el logout de Spotify que redirigiría a la página inicial del login (o donde queramos redirigirlo).
+@api.route('/logout')  # Así sería el logout de Spotify que redirigiría a la página inicial del login (o donde queramos redirigirlo).
 def logout():
     session.clear()
     return redirect(url_for('home'))    
 
 
-@app.route('/callback')  # Este Endpoint sirve para evitar el continuo relogin del usuario; refresca el token de acceso de forma automática.
+@api.route('/callback')  # Este Endpoint sirve para evitar el continuo relogin del usuario; refresca el token de acceso de forma automática.
 def callback():
     sp_oauth.get_access_token(request.args['code'])
     return redirect(url_for('get_playlists'))
 
 
-@app.route('/get_playlists', methods=['GET'])  # Este Endpoint sirve para traer las playlists del usuario (al menos en teoría)
+@api.route('/get_playlists', methods=['GET'])  # Este Endpoint sirve para traer las playlists del usuario (al menos en teoría)
 def get_playlists():
     if not sp_oauth.validate_token(cache_handler.get_cached_token()):
         auth_url = sp_oauth.get_authorize_url()
@@ -62,7 +62,10 @@ def signup():
     password = request.json.get("password", None)
     first_name = request.json.get("first_name", "")  
     last_name = request.json.get("last_name", "") 
-    # logica de validación de email valido y password valida
+    row = db.session.execute(db.session.select(Users).where(Users.email == email)).scalar()
+    if row:
+        response_body["message"] = "Mail already exists"
+        return response_body, 401
     user = Users()
     user.email = email
     user.first_name = first_name

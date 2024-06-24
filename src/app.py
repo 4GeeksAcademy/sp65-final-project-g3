@@ -41,7 +41,7 @@ app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")  # Change this!
 jwt = JWTManager(app)
 
 
-# Config Spotify
+""" # Config Spotify
 cache_handler = FlaskSessionCacheHandler(session)
 sp_oauth = SpotifyOAuth(
     cliend_id = os.getenv("client_id"),
@@ -51,7 +51,7 @@ sp_oauth = SpotifyOAuth(
     cache_handler = os.getenv("cache_handler"),
     show_dialog = True)
 
-sp = Spotify(auth_manager = sp_oauth)
+sp = Spotify(auth_manager = sp_oauth) """
 
 
 # Todo lo referente al Google Cloud Storage

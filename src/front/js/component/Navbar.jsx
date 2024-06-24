@@ -42,8 +42,8 @@ export const Navbar = () => {
 										<Link to="/">
 											<button type="button" onClick={logout} className="btn btn-outline-info">Logout</button>
 										</Link>
-										<Link to="/">
-											<button type="button" onClick={Profile} className="btn btn-outline-info">Profile</button>
+										<Link to="/demo">
+											<button type="button" className="btn btn-outline-info">Profile</button>
 										</Link>
 									</>
 									:

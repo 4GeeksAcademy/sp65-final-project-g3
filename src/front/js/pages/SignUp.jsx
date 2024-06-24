@@ -57,19 +57,19 @@ export const SignUp = () => {
       <p id="heading">Sign Up To Binaurapp</p>
       <div className="field"  onSubmit={handleSubmit}>
         <span className="material-symbols-outlined">alternate_email</span>
-          <input autocomplete="off" placeholder="Username" className="form-control" type="email" value={email} onChange={handleEmailChange} />
+          <input autoComplete="off" placeholder="Username" className="form-control" type="email" value={email} onChange={handleEmailChange} />
       </div>
       <div className="field">
         <span className="material-symbols-outlined">lock</span>
-            <input placeholder="Password" required="true" className="form-control" type="password" id="password" value={password} onChange={handlePasswordChange} />
+            <input placeholder="Password" required={true} className="form-control" type="password" id="password" value={password} onChange={handlePasswordChange} />
       </div>
       <div className="field">
         <span className="material-symbols-outlined">password</span>
-            <input placeholder="Confirm Password" required="true" className="form-control" type="password" id="password" value={password} onChange={handlePasswordChange} />
+            <input placeholder="Confirm Password" required={true} className="form-control" type="password" id="password" value={password} onChange={handlePasswordChange} />
       </div>
       <div className="mb-3 form-check">
           <input type="radio" className="form-check-input" id="termsAgreement" checked={agreeTerms} onChange={handleAgreeTerms}></input>
-          <label className="form-check-label text-muted" for="termsAgreement">I agree the Terms of Privacy Policy</label>
+          <label className="form-check-label text-muted" htmlFor="termsAgreement">I agree the Terms of Privacy Policy</label>
         </div>
       <div className="d-flex justify-content">
           <button className="button1 mx-auto">
