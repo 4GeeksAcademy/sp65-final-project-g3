@@ -6,7 +6,9 @@ export const SignUp = () => {
   const { actions } = useContext(Context)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [agreeTerms, setAgreeTerms] = useState (false);
+  const [passwordError, setPasswordError] = useState(""); // Añadir estado para el error de contraseña
   const navigate = useNavigate();
 
 
@@ -18,39 +20,56 @@ export const SignUp = () => {
     setPassword(e.target.value);
   };
 
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  };
+
+  // To check if password and confirm password match
+  const handlePasswordConfirmed = () => {
+    if (password !== confirmPassword) {
+      setPasswordError("Does not match password");
+    } else {
+      setPasswordError("");
+    }
+  };
+
   const handleAgreeTerms = e => setAgreeTerms(e.target.checked);
 
   const handleReset = () => {
     setEmail('');
     setPassword('');
+    setConfirmPassword('');
     setRememberMe(false);
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const dataToSend = { email, password };
-    const url = `${process.env.BACKEND_URL}/api/signup`;
-    const options = {
-      method: 'POST',
-      body: JSON.stringify(dataToSend),
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify(dataToSend)
+    handlePasswordConfirmed();
+    if (passwordError === "") {
+      const dataToSend = { email, password, agreeTerms };
+      const url = `${process.env.BACKEND_URL}/api/signup`;
+      const options = {
+        method: 'POST',
+        body: JSON.stringify(dataToSend),
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(dataToSend)
+      };
+      const response = await fetch(url, options)
+      console.log(response);
+      if (!response.ok) {
+        console.log('Error: ', response.status, response.statusText);
+        return
+      }
+      const data = await response.json()
+      console.log();
+      localStorage.setItem("token", data.access_token)
+      actions.setIsLogin(true)
+      console.log(data.access_token);
+      navigate('/profile')
     };
-    const response = await fetch(url, options)
-    console.log(response);
-    if (!response.ok) {
-      console.log('Error: ', response.status, response.statusText);
-      return
-    }
-    const data = await response.json()
-    console.log();
-    localStorage.setItem("token", data.access_token)
-    actions.setIsLogin(true)
-    console.log(data.access_token);
-    navigate('/dashboard')
-  };
+}
 
   return (
     <form className="form" onSubmit={handleSubmit}>
@@ -65,14 +84,14 @@ export const SignUp = () => {
       </div>
       <div className="field">
         <span className="material-symbols-outlined">password</span>
-            <input placeholder="Confirm Password" required={true} className="form-control" type="password" id="password" value={password} onChange={handlePasswordChange} />
+            <input placeholder="Confirm Password" required={true} className="form-control" type="password" id="passwordConfirmed" value={confirmPassword} onChange={handleConfirmPasswordChange} />
       </div>
       <div className="mb-3 form-check">
           <input type="radio" className="form-check-input" id="termsAgreement" checked={agreeTerms} onChange={handleAgreeTerms}></input>
           <label className="form-check-label text-muted" htmlFor="termsAgreement">I agree the Terms of Privacy Policy</label>
         </div>
       <div className="d-flex justify-content">
-          <button className="button1 mx-auto">
+          <button className="button1 mx-auto" type="submit" onClick={handleSubmit}>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sign up&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </button>
           <button type="reset" className="button1 mx-auto" onClick={handleReset}>&nbsp;&nbsp;&nbsp;&nbsp;Cancel&nbsp;&nbsp;&nbsp;&nbsp;</button>
