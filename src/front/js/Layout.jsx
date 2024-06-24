@@ -12,6 +12,12 @@ import { Demo } from "./pages/Demo.jsx";
 import { Single } from "./pages/Single.jsx";
 import { SignUp } from "./pages/SignUp.jsx";
 import { Login } from "./pages/Login.jsx";
+import { Binaural } from "./pages/Binaural.jsx";
+import { Profile } from "./pages/Profile.jsx";
+import { Playlist } from "./pages/Playlist.jsx";
+import { Soundscape } from "./pages/Soundscape.jsx";
+import { Tutorial } from "./pages/Tutorial.jsx";
+import { Mixes } from "./pages/Mixes.jsx";
 
 
 // Create your first component
@@ -33,6 +39,12 @@ const Layout = () => {
                         <Route element={<Single />} path="/single/:theid" />
                         <Route path="/signup" element={<SignUp />} />
                         <Route path="/login" element={<Login />} />
+                        <Route path="/binaural" element={<Binaural />} />
+                        <Route path="/mixes" element={<Mixes />} />
+                        <Route path="/playlist" element={<Playlist />} />
+                        <Route path="/profile" element={<Profile />} />
+                        <Route path="/soundscape" element={<Soundscape />} />
+                        <Route path="/tutorial" element={<Tutorial />} />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />
