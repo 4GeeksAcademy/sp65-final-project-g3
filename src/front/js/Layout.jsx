@@ -6,6 +6,7 @@ import ScrollToTop from "./component/ScrollToTop.jsx";
 import { BackendURL } from "./component/BackendURL.jsx";
 import { Navbar } from "./component/Navbar.jsx";
 import { Footer } from "./component/Footer.jsx";
+import { OffCanvas } from "./component/OffCanvas.jsx"
 // Custom Pages
 import { Home } from "./pages/Home.jsx";
 import { Demo } from "./pages/Demo.jsx";
@@ -18,6 +19,12 @@ import { Playlist } from "./pages/Playlist.jsx";
 import { Soundscape } from "./pages/Soundscape.jsx";
 import { Tutorial } from "./pages/Tutorial.jsx";
 import { Mixes } from "./pages/Mixes.jsx";
+import { Alpha } from "./pages/Alpha.jsx"
+import { Theta } from "./pages/Theta.jsx"
+import { Delta } from "./pages/Delta.jsx"
+import { Meditation } from "./pages/Meditation.jsx";
+import { Sleep } from "./pages/Sleep.jsx";
+import { Focus } from "./pages/Focus.jsx";
 
 
 // Create your first component
@@ -40,13 +47,20 @@ const Layout = () => {
                         <Route path="/signup" element={<SignUp />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/binaural" element={<Binaural />} />
+                        <Route path="/alpha" element={<Alpha />} />
+                        <Route path="/theta" element={<Theta />} />
+                        <Route path="/delta" element={<Delta />} />
                         <Route path="/mixes" element={<Mixes />} />
                         <Route path="/playlist" element={<Playlist />} />
                         <Route path="/profile" element={<Profile />} />
                         <Route path="/soundscape" element={<Soundscape />} />
                         <Route path="/tutorial" element={<Tutorial />} />
+                        <Route path="/meditation" element={<Meditation />} />
+                        <Route path="/sleep" element={<Sleep />} />
+                        <Route path="/focus" element={<Focus />} />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
+                    <OffCanvas />
                     <Footer />
                 </ScrollToTop>
             </BrowserRouter>
