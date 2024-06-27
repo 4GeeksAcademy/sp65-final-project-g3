@@ -18,6 +18,7 @@ import { Playlist } from "./pages/Playlist.jsx";
 import { Soundscape } from "./pages/Soundscape.jsx";
 import { Tutorial } from "./pages/Tutorial.jsx";
 import { Mixes } from "./pages/Mixes.jsx";
+import { Dashboard } from "./pages/Dashboard.jsx";
 
 
 // Create your first component
@@ -45,6 +46,7 @@ const Layout = () => {
                         <Route path="/profile" element={<Profile />} />
                         <Route path="/soundscape" element={<Soundscape />} />
                         <Route path="/tutorial" element={<Tutorial />} />
+                        <Route path="/dashboard" element={<Dashboard />} />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />
