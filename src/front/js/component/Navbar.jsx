@@ -57,6 +57,9 @@ export const Navbar = () => {
 									</Link>
 								}
 							</li>
+							<Link to="/dashboard">
+								<button type="button" className="btn btn-outline-light d-flex justify-content-between">Dashboard</button>
+							</Link>
 							{/* 	<li className="nav-item dropdown">
 								<span className="btn bg-primary btn-outline-light dropdown-toggle" data-bs-toggle="dropdown"
 									role="button" aria-haspopup="true" aria-expanded="false">
@@ -79,9 +82,6 @@ export const Navbar = () => {
 
 								</div>
 							</li> */}
-							<Link to="/dashboard">
-								<button type="button" className="btn btn-outline-light d-flex justify-content-between">Dashboard</button>
-							</Link>
 						</ul>
 					</div>
 				</div>
