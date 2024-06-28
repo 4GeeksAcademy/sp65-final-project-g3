@@ -104,9 +104,9 @@ export const Binaural = () => {
                                     </div>
                                 </div>
                                 <div className="col-12 d-flex justify-content-between">
-                                <button type="button" className="btn btn-secondary">Load 12Hz Wave</button>
-                                <button type="button" className="btn btn-secondary">Load 10Hz Wave</button>
-                                <button type="button" className="btn btn-secondary">Load 8Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary">Load 12Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary">Load 10Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary">Load 8Hz Wave</button>
                                 </div>
                                 <div className="media-body textBinaural">
                                     <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
@@ -150,9 +150,9 @@ export const Binaural = () => {
                                     </div>
                                 </div>
                                 <div className="col-12 d-flex justify-content-between">
-                                <button type="button" className="btn btn-secondary">Load 7Hz Wave</button>
-                                <button type="button" className="btn btn-secondary">Load 5Hz Wave</button>
-                                <button type="button" className="btn btn-secondary">Load 3Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary">Load 7Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary">Load 5Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary">Load 3Hz Wave</button>
                                 </div>
                                 <div className="media-body textBinaural">
                                     <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
@@ -181,7 +181,7 @@ export const Binaural = () => {
                                                 <h5 className="tm-text-blue">Delta Waves</h5>
                                                 <p className="mb-0 fs-6">(: (0,1HZ – 3HZ) These are the slowest of the binaural spectrum, considering 0 would be brain death (clinically at least).</p>
                                                 <p>There is a lot of bibliography about them and they are present in deep sleep (sleep without dreams) and associated with all the neurochemistry release necessary for regeneration.
-                                                (see “about” for a deeper explanation)</p>
+                                                    (see “about” for a deeper explanation)</p>
                                             </div>
                                             <div className="tm-buy-box">
                                                 <a href="#" className="tm-bg-blue tm-text-white tm-buy">Load</a>
@@ -191,19 +191,19 @@ export const Binaural = () => {
                                     </div>
                                 </div>
                                 <div className="col-12 d-flex justify-content-between">
-                                <button type="button" className="btn btn-secondary">Load 2Hz Wave</button>
-                                <button type="button" className="btn btn-secondary">Load 1Hz Wave</button>
-                                <button type="button" className="btn btn-secondary">Load 0,5Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary">Load 2Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary">Load 1Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary">Load 0,5Hz Wave</button>
                                 </div>
                                 <div className="media-body textBinaural">
                                     <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
                                         <h5>You may choose to use this kind of waves for:</h5>
                                         <p>
-                                        Exposing yourself to Delta waves may help you conceive sleep if you have trouble sleeping, but also it may improve your sleep and make your Delta states achievable or even enhance them. 
-                                        If you are into meditation, these are great waves to expose yourself too.
+                                            Exposing yourself to Delta waves may help you conceive sleep if you have trouble sleeping, but also it may improve your sleep and make your Delta states achievable or even enhance them.
+                                            If you are into meditation, these are great waves to expose yourself too.
                                         </p>
                                         <p>
-                                        Recent discoveries have also shown Delta activity in decision making, especially in highly risk trained people and difficult situations handling, so there is no harm in experimenting with these waves for studying and focus, though it may help to use some active music to accompany it in training. 
+                                            Recent discoveries have also shown Delta activity in decision making, especially in highly risk trained people and difficult situations handling, so there is no harm in experimenting with these waves for studying and focus, though it may help to use some active music to accompany it in training.
                                         </p>
                                     </div>
                                     <div className="tm-buy-box">
@@ -222,30 +222,31 @@ export const Binaural = () => {
                                             <div className="tm-description-box">
                                                 <h5 className="tm-text-pink">Entrainemt</h5>
                                                 <p className="mb-0 fs-6">
-                                                    Explanation
+                                                    In a nut shell, think of entrainment as synchronization.
                                                 </p>
                                                 <p>
-                                                   Explanation.
+                                                Your brain is a natural entrainer, so is your heart.                                                    
                                                 </p>
                                                 <p>
-                                                   Explanation.
+                                                It naturally synchs to certain external stimuli, especially if these stimuli are repetitive and constant.
+                                                There are several approaches to get the brain to synchronize. Of those involving sound, when taken to the lab have never passed the test, upon learning this, Matias Kamelman had the idea of using cutting edge technology to generate immersive audio, to use a perceivable sound source to move on constant cycles around your head to promote entrainment.
+                                                This theory of “moving binaural waves” is yet to be proved and we will gladly appreciate any feedback you can produce.
                                                 </p>
-                                                <p>
-                                                   Explanation.
-                                                </p>
+
                                             </div>
-                                           
+
                                         </div>
                                     </div>
                                 </div>
                                 <div className="media-body textBinaural">
                                     <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
-                                        <h5>You may choose to use this kind of waves for:</h5>
+                                        <h5>There is plenty of information about Entrainment</h5>
                                         <p>
-                                           
+                                            Binaurapp´s approach intends to keep within the parameters of the scientific method, so we can´t guarantee this works in all cases, in all available corroborated papers, when it comes to sound there is always the subjectie facot that can´t be eluded, but it can be used. 
+                                            That´s why we developed an app that allows you to choose your music or background to use that in favor of your desired state
                                         </p>
                                         <p>
-                                           
+
                                         </p>
                                     </div>
                                     <div className="tm-buy-box">

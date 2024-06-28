@@ -15,15 +15,8 @@ export const Navbar = () => {
 	}
 
 	return (
-		<nav className="navbar navbar-expand-sm bg-dark" data-bs-theme="dark">
-			<div className="container-fluid d-flex align-items-center justify-content-between">
-				{/* 	<div>
-					<Link to="/">
-						<span className="mb-0 logo-container">
-							<img src={Logo} className="thumb" alt="Star Wars Logo" />
-						</span>
-					</Link>
-				</div> */}
+		<nav className="navbar navbar-expand-sm bg-dark d-flex" data-bs-theme="dark">
+			<div className="container-fluid d-flex align-items-center justify-content-center">
 				<Link to="/home">
 					<button type="button" className="btn btn-outline-light d-flex justify-content-between">Home</button>
 				</Link>
@@ -60,28 +53,6 @@ export const Navbar = () => {
 							<Link to="/dashboard">
 								<button type="button" className="btn btn-outline-light d-flex justify-content-between">Dashboard</button>
 							</Link>
-							{/* 	<li className="nav-item dropdown">
-								<span className="btn bg-primary btn-outline-light dropdown-toggle" data-bs-toggle="dropdown"
-									role="button" aria-haspopup="true" aria-expanded="false">
-									Mixes
-									<span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-										{store.mixes.length}
-									</span>
-								</span>
-								<div className="dropdown-menu dropdown-menu-end">
-									{store.mixes.map((item, index) =>
-										<span className="dropdown-item d-flex justify-content-between align-items-center position-relative" key={index}>
-											{item}
-											<span>
-												<i className="fas fa-trash ms-2 text-danger" onClick={() => actions.removeMixes(index)}></i>
-											</span>
-										</span>
-									)}
-									<div className="dropdown-divider"></div>
-									<span className="dropdown-item" onClick={handleClearAll}>Clear All</span>
-
-								</div>
-							</li> */}
 						</ul>
 					</div>
 				</div>
