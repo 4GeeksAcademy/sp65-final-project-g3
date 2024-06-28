@@ -15,9 +15,11 @@ export const Navbar = () => {
 	}
 
 	return (
-		
 		<nav className="navbar navbar-expand-sm bg-dark d-flex" data-bs-theme="dark">
 			<div className="container-fluid d-flex align-items-center justify-content-center">
+				<Link to="/home">
+					<button type="button" className="btn btn-outline-light d-flex justify-content-between">Home</button>
+				</Link>
 				<div>
 					<button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02"
 						aria-expanded="false" aria-label="Toggle navigation">
