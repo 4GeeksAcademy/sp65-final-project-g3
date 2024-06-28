@@ -17,7 +17,7 @@ export const Navbar = () => {
 	return (
 		<nav className="navbar navbar-expand-sm bg-dark" data-bs-theme="dark">
 			<div className="container-fluid d-flex align-items-center justify-content-between">
-			{/* 	<div>
+				{/* 	<div>
 					<Link to="/">
 						<span className="mb-0 logo-container">
 							<img src={Logo} className="thumb" alt="Star Wars Logo" />
@@ -37,6 +37,8 @@ export const Navbar = () => {
 								</Link>
 							</li>
 							<li className="nav-item">
+							</li>
+							<li className="nav-item">
 								{store.isLogin ?
 									<>
 										<Link to="/">
@@ -52,7 +54,7 @@ export const Navbar = () => {
 									</Link>
 								}
 							</li>
-						{/* 	<li className="nav-item dropdown">
+							{/* 	<li className="nav-item dropdown">
 								<span className="btn bg-primary btn-outline-light dropdown-toggle" data-bs-toggle="dropdown"
 									role="button" aria-haspopup="true" aria-expanded="false">
 									Mixes
@@ -74,6 +76,9 @@ export const Navbar = () => {
 
 								</div>
 							</li> */}
+							<Link to="/dashboard">
+								<button type="button" className="btn btn-outline-light d-flex justify-content-between">Dashboard</button>
+							</Link>
 						</ul>
 					</div>
 				</div>

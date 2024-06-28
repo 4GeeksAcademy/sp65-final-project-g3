@@ -25,6 +25,8 @@ import { Delta } from "./pages/Delta.jsx"
 import { Meditation } from "./pages/Meditation.jsx";
 import { Sleep } from "./pages/Sleep.jsx";
 import { Focus } from "./pages/Focus.jsx";
+import { Dashboard } from "./pages/Dashboard.jsx";
+
 
 
 // Create your first component
@@ -58,6 +60,7 @@ const Layout = () => {
                         <Route path="/meditation" element={<Meditation />} />
                         <Route path="/sleep" element={<Sleep />} />
                         <Route path="/focus" element={<Focus />} />
+                        <Route path="/dashboard" element={<Dashboard />} />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <OffCanvas />
