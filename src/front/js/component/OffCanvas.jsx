@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export const OffCanvas = () => {
-
+   
     return (
         <>
             <div className="d-flex justify-content-center">
@@ -48,14 +48,14 @@ export const OffCanvas = () => {
                                 Binaural Waves
                             </button>
                             <ul className="dropdown-menu">
-                                <Link to="/alpha">
-                                    <li className="dropdown-item" href="#">Alpha</li>
+                                <Link to="/binaural#alpha-section">
+                                    <li className="dropdown-item">Alpha</li>
                                 </Link>
-                                <Link to="/theta">
-                                    <li className="dropdown-item" href="#">Theta</li>
+                                <Link to="/binaural#theta-section">
+                                    <li className="dropdown-item">Theta</li>
                                 </Link>
-                                <Link to="/delta">
-                                    <li className="dropdown-item" href="#">Delta</li>
+                                <Link to="/binaural#delta-section">
+                                    <li className="dropdown-item">Delta</li>
                                 </Link>
                             </ul>
                         </div>

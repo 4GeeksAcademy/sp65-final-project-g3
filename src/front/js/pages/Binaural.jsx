@@ -1,7 +1,28 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import "../../styles/binaural.css"
 
 export const Binaural = () => {
+    const location = useLocation();
+    const alphaRef = useRef(null);
+    const thetaRef = useRef(null);
+    const deltaRef = useRef(null);
+  
+    useEffect(() => {
+      const scrollToRef = (ref) => {
+        if (ref.current) {
+          ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      };
+  
+      if (location.hash === "#alpha-section") {
+        scrollToRef(alphaRef);
+      } else if (location.hash === "#theta-section") {
+        scrollToRef(thetaRef);
+      } else if (location.hash === "#delta-section") {
+        scrollToRef(deltaRef);
+      }
+    }, [location]);
 
     return (
         <>
@@ -34,38 +55,46 @@ export const Binaural = () => {
                 <div className="row tm-albums-container grid">
                     <div className="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
                         <figure className="effect-sadie">
-                            <img src={"https://t4.ftcdn.net/jpg/08/19/96/27/360_F_819962780_5Jikl3FOY0OrqfLEjfjXZH9d9Uoqlkua.jpg"} alt="Image" className="img-fluid" />
-                            <figcaption>
-                                <h2>Alpha Waves</h2>
-                                <p>8hz to 13Hz</p>
-                            </figcaption>
+                            <a href="#alpha-section">
+                                <img src={"https://t4.ftcdn.net/jpg/08/19/96/27/360_F_819962780_5Jikl3FOY0OrqfLEjfjXZH9d9Uoqlkua.jpg"} alt="Image" className="img-fluid" />
+                                <figcaption>
+                                    <h2>Alpha Waves</h2>
+                                    <p>8hz to 13Hz</p>
+                                </figcaption>
+                            </a>
                         </figure>
                     </div>
                     <div className="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
                         <figure className="effect-sadie">
-                            <img src={"https://t4.ftcdn.net/jpg/08/19/96/25/240_F_819962587_aBHjpGdUT8m1OPmACz2J98Pru84N7vbN.jpg"} alt="Image" className="img-fluid" />
-                            <figcaption>
-                                <h2>Theta Waves</h2>
-                                <p>3Hz to 8Hz</p>
-                            </figcaption>
+                            <a href="#theta-section">
+                                <img src={"https://t4.ftcdn.net/jpg/08/19/96/25/240_F_819962587_aBHjpGdUT8m1OPmACz2J98Pru84N7vbN.jpg"} alt="Image" className="img-fluid" />
+                                <figcaption>
+                                    <h2>Theta Waves</h2>
+                                    <p>3Hz to 8Hz</p>
+                                </figcaption>
+                            </a>
                         </figure>
                     </div>
                     <div className="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
                         <figure className="effect-sadie">
-                            <img src={"https://t3.ftcdn.net/jpg/08/19/90/34/240_F_819903467_xvlu1QXgorjcdt6Up2kCnz0UooGHUIdn.jpg"} alt="Image" className="img-fluid" />
-                            <figcaption>
-                                <h2>Delta Waves</h2>
-                                <p>0.1Hz to 3Hz</p>
-                            </figcaption>
+                            <a href="#delta-section">
+                                <img src={"https://t3.ftcdn.net/jpg/08/19/90/34/240_F_819903467_xvlu1QXgorjcdt6Up2kCnz0UooGHUIdn.jpg"} alt="Image" className="img-fluid" />
+                                <figcaption>
+                                    <h2>Delta Waves</h2>
+                                    <p>0.1Hz to 3Hz</p>
+                                </figcaption>
+                            </a>
                         </figure>
                     </div>
                     <div className="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
                         <figure className="effect-sadie">
-                            <img src={"https://t4.ftcdn.net/jpg/07/69/70/99/240_F_769709971_Y50zb5MuTmUWQmF7IqxpBHSvMe9PbnZN.jpg"} alt="Image" className="img-fluid" />
-                            <figcaption>
-                                <h2>Entrianment</h2>
-                                <p>Learn More about the theory</p>
-                            </figcaption>
+                            <a href="#entrainment-section">
+                                <img src={"https://t4.ftcdn.net/jpg/07/69/70/99/240_F_769709971_Y50zb5MuTmUWQmF7IqxpBHSvMe9PbnZN.jpg"} alt="Image" className="img-fluid" />
+                                <figcaption>
+                                    <h2>Entrianment</h2>
+                                    <p>Learn More about the theory</p>
+                                </figcaption>
+                            </a>
                         </figure>
                     </div>
                 </div>
@@ -81,7 +110,7 @@ export const Binaural = () => {
                 <div className="row mb-5">
                     <div className="col-xl-12">
                         <div className="media-boxes">
-                            <div className="media">
+                            <div className="media" id="alpha-section">
                                 <div className="row d-flex align-items-stretch">
                                     <div className="col-3 d-flex align-items-stretch">
                                         <img src={"https://t3.ftcdn.net/jpg/08/20/12/24/240_F_820122410_ofHPpJwDAjs919R7IcVto7h8AG2IiqEp.jpg"} alt="Image" className="align-self-stretch" />
@@ -124,7 +153,7 @@ export const Binaural = () => {
                                 </div>
                             </div>
 
-                            <div className="media">
+                            <div className="media" id="theta-section">
                                 <div className="row d-flex align-items-stretch">
                                     <div className="col-3 d-flex align-items-stretch container-fluid">
                                         <img src={"https://t4.ftcdn.net/jpg/08/02/43/63/240_F_802436395_BB2TxiEuws6vA4dqWO7efJJxSe2qg3KV.jpg"} alt="Image" className="align-self-strech" />
@@ -170,7 +199,7 @@ export const Binaural = () => {
                                 </div>
                             </div>
 
-                            <div className="media">
+                            <div className="media" id="delta-section">
                                 <div className="row d-flex align-items-stretch">
                                     <div className="col-3 d-flex align-items-stretch">
                                         <img src={"https://t3.ftcdn.net/jpg/07/27/79/86/240_F_727798659_GVhb4YANpW9sRoYjptqB6XQKwW9t5Jyo.jpg"} alt="Image" className="align-self-stretch" />
@@ -212,10 +241,10 @@ export const Binaural = () => {
                                 </div>
                             </div>
 
-                            <div className="media">
+                            <div className="media" id="entrainment-section">
                                 <div className="row d-flex align-items-stretch">
                                     <div className="col-3 d-flex align-items-stretch container-fluid">
-                                        <img src={"https://t4.ftcdn.net/jpg/06/36/51/63/240_F_636516341_gm3E4ylrnK6HmcTRA1MctrK7HxOA0P2v.jpg"} alt="Image" className="align-self-strech" />
+                                        <img src={"https://t4.ftcdn.net/jpg/08/02/43/63/240_F_802436395_BB2TxiEuws6vA4dqWO7efJJxSe2qg3KV.jpg"} alt="Image" className="align-self-strech" />
                                     </div>
                                     <div className="col-9">
                                         <div className="media-body tm-bg-pink-light">
@@ -225,12 +254,12 @@ export const Binaural = () => {
                                                     In a nut shell, think of entrainment as synchronization.
                                                 </p>
                                                 <p>
-                                                Your brain is a natural entrainer, so is your heart.                                                    
+                                                    Your brain is a natural entrainer, so is your heart.
                                                 </p>
                                                 <p>
-                                                It naturally synchs to certain external stimuli, especially if these stimuli are repetitive and constant.
-                                                There are several approaches to get the brain to synchronize. Of those involving sound, when taken to the lab have never passed the test, upon learning this, Matias Kamelman had the idea of using cutting edge technology to generate immersive audio, to use a perceivable sound source to move on constant cycles around your head to promote entrainment.
-                                                This theory of “moving binaural waves” is yet to be proved and we will gladly appreciate any feedback you can produce.
+                                                    It naturally synchs to certain external stimuli, especially if these stimuli are repetitive and constant.
+                                                    There are several approaches to get the brain to synchronize. Of those involving sound, when taken to the lab have never passed the test, upon learning this, Matias Kamelman had the idea of using cutting edge technology to generate immersive audio, to use a perceivable sound source to move on constant cycles around your head to promote entrainment.
+                                                    This theory of “moving binaural waves” is yet to be proved and we will gladly appreciate any feedback you can produce.
                                                 </p>
 
                                             </div>
@@ -242,7 +271,7 @@ export const Binaural = () => {
                                     <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
                                         <h5>There is plenty of information about Entrainment</h5>
                                         <p>
-                                            Binaurapp´s approach intends to keep within the parameters of the scientific method, so we can´t guarantee this works in all cases, in all available corroborated papers, when it comes to sound there is always the subjectie facot that can´t be eluded, but it can be used. 
+                                            Binaurapp´s approach intends to keep within the parameters of the scientific method, so we can´t guarantee this works in all cases, in all available corroborated papers, when it comes to sound there is always the subjectie facot that can´t be eluded, but it can be used.
                                             That´s why we developed an app that allows you to choose your music or background to use that in favor of your desired state
                                         </p>
                                         <p>
