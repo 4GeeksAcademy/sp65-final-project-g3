@@ -28,7 +28,7 @@ export const OffCanvas = () => {
                             Tutorials
                         </button>
                         <ul className="dropdown-menu">
-                            <Link to="/tutorials">
+                            <Link to="/tutorial">
                             <li className="dropdown-item" href="#">What is Binaurapp?</li>
                             </Link>
                             <Link to="/meditation">                            
