@@ -6,12 +6,12 @@ export const Binaural = () => {
     return (
         <>
 
-            <div class="tm-welcome-section">
-                <div class="container text-center tm-welcome-container">
-                    <div class="tm-welcome">
-                        <i class="fas tm-fa-big fa-music tm-fa-mb-big"></i>
-                        <h1 class="text-uppercase mb-3 tm-site-name">Binaurapp</h1>
-                        <p class="tm-site-description">Binaural Waves</p>
+            <div className="tm-welcome-section">
+                <div className="container text-center tm-welcome-container">
+                    <div className="tm-welcome">
+                        <i className="fas tm-fa-big fa-music tm-fa-mb-big"></i>
+                        <h1 className="text-uppercase mb-3 tm-site-name">Binaurapp</h1>
+                        <p className="tm-site-description">Binaural Waves</p>
                     </div>
                 </div>
 
@@ -103,6 +103,11 @@ export const Binaural = () => {
                                         </div>
                                     </div>
                                 </div>
+                                <div className="col-12 d-flex justify-content-between">
+                                <button type="button" className="btn btn-secondary">Load 12Hz Wave</button>
+                                <button type="button" className="btn btn-secondary">Load 10Hz Wave</button>
+                                <button type="button" className="btn btn-secondary">Load 8Hz Wave</button>
+                                </div>
                                 <div className="media-body textBinaural">
                                     <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
                                         <h5>You may choose to use this kind of waves for:</h5>
@@ -144,6 +149,11 @@ export const Binaural = () => {
                                         </div>
                                     </div>
                                 </div>
+                                <div className="col-12 d-flex justify-content-between">
+                                <button type="button" className="btn btn-secondary">Load 7Hz Wave</button>
+                                <button type="button" className="btn btn-secondary">Load 5Hz Wave</button>
+                                <button type="button" className="btn btn-secondary">Load 3Hz Wave</button>
+                                </div>
                                 <div className="media-body textBinaural">
                                     <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
                                         <h5>You may choose to use this kind of waves for:</h5>
@@ -179,6 +189,11 @@ export const Binaural = () => {
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div className="col-12 d-flex justify-content-between">
+                                <button type="button" className="btn btn-secondary">Load 2Hz Wave</button>
+                                <button type="button" className="btn btn-secondary">Load 1Hz Wave</button>
+                                <button type="button" className="btn btn-secondary">Load 0,5Hz Wave</button>
                                 </div>
                                 <div className="media-body textBinaural">
                                     <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
