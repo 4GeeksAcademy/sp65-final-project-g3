@@ -24,6 +24,9 @@ export const Navbar = () => {
 						</span>
 					</Link>
 				</div> */}
+				<Link to="/home">
+					<button type="button" className="btn btn-outline-light d-flex justify-content-between">Home</button>
+				</Link>
 				<div>
 					<button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02"
 						aria-expanded="false" aria-label="Toggle navigation">
