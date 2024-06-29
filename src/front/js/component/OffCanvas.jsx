@@ -31,17 +31,17 @@ const {actions} = useContext(Context)
                                 Tutorials
                             </button>
                             <ul className="dropdown-menu">
-                                <Link to="/tutorial">
+                                <Link to="/tutorial" onClick={() => actions.navigateToTutorial("what-section")}>
                                     <li className="dropdown-item" href="#">What is Binaurapp?</li>
                                 </Link>
-                                <Link to="/meditation">
-                                    <li className="dropdown-item" href="#">Meditation</li>
+                                <Link to="/tutorial" onClick={() => actions.navigateToTutorial("mixer-section")}>
+                                    <li className="dropdown-item" href="#">Mixer</li>
                                 </Link>
-                                <Link to="/sleep">
-                                    <li className="dropdown-item" href="#">Sleep</li>
+                                <Link to="/tutorial" onClick={() => actions.navigateToTutorial("playlist-section")}>
+                                    <li className="dropdown-item" href="#">Playlist</li>
                                 </Link>
-                                <Link to="/focus">
-                                    <li className="dropdown-item" href="#">Focus</li>
+                                <Link to="/tutorial" onClick={() => actions.navigateToTutorial("binaural-section")}>
+                                    <li className="dropdown-item" href="#">Binaural</li>
                                 </Link>
                             </ul>
                         </div>

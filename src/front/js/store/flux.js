@@ -6,6 +6,7 @@ const getState = ({getStore, getActions, setStore}) => {
 			isLogin: false,
 			currentSection: null,
 			soundscapeSection: null,
+			tutorialSection: null,
 		},
 		actions: {
 			exampleFunction: () => {getActions().changeColor(0, "green");},  // Use getActions to call a function within a fuction
@@ -65,6 +66,10 @@ const getState = ({getStore, getActions, setStore}) => {
 			navigateToSoundscape: (section) => {
                 setStore({ soundscapeSection: section });
                 window.location.href = `/soundscape#${section}`;
+            },
+			navigateToTutorial: (section) => {
+                setStore({ tutorialSection: section });
+                window.location.href = `/tutorial#${section}`;
             },
 		}
 	};
