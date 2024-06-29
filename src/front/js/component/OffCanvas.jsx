@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 export const OffCanvas = () => {
-   
+const {actions} = useContext(Context)
+
     return (
         <>
             <div className="d-flex justify-content-center">
@@ -48,13 +50,13 @@ export const OffCanvas = () => {
                                 Binaural Waves
                             </button>
                             <ul className="dropdown-menu">
-                                <Link to="/binaural#alpha-section">
+                            <Link to="/binaural" onClick={() => actions.navigateToSection("alpha-section")}>
                                     <li className="dropdown-item">Alpha</li>
                                 </Link>
-                                <Link to="/binaural#theta-section">
+                                <Link to="/binaural" onClick={() => actions.navigateToSection("theta-section")}>
                                     <li className="dropdown-item">Theta</li>
                                 </Link>
-                                <Link to="/binaural#delta-section">
+                                <Link to="/binaural" onClick={() => actions.navigateToSection("delta-section")}>
                                     <li className="dropdown-item">Delta</li>
                                 </Link>
                             </ul>

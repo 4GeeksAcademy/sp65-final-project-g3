@@ -1,28 +1,35 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { Context } from "../store/appContext"
 import "../../styles/binaural.css"
 
 export const Binaural = () => {
-    const location = useLocation();
+    const { store } = useContext(Context)
     const alphaRef = useRef(null);
     const thetaRef = useRef(null);
     const deltaRef = useRef(null);
-  
+
     useEffect(() => {
-      const scrollToRef = (ref) => {
-        if (ref.current) {
-          ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
+        const scrollToRef = (ref) => {
+            if (ref.current) {
+                ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        };
+
+        switch (store.currentSection) {
+            case "alpha-section":
+                scrollToRef(alphaRef);
+                break;
+            case "theta-section":
+                scrollToRef(thetaRef);
+                break;
+            case "delta-section":
+                scrollToRef(deltaRef);
+                break;
+            default:
+                break;
         }
-      };
-  
-      if (location.hash === "#alpha-section") {
-        scrollToRef(alphaRef);
-      } else if (location.hash === "#theta-section") {
-        scrollToRef(thetaRef);
-      } else if (location.hash === "#delta-section") {
-        scrollToRef(deltaRef);
-      }
-    }, [location]);
+    }, [store.currentSection]);
+    console.log("current Section", store.currentSection);
 
     return (
         <>

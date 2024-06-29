@@ -3,7 +3,8 @@ const getState = ({getStore, getActions, setStore}) => {
 		store: {
 			message: null,
 			demo: [{title: "FIRST", background: "white", initial: "white"}],
-			isLogin: false
+			isLogin: false,
+			currentSection: null
 		},
 		actions: {
 			exampleFunction: () => {getActions().changeColor(0, "green");},  // Use getActions to call a function within a fuction
@@ -55,7 +56,11 @@ const getState = ({getStore, getActions, setStore}) => {
 				// const data = await response.json();
 				getActions().getUsers();
 			},
-			setIsLogin: (login) => {setStore({ isLogin: login})}
+			setIsLogin: (login) => {setStore({ isLogin: login})},
+			navigateToSection: (section) => {
+                setStore({ currentSection: section });
+                window.location.href = `/binaural#${section}`;
+            },
 		}
 	};
 };
