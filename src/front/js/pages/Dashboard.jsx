@@ -5,6 +5,7 @@ import binaural from "/workspaces/sp65-final-project-g3/src/front/img/binaural.j
 import playlist from "/workspaces/sp65-final-project-g3/src/front/img/playlist.jpg"
 import soundscape from "/workspaces/sp65-final-project-g3/src/front/img/soundscape.jpg"
 import tutorial from "/workspaces/sp65-final-project-g3/src/front/img/tutorial.jpg"
+import mixer from "/workspaces/sp65-final-project-g3/src/front/img/Mixer.jpg"
 import { Link } from "react-router-dom";
 
 
@@ -41,6 +42,12 @@ export const Dashboard = () => {
                     <div className="playlist-item">
                         <img src={tutorial} alt="" />
                         <h5><Link to="/tutorial">Tutorial</Link></h5>
+                    </div>
+                </div>
+                <div className="mix col-lg6 col-md-6 col-sm-6 col-xsm-6 genres">
+                    <div className="playlist-item">
+                        <img src={mixer} alt="" />
+                        <h5><Link to="/mixer">Mixer</Link></h5>
                     </div>
                 </div>
             </div>
