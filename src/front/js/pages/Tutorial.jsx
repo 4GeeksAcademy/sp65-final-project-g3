@@ -4,9 +4,10 @@ import "../../styles/tutorial.css"
 
 export const Tutorial = () => {
     const { store } = useContext(Context)
-    const soundScapes = useRef(null);
-    const organic = useRef(null);
-    const music = useRef(null);
+    const start = useRef(null);
+    const mixer = useRef(null);
+    const playlist = useRef(null);
+    const what = useRef(null);
 
     useEffect(() => {
         const scrollToRef = (ref) => {
@@ -15,21 +16,23 @@ export const Tutorial = () => {
             }
         };
 
-        switch (store.soundscapetSection) {
-            case "nature-section":
-                scrollToRef(soundScapes);
+        switch (store.tutorialtSection) {
+            case "start-section":
+                scrollToRef(start);
                 break;
-            case "organic-section":
-                scrollToRef(organic);
+            case "mixer-section":
+                scrollToRef(mixer);
                 break;
-            case "music-section":
-                scrollToRef(music);
-                break;
+            case "playlist-section":
+                scrollToRef(playlist);
+            case "what-section":
+                scrollToRef(what);
+                break;                
             default:
                 break;
         }
-    }, [store.soundscapeSection]);
-    console.log("current Section", store.soundscapeSection);
+    }, [store.tutorialSection]);
+    console.log("current Section", store.tutorialSection);
 
     return (
         <>
@@ -61,7 +64,7 @@ export const Tutorial = () => {
                 <div className="row tm-albums-container grid">
                     <div className="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
                         <figure className="effect-sadie">
-                            <a href="#nature-section">
+                            <a href="#start-section">
                                 <img src={"https://t3.ftcdn.net/jpg/03/77/77/08/240_F_377770883_VoDO2qaaoIYnyzpMrHCGDWXWAVtfD32Y.jpg"} alt="Image" className="img-fluid" />
                                 <figcaption>
                                     <h2>Getting Started</h2>
@@ -72,7 +75,7 @@ export const Tutorial = () => {
                     </div>
                     <div className="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
                         <figure className="effect-sadie">
-                            <a href="#organic-section">
+                            <a href="#mixer-section">
                                 <img src={"https://t3.ftcdn.net/jpg/00/45/45/28/240_F_45452813_GRq1yWpEBQI2htiYwXO0WLCRhNInYlue.jpg"} alt="Image" className="img-fluid" />
                                 <figcaption>
                                     <h2>The Mixer</h2>
@@ -83,7 +86,7 @@ export const Tutorial = () => {
                     </div>
                     <div className="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
                         <figure className="effect-sadie">
-                            <a href="#music-section">
+                            <a href="#playlist-section">
                                 <img src={"https://t3.ftcdn.net/jpg/05/65/02/08/240_F_565020838_UcbYro1V23M1FL2QdKSr0c7uhl8mDdeI.jpg"} alt="Image" className="img-fluid" />
                                 <figcaption>
                                     <h2>The Playlist</h2>
@@ -94,7 +97,7 @@ export const Tutorial = () => {
                     </div>
                     <div className="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
                         <figure className="effect-sadie">
-                            <a href="#lists-section">
+                            <a href="#what-section">
                                 <img src={"https://t4.ftcdn.net/jpg/05/79/53/91/240_F_579539131_zMSGJoJ4F3VVRAfbBIRByap7EiRqW7yI.jpg"} alt="Image" className="img-fluid" />
                                 <figcaption>
                                     <h2>What is Binaurapp?</h2>
@@ -116,176 +119,181 @@ export const Tutorial = () => {
                 <div className="row mb-5">
                     <div className="col-xl-12">
                         <div className="media-boxes">
-                            <div className="media" id="nature-section">
+                            <div className="media" id="start-section">
                                 <div className="row d-flex align-items-stretch">
                                     <div className="col-3 d-flex align-items-stretch">
-                                        <img src={"https://t3.ftcdn.net/jpg/02/22/63/26/240_F_222632647_uMPpbpn4QnJptPz6P3ikfdDkNTDb4ACp.jpg"} alt="Image" className="align-self-stretch" />
+                                        <img src={"https://t4.ftcdn.net/jpg/08/17/40/67/240_F_817406710_lQakfpC6ZYSlsumK4CdhFCbDk3kcHdnr.jpg"} alt="Image" className="align-self-stretch" />
                                     </div>
                                     <div className="col-9">
                                         <div className="media-body tm-bg-gray ">
                                             <div className="tm-description-box">
-                                                <h5 className="tm-text-blue">Nature Sounds</h5>
+                                                <h5 className="tm-text-blue">Getting Started</h5>
                                                 <p className="mb-0 fs-6">
-                                                    Some people find nature extremelly relaxing. Studies tend to link it to a premeival state in which we spent a large majority of our existence as humans and our brains have kept the memory of.
+                                                    PUT ON YOUR HEADPHONES! Sorry for the shout out! but yeah, you don´t get any of the fun without them. Why? basically all the "magic" happens thanks to ambisonics technology which you can appreciate in this case only by usisng headphones.
                                                 </p>
                                                 <p>
-                                                    Sound is wired into our reptilian brain as no other human sense is, arriving first to it and then passing on to the neo-cortex where we interpret through reason, story-telling.
-                                                    Nature sounds, act on a basal level.
+                                                    So that´s the first thing you need to do. Right after that, we recommend getting familiar with the use of the mixer, and the different options you get for backing tracks (not karaoke kind, the actual track that backs the binaural waves up) and of course the uses of the Moving Binaural Waves.
                                                 </p>
                                             </div>
                                             <div className="tm-buy-box">
-                                                <a href="#" className="tm-bg-blue tm-text-white tm-buy">Load</a>
-                                                <span className="tm-text-blue tm-price-tag">Track 1</span>
+                                                <a href="#" className="tm-bg-blue tm-text-white tm-buy">Video</a>
+                                                <span className="tm-text-blue tm-price-tag"></span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-12 d-flex justify-content-between">
+                                {/*              <div className="col-12 d-flex justify-content-between">
                                     <button type="button" className="btn btn-secondary">Ocean</button>
                                     <button type="button" className="btn btn-secondary">Forest</button>
                                     <button type="button" className="btn btn-secondary">Night</button>
-                                </div>
+                                </div> */}
                                 <div className="media-body textBinaural">
                                     <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
-                                        <h5>You may choose to use this kind of soundscapes for:</h5>
+                                        <h5>Typical Questions</h5>
                                         <p>
-                                            -	Relaxation or for meditation, just the soundscape would be amazing.
+                                            -	Will any kind of headphones do? yes, any kind will do. Just like most things, the experience improves with better gear. In fact, we recommend you use closed type headphones (covering you ears) but any kind will work.
                                         </p>
                                         <p>
-                                            -	Try combinations of them with the different moving binaural waves, you can save your combinations in your "mixes".
+
                                         </p>
                                     </div>
                                     <div className="tm-buy-box">
-                                        <span className="tm-text-blue tm-price-tag me-5">Uses:</span>
+                                        <span className="tm-text-blue tm-price-tag me-5">Tips</span>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="media" id="organic-section">
+                            <div className="media" id="mixer-section">
                                 <div className="row d-flex align-items-stretch">
                                     <div className="col-3 d-flex align-items-stretch container-fluid">
-                                        <img src={"https://t4.ftcdn.net/jpg/08/02/43/63/240_F_802436395_BB2TxiEuws6vA4dqWO7efJJxSe2qg3KV.jpg"} alt="Image" className="align-self-strech" />
+                                        <img src={"https://t4.ftcdn.net/jpg/07/50/49/35/240_F_750493557_N6hSYv6tcZhUhK5SShxrWn9bENnKESAX.jpg"} alt="Image" className="align-self-strech" />
                                     </div>
                                     <div className="col-9">
                                         <div className="media-body tm-bg-pink-light">
                                             <div className="tm-description-box">
-                                                <h5 className="tm-text-pink">Organic Sounds</h5>
-                                                <p className="mb-0 fs-6">Some people find organic sounds extremelly appealing, and this name may encompass a wide variety of sounds.
-                                                    They can be used in multiple fahsions and multiple purposes.
-
+                                                <h5 className="tm-text-pink">The Mixer</h5>
+                                                <p className="mb-0 fs-6">One of the key differentiators in Binaurapp is that you get to choose the level of exposure to the entrainment agent. You get two tracks, one for the background and one for the entrainer, each with it´s own volume control.
                                                 </p>
                                                 <p>
-                                                    Some of the sounds we´ve included have a more "synthezised" feel to it, but not exclusive. There is some sense of rythm in some of them and there are just ASMR sounds too.
-                                                    Experiment with them and use them as you feel will work for you.
+                                                    In the video you will see a basic explanation of the mixer, but it´s not rocket science. You can choose to upload the tracks from the very mixer or you can navigate to the playlist pages and binaural pages respectively for a more detailed explanation of each track.
                                                 </p>
                                             </div>
                                             <div className="tm-buy-box">
-                                                <a href="#" className="tm-bg-pink tm-text-white tm-buy">Load</a>
-                                                <span className="tm-text-pink tm-price-tag">Track 1</span>
+                                                <a href="#" className="tm-bg-pink tm-text-white tm-buy">Video</a>
+                                                <span className="tm-text-pink tm-price-tag"></span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-12 d-flex justify-content-between">
+                                {/* <div className="col-12 d-flex justify-content-between">
                                     <button type="button" className="btn btn-secondary">Synth</button>
                                     <button type="button" className="btn btn-secondary">Musical</button>
                                     <button type="button" className="btn btn-secondary">ASMR</button>
-                                </div>
+                                </div> */}
                                 <div className="media-body textBinaural">
                                     <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
-                                        <h5>You may choose to use this kind of Soundscapes for:</h5>
+                                        <h5>Typical Questions:</h5>
                                         <p>
-                                            -	All of them are good to Relax, Sleep and meditate (don´t forget actually the three of them, are extremelly resemblant brain states, though of course not identical)
+                                            -	Do I need to use a background or I can go for just the Binaural Track? You can of course choose to either turn Track 1´s volume completelly down, or not include a Track 1.
                                         </p>
                                         <p>
-                                            -	Experiment, combine with the different Moving Binaural Waves and let us know your experience.
+                                            -	In some cases, the background may help induce desired states, especially those with rythm since they will help entrain through heart-beat synch, but the main thing is always Track 2.
                                         </p>
                                     </div>
                                     <div className="tm-buy-box">
-                                        <span className="tm-text-pink tm-price-tag me-5">Uses:</span>
+                                        <span className="tm-text-pink tm-price-tag me-5">Tips</span>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="media" id="music-section">
+                            <div className="media" id="playlist-section">
                                 <div className="row d-flex align-items-stretch">
                                     <div className="col-3 d-flex align-items-stretch">
-                                        <img src={"https://t4.ftcdn.net/jpg/06/57/98/19/240_F_657981926_WYtt9d9vRmcrQqvp5Hy5MTT6G6BoL0n0.jpg"} alt="Image" className="align-self-stretch" />
+                                        <img src={"https://t3.ftcdn.net/jpg/08/12/94/64/240_F_812946424_rGuEESUckxezrXv1oMy7zHUVtIk8TtPX.jpg"} alt="Image" className="align-self-stretch" />
                                     </div>
                                     <div className="col-9">
                                         <div className="media-body tm-bg-gray ">
                                             <div className="tm-description-box">
-                                                <h5 className="tm-text-blue">Sound & Musical Elements</h5>
-                                                <p className="mb-0 fs-6">A music piece is expected to have some conductivity, structure and form, which appeals to our more "awake" state in general (not exclusively)</p>
-                                                <p>The brain is always trying to "catch" the "pattern", when it does, you get dopamine, which is opposite to what you want if you are trying to relax or sleep (though in a cycle of hours it will generate serotonine but, it takes time).
-                                                    These soundscapes, though involving musical elements, are not compositions or music pieces, it´s just a musical background.
+                                                <h5 className="tm-text-blue">The Playlist</h5>
+                                                <p className="mb-0 fs-6">What can be cooler than applying binaural entrainment to the music of your choice? Well, that´s one of Binaurapp´s main features and what makes us different.</p>
+                                                <p>In the playlist section you will find our very own soundscapes, which include more nature sounds or organic sounds and some more musical soundscapes, but also if you choose to sign up with your Spotify account
+                                                    You will have access to your playlists.
                                                 </p>
                                             </div>
                                             <div className="tm-buy-box">
-                                                <a href="#" className="tm-bg-blue tm-text-white tm-buy">Load</a>
-                                                <span className="tm-text-blue tm-price-tag">Track 1</span>
+                                                <a href="#" className="tm-bg-blue tm-text-white tm-buy">Video</a>
+                                                <span className="tm-text-blue tm-price-tag"></span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-12 d-flex justify-content-between">
+                                {/*     <div className="col-12 d-flex justify-content-between">
                                     <button type="button" className="btn btn-secondary">60 BPM</button>
                                     <button type="button" className="btn btn-secondary">80 BPM</button>
                                     <button type="button" className="btn btn-secondary">100 BPM</button>
-                                </div>
+                                </div> */}
                                 <div className="media-body textBinaural">
                                     <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
-                                        <h5>You may choose to use this kind of soundscapes for:</h5>
+                                        <h5>Typical Questions</h5>
                                         <p>
-                                            These soundscapes involve rythm, and they have a perceivable rythm pattern, like a "mantra". You heart is a natural entrainer, and for a very large ammount of people works very fast.
-                                            Low BPMS are great to calm-down, relax, meditate and sleep. You can also use them to focus, combine it for example with an Alpha Wave
+                                            Do I need a Spotify account to use Binaurapp? You don´t, you can choose to use the inner-app content, but if you wish to choose your music you do need to sign up with a premium spotify account.
                                         </p>
                                         <p>
 
                                         </p>
                                     </div>
                                     <div className="tm-buy-box">
-                                        <span className="tm-text-blue tm-price-tag me-5">Uses:</span>
+                                        <span className="tm-text-blue tm-price-tag me-5">Tips</span>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="media" id="lists-section">
+                            <div className="media" id="what-section">
                                 <div className="row d-flex align-items-stretch">
                                     <div className="col-3 d-flex align-items-stretch container-fluid">
-                                        <img src={"https://t3.ftcdn.net/jpg/05/54/95/76/240_F_554957692_l55wWG1XGkV33Anr0WtV2REAbE6Am3e3.jpg"} alt="Image" className="align-self-strech" />
+                                        <img src={"https://t3.ftcdn.net/jpg/06/96/32/52/240_F_696325264_lODIXcco4tGRdjJzZAlXFC87wOoR398u.jpg"} alt="Image" className="align-self-strech" />
                                     </div>
                                     <div className="col-9">
                                         <div className="media-body tm-bg-pink-light">
                                             <div className="tm-description-box">
-                                                <h5 className="tm-text-pink">Music</h5>
+                                                <h5 className="tm-text-pink">What is Binaurapp?</h5>
                                                 <p className="mb-0 fs-6">
-                                                    There is no "one-size" fits all in the world of music related things, and when it comes to our brain, well, let´s just put it like there´s more than meets the eye.
+                                                   In this section you will find interesting content to tell you a little more about what is Binaurapp. The idea is to give you a better understanding of what is Binaural to begin with, and the different uses that word has (and lots of miss-uses too).
                                                 </p>
                                                 <p>
-                                                    Basically, you are you, as I am I (we could get very philosophical), and there is no absolute value for: "beauty", "realxing", "energetic", etc. You are the narrator of your own story and music affects you in a way that may not be even similar to how it affects another fellow human being, why? well we need a lot more lines for that, probably a book and there are plenty about it.
+                                                 There is also an explanation on Matias Kamelman´s theory of entrainment through moving binaural waves and how this method is completelly different to what has been used so far. 
                                                 </p>
                                                 <p>
-                                                    So in Binaurapp we went a whole step further, and decided to give you the opportunity to choose your own playlists with the music you feel may help you better achieve your desired state.
+                                                 
                                                 </p>
 
                                             </div>
-
+                                            <div className="tm-buy-box">
+                                                <a href="#" className="tm-bg-pink tm-text-white tm-buy">Video</a>
+                                                <span className="tm-text-blue tm-price-tag"></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                    <div className="col-12 d-flex justify-content-between">
+                                    <button type="button" className="btn btn-secondary">What is Binaural?</button>
+                                    <button type="button" className="btn btn-secondary">What is Entrainment?</button>
+                                    <button type="button" className="btn btn-secondary">Moving Binaural Waves</button>
+                                </div>
                                 <div className="media-body textBinaural">
                                     <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
-                                        <h5>General conception of Music genres</h5>
+                                        <h5>Typical Questions:</h5>
                                         <p>
-                                            Although you percieve music (and the world) in your own exclusive way, provided ou were not born in isolation and deprived of civilization, you may be subject to more or less influence by it. So the environment, the culture, the musical styles your close ones heard while you were growing up will have an impact in your own conception of the musical world.
+                                            Well there are several questions in these subjects, we hope to clear some of them with the videos but, nevertheless you may feel you need more info. 
                                         </p>
                                         <p>
-                                            That is to say: you may find there are several common conceptions about effects of musical styles and even find in spotify playslists of relaxing music, energetic music, etc. In Music-therapy that would be called the "universal isos".
+                                           One of the biggest challenges of our times is filtering information, especially from one´s self cause we are inclined to look for corroboration of what we already believe in. 
+                                           The Theory of Moving Binaural Waves came from many years of researching on what was taken to the lab by researchers of all kinds, and the need to find something new. 
+                                           If you need more info, browse the net, read a lot and of course wirte to us if you feel you have questions. 
                                         </p>
                                     </div>
                                     <div className="tm-buy-box">
-                                        <span className="tm-text-pink tm-price-tag me-5">Uses:</span>
+                                        <span className="tm-text-pink tm-price-tag me-5">Tips</span>
                                     </div>
                                 </div>
                             </div>
