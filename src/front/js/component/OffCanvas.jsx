@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 export const OffCanvas = () => {
+const {actions} = useContext(Context)
 
     return (
         <>
@@ -48,14 +50,14 @@ export const OffCanvas = () => {
                                 Binaural Waves
                             </button>
                             <ul className="dropdown-menu">
-                                <Link to="/alpha">
-                                    <li className="dropdown-item" href="#">Alpha</li>
+                            <Link to="/binaural" onClick={() => actions.navigateToSection("alpha-section")}>
+                                    <li className="dropdown-item">Alpha</li>
                                 </Link>
-                                <Link to="/theta">
-                                    <li className="dropdown-item" href="#">Theta</li>
+                                <Link to="/binaural" onClick={() => actions.navigateToSection("theta-section")}>
+                                    <li className="dropdown-item">Theta</li>
                                 </Link>
-                                <Link to="/delta">
-                                    <li className="dropdown-item" href="#">Delta</li>
+                                <Link to="/binaural" onClick={() => actions.navigateToSection("delta-section")}>
+                                    <li className="dropdown-item">Delta</li>
                                 </Link>
                             </ul>
                         </div>
