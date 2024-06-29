@@ -1,0 +1,21 @@
+/* código original Matias */
+.fader {
+  width: 30px;
+  height: 300px;
+  writing-mode: bt-lr;
+  -webkit-appearance: slider-vertical;
+  appearance: slider-vertical;
+}
+.vumeter {
+  width: 30px;
+  height: 100px;
+  background-color: #ddd;
+  margin: 10px 0;
+  position: relative;
+}
+.vu-fill {
+  height: 0;
+  width: 100%;
+  background-color: #4CAF50;
+}
+ /* HASTA AQUI */
