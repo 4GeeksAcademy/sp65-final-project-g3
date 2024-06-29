@@ -66,11 +66,11 @@ const {actions} = useContext(Context)
                                 Soundscapes
                             </button>
                             <ul className="dropdown-menu">
-                                <Link to="/soundscape">
+                                <Link to="/soundscape" onClick={() => actions.navigateToSoundscape("nature-section")}>
                                     <li className="dropdown-item" href="#">Soundscapes</li>
                                 </Link>
                                 <li className="dropdown-item" href="#">Music</li>
-                                <Link to="/soundscape">
+                                <Link to="/soundscape" onClick={() => actions.navigateToSoundscape("music-section")}>
                                 </Link>
                                 <Link to="/soundscape">
                                     <li className="dropdown-item" href="#">Spotify</li>
