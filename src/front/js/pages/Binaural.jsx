@@ -134,7 +134,7 @@ export const Binaural = () => {
                                             </div>
                                             <div className="tm-buy-box">
                                                 <a href="#" className="tm-bg-blue tm-text-white tm-buy">Load</a>
-                                                <span className="tm-text-blue tm-price-tag">Track 1</span>
+                                                <span className="tm-text-blue tm-price-tag">Track 2</span>
                                             </div>
                                         </div>
                                     </div>
@@ -180,7 +180,7 @@ export const Binaural = () => {
                                             </div>
                                             <div className="tm-buy-box">
                                                 <a href="#" className="tm-bg-pink tm-text-white tm-buy">Load</a>
-                                                <span className="tm-text-pink tm-price-tag">Track 1</span>
+                                                <span className="tm-text-pink tm-price-tag">Track 2</span>
                                             </div>
                                         </div>
                                     </div>
@@ -221,7 +221,7 @@ export const Binaural = () => {
                                             </div>
                                             <div className="tm-buy-box">
                                                 <a href="#" className="tm-bg-blue tm-text-white tm-buy">Load</a>
-                                                <span className="tm-text-blue tm-price-tag">Track 1</span>
+                                                <span className="tm-text-blue tm-price-tag">Track 2</span>
                                             </div>
                                         </div>
                                     </div>

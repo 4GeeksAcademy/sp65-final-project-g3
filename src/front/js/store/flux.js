@@ -4,7 +4,8 @@ const getState = ({getStore, getActions, setStore}) => {
 			message: null,
 			demo: [{title: "FIRST", background: "white", initial: "white"}],
 			isLogin: false,
-			currentSection: null
+			currentSection: null,
+			soundscapeSection: null,
 		},
 		actions: {
 			exampleFunction: () => {getActions().changeColor(0, "green");},  // Use getActions to call a function within a fuction
@@ -60,6 +61,10 @@ const getState = ({getStore, getActions, setStore}) => {
 			navigateToSection: (section) => {
                 setStore({ currentSection: section });
                 window.location.href = `/binaural#${section}`;
+            },
+			navigateToSoundscape: (section) => {
+                setStore({ soundscapeSection: section });
+                window.location.href = `/soundscape#${section}`;
             },
 		}
 	};
