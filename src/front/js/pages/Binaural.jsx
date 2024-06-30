@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Context } from "../store/appContext"
+import { Link } from "react-router-dom";
 import "../../styles/binaural.css"
 
 export const Binaural = () => {
@@ -268,11 +269,14 @@ export const Binaural = () => {
                                                     There are several approaches to get the brain to synchronize. Of those involving sound, when taken to the lab have never passed the test, upon learning this, Matias Kamelman had the idea of using cutting edge technology to generate immersive audio, to use a perceivable sound source to move on constant cycles around your head to promote entrainment.
                                                     This theory of “moving binaural waves” is yet to be proved and we will gladly appreciate any feedback you can produce.
                                                 </p>
-
                                             </div>
-
                                         </div>
                                     </div>
+                                </div>
+                                <div className="col-12 d-flex justify-content-center">
+                                    <Link to="/tutorial" >
+                                    <button type="button" className="btn btn-secondary">Learn more in the Tutorial Section</button>                                    
+                                    </Link>
                                 </div>
                                 <div className="media-body textBinaural">
                                     <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
