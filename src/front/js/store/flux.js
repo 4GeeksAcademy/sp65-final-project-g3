@@ -3,7 +3,8 @@ import { useEffect } from "react";
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			message: null,
+			message: null, 
+			user: null,
 			demo: [{ title: "FIRST", background: "white", initial: "white" }],
 			isLogin: false,
 			currentSection: null,

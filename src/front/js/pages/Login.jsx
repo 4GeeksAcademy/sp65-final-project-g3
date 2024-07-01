@@ -4,7 +4,7 @@ import { Context } from "../store/appContext";
 import "/workspaces/sp65-final-project-g3/src/front/styles/loginForm.css"
 
 export const Login = () => {
-    const {actions} = useContext(Context)
+    const {store, actions} = useContext(Context)
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [rememberMe, setRememberMe] = useState (false);
@@ -52,23 +52,11 @@ export const Login = () => {
     };
 
     // Login Spotify
-    // const setSpotifyToken = () => {
-		// 		//  API Access Token
-		// 		const authParameters = {
-		// 			method:'Post',
-		// 			headers: {
-		// 				'Content-Type': 'application/x-www-form-urlencoded'
-		// 			},
-		// 			body: 'grant_type=client_credentials&client_id=' + CLIENT_ID + '&client_secret=' 
-		// 	}
-		// 		fetch ('hattps://accounts.spotify.com/api/token', authParameters)
-		// 			.then(result=> result.json())
-		// 			.then(data => setAccessSpotifyToken(data.access_token))
-		// 		};
-
     const handleSpotifyLogin = () => {
       window.location = `${process.env.SPOTIFY_AUTHORIZE_ENDPOINT}?client_id=${process.env.CLIENT_ID}&redirect_uri=${process.env.REDIRECT_URI}&scope=${process.env.SCOPE}&response_type=token&show_dialog=true`;
     };
+
+    console.log(store.isLogin)
 
     return (   
     <form className="form" onSubmit={handleSubmit}>
