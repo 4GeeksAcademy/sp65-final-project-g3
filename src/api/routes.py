@@ -39,7 +39,7 @@ def callback():
     return redirect(url_for('get_playlists'))
 
 
-@api.route('/get_playlists', methods=['GET'])  # Este Endpoint sirve para traer las playlists del usuario (al menos en teoría)
+@api.route('/get_playlists', methods=['GET'])  # Este Endpoint sirve para traer las playlists del usuario (al menos en teoría, ENDPOINT SPOTIFY==>https://api.spotify.com/v1/playlists/{playlist_id})
 def get_playlists():
     if not sp_oauth.validate_token(cache_handler.get_cached_token()):
         auth_url = sp_oauth.get_authorize_url()
