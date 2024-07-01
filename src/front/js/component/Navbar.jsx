@@ -15,15 +15,8 @@ export const Navbar = () => {
 	}
 
 	return (
-		<nav className="navbar navbar-expand-sm bg-dark" data-bs-theme="dark">
-			<div className="container-fluid d-flex align-items-center justify-content-between">
-				{/* 	<div>
-					<Link to="/">
-						<span className="mb-0 logo-container">
-							<img src={Logo} className="thumb" alt="Star Wars Logo" />
-						</span>
-					</Link>
-				</div> */}
+		<nav className="navbar navbar-expand-sm bg-dark d-flex" data-bs-theme="dark">
+			<div className="container-fluid d-flex align-items-center justify-content-center">
 				<Link to="/home">
 					<button type="button" className="btn btn-outline-light d-flex justify-content-between">Home</button>
 				</Link>
@@ -67,8 +60,6 @@ export const Navbar = () => {
 									</Link>
 								}
 							</li>
-
-
 							{/* 	<li className="nav-item dropdown">
 								<span className="btn bg-primary btn-outline-light dropdown-toggle" data-bs-toggle="dropdown"
 									role="button" aria-haspopup="true" aria-expanded="false">

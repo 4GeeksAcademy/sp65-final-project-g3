@@ -1,7 +1,36 @@
-import React from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { Context } from "../store/appContext"
+import { Link } from "react-router-dom";
 import "../../styles/binaural.css"
 
 export const Binaural = () => {
+    const { store } = useContext(Context)
+    const alphaRef = useRef(null);
+    const thetaRef = useRef(null);
+    const deltaRef = useRef(null);
+
+    useEffect(() => {
+        const scrollToRef = (ref) => {
+            if (ref.current) {
+                ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        };
+
+        switch (store.currentSection) {
+            case "alpha-section":
+                scrollToRef(alphaRef);
+                break;
+            case "theta-section":
+                scrollToRef(thetaRef);
+                break;
+            case "delta-section":
+                scrollToRef(deltaRef);
+                break;
+            default:
+                break;
+        }
+    }, [store.currentSection]);
+    console.log("current Section", store.currentSection);
 
     return (
         <>
@@ -34,38 +63,46 @@ export const Binaural = () => {
                 <div className="row tm-albums-container grid">
                     <div className="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
                         <figure className="effect-sadie">
-                            <img src={"https://t4.ftcdn.net/jpg/08/19/96/27/360_F_819962780_5Jikl3FOY0OrqfLEjfjXZH9d9Uoqlkua.jpg"} alt="Image" className="img-fluid" />
-                            <figcaption>
-                                <h2>Alpha Waves</h2>
-                                <p>8hz to 13Hz</p>
-                            </figcaption>
+                            <a href="#alpha-section">
+                                <img src={"https://t4.ftcdn.net/jpg/08/19/96/27/360_F_819962780_5Jikl3FOY0OrqfLEjfjXZH9d9Uoqlkua.jpg"} alt="Image" className="img-fluid" />
+                                <figcaption>
+                                    <h2>Alpha Waves</h2>
+                                    <p>8hz to 13Hz</p>
+                                </figcaption>
+                            </a>
                         </figure>
                     </div>
                     <div className="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
                         <figure className="effect-sadie">
-                            <img src={"https://t4.ftcdn.net/jpg/08/19/96/25/240_F_819962587_aBHjpGdUT8m1OPmACz2J98Pru84N7vbN.jpg"} alt="Image" className="img-fluid" />
-                            <figcaption>
-                                <h2>Theta Waves</h2>
-                                <p>3Hz to 8Hz</p>
-                            </figcaption>
+                            <a href="#theta-section">
+                                <img src={"https://t4.ftcdn.net/jpg/08/19/96/25/240_F_819962587_aBHjpGdUT8m1OPmACz2J98Pru84N7vbN.jpg"} alt="Image" className="img-fluid" />
+                                <figcaption>
+                                    <h2>Theta Waves</h2>
+                                    <p>3Hz to 8Hz</p>
+                                </figcaption>
+                            </a>
                         </figure>
                     </div>
                     <div className="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
                         <figure className="effect-sadie">
-                            <img src={"https://t3.ftcdn.net/jpg/08/19/90/34/240_F_819903467_xvlu1QXgorjcdt6Up2kCnz0UooGHUIdn.jpg"} alt="Image" className="img-fluid" />
-                            <figcaption>
-                                <h2>Delta Waves</h2>
-                                <p>0.1Hz to 3Hz</p>
-                            </figcaption>
+                            <a href="#delta-section">
+                                <img src={"https://t3.ftcdn.net/jpg/08/19/90/34/240_F_819903467_xvlu1QXgorjcdt6Up2kCnz0UooGHUIdn.jpg"} alt="Image" className="img-fluid" />
+                                <figcaption>
+                                    <h2>Delta Waves</h2>
+                                    <p>0.1Hz to 3Hz</p>
+                                </figcaption>
+                            </a>
                         </figure>
                     </div>
                     <div className="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
                         <figure className="effect-sadie">
-                            <img src={"https://t4.ftcdn.net/jpg/07/69/70/99/240_F_769709971_Y50zb5MuTmUWQmF7IqxpBHSvMe9PbnZN.jpg"} alt="Image" className="img-fluid" />
-                            <figcaption>
-                                <h2>Entrianment</h2>
-                                <p>Learn More about the theory</p>
-                            </figcaption>
+                            <a href="#entrainment-section">
+                                <img src={"https://t4.ftcdn.net/jpg/07/69/70/99/240_F_769709971_Y50zb5MuTmUWQmF7IqxpBHSvMe9PbnZN.jpg"} alt="Image" className="img-fluid" />
+                                <figcaption>
+                                    <h2>Entrianment</h2>
+                                    <p>Learn More about the theory</p>
+                                </figcaption>
+                            </a>
                         </figure>
                     </div>
                 </div>
@@ -81,7 +118,7 @@ export const Binaural = () => {
                 <div className="row mb-5">
                     <div className="col-xl-12">
                         <div className="media-boxes">
-                            <div className="media">
+                            <div className="media" id="alpha-section">
                                 <div className="row d-flex align-items-stretch">
                                     <div className="col-3 d-flex align-items-stretch">
                                         <img src={"https://t3.ftcdn.net/jpg/08/20/12/24/240_F_820122410_ofHPpJwDAjs919R7IcVto7h8AG2IiqEp.jpg"} alt="Image" className="align-self-stretch" />
@@ -98,15 +135,15 @@ export const Binaural = () => {
                                             </div>
                                             <div className="tm-buy-box">
                                                 <a href="#" className="tm-bg-blue tm-text-white tm-buy">Load</a>
-                                                <span className="tm-text-blue tm-price-tag">Track 1</span>
+                                                <span className="tm-text-blue tm-price-tag">Track 2</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="col-12 d-flex justify-content-between">
-                                <button type="button" className="btn btn-secondary">Load 12Hz Wave</button>
-                                <button type="button" className="btn btn-secondary">Load 10Hz Wave</button>
-                                <button type="button" className="btn btn-secondary">Load 8Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary">Load 12Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary">Load 10Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary">Load 8Hz Wave</button>
                                 </div>
                                 <div className="media-body textBinaural">
                                     <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
@@ -124,7 +161,7 @@ export const Binaural = () => {
                                 </div>
                             </div>
 
-                            <div className="media">
+                            <div className="media" id="theta-section">
                                 <div className="row d-flex align-items-stretch">
                                     <div className="col-3 d-flex align-items-stretch container-fluid">
                                         <img src={"https://t4.ftcdn.net/jpg/08/02/43/63/240_F_802436395_BB2TxiEuws6vA4dqWO7efJJxSe2qg3KV.jpg"} alt="Image" className="align-self-strech" />
@@ -144,15 +181,15 @@ export const Binaural = () => {
                                             </div>
                                             <div className="tm-buy-box">
                                                 <a href="#" className="tm-bg-pink tm-text-white tm-buy">Load</a>
-                                                <span className="tm-text-pink tm-price-tag">Track 1</span>
+                                                <span className="tm-text-pink tm-price-tag">Track 2</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="col-12 d-flex justify-content-between">
-                                <button type="button" className="btn btn-secondary">Load 7Hz Wave</button>
-                                <button type="button" className="btn btn-secondary">Load 5Hz Wave</button>
-                                <button type="button" className="btn btn-secondary">Load 3Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary">Load 7Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary">Load 5Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary">Load 3Hz Wave</button>
                                 </div>
                                 <div className="media-body textBinaural">
                                     <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
@@ -170,7 +207,7 @@ export const Binaural = () => {
                                 </div>
                             </div>
 
-                            <div className="media">
+                            <div className="media" id="delta-section">
                                 <div className="row d-flex align-items-stretch">
                                     <div className="col-3 d-flex align-items-stretch">
                                         <img src={"https://t3.ftcdn.net/jpg/07/27/79/86/240_F_727798659_GVhb4YANpW9sRoYjptqB6XQKwW9t5Jyo.jpg"} alt="Image" className="align-self-stretch" />
@@ -181,29 +218,29 @@ export const Binaural = () => {
                                                 <h5 className="tm-text-blue">Delta Waves</h5>
                                                 <p className="mb-0 fs-6">(: (0,1HZ – 3HZ) These are the slowest of the binaural spectrum, considering 0 would be brain death (clinically at least).</p>
                                                 <p>There is a lot of bibliography about them and they are present in deep sleep (sleep without dreams) and associated with all the neurochemistry release necessary for regeneration.
-                                                (see “about” for a deeper explanation)</p>
+                                                    (see “about” for a deeper explanation)</p>
                                             </div>
                                             <div className="tm-buy-box">
                                                 <a href="#" className="tm-bg-blue tm-text-white tm-buy">Load</a>
-                                                <span className="tm-text-blue tm-price-tag">Track 1</span>
+                                                <span className="tm-text-blue tm-price-tag">Track 2</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="col-12 d-flex justify-content-between">
-                                <button type="button" className="btn btn-secondary">Load 2Hz Wave</button>
-                                <button type="button" className="btn btn-secondary">Load 1Hz Wave</button>
-                                <button type="button" className="btn btn-secondary">Load 0,5Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary">Load 2Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary">Load 1Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary">Load 0,5Hz Wave</button>
                                 </div>
                                 <div className="media-body textBinaural">
                                     <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
                                         <h5>You may choose to use this kind of waves for:</h5>
                                         <p>
-                                        Exposing yourself to Delta waves may help you conceive sleep if you have trouble sleeping, but also it may improve your sleep and make your Delta states achievable or even enhance them. 
-                                        If you are into meditation, these are great waves to expose yourself too.
+                                            Exposing yourself to Delta waves may help you conceive sleep if you have trouble sleeping, but also it may improve your sleep and make your Delta states achievable or even enhance them.
+                                            If you are into meditation, these are great waves to expose yourself too.
                                         </p>
                                         <p>
-                                        Recent discoveries have also shown Delta activity in decision making, especially in highly risk trained people and difficult situations handling, so there is no harm in experimenting with these waves for studying and focus, though it may help to use some active music to accompany it in training. 
+                                            Recent discoveries have also shown Delta activity in decision making, especially in highly risk trained people and difficult situations handling, so there is no harm in experimenting with these waves for studying and focus, though it may help to use some active music to accompany it in training.
                                         </p>
                                     </div>
                                     <div className="tm-buy-box">
@@ -212,40 +249,44 @@ export const Binaural = () => {
                                 </div>
                             </div>
 
-                            <div className="media">
+                            <div className="media" id="entrainment-section">
                                 <div className="row d-flex align-items-stretch">
                                     <div className="col-3 d-flex align-items-stretch container-fluid">
-                                        <img src={"https://t4.ftcdn.net/jpg/06/36/51/63/240_F_636516341_gm3E4ylrnK6HmcTRA1MctrK7HxOA0P2v.jpg"} alt="Image" className="align-self-strech" />
+                                        <img src={"https://t4.ftcdn.net/jpg/08/02/43/63/240_F_802436395_BB2TxiEuws6vA4dqWO7efJJxSe2qg3KV.jpg"} alt="Image" className="align-self-strech" />
                                     </div>
                                     <div className="col-9">
                                         <div className="media-body tm-bg-pink-light">
                                             <div className="tm-description-box">
                                                 <h5 className="tm-text-pink">Entrainemt</h5>
                                                 <p className="mb-0 fs-6">
-                                                    Explanation
+                                                    In a nut shell, think of entrainment as synchronization.
                                                 </p>
                                                 <p>
-                                                   Explanation.
+                                                    Your brain is a natural entrainer, so is your heart.
                                                 </p>
                                                 <p>
-                                                   Explanation.
-                                                </p>
-                                                <p>
-                                                   Explanation.
+                                                    It naturally synchs to certain external stimuli, especially if these stimuli are repetitive and constant.
+                                                    There are several approaches to get the brain to synchronize. Of those involving sound, when taken to the lab have never passed the test, upon learning this, Matias Kamelman had the idea of using cutting edge technology to generate immersive audio, to use a perceivable sound source to move on constant cycles around your head to promote entrainment.
+                                                    This theory of “moving binaural waves” is yet to be proved and we will gladly appreciate any feedback you can produce.
                                                 </p>
                                             </div>
-                                           
                                         </div>
                                     </div>
                                 </div>
+                                <div className="col-12 d-flex justify-content-center">
+                                    <Link to="/tutorial" >
+                                    <button type="button" className="btn btn-secondary">Learn more in the Tutorial Section</button>                                    
+                                    </Link>
+                                </div>
                                 <div className="media-body textBinaural">
                                     <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
-                                        <h5>You may choose to use this kind of waves for:</h5>
+                                        <h5>There is plenty of information about Entrainment</h5>
                                         <p>
-                                           
+                                            Binaurapp´s approach intends to keep within the parameters of the scientific method, so we can´t guarantee this works in all cases, in all available corroborated papers, when it comes to sound there is always the subjectie facot that can´t be eluded, but it can be used.
+                                            That´s why we developed an app that allows you to choose your music or background to use that in favor of your desired state
                                         </p>
                                         <p>
-                                           
+
                                         </p>
                                     </div>
                                     <div className="tm-buy-box">

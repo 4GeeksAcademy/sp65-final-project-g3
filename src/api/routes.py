@@ -39,7 +39,7 @@ def callback():
     return redirect(url_for('get_playlists'))
 
 
-@api.route('/get_playlists', methods=['GET'])  # Este Endpoint sirve para traer las playlists del usuario (al menos en teoría)
+@api.route('/get_playlists', methods=['GET'])  # Este Endpoint sirve para traer las playlists del usuario (al menos en teoría, ENDPOINT SPOTIFY==>https://api.spotify.com/v1/playlists/{playlist_id})
 def get_playlists():
     if not sp_oauth.validate_token(cache_handler.get_cached_token()):
         auth_url = sp_oauth.get_authorize_url()
@@ -77,6 +77,7 @@ def signup():
     db.session.commit()
     access_token = create_access_token(identity={'user_id' : user.id, 'user_is_admin' : user.is_admin})
     response_body["message"] = "User Created & Logged in"
+    response_body['results'] = user.serialize()
     response_body["access_token"] = access_token
     return response_body, 200
 
@@ -89,6 +90,7 @@ def login():
     user = db.session.execute(db.select(Users).where(Users.email == email, Users.password == password, Users.is_active == True)).scalar()
     if user:
         access_token = create_access_token(identity={'user_id' : user.id, 'is_admin' : user.is_admin})
+        response_body['results'] = user.serialize()
         response_body["message"] = "Login Succesful"
         response_body["access_token"] = access_token
         return response_body, 200

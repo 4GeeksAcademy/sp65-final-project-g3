@@ -26,6 +26,7 @@ import { Meditation } from "./pages/Meditation.jsx";
 import { Sleep } from "./pages/Sleep.jsx";
 import { Focus } from "./pages/Focus.jsx";
 import { Dashboard } from "./pages/Dashboard.jsx";
+import { Mixer } from "./pages/Mixer.jsx"
 
 
 
@@ -61,6 +62,7 @@ const Layout = () => {
                         <Route path="/sleep" element={<Sleep />} />
                         <Route path="/focus" element={<Focus />} />
                         <Route path="/dashboard" element={<Dashboard />} />
+                        <Route path="/mixer" element={<Mixer />} />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <OffCanvas />
