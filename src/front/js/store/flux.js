@@ -3,7 +3,8 @@ const getState = ({getStore, getActions, setStore}) => {
 		store: {
 			message: null,
 			demo: [{title: "FIRST", background: "white", initial: "white"}],
-			isLogin: false
+			isLogin: false, 
+			user: null
 		},
 		actions: {
 			exampleFunction: () => {getActions().changeColor(0, "green");},  // Use getActions to call a function within a fuction

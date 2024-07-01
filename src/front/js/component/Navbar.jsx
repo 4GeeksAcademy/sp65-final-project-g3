@@ -35,9 +35,19 @@ export const Navbar = () => {
 					<div className="collapse navbar-collapse justify-content-end" id="navbarColor02">
 						<ul className="navbar-nav me-auto">
 							<li className="nav-item">
-								<Link to="/signup">
-									<button type="button" className="btn btn-outline-danger">Sign Up</button>
-								</Link>
+								{store.isLogin ?
+									""
+									: <Link to="/signup">
+										<button type="button" className="btn btn-outline-danger">Sign Up</button>
+									</Link>
+								}
+
+
+								{store.isLogin ?
+									<Link to="/dashboard">
+										<button type="button" className="btn btn-outline-light d-flex justify-content-between">Dashboard</button>
+									</Link>
+									: ""}
 							</li>
 							<li className="nav-item">
 							</li>
@@ -47,7 +57,7 @@ export const Navbar = () => {
 										<Link to="/">
 											<button type="button" onClick={logout} className="btn btn-outline-info">Logout</button>
 										</Link>
-										<Link to="/demo">
+										<Link to="/profile">
 											<button type="button" className="btn btn-outline-info">Profile</button>
 										</Link>
 									</>
@@ -57,9 +67,8 @@ export const Navbar = () => {
 									</Link>
 								}
 							</li>
-							<Link to="/dashboard">
-								<button type="button" className="btn btn-outline-light d-flex justify-content-between">Dashboard</button>
-							</Link>
+
+
 							{/* 	<li className="nav-item dropdown">
 								<span className="btn bg-primary btn-outline-light dropdown-toggle" data-bs-toggle="dropdown"
 									role="button" aria-haspopup="true" aria-expanded="false">

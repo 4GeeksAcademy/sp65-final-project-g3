@@ -4,7 +4,7 @@ import { Context } from "../store/appContext";
 import "/workspaces/sp65-final-project-g3/src/front/styles/loginForm.css"
 
 export const Login = () => {
-    const {actions} = useContext(Context)
+    const {store, actions} = useContext(Context)
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [rememberMe, setRememberMe] = useState (false);
@@ -49,6 +49,8 @@ export const Login = () => {
         console.log(data.access_token);
         navigate('/dashboard')
     };
+
+    console.log(store.isLogin)
 
     return (   
     <form className="form" onSubmit={handleSubmit}>

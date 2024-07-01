@@ -62,7 +62,7 @@ def signup():
     password = request.json.get("password", None)
     first_name = request.json.get("first_name", "")  
     last_name = request.json.get("last_name", "") 
-    row = db.session.execute(db.session.select(Users).where(Users.email == email)).scalar()
+    row = db.session.execute(db.select(Users).where(Users.email == email)).scalar()
     if row:
         response_body["message"] = "Mail already exists"
         return response_body, 401
