@@ -8,6 +8,7 @@ export const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [rememberMe, setRememberMe] = useState (false);
+    const [accessSpotifyToken, setAccessSpotifyToken] = useState("");
     const navigate = useNavigate()
 
     const handleEmailChange = (e) => {
@@ -50,6 +51,25 @@ export const Login = () => {
         navigate('/dashboard')
     };
 
+    // Login Spotify
+    // const setSpotifyToken = () => {
+		// 		//  API Access Token
+		// 		const authParameters = {
+		// 			method:'Post',
+		// 			headers: {
+		// 				'Content-Type': 'application/x-www-form-urlencoded'
+		// 			},
+		// 			body: 'grant_type=client_credentials&client_id=' + CLIENT_ID + '&client_secret=' 
+		// 	}
+		// 		fetch ('hattps://accounts.spotify.com/api/token', authParameters)
+		// 			.then(result=> result.json())
+		// 			.then(data => setAccessSpotifyToken(data.access_token))
+		// 		};
+
+    const handleSpotifyLogin = () => {
+      window.location = `${process.env.SPOTIFY_AUTHORIZE_ENDPOINT}?client_id=${process.env.CLIENT_ID}&redirect_uri=${process.env.REDIRECT_URI}&scope=${process.env.SCOPE}&response_type=token&show_dialog=true`;
+    };
+
     return (   
     <form className="form" onSubmit={handleSubmit}>
         <p id="heading">Login To Binaurapp</p>
@@ -77,7 +97,7 @@ export const Login = () => {
           <span>Or login with</span>
           <div className="border align-self-center"></div>
         </div>
-        <button type="reset" className="button1 text-success mb-3"><b>Spotify</b></button> 
+        <button type="reset" className="button1 text-success mb-3" onClick={handleSpotifyLogin}><b>Spotify</b></button> 
     </form>
     );
 };

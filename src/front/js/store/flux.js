@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -71,32 +73,40 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ tutorialSection: section });
 				window.location.href = `/tutorial#${section}`;
 			},
+
 			// lógica para Spotify
-			getSpotifyLists: async () => {
-				const response = await fetch("https://api.spotify.com/v1/playlists/{playlist_id}");
-				if (!response.ok) {
-					console.log("Error");
-					return;
-				}
-				const data = await response.json();
-				console.log(data);
-				setStore({ spotifyLists: data.results });
+			setSpotifyAccessToken: (token) => {
+				// Actualiza el token de acceso de Spotify en el estado
+				setStore({
+					spotifyAccessToken: token
+				});
 			},
 
-			settingSpotifyList: (spotifyList) => { setStore({ currentSpotifyList: spotifyList }); },
-			settingSpotifyListUrl: (text) => { setStore({ currentSpotifyListUrl: text }); },
+			// getSpotifyLists: async () => {
+			// 	const response = await fetch("https://api.spotify.com/v1/playlists/{playlist_id}");
+			// 	if (!response.ok) {
+			// 		console.log("Error");
+			// 		return;
+			// 	}
+			// 	const data = await response.json();
+			// 	console.log(data);
+			// 	setStore({ spotifyLists: data.results });
+			// },
 
-			getCurrentSpotifyList: async () => {
-				const uri = getStore().currentSpotifyListUrl;
-				const response = await fetch(uri);
-				if (!response.ok) {
-					console.log("Error");
-					return;
-				}
-				const data = await response.json();
-				console.log(data);
-				setStore({ currentSpotifyList: data.result });
-			},
+			// settingSpotifyList: (spotifyList) => { setStore({ currentSpotifyList: spotifyList }); },
+			// settingSpotifyListUrl: (text) => { setStore({ currentSpotifyListUrl: text }); },
+
+			// getCurrentSpotifyList: async () => {
+			// 	const uri = getStore().currentSpotifyListUrl;
+			// 	const response = await fetch(uri);
+			// 	if (!response.ok) {
+			// 		console.log("Error");
+			// 		return;
+			// 	}
+			// 	const data = await response.json();
+			// 	console.log(data);
+			// 	setStore({ currentSpotifyList: data.result });
+			// },
 		}
 	};
 };

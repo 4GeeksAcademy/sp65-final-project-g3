@@ -47,6 +47,10 @@ export const Mixer = () => {
               const newTrackOne = new Audio(trackOneUrl); // Implementar código para dar acceso a las librerías Spotify y Soundwaves
               const newTrackTwo = new Audio(trackTwoUrl); // Implementar código para dar acceso a la librería Binaurals
 
+            // Líneas para conseguir hacer sonar la música
+              newTrackOne.crossOrigin = "anonymous";
+              newTrackTwo.crossOrigin = "anonymous";
+
               const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
               const userSource = audioCtx.createMediaElementSource(newTrackOne);
@@ -205,7 +209,7 @@ export const Mixer = () => {
     return (
     <div className="container">
       <div id="mixerControls" className="d-flex">
-      <button id="library" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" onClick={() => handleSpotifyLists(item.url)}></button>
+      <button id="library" className="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" onClick={() => handleSpotifyLists(item.url)}></button>
         <input type="range" id="trackOneVolume" ref={trackOneVolumeRef} onChange={handleTrackOneVolumeChange} min="0" max="100" step="0.01" />
         <div className="d-flex flex-column bd-highlight mb-3">
             <div id="vuMeter" className="d-flex justify-content-center">
@@ -218,7 +222,7 @@ export const Mixer = () => {
             </div>
         </div>
           <input type="range" id="trackTwoVolume" ref={trackTwoVolumeRef} onChange={handleTrackTwoVolumeChange} min="0" max="1" step="0.01" />
-          <button id="library" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+          <button id="library" className="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
       </div>
       {/* Estas 3 líneas se tendrán que reemplazar con la implementación de las librerias */}
       <input type="text" id="trackOneUrl" ref={trackOneUrlRef} value="https://cdn.pixabay.com/audio/2022/08/02/audio_884fe92c21.mp3" />
