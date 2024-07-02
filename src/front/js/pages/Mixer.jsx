@@ -210,7 +210,7 @@ export const Mixer = () => {
     <div className="container">
       <div id="mixerControls" className="d-flex">
       <button id="library" className="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" onClick={() => handleSpotifyLists(item.url)}></button>
-        <input type="range" id="trackOneVolume" ref={trackOneVolumeRef} onChange={handleTrackOneVolumeChange} min="0" max="100" step="0.01" />
+        <input type="range" id="trackOneVolume" ref={trackOneVolumeRef} onChange={handleTrackOneVolumeChange} min="0" max="1" step="0.01" />
         <div className="d-flex flex-column bd-highlight mb-3">
             <div id="vuMeter" className="d-flex justify-content-center">
                 <div id="trackOneVu" ref={trackOneVuRef} className="card mx-1"></div>
@@ -226,7 +226,7 @@ export const Mixer = () => {
       </div>
       {/* Estas 3 líneas se tendrán que reemplazar con la implementación de las librerias */}
       <input type="text" id="trackOneUrl" ref={trackOneUrlRef} value="https://cdn.pixabay.com/audio/2022/08/02/audio_884fe92c21.mp3" />
-      <input type="text" id="trackTwoUrl" ref={trackTwoUrlRef} value="https://cdn.pixabay.com/audio/2022/08/02/audio_884fe92c21.mp3" />
+      <input type="text" id="trackTwoUrl" ref={trackTwoUrlRef} value="https://cdn.pixabay.com/download/audio/2024/07/01/audio_a057a839a4.mp3" />
       <button id="loadButton" onClick={loadAudio}>Cargar</button> 
     </div>
   );
