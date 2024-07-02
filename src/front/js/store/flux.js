@@ -10,6 +10,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			currentSection: null,
 			soundscapeSection: null,
 			tutorialSection: null,
+			track2Url: null,
+			binauralList: [],
+			soundscapeList: [],
 		},
 		actions: {
 			exampleFunction: () => { getActions().changeColor(0, "green"); },  // Use getActions to call a function within a fuction
@@ -64,15 +67,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setIsLogin: (login) => { setStore({ isLogin: login }) },
 			navigateToSection: (section) => {
 				setStore({ currentSection: section });
-				window.location.href = `/binaural#${section}`;
+			/* 	window.location.href = `/binaural#${section}`; */
 			},
 			navigateToSoundscape: (section) => {
 				setStore({ soundscapeSection: section });
-				window.location.href = `/soundscape#${section}`;
+				/* window.location.href = `/soundscape#${section}`; */
 			},
 			navigateToTutorial: (section) => {
 				setStore({ tutorialSection: section });
-				window.location.href = `/tutorial#${section}`;
+				/* window.location.href = `/tutorial#${section}`; */
+			},
+			// Track 2 Url
+			// Acción para actualizar la URL del track2
+            setTrack2Url: (url) => {
+                setStore({ track2Url: url });
+            },
+			getBinaural: async () => {
+				const uri = "https://ubiquitous-giggle-9vrj6v4p75gc7v57-3001.app.github.dev/api/binaural"
+				const response = await fetch(uri);
+				if (!response.ok) {
+					console.log('Error on Agenda', response.status, response.statusText);
+					return
+				}
+				const data = await response.json();
+				setStore({ binauralList: data.results });
+				console.log('Binaural List', data.results);
+			},
+			getSoundscape: () => {
+
 			},
 
 			// lógica para Spotify

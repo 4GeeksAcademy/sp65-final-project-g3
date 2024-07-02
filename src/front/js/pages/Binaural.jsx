@@ -1,13 +1,16 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Context } from "../store/appContext"
-import { Link } from "react-router-dom";
-import "../../styles/binaural.css"
+import { Link, useNavigate } from "react-router-dom";
+import "../../styles/binaural.css";
+
 
 export const Binaural = () => {
+    const { actions } = useContext(Context);
     const { store } = useContext(Context)
     const alphaRef = useRef(null);
     const thetaRef = useRef(null);
     const deltaRef = useRef(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const scrollToRef = (ref) => {
@@ -31,6 +34,12 @@ export const Binaural = () => {
         }
     }, [store.currentSection]);
     console.log("current Section", store.currentSection);
+
+    const handleLoadTrack = (url) => {
+        actions.setTrack2Url(url);
+        navigate("/mixer");
+        console.log("setTrackUrl Value:", store.setTrack2Url);
+    };
 
     return (
         <>
@@ -139,11 +148,11 @@ export const Binaural = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> {/* ../src/front/sound/12Hz.mp3 */}
                                 <div className="col-12 d-flex justify-content-between">
-                                    <button type="button" className="btn btn-secondary">Load 12Hz Wave</button>
-                                    <button type="button" className="btn btn-secondary">Load 10Hz Wave</button>
-                                    <button type="button" className="btn btn-secondary">Load 8Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary" onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_64483b3bf3.mp3")} >Load 12Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary" onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_47cb2f4c97.mp3")}>Load 10Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary" onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_4c9fa5db17.mp3")}>Load 8Hz Wave</button>
                                 </div>
                                 <div className="media-body textBinaural">
                                     <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
@@ -187,9 +196,9 @@ export const Binaural = () => {
                                     </div>
                                 </div>
                                 <div className="col-12 d-flex justify-content-between">
-                                    <button type="button" className="btn btn-secondary">Load 7Hz Wave</button>
-                                    <button type="button" className="btn btn-secondary">Load 5Hz Wave</button>
-                                    <button type="button" className="btn btn-secondary">Load 3Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary" onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_f14d1f916c.mp3")}>Load 7Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary" onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_c8de14825f.mp3")}>Load 5Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary" onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_b8d92c6e5b.mp3")}>Load 3Hz Wave</button>
                                 </div>
                                 <div className="media-body textBinaural">
                                     <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
@@ -228,9 +237,9 @@ export const Binaural = () => {
                                     </div>
                                 </div>
                                 <div className="col-12 d-flex justify-content-between">
-                                    <button type="button" className="btn btn-secondary">Load 2Hz Wave</button>
-                                    <button type="button" className="btn btn-secondary">Load 1Hz Wave</button>
-                                    <button type="button" className="btn btn-secondary">Load 0,5Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary" onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_b8229380b3.mp3")}>Load 2Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary" onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_6cc67ed962.mp3")}>Load 1Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary" onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_cb9a98b9bf.mp3")}>Load 0,5Hz Wave</button>
                                 </div>
                                 <div className="media-body textBinaural">
                                     <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
@@ -275,7 +284,7 @@ export const Binaural = () => {
                                 </div>
                                 <div className="col-12 d-flex justify-content-center">
                                     <Link to="/tutorial" >
-                                    <button type="button" className="btn btn-secondary">Learn more in the Tutorial Section</button>                                    
+                                        <button type="button" className="btn btn-secondary">Learn more in the Tutorial Section</button>
                                     </Link>
                                 </div>
                                 <div className="media-body textBinaural">
