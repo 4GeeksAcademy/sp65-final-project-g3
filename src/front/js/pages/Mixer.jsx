@@ -137,6 +137,10 @@ export const Mixer = () => {
         actions.settingSpotifyListUrl(url);
     };
 
+    const handleBinauralClick = (url) => {
+        actions.setTrack2Url(url);
+    };
+
     return (
         <>
             <div className="container">
@@ -154,7 +158,20 @@ export const Mixer = () => {
                         </div>
                     </div>
                     <input type="range" id="trackTwoVolume" ref={trackTwoVolumeRef} onChange={handleTrackTwoVolumeChange} min="0" max="1" step="0.01" />
-                    <button id="library" className="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                    <div className="dropdown">
+                        <button id="library" className="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          List
+                        </button>
+                        <ul className="dropdown-menu">
+                            {store.binauralList.map((item, index) => (
+                                <li key={index}>
+                                    <button className="dropdown-item" onClick={() => handleBinauralClick(item.track_url)}>
+                                        {item.name}
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
 
                 </div>
                 {/* Estas 3 líneas se tendrán que reemplazar con la implementación de las librerias */}
