@@ -72,7 +72,7 @@ const {actions} = useContext(Context)
                                 <li className="dropdown-item" href="#">Music</li>
                                 <Link to="/soundscape" onClick={() => actions.navigateToSoundscape("music-section")}>
                                 </Link>
-                                <Link to="/soundscape">
+                                <Link to="/playlist">
                                     <li className="dropdown-item" href="#">Spotify</li>
                                 </Link>
                             </ul>
