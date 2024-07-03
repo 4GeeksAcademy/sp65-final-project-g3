@@ -6,7 +6,7 @@ import playlist from "/workspaces/sp65-final-project-g3/src/front/img/playlist.j
 import soundscape from "/workspaces/sp65-final-project-g3/src/front/img/soundscape.jpg"
 import tutorial from "/workspaces/sp65-final-project-g3/src/front/img/tutorial.jpg"
 import mixer from "/workspaces/sp65-final-project-g3/src/front/img/Mixer.jpg"
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 
