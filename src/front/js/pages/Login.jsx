@@ -8,6 +8,7 @@ export const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [rememberMe, setRememberMe] = useState (false);
+    const [accessSpotifyToken, setAccessSpotifyToken] = useState("");
     const navigate = useNavigate()
 
     const handleEmailChange = (e) => { setEmail(e.target.value) };
@@ -44,6 +45,11 @@ export const Login = () => {
         navigate('/dashboard')
     };
 
+    // Login Spotify
+    const handleSpotifyLogin = () => {
+      window.location = `${process.env.SPOTIFY_AUTHORIZE_ENDPOINT}?client_id=${process.env.CLIENT_ID}&redirect_uri=${process.env.REDIRECT_URI}&scope=${process.env.SCOPE}&response_type=token&show_dialog=true`;
+    };
+
     return (   
     <form className="form" onSubmit={handleSubmit}>
         <p id="heading">Login To Binaurapp</p>
@@ -71,7 +77,7 @@ export const Login = () => {
           <span>Or login with</span>
           <div className="border align-self-center"></div>
         </div>
-        <button type="reset" className="button1 text-success mb-3"><b>Spotify</b></button> 
+        <button type="reset" className="button1 text-success mb-3" onClick={handleSpotifyLogin}><b>Spotify</b></button> 
     </form>
     );
 };
