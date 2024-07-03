@@ -1,0 +1,17 @@
+/* Estilos para los elementos mix */
+.mix {
+    padding: 0;
+    border-radius: 15px; /* Bordes redondeados */
+    margin-bottom: 10px; /* Espacio entre elementos */
+    text-align: center; /* Centrar el contenido */
+    box-sizing: border-box; /* Para incluir el padding en el ancho total */
+}
+
+
+/* Estilos para las imágenes dentro de .playlist-item */
+.playlist-item img {
+    width: 150px; /* Tamaño fijo de 100px para las imágenes */
+    height: 150px; /* Altura fija de 100px para las imágenes */
+    object-fit: cover; /* Ajustar la imagen para cubrir el contenedor */
+    border-radius: 15px; /* Bordes redondeados */
+}
