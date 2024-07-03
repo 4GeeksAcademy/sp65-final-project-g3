@@ -14,6 +14,7 @@ from spotipy import Spotify
 from spotipy.oauth2 import SpotifyOAuth
 from spotipy.cache_handler import FlaskSessionCacheHandler
 
+
 api = Blueprint('api', __name__)
 CORS(api)  # Allow CORS requests to this API.  ¡'09876ui
 '0'

@@ -1,7 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Enum
 
+
 db = SQLAlchemy()
+
 
 class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -16,7 +18,7 @@ class Users(db.Model):
     is_admin = db.Column(db.Boolean(), unique=False, nullable=True)
 
     def __repr__(self):
-        return f'<Users {self.email}>'
+        return f'<User {self.email}>'
 
     def serialize(self):
         return {'id': self.id,
@@ -28,7 +30,7 @@ class Users(db.Model):
                 'date_of_birth': self.date_of_birth,
                 'is_active': self.is_active,
                 'is_admin': self.is_admin}
-      
+
 
 class Soundscapes(db.Model):
     id = db.Column(db.Integer, primary_key=True)
