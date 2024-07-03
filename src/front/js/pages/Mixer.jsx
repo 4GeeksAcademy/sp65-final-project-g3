@@ -45,7 +45,7 @@ export const Mixer = () => {
         const trackOneUrl = trackOneUrlRef.current.value;
         const trackTwoUrl = trackTwoUrlRef.current.value;
         console.log(trackTwoUrl, store.track2Url);
-        
+
 
         if (trackOneUrl && trackTwoUrl) {
             try {
@@ -90,7 +90,7 @@ export const Mixer = () => {
         } else {
             alert('Por favor introduce ambas URLs de audio.');
         }
-        
+
     };
 
     const playAudio = () => {
@@ -129,31 +129,35 @@ export const Mixer = () => {
     };
 
     return (
+        <>
+            {store.isLogin ?
+                <div className="container">
+                    <div id="mixerControls" className="d-flex">
+                        <button id="library" className="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" onClick={() => handleSpotifyLists(item.url)}></button>
+                        <input type="range" id="trackOneVolume" ref={trackOneVolumeRef} onChange={handleTrackOneVolumeChange} min="0" max="1" step="0.01" />
+                        <div className="d-flex flex-column bd-highlight mb-3">
+                            <div id="vuMeter" className="d-flex justify-content-center">
+                                <div id="trackOneVu" ref={trackOneVuRef} className="card mx-1"></div>
+                                <div id="trackTwoVu" ref={trackTwoVuRef} className="card mx-1"></div>
+                            </div>
+                            <div id="vuMeter">
+                                <button id="playButton" onClick={playAudio}>play</button>
+                                <button id="pauseButton" onClick={pauseAudio}><b>||</b></button>
+                            </div>
+                        </div>
+                        <input type="range" id="trackTwoVolume" ref={trackTwoVolumeRef} onChange={handleTrackTwoVolumeChange} min="0" max="1" step="0.01" />
+                        <button id="library" className="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
 
-        <div className="container">
-            <div id="mixerControls" className="d-flex">
-                <button id="library" className="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" onClick={() => handleSpotifyLists(item.url)}></button>
-                <input type="range" id="trackOneVolume" ref={trackOneVolumeRef} onChange={handleTrackOneVolumeChange} min="0" max="1" step="0.01" />
-                <div className="d-flex flex-column bd-highlight mb-3">
-                    <div id="vuMeter" className="d-flex justify-content-center">
-                        <div id="trackOneVu" ref={trackOneVuRef} className="card mx-1"></div>
-                        <div id="trackTwoVu" ref={trackTwoVuRef} className="card mx-1"></div>
                     </div>
-                    <div id="vuMeter">
-                        <button id="playButton" onClick={playAudio}>play</button>
-                        <button id="pauseButton" onClick={pauseAudio}><b>||</b></button>
-                    </div>
+                    {/* Estas 3 líneas se tendrán que reemplazar con la implementación de las librerias */}
+                    <input type="text" id="trackOneUrl" ref={trackOneUrlRef} value="https://cdn.pixabay.com/download/audio/2023/03/13/audio_df248bd9ae.mp3" />
+                    <input type="text" id="trackTwoUrl" ref={trackTwoUrlRef} value={store.track2Url} />
+                    <button id="loadButton" onClick={loadAudio}>Cargar</button>
                 </div>
-                <input type="range" id="trackTwoVolume" ref={trackTwoVolumeRef} onChange={handleTrackTwoVolumeChange} min="0" max="1" step="0.01" />
-                <button id="library" className="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
-
-            </div>
-            {/* Estas 3 líneas se tendrán que reemplazar con la implementación de las librerias */}
-            <input type="text" id="trackOneUrl" ref={trackOneUrlRef} value="https://cdn.pixabay.com/download/audio/2023/03/13/audio_df248bd9ae.mp3" />
-            <input type="text" id="trackTwoUrl" ref={trackTwoUrlRef} value={store.track2Url} />
-            <button id="loadButton" onClick={loadAudio}>Cargar</button>
-        </div>
-
+                :
+                navigate("/")
+            }
+        </>
     );
 
 };
