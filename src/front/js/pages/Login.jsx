@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
-import "/workspaces/sp65-final-project-g3/src/front/styles/loginForm.css"
+import "../../styles/loginForm.css"
 
 export const Login = () => {
     const {store, actions} = useContext(Context)
@@ -11,15 +11,9 @@ export const Login = () => {
     const [accessSpotifyToken, setAccessSpotifyToken] = useState("");
     const navigate = useNavigate()
 
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
-    };
-
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value);
-    };
-
-    const handleRememberMe = e => setRememberMe(e.target.checked);
+    const handleEmailChange = (e) => { setEmail(e.target.value) };
+    const handlePasswordChange = (e) => { setPassword(e.target.value) };
+    const handleRememberMe = (e) => { setRememberMe(e.target.checked) };
 
     const handleReset = () => {
       setEmail('');
@@ -30,13 +24,12 @@ export const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const dataToSend = { email, password, rememberMe };
-        console.log(dataToSend);
         const url = `${process.env.BACKEND_URL}/api/login`;
         const options = {
             method: 'POST',
             body: JSON.stringify(dataToSend),
             headers: {
-                'content-type' : 'application/json'
+                'Content-Type' : 'application/json'
             }        
         }
         const response = await fetch(url, options)
@@ -45,9 +38,10 @@ export const Login = () => {
             return 
         }
         const data = await response.json();
-        localStorage.setItem("token", data.access_token)
-        actions.setIsLogin(true)
-        console.log(data.access_token);
+        localStorage.setItem("token", data.access_token);
+        localStorage.setItem("user", JSON.stringify(data.results));
+        actions.setIsLogin(true);
+        actions.setUser(data.results);
         navigate('/dashboard')
     };
 
@@ -55,8 +49,6 @@ export const Login = () => {
     const handleSpotifyLogin = () => {
       window.location = `${process.env.SPOTIFY_AUTHORIZE_ENDPOINT}?client_id=${process.env.CLIENT_ID}&redirect_uri=${process.env.REDIRECT_URI}&scope=${process.env.SCOPE}&response_type=token&show_dialog=true`;
     };
-
-    console.log(store.isLogin)
 
     return (   
     <form className="form" onSubmit={handleSubmit}>

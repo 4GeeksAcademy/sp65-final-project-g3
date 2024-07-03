@@ -62,6 +62,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				getActions().getUsers();
 			},
 			setIsLogin: (login) => { setStore({ isLogin: login }) },
+			setUser: (user) => { setStore({ user: user }) },
 			navigateToSection: (section) => {
 				setStore({ currentSection: section });
 				window.location.href = `/binaural#${section}`;
