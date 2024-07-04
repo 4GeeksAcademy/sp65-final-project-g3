@@ -171,6 +171,8 @@ export const Mixer = () => {
         setTrack2Name(item.name)
     };
 
+    
+
 
     return (
         <>
@@ -209,7 +211,7 @@ export const Mixer = () => {
                     </ul>
                 </div>
                 {/* Estas 3 líneas se tendrán que reemplazar con la implementación de las librerias */}
-                <input type="text" id="trackOneUrl" ref={trackOneUrlRef} value="https://cdn.pixabay.com/download/audio/2023/03/13/audio_df248bd9ae.mp3" />
+                <input type="text" id="trackOneUrl" ref={trackOneUrlRef} value={store.track1Url} />
                 <p className="text-warning" htmlFor="trackTwoUrl">{track2Name ? track2Name : "Choose Binaural Track"}</p>
                 <input className="d-none" type="text" id="trackTwoUrl" ref={trackTwoUrlRef} value={store.track2Url} />
                 <button id="loadButton" onClick={loadAudio}>Cargar</button>
