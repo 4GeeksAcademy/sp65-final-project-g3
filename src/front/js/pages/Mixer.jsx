@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Context } from "../store/appContext";
-import "/workspaces/sp65-final-project-g3/src/front/styles/mixer.css";
+import "../../styles/mixer.css";
 import { useNavigate } from "react-router-dom";
 
 
@@ -132,7 +132,7 @@ export const Mixer = () => {
         }
     };
 
-
+/* 
 // Search Spotify
 async function search() {
     console.log("Search for " + searchInput);
@@ -156,12 +156,12 @@ async function search() {
         SetAlbums(data.items);
     });
 }
-console.log(albums);
+console.log(albums); */
 
-//   Lógica para llamar a la librería
+/* //   Lógica para llamar a la librería
 const handleSpotifyLists = (url) => {
     actions.settingSpotifyListUrl(url);
-};
+}; */
 
 //   Lógica para llamar a la librería Binaural
 const handleBinauralClick = (url) => {
@@ -191,7 +191,7 @@ const handleBinauralClick = (url) => {
                             <button id="pauseButton" onClick={pauseAudio}><b>||</b></button>
                         </div>
                     </div>
-                    <input type="range" id="trackTwoVolume" ref={trackTwoVolumeRef} onChange={handleTrackTwoVolumeChange} min="0" max="1" step="0.01" />
+                    <input type="range" id="trackTwoVolume" ref={trackTwoVolumeRef} onChange={handleTrackTwoVolumeChange} min="0" max="100" step="0.01" />
                     <button id="libraryTrackTwo" className="btn dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <span className="material-symbols-outlined">menu</span>
                     </button>
@@ -209,20 +209,24 @@ const handleBinauralClick = (url) => {
                 <input type="text" id="trackOneUrl" ref={trackOneUrlRef} value="https://cdn.pixabay.com/download/audio/2023/03/13/audio_df248bd9ae.mp3" />
                 <input type="text" id="trackTwoUrl" ref={trackTwoUrlRef} value={store.track2Url} />
                 <button id="loadButton" onClick={loadAudio}>Cargar</button>
-                <div className="d-flex" >
-                    <input type="input" onKeyPress={event =>{
-                    if (event.key == "Enter"){
-                        console.log("Pressed enter");
-                    }}}
-                    onChange={event => setSearchInput(event.target.value)} placeholder="Search in Spotify"></input>
-                    <button onClick={search}><span className="material-symbols-outlined">search</span></button>
-                </div>
-                {albums.map( (album, i) => {
-                    console.log(album);
-                    return (
-                    <button className="d-flex" onClick={handlePlayTrack}><img src={album.images[0]} /> <div>{album.name}</div></button>)
-                })}
+             
             </div>
         </>
     );
 };
+
+
+{/* <div className="d-flex" >
+<input type="input" onKeyPress={event =>{
+if (event.key == "Enter"){
+    console.log("Pressed enter");
+}}}
+onChange={event => setSearchInput(event.target.value)} placeholder="Search in Spotify"></input>
+<button onClick={search}><span className="material-symbols-outlined">search</span></button>
+</div>
+{albums.map( (album, i) => {
+console.log(album);
+return (
+<button className="d-flex" onClick={handlePlayTrack}><img src={album.images[0]} /> <div>{album.name}</div></button>)
+})
+} */}

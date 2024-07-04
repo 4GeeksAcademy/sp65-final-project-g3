@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from "react";
 import "../../styles/dashboard.css";
-import mixes from "/workspaces/sp65-final-project-g3/src/front/img/mixes.jpg"
-import binaural from "/workspaces/sp65-final-project-g3/src/front/img/binaural.jpg"
-import playlist from "/workspaces/sp65-final-project-g3/src/front/img/playlist.jpg"
-import soundscape from "/workspaces/sp65-final-project-g3/src/front/img/soundscape.jpg"
-import tutorial from "/workspaces/sp65-final-project-g3/src/front/img/tutorial.jpg"
-import mixer from "/workspaces/sp65-final-project-g3/src/front/img/Mixer.jpg"
+import mixes from "../../img/mixes.jpg"
+import binaural from "../../img/binaural.jpg"
+import playlist from "../../img/playlist.jpg"
+import soundscape from "../../img/soundscape.jpg"
+import tutorial from "../../img/tutorial.jpg"
+import mixer from "../../img/Mixer.jpg"
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 
