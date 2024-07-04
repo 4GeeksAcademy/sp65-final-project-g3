@@ -1,10 +1,21 @@
 /* código original Matias */
-.fader {
-  width: 30px;
-  height: 300px;
-  writing-mode: bt-lr;
-  /* -webkit-appearance: slider-vertical;
-  appearance: slider-vertical; */
+#trackOneVolume {
+  width: 300px;
+  height: 30px;
+  margin-top: 150px;
+  margin-right: -125px;
+  /* writing-mode: bt-lr; */
+  rotate: -90deg;
+
+}
+#trackTwoVolume {
+  width: 300px;
+  height: 30px;
+  margin-top: 150px;
+  margin-left: -125px;
+  /* writing-mode: bt-lr; */
+  rotate: -90deg;
+
 }
 /* .vumeter {
   width: 30px;
@@ -56,7 +67,7 @@
 }
 
 #playButton:hover {
-  box-shadow: 0 0 25px 10px #5bff60;
+  box-shadow: 0 0 10px 5px #5bff60;
 }
 
  #pauseButton {
@@ -68,13 +79,32 @@
 }
 
 #pauseButton:hover {
-  box-shadow: 0 0 25px 10px #6f84ff;
+  box-shadow: 0 0 10px 5px #6f84ff;
 }
 
 /* Library */
-#library {
-  height: 40px;
-  width: 40px;
-  border-radius: 20px;
-  background-color: rgb(255, 0, 221);
+#libraryTrackOne {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin-right: -150px;
+  margin-top: 370px;
+  background-color: rgb(251, 255, 0);
+}
+
+#libraryTrackTwo {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin-left: -150px;
+  margin-top: 370px;
+  background-color: rgb(251, 255, 0);
+}
+
+#libraryTrackOne:hover {
+  box-shadow: 0 0 10px 5px #fff48d;
+}
+
+#libraryTrackTwo:hover {
+  box-shadow: 0 0 10px 5px #fff48d;
 }

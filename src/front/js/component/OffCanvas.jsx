@@ -31,17 +31,17 @@ const {actions} = useContext(Context)
                                 Tutorials
                             </button>
                             <ul className="dropdown-menu">
-                                <Link to="/tutorial">
-                                    <li className="dropdown-item" >What is Binaurapp?</li>
+                                <Link to="/tutorial" onClick={() => actions.navigateToTutorial("what-section")}>
+                                    <li className="dropdown-item" href="#">What is Binaurapp?</li>
                                 </Link>
                                 <Link to="/tutorial" onClick={() => actions.navigateToTutorial("mixer-section")}>
                                     <li className="dropdown-item" href="#">Mixer</li>
                                 </Link>
                                 <Link to="/tutorial" onClick={() => actions.navigateToTutorial("playlist-section")}>
-                                    <li className="dropdown-item" >Playlist</li>
+                                    <li className="dropdown-item" href="#">Playlist</li>
                                 </Link>
-                                <Link to="/tutorial">
-                                    <li className="dropdown-item">Binaural</li>
+                                <Link to="/tutorial" onClick={() => actions.navigateToTutorial("binaural-section")}>
+                                    <li className="dropdown-item" href="#">Binaural</li>
                                 </Link>
                             </ul>
                         </div>
@@ -72,7 +72,7 @@ const {actions} = useContext(Context)
                                 <li className="dropdown-item" href="#">Music</li>
                                 <Link to="/soundscape" onClick={() => actions.navigateToSoundscape("music-section")}>
                                 </Link>
-                                <Link to="/playlist">
+                                <Link to="/soundscape">
                                     <li className="dropdown-item" href="#">Spotify</li>
                                 </Link>
                             </ul>

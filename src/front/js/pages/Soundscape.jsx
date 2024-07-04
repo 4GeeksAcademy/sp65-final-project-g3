@@ -61,7 +61,7 @@ export const Soundscape = () => {
 
                 <div className="row tm-albums-container grid">
                     <div className="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
-                        <figure className="effect-sadie">
+                        <figure className="effect-sadie" id="glowCard1">
                             <a href="#nature-section">
                                 <img src={"https://c1.wallpaperflare.com/preview/826/593/172/purple-dusk-dawn-water-sunset.jpg"} alt="Image" className="img-fluid" />
                                 <figcaption>
@@ -72,7 +72,7 @@ export const Soundscape = () => {
                         </figure>
                     </div>
                     <div className="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
-                        <figure className="effect-sadie">
+                        <figure className="effect-sadie" id="glowCard2">
                             <a href="#organic-section">
                                 <img src={"https://richardhume.com/wp-content/uploads/2022/03/Lake-Mackenzie.jpg"} alt="Image" className="img-fluid" />
                                 <figcaption>
@@ -83,7 +83,7 @@ export const Soundscape = () => {
                         </figure>
                     </div>
                     <div className="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
-                        <figure className="effect-sadie">
+                        <figure className="effect-sadie" id="glowCard3">
                             <a href="#music-section">
                                 <img src={"https://e0.pxfuel.com/wallpapers/591/637/desktop-wallpaper-mountain-relection-in-the-lake-fog-breathtaking-forest-sunsets-mountains-misty-lake-splendor-scenic-view-nature-reflection-majestic-evening.jpg"} alt="Image" className="img-fluid" />
                                 <figcaption>
@@ -94,7 +94,7 @@ export const Soundscape = () => {
                         </figure>
                     </div>
                     <div className="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
-                        <figure className="effect-sadie">
+                        <figure className="effect-sadie" id="glowCard4">
                             <a href="#lists-section">
                                 <img src={"https://w0.peakpx.com/wallpaper/318/432/HD-wallpaper-lake-at-dawn-dew-nature-sun-sunrise-trees-water-waves.jpg"} alt="Image" className="img-fluid" />
                                 <figcaption>
@@ -142,9 +142,9 @@ export const Soundscape = () => {
                                     </div>
                                 </div>
                                 <div className="col-12 d-flex justify-content-between">
-                                    <button type="button" className="btn btn-secondary">Ocean</button>
-                                    <button type="button" className="btn btn-secondary">Forest</button>
-                                    <button type="button" className="btn btn-secondary">Night</button>
+                                    <button type="button" className="btn btn-secondary" id="glowCard5">Ocean</button>
+                                    <button type="button" className="btn btn-secondary" id="glowCard5">Forest</button>
+                                    <button type="button" className="btn btn-secondary" id="glowCard5">Night</button>
                                 </div>
                                 <div className="media-body textBinaural">
                                     <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
@@ -188,9 +188,9 @@ export const Soundscape = () => {
                                     </div>
                                 </div>
                                 <div className="col-12 d-flex justify-content-between">
-                                    <button type="button" className="btn btn-secondary">Synth</button>
-                                    <button type="button" className="btn btn-secondary">Musical</button>
-                                    <button type="button" className="btn btn-secondary">ASMR</button>
+                                    <button type="button" className="btn btn-secondary" id="glowCard5">Synth</button>
+                                    <button type="button" className="btn btn-secondary" id="glowCard5">Musical</button>
+                                    <button type="button" className="btn btn-secondary" id="glowCard5">ASMR</button>
                                 </div>
                                 <div className="media-body textBinaural">
                                     <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
@@ -230,9 +230,9 @@ export const Soundscape = () => {
                                     </div>
                                 </div>
                                 <div className="col-12 d-flex justify-content-between">
-                                    <button type="button" className="btn btn-secondary">60 BPM</button>
-                                    <button type="button" className="btn btn-secondary">80 BPM</button>
-                                    <button type="button" className="btn btn-secondary">100 BPM</button>
+                                    <button type="button" className="btn btn-secondary" id="glowCard5">60 BPM</button>
+                                    <button type="button" className="btn btn-secondary" id="glowCard5">80 BPM</button>
+                                    <button type="button" className="btn btn-secondary" id="glowCard5">100 BPM</button>
                                 </div>
                                 <div className="media-body textBinaural">
                                     <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">

@@ -1,19 +1,19 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Context } from "../store/appContext";
 import "/workspaces/sp65-final-project-g3/src/front/styles/mixer.css";
-import { useNavigate } from "react-router-dom";
-
 
 export const Mixer = () => {
-    const { store, actions } = useContext(Context);
-    const navigate = useNavigate();
-
+    const { actions } = useContext(Context);
     const [trackOne, setTrackOne] = useState(null);
     const [trackTwo, setTrackTwo] = useState(null);
     const [userAnalyser, setUserAnalyser] = useState(null);
     const [providedAnalyser, setProvidedAnalyser] = useState(null);
     const [userDataArray, setUserDataArray] = useState(null);
     const [providedDataArray, setProvidedDataArray] = useState(null);
+    // Lógica para llamar a la librería
+    const [searchInput, setSearchInput] = useState ("");
+    // Lógica para llamar al album
+    const [albums, SetAlbums] = useState ([]);
 
     const trackOneUrlRef = useRef();
     const trackTwoUrlRef = useRef();
@@ -21,13 +21,6 @@ export const Mixer = () => {
     const trackTwoVolumeRef = useRef();
     const trackOneVuRef = useRef();
     const trackTwoVuRef = useRef();
-
-    useEffect(() => {
-        if (!store.isLogin) {
-            alert("Please Log-In or Sign-Up");
-            navigate("/login");
-        }
-    }, [store.isLogin, navigate]);
 
     useEffect(() => {
         const updateVuMeter = (analyser, dataArray, fillRef) => {
@@ -53,8 +46,6 @@ export const Mixer = () => {
     const loadAudio = async () => {
         const trackOneUrl = trackOneUrlRef.current.value;
         const trackTwoUrl = trackTwoUrlRef.current.value;
-        console.log(trackTwoUrl, store.track2Url);
-
 
         if (trackOneUrl && trackTwoUrl) {
             try {
@@ -65,8 +56,7 @@ export const Mixer = () => {
                 newTrackOne.crossOrigin = "anonymous";
                 newTrackTwo.crossOrigin = "anonymous";
 
-                /* const audioCtx = new (window.AudioContext || window.webkitAudioContext)(); */
-                const audioCtx = new window.AudioContext();
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
                 const userSource = audioCtx.createMediaElementSource(newTrackOne);
                 const newUserAnalyser = audioCtx.createAnalyser();
@@ -83,9 +73,6 @@ export const Mixer = () => {
                 newProvidedAnalyser.fftSize = 256;
                 const newProvidedDataArray = new Uint8Array(bufferLength);
 
-                newTrackOne.onended = () => newTrackOne.play();
-                newTrackTwo.onended = () => newTrackTwo.play();
-
                 setTrackOne(newTrackOne);
                 setTrackTwo(newTrackTwo);
                 setUserAnalyser(newUserAnalyser);
@@ -99,7 +86,6 @@ export const Mixer = () => {
         } else {
             alert('Por favor introduce ambas URLs de audio.');
         }
-
     };
 
     const playAudio = () => {
@@ -132,54 +118,168 @@ export const Mixer = () => {
         }
     };
 
-    //   Lógica para llamar a la librería
-    const handleSpotifyLists = (url) => {
-        actions.settingSpotifyListUrl(url);
-    };
+  // Código original Matias
+  // let userAudio, providedAudio;
+  // let userAnalyser, providedAnalyser;
+  // let userDataArray, providedDataArray;
+  
+  // document.getElementById('loadButton').addEventListener('click', async () => {
+  //     const userAudioUrl = document.getElementById('userAudioUrl').value;
+  //     const providedAudioUrl = document.getElementById('providedAudioUrl').value;
+  
+  //     if (userAudioUrl && providedAudioUrl) {
+  //         try {
+  //             // Crear elementos de audio nativos
+  //             userAudio = new Audio(`/proxy?url=${encodeURIComponent(userAudioUrl)}`);
+  //             providedAudio = new Audio(`/proxy?url=${encodeURIComponent(providedAudioUrl)}`);
+  
+  //             // Configurar Web Audio API para el análisis de audio
+  //             const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  
+  //             // User Audio
+  //             const userSource = audioCtx.createMediaElementSource(userAudio);
+  //             userAnalyser = audioCtx.createAnalyser();
+  //             userSource.connect(userAnalyser);
+  //             userAnalyser.connect(audioCtx.destination);
+  //             userAnalyser.fftSize = 256;
+  //             const bufferLength = userAnalyser.frequencyBinCount;
+  //             userDataArray = new Uint8Array(bufferLength);
+  
+  //             // Provided Audio
+  //             const providedSource = audioCtx.createMediaElementSource(providedAudio);
+  //             providedAnalyser = audioCtx.createAnalyser();
+  //             providedSource.connect(providedAnalyser);
+  //             providedAnalyser.connect(audioCtx.destination);
+  //             providedAnalyser.fftSize = 256;
+  //             providedDataArray = new Uint8Array(bufferLength);
+  
+  //             document.getElementById('mixerControls').style.display = 'block';
+  //         } catch (error) {
+  //             console.error('Error al cargar los archivos de audio:', error);
+  //             alert('Hubo un problema al cargar los archivos de audio. Verifique las URLs y vuelva a intentarlo.');
+  //         }
+  //     } else {
+  //         alert('Por favor introduce ambas URLs de audio.');
+  //     }
+  // });
+  
+  // document.getElementById('playButton').addEventListener('click', () => {
+  //     if (userAudio && providedAudio) {
+  //         userAudio.play();
+  //         providedAudio.play();
+  //         updateVuMeter(userAnalyser, userDataArray, 'userVuFill');
+  //         updateVuMeter(providedAnalyser, providedDataArray, 'providedVuFill');
+  //     } else {
+  //         alert('Primero debe cargar las pistas de audio.');
+  //     }
+  // });
+  
+  // document.getElementById('pauseButton').addEventListener('click', () => {
+  //     if (userAudio && providedAudio) {
+  //         userAudio.pause();
+  //         providedAudio.pause();
+  //     } else {
+  //         alert('Primero debe cargar las pistas de audio.');
+  //     }
+  // });
+  
+  // document.getElementById('userVolume').addEventListener('input', (event) => {
+  //     if (userAudio) {
+  //         userAudio.volume = event.target.value;
+  //     }
+  // });
+  
+  // document.getElementById('providedVolume').addEventListener('input', (event) => {
+  //     if (providedAudio) {
+  //         providedAudio.volume = event.target.value;
+  //     }
+  // });
+  
+  // function updateVuMeter(analyser, dataArray, fillId) {
+  //     analyser.getByteFrequencyData(dataArray);
+  //     const sum = dataArray.reduce((a, b) => a + b, 0);
+  //     const average = sum / dataArray.length;
+  //     const fill = document.getElementById(fillId);
+  //     fill.style.height = `${average / 2}%`;
+  
+  //     requestAnimationFrame(() => updateVuMeter(analyser, dataArray, fillId));
+  // }
+  // HASTA AQUI
 
-    const handleBinauralClick = (url) => {
-        actions.setTrack2Url(url);
-    };
+// Search Spotify
+async function search() {
+    console.log("Search for " + searchInput);
+    // Get request using search to get artist ID
+    const artistParameters = {
+        method: 'GET',
+        headers: {
+            'content-Type': 'application/json',
+            'Authorization': 'Bearer ' + setSpotifyAccessToken  // Revisar cómo llamé al access Token de Spotify
+        }
+    }
+    const artistID = await fetch('https://api.spotify.com/v1/search?q=' + searchInput + '&type=artist', artistParameters)
+    .then(Response => Response.json())
+    .then(data => {return data.artist.item [0].id})
+    
+    // Get request with Artist ID grab all the albums/songs from that artist
+    const returnedAlbums = await fetch('https://api.spotify.com/v1/artists/' + artistID + '/albums' + '?include_groups=album&market=US&limit=10')
+    .then(Response => Response.json())
+    .then(data => {
+        console.log(data);
+        SetAlbums(data.items);
+    });
+}
+console.log(albums);
 
-    return (
-        <>
-            <div className="container">
-                <div id="mixerControls" className="d-flex">
-                    <button id="library" className="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" onClick={() => handleSpotifyLists(item.url)}></button>
-                    <input type="range" id="trackOneVolume" ref={trackOneVolumeRef} onChange={handleTrackOneVolumeChange} min="0" max="1" step="0.01" />
-                    <div className="d-flex flex-column bd-highlight mb-3">
-                        <div id="vuMeter" className="d-flex justify-content-center">
-                            <div id="trackOneVu" ref={trackOneVuRef} className="card mx-1"></div>
-                            <div id="trackTwoVu" ref={trackTwoVuRef} className="card mx-1"></div>
-                        </div>
-                        <div id="vuMeter">
-                            <button id="playButton" onClick={playAudio}>play</button>
-                            <button id="pauseButton" onClick={pauseAudio}><b>||</b></button>
-                        </div>
-                    </div>
-                    <input type="range" id="trackTwoVolume" ref={trackTwoVolumeRef} onChange={handleTrackTwoVolumeChange} min="0" max="1" step="0.01" />
-                    <div className="dropdown">
-                        <button id="library" className="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          List
-                        </button>
-                        <ul className="dropdown-menu">
-                            {store.binauralList.map((item, index) => (
-                                <li key={index}>
-                                    <button className="dropdown-item" onClick={() => handleBinauralClick(item.track_url)}>
-                                        {item.name}
-                                    </button>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+const handleSpotifyLists = (url) => {
+    actions.settingSpotifyListUrl(url);
+};
 
+// const handlePlayTrack =
+
+return (
+    <div className="container">
+        <div id="mixerControls" className="d-flex">
+            <button id="libraryTrackOne" className="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" onClick={() => handleSpotifyLists(item.url)}>
+                <span className="material-symbols-outlined">menu</span>
+                <ul>
+                    <li><div className="btn">Spotify Library</div></li>
+                    <li><div className="btn">Soundscapes Library</div></li>
+                </ul>
+            </button>
+            <input type="range" id="trackOneVolume" ref={trackOneVolumeRef} onChange={handleTrackOneVolumeChange} min="0" max="100" step="0.01" />
+            <div className="d-flex flex-column bd-highlight mb-3">
+                <div id="vuMeter" className="d-flex justify-content-center">
+                    <div id="trackOneVu" ref={trackOneVuRef} className="card mx-1"></div>
+                    <div id="trackTwoVu" ref={trackTwoVuRef} className="card mx-1"></div>
                 </div>
-                {/* Estas 3 líneas se tendrán que reemplazar con la implementación de las librerias */}
-                <input type="text" id="trackOneUrl" ref={trackOneUrlRef} value="https://cdn.pixabay.com/download/audio/2023/03/13/audio_df248bd9ae.mp3" />
-                <input type="text" id="trackTwoUrl" ref={trackTwoUrlRef} value={store.track2Url} />
-                <button id="loadButton" onClick={loadAudio}>Cargar</button>
+                <div id="vuMeter">
+                    <button id="playButton" onClick={playAudio}>play</button>
+                    <button id="pauseButton" onClick={pauseAudio}><b>||</b></button>
+                </div>
             </div>
-        </>
-    );
-
+            <input type="range" id="trackTwoVolume" ref={trackTwoVolumeRef} onChange={handleTrackTwoVolumeChange} min="0" max="1" step="0.01" />
+            <button id="libraryTrackTwo" className="btn dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span className="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+        {/* Estas 3 líneas se tendrán que reemplazar con la implementación de las librerias */}
+        <input type="text" id="trackOneUrl" ref={trackOneUrlRef} defaultValue="https://cdn.pixabay.com/audio/2022/08/02/audio_884fe92c21.mp3" />
+        <input type="text" id="trackTwoUrl" ref={trackTwoUrlRef} defaultValue="https://cdn.pixabay.com/audio/2022/08/02/audio_884fe92c21.mp3" />
+        <button id="loadButton" onClick={loadAudio}>Cargar</button>
+        <div className="d-flex" >
+            <input type="input" onKeyPress={event =>{
+            if (event.key == "Enter"){
+                console.log("Pressed enter");
+            }}}
+            onChange={event => setSearchInput(event.target.value)} placeholder="Search in Spotify"></input>
+            <button onClick={search}><span className="material-symbols-outlined">search</span></button>
+        </div>
+        {albums.map( (album, i) => {
+            console.log(album);
+            return (
+            <button className="d-flex" onClick={handlePlayTrack}><img src={album.images[0]} /> <div>{album.name}</div></button>)
+        })}
+    </div>
+);
 };

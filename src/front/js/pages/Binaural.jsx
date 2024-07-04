@@ -1,23 +1,13 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Context } from "../store/appContext"
-import { Link, useNavigate } from "react-router-dom";
-import "../../styles/binaural.css";
-
+import { Link } from "react-router-dom";
+import "../../styles/binaural.css"
 
 export const Binaural = () => {
-    const { actions } = useContext(Context);
     const { store } = useContext(Context)
     const alphaRef = useRef(null);
     const thetaRef = useRef(null);
     const deltaRef = useRef(null);
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        if (!store.isLogin) {
-            alert("Please Log-In or Sign-Up");
-            navigate("/login");
-        }
-    }, [store.isLogin, navigate]);
 
     useEffect(() => {
         const scrollToRef = (ref) => {
@@ -41,12 +31,6 @@ export const Binaural = () => {
         }
     }, [store.currentSection]);
     console.log("current Section", store.currentSection);
-
-    const handleLoadTrack = (url) => {
-        actions.setTrack2Url(url);
-        navigate("/mixer");
-        console.log("setTrackUrl Value:", store.setTrack2Url);
-    };
 
     return (
         <>
@@ -78,7 +62,7 @@ export const Binaural = () => {
 
                 <div className="row tm-albums-container grid">
                     <div className="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
-                        <figure className="effect-sadie">
+                        <figure className="effect-sadie" id="glowCard1">
                             <a href="#alpha-section">
                                 <img src={"https://t4.ftcdn.net/jpg/08/19/96/27/360_F_819962780_5Jikl3FOY0OrqfLEjfjXZH9d9Uoqlkua.jpg"} alt="Image" className="img-fluid" />
                                 <figcaption>
@@ -89,7 +73,7 @@ export const Binaural = () => {
                         </figure>
                     </div>
                     <div className="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
-                        <figure className="effect-sadie">
+                        <figure className="effect-sadie" id="glowCard2">
                             <a href="#theta-section">
                                 <img src={"https://t4.ftcdn.net/jpg/08/19/96/25/240_F_819962587_aBHjpGdUT8m1OPmACz2J98Pru84N7vbN.jpg"} alt="Image" className="img-fluid" />
                                 <figcaption>
@@ -100,7 +84,7 @@ export const Binaural = () => {
                         </figure>
                     </div>
                     <div className="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
-                        <figure className="effect-sadie">
+                        <figure className="effect-sadie" id="glowCard3">
                             <a href="#delta-section">
                                 <img src={"https://t3.ftcdn.net/jpg/08/19/90/34/240_F_819903467_xvlu1QXgorjcdt6Up2kCnz0UooGHUIdn.jpg"} alt="Image" className="img-fluid" />
                                 <figcaption>
@@ -111,7 +95,7 @@ export const Binaural = () => {
                         </figure>
                     </div>
                     <div className="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
-                        <figure className="effect-sadie">
+                        <figure className="effect-sadie" id="glowCard4">
                             <a href="#entrainment-section">
                                 <img src={"https://t4.ftcdn.net/jpg/07/69/70/99/240_F_769709971_Y50zb5MuTmUWQmF7IqxpBHSvMe9PbnZN.jpg"} alt="Image" className="img-fluid" />
                                 <figcaption>
@@ -155,11 +139,11 @@ export const Binaural = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div> {/* ../src/front/sound/12Hz.mp3 */}
+                                </div>
                                 <div className="col-12 d-flex justify-content-between">
-                                    <button type="button" className="btn btn-secondary" onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_64483b3bf3.mp3")} >Load 12Hz Wave</button>
-                                    <button type="button" className="btn btn-secondary" onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_47cb2f4c97.mp3")}>Load 10Hz Wave</button>
-                                    <button type="button" className="btn btn-secondary" onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_4c9fa5db17.mp3")}>Load 8Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary" id="glowCard5">Load 12Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary" id="glowCard5">Load 10Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary" id="glowCard5">Load 8Hz Wave</button>
                                 </div>
                                 <div className="media-body textBinaural">
                                     <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
@@ -203,9 +187,9 @@ export const Binaural = () => {
                                     </div>
                                 </div>
                                 <div className="col-12 d-flex justify-content-between">
-                                    <button type="button" className="btn btn-secondary" onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_f14d1f916c.mp3")}>Load 7Hz Wave</button>
-                                    <button type="button" className="btn btn-secondary" onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_c8de14825f.mp3")}>Load 5Hz Wave</button>
-                                    <button type="button" className="btn btn-secondary" onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_b8d92c6e5b.mp3")}>Load 3Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary" id="glowCard5">Load 7Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary" id="glowCard5">Load 5Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary" id="glowCard5">Load 3Hz Wave</button>
                                 </div>
                                 <div className="media-body textBinaural">
                                     <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
@@ -244,9 +228,9 @@ export const Binaural = () => {
                                     </div>
                                 </div>
                                 <div className="col-12 d-flex justify-content-between">
-                                    <button type="button" className="btn btn-secondary" onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_b8229380b3.mp3")}>Load 2Hz Wave</button>
-                                    <button type="button" className="btn btn-secondary" onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_6cc67ed962.mp3")}>Load 1Hz Wave</button>
-                                    <button type="button" className="btn btn-secondary" onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_cb9a98b9bf.mp3")}>Load 0,5Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary" id="glowCard5">Load 2Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary" id="glowCard5">Load 1Hz Wave</button>
+                                    <button type="button" className="btn btn-secondary" id="glowCard5">Load 0,5Hz Wave</button>
                                 </div>
                                 <div className="media-body textBinaural">
                                     <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
@@ -291,7 +275,7 @@ export const Binaural = () => {
                                 </div>
                                 <div className="col-12 d-flex justify-content-center">
                                     <Link to="/tutorial" >
-                                        <button type="button" className="btn btn-secondary">Learn more in the Tutorial Section</button>
+                                    <button type="button" className="btn btn-secondary">Learn more in the Tutorial Section</button>                                    
                                     </Link>
                                 </div>
                                 <div className="media-body textBinaural">

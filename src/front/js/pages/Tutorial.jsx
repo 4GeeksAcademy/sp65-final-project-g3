@@ -1,23 +1,13 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Context } from "../store/appContext"
 import "../../styles/tutorial.css"
-import { useNavigate } from "react-router-dom";
 
 export const Tutorial = () => {
     const { store } = useContext(Context)
-    const navigate = useNavigate();
-    
     const start = useRef(null);
     const mixer = useRef(null);
     const playlist = useRef(null);
     const what = useRef(null);
-
-    useEffect(() => {
-        if (!store.isLogin) {
-            alert("Please Log-In or Sign-Up");
-            navigate("/login");
-        }
-    }, [store.isLogin, navigate]);
 
     useEffect(() => {
         const scrollToRef = (ref) => {
@@ -73,7 +63,7 @@ export const Tutorial = () => {
 
                 <div className="row tm-albums-container grid">
                     <div className="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
-                        <figure className="effect-sadie" id="startCard">
+                        <figure className="effect-sadie" id="glowCard1">
                             <a href="#start-section">
                                 <img src={"https://t3.ftcdn.net/jpg/03/77/77/08/240_F_377770883_VoDO2qaaoIYnyzpMrHCGDWXWAVtfD32Y.jpg"} alt="Image" className="img-fluid" />
                                 <figcaption>
@@ -84,7 +74,7 @@ export const Tutorial = () => {
                         </figure>
                     </div>
                     <div className="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
-                        <figure className="effect-sadie" id="mixerCard">
+                        <figure className="effect-sadie" id="glowCard2">
                             <a href="#mixer-section">
                                 <img src={"https://t3.ftcdn.net/jpg/00/45/45/28/240_F_45452813_GRq1yWpEBQI2htiYwXO0WLCRhNInYlue.jpg"} alt="Image" className="img-fluid" />
                                 <figcaption>
@@ -95,7 +85,7 @@ export const Tutorial = () => {
                         </figure>
                     </div>
                     <div className="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
-                        <figure className="effect-sadie" id="playlistCard">
+                        <figure className="effect-sadie" id="glowCard3">
                             <a href="#playlist-section">
                                 <img src={"https://t3.ftcdn.net/jpg/05/65/02/08/240_F_565020838_UcbYro1V23M1FL2QdKSr0c7uhl8mDdeI.jpg"} alt="Image" className="img-fluid" />
                                 <figcaption>
@@ -106,7 +96,7 @@ export const Tutorial = () => {
                         </figure>
                     </div>
                     <div className="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
-                        <figure className="effect-sadie" id="whatCard">
+                        <figure className="effect-sadie" id="glowCard4">
                             <a href="#what-section">
                                 <img src={"https://t4.ftcdn.net/jpg/05/79/53/91/240_F_579539131_zMSGJoJ4F3VVRAfbBIRByap7EiRqW7yI.jpg"} alt="Image" className="img-fluid" />
                                 <figcaption>
