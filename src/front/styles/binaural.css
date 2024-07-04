@@ -2,7 +2,9 @@ body {
 	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 	font-size: 17px;
     font-weight: 300;
-    color: #000000;
+    background: rgb(12, 12, 12);
+    background: linear-gradient(180deg, rgb(12, 12, 12) 0%, rgba(37,37,51,1) 74%, rgba(12, 12, 12) 100%);
+    background-size: cover;
     overflow-x: hidden;
 }
 .textBinaural {
@@ -696,20 +698,23 @@ iframe { max-width: 100%; }
 @media (min-width: 992px){
     .tm-albums-container { max-width: none; }
     figure.effect-sadie h2 { bottom: 20%; }
-    #startCard:hover {box-shadow: 0 0 40px 10px #e0d648;}
-    #mixerCard:hover {box-shadow: 0 0 40px 10px #ad65ff;}
-    #playlistCard:hover {box-shadow: 0 0 40px 10px #7df883;}
-    #whatCard:hover {box-shadow: 0 0 40px 10px #ff98d1;}
+    #glowCard1:hover {box-shadow: 0 0 40px 10px #e0d648;}
+    #glowCard2:hover {box-shadow: 0 0 40px 10px #ff00c8;}
+    #glowCard3:hover {box-shadow: 0 0 40px 10px #ffae00;}
+    #glowCard4:hover {box-shadow: 0 0 40px 10px #0051ff;}
+    #glowCard5:hover {box-shadow: 0 0 40px 10px #00ffd5;}
+
 }
 
 @media (min-width: 1200px){
     .container { max-width: 1230px; }
     figure.effect-sadie h2 { bottom: 10%; }
     .tm-radio-label:last-child { margin-right: 30px; }
-    #startCard:hover {box-shadow: 0 0 40px 10px #e0d648;}
-    #mixerCard:hover {box-shadow: 0 0 40px 10px #ad65ff;}
-    #playlistCard:hover {box-shadow: 0 0 40px 10px #7df883;}
-    #whatCard:hover {box-shadow: 0 0 40px 10px #ff98d1;}
+    #glowCard1:hover {box-shadow: 0 0 40px 10px #e0d648;}
+    #glowCard2:hover {box-shadow: 0 0 40px 10px #ff00c8;}
+    #glowCard3:hover {box-shadow: 0 0 40px 10px #ffae00;}
+    #glowCard4:hover {box-shadow: 0 0 40px 10px #0051ff;}
+    #glowCard5:hover {box-shadow: 0 0 40px 10px #00ffd5;}
 }
 
 @media (max-width: 1199px) {

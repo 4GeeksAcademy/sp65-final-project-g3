@@ -13,6 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			track2Url: null,
 			binauralList: [],
 			soundscapeList: [],
+			spotifyAccessToken: null,
 		},
 		actions: {
 			exampleFunction: () => { getActions().changeColor(0, "green"); },  // Use getActions to call a function within a fuction
@@ -99,10 +100,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			// lógica para Spotify
-			setSpotifyAccessToken: (token) => {
+			setSpotifyAccessToken: (accessSpotifyToken) => {
 				// Actualiza el token de acceso de Spotify en el estado
 				setStore({
-					spotifyAccessToken: token
+					spotifyAccessToken: accessSpotifyToken
 				});
 			},
 

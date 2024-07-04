@@ -15,7 +15,7 @@ export const Navbar = () => {
 	}
 
 	return (
-		<nav className="navbar navbar-expand-sm bg-dark d-flex" data-bs-theme="dark">
+		<nav className="navbar navbar-expand-sm bg-rgb(12, 12, 12) d-flex" data-bs-theme="dark">
 			<div className="container-fluid d-flex align-items-center justify-content-center">
 				<Link to="/home">
 					<button type="button" className="btn btn-outline-light d-flex justify-content-between">Home</button>
@@ -26,7 +26,7 @@ export const Navbar = () => {
 						<span className="navbar-toggler-icon"></span>
 					</button>
 					<div className="collapse navbar-collapse justify-content-end" id="navbarColor02">
-						<ul className="navbar-nav me-auto">
+					<ul className="navbar-nav me-auto">
 							<li className="nav-item">
 								{store.isLogin ?
 									""
