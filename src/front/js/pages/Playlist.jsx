@@ -1,15 +1,24 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Context } from "../store/appContext"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/playlist.css"
 import img1 from "/workspaces/sp65-final-project-g3/src/front/img/soundscape.jpg"
 import img2 from "/workspaces/sp65-final-project-g3/src/front/img/mixes.jpg"
 
 export const Playlist = () => {
     const { store, actions } = useContext(Context)
+    const navigate = useNavigate();
+    
     const alphaRef = useRef(null);
     const thetaRef = useRef(null);
     const deltaRef = useRef(null);
+
+    useEffect(() => {
+        if (!store.isLogin) {
+            alert("Please Log-In or Sign-Up");
+            navigate("/login");
+        }
+    }, [store.isLogin, navigate]);
 
     useEffect(() => {
         const scrollToRef = (ref) => {

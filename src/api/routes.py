@@ -27,10 +27,10 @@ CORS(api)  # Allow CORS requests to this API.  ¡'09876ui
 #     return redirect(url_for('get_playlists'))
 
 
-# @api.route('/logout')  # Así sería el logout de Spotify que redirigiría a la página inicial del login (o donde queramos redirigirlo).
-# def logout():
-#     session.clear()
-#     return redirect(url_for('home'))    
+@api.route('/logout')  # Así sería el logout de Spotify que redirigiría a la página inicial del login (o donde queramos redirigirlo).
+def logout():
+    session.clear()
+    return redirect(url_for('home'))
 
 
 # @api.route('/callback')  # Este Endpoint sirve para evitar el continuo relogin del usuario; refresca el token de acceso de forma automática.
@@ -62,7 +62,7 @@ def signup():
     password = request.json.get("password", None)
     first_name = request.json.get("first_name", "")  
     last_name = request.json.get("last_name", "") 
-    row = db.session.execute(db.session.select(Users).where(Users.email == email)).scalar()
+    row = db.session.execute(db.select(Users).where(Users.email == email)).scalar()
     if row:
         response_body["message"] = "Mail already exists"
         return response_body, 401

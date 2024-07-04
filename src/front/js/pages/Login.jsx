@@ -1,56 +1,49 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
-import "/workspaces/sp65-final-project-g3/src/front/styles/loginForm.css"
+import "../../styles/loginForm.css"
 
 export const Login = () => {
-  const { actions } = useContext(Context)
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
-  const navigate = useNavigate();
-  // Función para traer el token de Spotify
-  const [accessSpotifyToken, setAccessSpotifyToken] = useState("");
+    const {store, actions} = useContext(Context)
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [rememberMe, setRememberMe] = useState (false);
+    const [accessSpotifyToken, setAccessSpotifyToken] = useState("");
+    const navigate = useNavigate()
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
+    const handleEmailChange = (e) => { setEmail(e.target.value) };
+    const handlePasswordChange = (e) => { setPassword(e.target.value) };
+    const handleRememberMe = (e) => { setRememberMe(e.target.checked) };
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleRememberMe = e => setRememberMe(e.target.checked);
-
-  const handleReset = () => {
-    setEmail('');
-    setPassword('');
-    setRememberMe(false);
-  }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const dataToSend = { email, password, rememberMe };
-    console.log(dataToSend);
-    const url = `${process.env.BACKEND_URL}/api/login`;
-    const options = {
-      method: 'POST',
-      body: JSON.stringify(dataToSend),
-      headers: {
-        'content-type': 'application/json'
-      }
+    const handleReset = () => {
+      setEmail('');
+      setPassword('');
+      setRememberMe(false);
     }
-    const response = await fetch(url, options)
-    if (!response.ok) {
-      console.log('Error: ', response.status, response.statusText);
-      return
-    }
-    const data = await response.json();
-    localStorage.setItem("token", data.access_token)
-    actions.setIsLogin(true)
-    console.log(data.access_token);
-    navigate('/dashboard')
-  };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const dataToSend = { email, password, rememberMe };
+        const url = `${process.env.BACKEND_URL}/api/login`;
+        const options = {
+            method: 'POST',
+            body: JSON.stringify(dataToSend),
+            headers: {
+                'Content-Type' : 'application/json'
+            }        
+        }
+        const response = await fetch(url, options)
+        if (!response.ok) {
+            console.log('Error: ', response.status, response.statusText);
+            return 
+        }
+        const data = await response.json();
+        localStorage.setItem("token", data.access_token);
+        localStorage.setItem("user", JSON.stringify(data.results));
+        actions.setIsLogin(true);
+        actions.setUser(data.results);
+        navigate('/dashboard')
+    };
 
   // const handleSpotifyLogin = () => {
   //   //  API Access Token

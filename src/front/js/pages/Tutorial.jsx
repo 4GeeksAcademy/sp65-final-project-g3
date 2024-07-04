@@ -1,13 +1,23 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Context } from "../store/appContext"
 import "../../styles/tutorial.css"
+import { useNavigate } from "react-router-dom";
 
 export const Tutorial = () => {
     const { store } = useContext(Context)
+    const navigate = useNavigate();
+    
     const start = useRef(null);
     const mixer = useRef(null);
     const playlist = useRef(null);
     const what = useRef(null);
+
+    useEffect(() => {
+        if (!store.isLogin) {
+            alert("Please Log-In or Sign-Up");
+            navigate("/login");
+        }
+    }, [store.isLogin, navigate]);
 
     useEffect(() => {
         const scrollToRef = (ref) => {
