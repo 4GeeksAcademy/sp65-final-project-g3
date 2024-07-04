@@ -1,15 +1,24 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Context } from "../store/appContext"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/playlist.css"
-import img1 from "/workspaces/sp65-final-project-g3/src/front/img/soundscape.jpg"
-import img2 from "/workspaces/sp65-final-project-g3/src/front/img/mixes.jpg"
+import img1 from "../../img/soundscape.jpg"
+import img2 from "../../img/mixes.jpg"
 
 export const Playlist = () => {
     const { store, actions } = useContext(Context)
+    const navigate = useNavigate();
+    
     const alphaRef = useRef(null);
     const thetaRef = useRef(null);
     const deltaRef = useRef(null);
+
+    useEffect(() => {
+        if (!store.isLogin) {
+            alert("Please Log-In or Sign-Up");
+            navigate("/login");
+        }
+    }, [store.isLogin, navigate]);
 
     useEffect(() => {
         const scrollToRef = (ref) => {
@@ -66,7 +75,7 @@ export const Playlist = () => {
 
                 <div className="row tm-albums-container grid">
                     <div className="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
-                        <figure className="effect-sadie">
+                        <figure className="effect-sadie" id="glowCard1">
                             <a href="#soundscape-section">
                                 <img src={img1} alt="Image" className="img-fluid" />
                                 <figcaption>
@@ -77,7 +86,7 @@ export const Playlist = () => {
                         </figure>
                     </div>
                     <div className="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
-                        <figure className="effect-sadie">
+                        <figure className="effect-sadie" id="glowCard2">
                             <a href="#music-section">
                                 <img src={"https://t4.ftcdn.net/jpg/07/33/55/15/240_F_733551554_8EeuHjqKGXQj0GjNvw9EJgEb6KbY3fB1.jpg"} alt="Image" className="img-fluid" />
                                 <figcaption>
@@ -88,7 +97,7 @@ export const Playlist = () => {
                         </figure>
                     </div>
                     <div className="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
-                        <figure className="effect-sadie">
+                        <figure className="effect-sadie" id="glowCard3">
                             <a href="#spoti-section">
                                 <img src={"https://t4.ftcdn.net/jpg/04/87/69/93/240_F_487699333_0R5Asoup6cWlpD1TUlMlqyQJEIMtAAKP.jpg"} alt="Image" className="img-fluid" />
                                 <figcaption>
@@ -99,7 +108,7 @@ export const Playlist = () => {
                         </figure>
                     </div>
                     <div className="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
-                        <figure className="effect-sadie">
+                        <figure className="effect-sadie" id="glowCard4">
                             <a href="#mixes-section">
                                 <img src={img2} alt="Image" className="img-fluid" />
                                 <figcaption>
@@ -151,7 +160,7 @@ export const Playlist = () => {
                                     </div>
                                     <div className="">
                                         <Link to="/soundscape" onClick={() => actions.navigateToSoundscape("nature-section")}>
-                                        <button type="button" className="btn btn-secondary tetx-nowrap">Learn More</button>
+                                        <button type="button" className="btn btn-secondary tetx-nowrap" id="glowCard5">Learn More</button>
                                         </Link>
                                     </div>
                                 </div>
@@ -186,7 +195,7 @@ export const Playlist = () => {
                                     </div>
                                     <div className="">
                                         <Link to="/soundscape" onClick={() => actions.navigateToSoundscape("music-section")}>
-                                        <button type="button" className="btn btn-secondary tetx-nowrap">Learn More</button>
+                                        <button type="button" className="btn btn-secondary tetx-nowrap" id="glowCard5">Learn More</button>
                                         </Link>
                                     </div>
                                 </div>
@@ -220,7 +229,7 @@ export const Playlist = () => {
                                         <h5>You must have signed up with your spotify account</h5>
                                     </div>
                                     <div className="">
-                                        <button type="button" className="btn btn-secondary tetx-nowrap">Learn More</button>
+                                        <button type="button" className="btn btn-secondary tetx-nowrap" id="glowCard5">Learn More</button>
                                     </div>
                                 </div>
                             </div>
@@ -254,7 +263,7 @@ export const Playlist = () => {
                                     </div>
                                     <div className="">
                                         <Link to="/mixes">
-                                            <button type="button" className="btn btn-secondary tetx-nowrap">Mixes</button>
+                                            <button type="button" className="btn btn-secondary tetx-nowrap" id="glowCard5">Mixes</button>
                                         </Link>
                                     </div>
                                 </div>

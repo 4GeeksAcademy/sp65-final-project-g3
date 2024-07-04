@@ -14,43 +14,42 @@ from spotipy import Spotify
 from spotipy.oauth2 import SpotifyOAuth
 from spotipy.cache_handler import FlaskSessionCacheHandler
 
-
 api = Blueprint('api', __name__)
 CORS(api)  # Allow CORS requests to this API.  ¡'09876ui
 '0'
 
 
-@api.route('/')  # Así sería el login de Spotify para la obtención del token del usuario.
-def home():
-    if not sp_oauth.validate_token(cache_handler.get_cached_token()):
-        auth_url = sp_oauth.get_authorize_url()
-        return redirect(auth_url)
-    return redirect(url_for('get_playlists'))
+# @api.route('/')  # Así sería el login de Spotify para la obtención del token del usuario.
+# def home():
+#     if not sp_oauth.validate_token(cache_handler.get_cached_token()):
+#         auth_url = sp_oauth.get_authorize_url()
+#         return redirect(auth_url)
+#     return redirect(url_for('get_playlists'))
 
 
 @api.route('/logout')  # Así sería el logout de Spotify que redirigiría a la página inicial del login (o donde queramos redirigirlo).
 def logout():
     session.clear()
-    return redirect(url_for('home'))    
+    return redirect(url_for('home'))
 
 
-@api.route('/callback')  # Este Endpoint sirve para evitar el continuo relogin del usuario; refresca el token de acceso de forma automática.
-def callback():
-    sp_oauth.get_access_token(request.args['code'])
-    return redirect(url_for('get_playlists'))
+# @api.route('/callback')  # Este Endpoint sirve para evitar el continuo relogin del usuario; refresca el token de acceso de forma automática.
+# def callback():
+#     sp_oauth.get_access_token(request.args['code'])
+#     return redirect(url_for('get_playlists'))
 
 
-@api.route('/get_playlists', methods=['GET'])  # Este Endpoint sirve para traer las playlists del usuario (al menos en teoría, ENDPOINT SPOTIFY==>https://api.spotify.com/v1/playlists/{playlist_id})
-def get_playlists():
-    if not sp_oauth.validate_token(cache_handler.get_cached_token()):
-        auth_url = sp_oauth.get_authorize_url()
-        return redirect(auth_url)
+# @api.route('/get_playlists', methods=['GET'])  # Este Endpoint sirve para traer las playlists del usuario (al menos en teoría, ENDPOINT SPOTIFY==>https://api.spotify.com/v1/playlists/{playlist_id})
+# def get_playlists():
+#     if not sp_oauth.validate_token(cache_handler.get_cached_token()):
+#         auth_url = sp_oauth.get_authorize_url()
+#         return redirect(auth_url)
 
-    playlists = sp.current_user.get_playlists()
-    playlists_info = [(pl['name'], pl['external_urls']['spotify']) for pl in playlists ['items']]
-    playlists_html = '<br>'.join([f'{name}: {url}' for name, url in playlists_info])
+#     playlists = sp.current_user.get_playlists()
+#     playlists_info = [(pl['name'], pl['external_urls']['spotify']) for pl in playlists ['items']]
+#     playlists_html = '<br>'.join([f'{name}: {url}' for name, url in playlists_info])
 
-    return playlists_display
+#     return playlists_display
 
 
 # @app.route('/spotify', methods=['GET'])
