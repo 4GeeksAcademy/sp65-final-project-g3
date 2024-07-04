@@ -22,6 +22,8 @@ export const Mixer = () => {
     const trackOneVuRef = useRef();
     const trackTwoVuRef = useRef();
 
+    const [track2Name, setTrack2Name] = useState();
+
     useEffect(() => {
         if (!store.isLogin) {
             alert("Please Log-In or Sign-Up");
@@ -132,41 +134,42 @@ export const Mixer = () => {
         }
     };
 
-/* 
-// Search Spotify
-async function search() {
-    console.log("Search for " + searchInput);
-    // Get request using search to get artist ID
-    const artistParameters = {
-        method: 'GET',
-        headers: {
-            'content-Type': 'application/json',
-            'Authorization': 'Bearer ' + setSpotifyAccessToken  // Revisar cómo llamé al access Token de Spotify
+    /* 
+    // Search Spotify
+    async function search() {
+        console.log("Search for " + searchInput);
+        // Get request using search to get artist ID
+        const artistParameters = {
+            method: 'GET',
+            headers: {
+                'content-Type': 'application/json',
+                'Authorization': 'Bearer ' + setSpotifyAccessToken  // Revisar cómo llamé al access Token de Spotify
+            }
         }
+        const artistID = await fetch('https://api.spotify.com/v1/search?q=' + searchInput + '&type=artist', artistParameters)
+        .then(Response => Response.json())
+        .then(data => {return data.artist.item [0].id})
+        
+        // Get request with Artist ID grab all the albums/songs from that artist
+        const returnedAlbums = await fetch('https://api.spotify.com/v1/artists/' + artistID + '/albums' + '?include_groups=album&market=US&limit=10')
+        .then(Response => Response.json())
+        .then(data => {
+            console.log(data);
+            SetAlbums(data.items);
+        });
     }
-    const artistID = await fetch('https://api.spotify.com/v1/search?q=' + searchInput + '&type=artist', artistParameters)
-    .then(Response => Response.json())
-    .then(data => {return data.artist.item [0].id})
-    
-    // Get request with Artist ID grab all the albums/songs from that artist
-    const returnedAlbums = await fetch('https://api.spotify.com/v1/artists/' + artistID + '/albums' + '?include_groups=album&market=US&limit=10')
-    .then(Response => Response.json())
-    .then(data => {
-        console.log(data);
-        SetAlbums(data.items);
-    });
-}
-console.log(albums); */
+    console.log(albums); */
 
-/* //   Lógica para llamar a la librería
-const handleSpotifyLists = (url) => {
-    actions.settingSpotifyListUrl(url);
-}; */
+    /* //   Lógica para llamar a la librería
+    const handleSpotifyLists = (url) => {
+        actions.settingSpotifyListUrl(url);
+    }; */
 
-//   Lógica para llamar a la librería Binaural
-const handleBinauralClick = (url) => {
-    actions.setTrack2Url(url);
-};
+    //   Lógica para llamar a la librería Binaural
+    const handleBinauralClick = (item) => {
+        actions.setTrack2Url(item.track_url);
+        setTrack2Name(item.name)
+    };
 
 
     return (
@@ -180,7 +183,7 @@ const handleBinauralClick = (url) => {
                             <li><div className="btn">Soundscapes Library</div></li>
                         </ul>
                     </button>
-                    <input type="range" id="trackOneVolume" ref={trackOneVolumeRef} onChange={handleTrackOneVolumeChange} min="0" max="100" step="0.01" />
+                    <input type="range" id="trackOneVolume" ref={trackOneVolumeRef} onChange={handleTrackOneVolumeChange} min="0" max="1" step="0.01" />
                     <div className="d-flex flex-column bd-highlight mb-3">
                         <div id="vuMeter" className="d-flex justify-content-center">
                             <div id="trackOneVu" ref={trackOneVuRef} className="card mx-1"></div>
@@ -191,14 +194,14 @@ const handleBinauralClick = (url) => {
                             <button id="pauseButton" onClick={pauseAudio}><b>||</b></button>
                         </div>
                     </div>
-                    <input type="range" id="trackTwoVolume" ref={trackTwoVolumeRef} onChange={handleTrackTwoVolumeChange} min="0" max="100" step="0.01" />
+                    <input type="range" id="trackTwoVolume" ref={trackTwoVolumeRef} onChange={handleTrackTwoVolumeChange} min="0" max="1" step="0.01" />
                     <button id="libraryTrackTwo" className="btn dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <span className="material-symbols-outlined">menu</span>
                     </button>
                     <ul className="dropdown-menu">
                         {store.binauralList.map((item, index) => (
                             <li key={index}>
-                                <button className="dropdown-item" onClick={() => handleBinauralClick(item.track_url)}>
+                                <button className="dropdown-item" onClick={() => handleBinauralClick(item)}>
                                     {item.name}
                                 </button>
                             </li>
@@ -207,9 +210,10 @@ const handleBinauralClick = (url) => {
                 </div>
                 {/* Estas 3 líneas se tendrán que reemplazar con la implementación de las librerias */}
                 <input type="text" id="trackOneUrl" ref={trackOneUrlRef} value="https://cdn.pixabay.com/download/audio/2023/03/13/audio_df248bd9ae.mp3" />
-                <input type="text" id="trackTwoUrl" ref={trackTwoUrlRef} value={store.track2Url} />
+                <p className="text-warning" htmlFor="trackTwoUrl">{track2Name ? track2Name : "Choose Binaural Track"}</p>
+                <input className="d-none" type="text" id="trackTwoUrl" ref={trackTwoUrlRef} value={store.track2Url} />
                 <button id="loadButton" onClick={loadAudio}>Cargar</button>
-             
+
             </div>
         </>
     );
