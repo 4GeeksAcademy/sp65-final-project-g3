@@ -183,7 +183,7 @@ export const Mixer = () => {
                             <li><div className="btn">Soundscapes Library</div></li>
                         </ul>
                     </button>
-                    <input type="range" id="trackOneVolume" ref={trackOneVolumeRef} onChange={handleTrackOneVolumeChange} min="0" max="100" step="0.01" />
+                    <input type="range" id="trackOneVolume" ref={trackOneVolumeRef} onChange={handleTrackOneVolumeChange} min="0" max="1" step="0.01" />
                     <div className="d-flex flex-column bd-highlight mb-3">
                         <div id="vuMeter" className="d-flex justify-content-center">
                             <div id="trackOneVu" ref={trackOneVuRef} className="card mx-1"></div>
@@ -194,7 +194,7 @@ export const Mixer = () => {
                             <button id="pauseButton" onClick={pauseAudio}><b>||</b></button>
                         </div>
                     </div>
-                    <input type="range" id="trackTwoVolume" ref={trackTwoVolumeRef} onChange={handleTrackTwoVolumeChange} min="0" max="100" step="0.01" />
+                    <input type="range" id="trackTwoVolume" ref={trackTwoVolumeRef} onChange={handleTrackTwoVolumeChange} min="0" max="1" step="0.01" />
                     <button id="libraryTrackTwo" className="btn dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <span className="material-symbols-outlined">menu</span>
                     </button>

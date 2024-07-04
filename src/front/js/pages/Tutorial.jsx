@@ -61,7 +61,7 @@ export const Tutorial = () => {
                 <div className="tm-search-form-container">
                     <div className="row">
                         <div className="col-3">
-                            <span action="index.html" method="GET" className="form-inline tm-search-form">
+                            <span className="form-inline tm-search-form">
                                 <div className="text-uppercase tm-new-release">Tutorials </div>
                             </span>
                         </div>
