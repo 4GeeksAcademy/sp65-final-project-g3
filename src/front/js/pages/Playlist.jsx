@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { Context } from "../store/appContext"
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/playlist.css"
-import img1 from "/workspaces/sp65-final-project-g3/src/front/img/soundscape.jpg"
-import img2 from "/workspaces/sp65-final-project-g3/src/front/img/mixes.jpg"
+import img1 from "../../img/soundscape.jpg"
+import img2 from "../../img/mixes.jpg"
 
 export const Playlist = () => {
     const { store, actions } = useContext(Context)
