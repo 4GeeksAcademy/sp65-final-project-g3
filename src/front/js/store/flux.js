@@ -99,8 +99,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ binauralList: data.results });
 				console.log('Binaural List', data.results);
 			},
-			getSoundscape: () => {
-
+			getSoundscape: async () => {
+				const uri = "https://ubiquitous-giggle-9vrj6v4p75gc7v57-3001.app.github.dev/api/soundscapes"
+				const response = await fetch(uri);
+				if (!response.ok) {
+					console.log('Error on Agenda', response.status, response.statusText);
+					return
+				}
+				const data = await response.json();
+				setStore({ soundscapeList: data.results });
+				console.log('Soundscape List', data.results);
 			},
 
 			// lógica para Spotify
