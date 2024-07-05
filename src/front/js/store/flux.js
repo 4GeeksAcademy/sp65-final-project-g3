@@ -1,14 +1,20 @@
-const getState = ({ getStore, getActions, setStore }) => {
+import { useEffect } from "react";
 
+const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			message: null,
+			message: null, 
 			user: null,
 			demo: [{ title: "FIRST", background: "white", initial: "white" }],
 			isLogin: false,
 			currentSection: null,
 			soundscapeSection: null,
 			tutorialSection: null,
+			track1Url: null,
+			track2Url: null,
+			binauralList: [],
+			soundscapeList: [],
+			spotifyAccessToken: null,
 		},
 		actions: {
 			exampleFunction: () => { getActions().changeColor(0, "green"); },  // Use getActions to call a function within a fuction
@@ -64,17 +70,49 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setUser: (user) => { setStore({ user: user }) },
 			navigateToSection: (section) => {
 				setStore({ currentSection: section });
-				window.location.href = `/binaural#${section}`;
+			/* 	window.location.href = `/binaural#${section}`; */
 			},
 			navigateToSoundscape: (section) => {
 				setStore({ soundscapeSection: section });
-				window.location.href = `/soundscape#${section}`;
+				/* window.location.href = `/soundscape#${section}`; */
 			},
 			navigateToTutorial: (section) => {
 				setStore({ tutorialSection: section });
-				window.location.href = `/tutorial#${section}`;
+				/* window.location.href = `/tutorial#${section}`; */
 			},
-
+			// Track 2 Url
+			// Acción para actualizar la URL del track2
+            setTrack2Url: (url) => {
+                setStore({ track2Url: url });
+            },
+			setTrack1Url: (url) => {
+                setStore({ track1Url: url });
+            },
+			getBinaural: async () => {
+				const uri = `${process.env.BACKEND_URL}/api/binaural`;
+				// const uri = "https://ubiquitous-giggle-9vrj6v4p75gc7v57-3001.app.github.dev/api/binaural"
+				const response = await fetch(uri);
+				if (!response.ok) {
+					console.log('Error on Agenda', response.status, response.statusText);
+					return
+				}
+				const data = await response.json();
+				// console.log(uri, response, data);
+				setStore({ binauralList: data.results });
+				// console.log(data);
+				// console.log('Binaural List', data.results);
+			},
+			getSoundscape: async () => {
+				const uri = `${process.env.BACKEND_URL}/api/soundscapes`;
+				const response = await fetch(uri);
+				if (!response.ok) {
+					console.log('Error on Agenda', response.status, response.statusText);
+					return
+				}
+				const data = await response.json();
+				setStore({ soundscapeList: data.results });
+				console.log('Soundscape List', data.results);
+			},
 			EditProfile: async (dataToSend) => {
 				console.log(dataToSend);
 				const uri = `${getStore().apiContact}agenda/${getStore().agenda}/Users`
@@ -93,44 +131,39 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				getActions(), getUsers();
 
+			// lógica para Spotify
+			setSpotifyAccessToken: (accessSpotifyToken) => {
+				// Actualiza el token de acceso de Spotify en el estado
+				setStore({
+					spotifyAccessToken: accessSpotifyToken
+				});
+			},
+			// getSpotifyLists: async () => {
+			// 	const response = await fetch("https://api.spotify.com/v1/playlists/{playlist_id}");
+			// 	if (!response.ok) {
+			// 		console.log("Error");
+			// 		return;
+			// 	}
+			// 	const data = await response.json();
+			// 	console.log(data);
+			// 	setStore({ spotifyLists: data.results });
+			// },
 
+			// settingSpotifyList: (spotifyList) => { setStore({ currentSpotifyList: spotifyList }); },
+			// settingSpotifyListUrl: (text) => { setStore({ currentSpotifyListUrl: text }); },
 
-				/* 		// lógica para Spotify
-						setSpotifyAccessToken: (token) => {
-							// Actualiza el token de acceso de Spotify en el estado
-							setStore({
-								spotifyAccessToken: token
-							});
-						}, */
-
-				// getSpotifyLists: async () => {
-				// 	const response = await fetch("https://api.spotify.com/v1/playlists/{playlist_id}");
-				// 	if (!response.ok) {
-				// 		console.log("Error");
-				// 		return;
-				// 	}
-				// 	const data = await response.json();
-				// 	console.log(data);
-				// 	setStore({ spotifyLists: data.results });
-				// },
-
-				// settingSpotifyList: (spotifyList) => { setStore({ currentSpotifyList: spotifyList }); },
-				// settingSpotifyListUrl: (text) => { setStore({ currentSpotifyListUrl: text }); },
-
-				// getCurrentSpotifyList: async () => {
-				// 	const uri = getStore().currentSpotifyListUrl;
-				// 	const response = await fetch(uri);
-				// 	if (!response.ok) {
-				// 		console.log("Error");
-				// 		return;
-				// 	}
-				// 	const data = await response.json();
-				// 	console.log(data);
-				// 	setStore({ currentSpotifyList: data.result });
-				// },
-			}
+			// getCurrentSpotifyList: async () => {
+			// 	const uri = getStore().currentSpotifyListUrl;
+			// 	const response = await fetch(uri);
+			// 	if (!response.ok) {
+			// 		console.log("Error");
+			// 		return;
+			// 	}
+			// 	const data = await response.json();
+			// 	console.log(data);
+			// 	setStore({ currentSpotifyList: data.result });
+			// },
 		}
 	};
-}
-
+};
 export default getState;
