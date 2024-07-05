@@ -1,12 +1,3 @@
-body {
-	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-	font-size: 17px;
-    font-weight: 300;
-    background: rgb(12, 12, 12);
-    background: linear-gradient(180deg, rgb(12, 12, 12) 0%, rgba(37,37,51,1) 74%, rgba(12, 12, 12) 100%);
-    background-size: cover;
-    overflow-x: hidden;
-}
 .textBinaural {
     color: #91caf1;
 }
