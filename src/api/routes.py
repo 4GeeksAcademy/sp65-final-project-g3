@@ -133,13 +133,12 @@ def handle_mixes_post():
     user_id = current_user['user_id']
     data = request.json
     row = Mixes()
-    row.mix_title = data['mix_title'],
+    row.mix_title = data['mix_title']
     row.user_id = user_id,
-    row.track_1_url = data['track_1_url'],
-    row.binaural_id = data['binaural_id'],
-    row.image_url = data.get('image_url', None),
-    row.date = datetime.today(),
-    row.acumulator_concurrency = data.get('acumulator_concurrency', 0)  # Pendiente de decidir si dejarlo o no.
+    row.track_1_url = data['track_1_url']
+    row.binaural_id = data['binaural_id']  # Se debería verificar si el binaural id existe
+    row.date = datetime.today()
+    row.acumulator_concurrency = 0  # Pendiente de decidir si dejarlo o no.
     db.session.add(row)
     db.session.commit()
     response_body['results'] = row.serialize()
