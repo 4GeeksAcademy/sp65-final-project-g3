@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../../styles/editProfile.css"
+import "../../styles/Profile.css"
 import { Context } from "../store/appContext.js";
 
-export const EditProfile = () => {
+export const Profile = () => {
 
     const { store, actions } = useContext(Context);
     const [name, setName] = useState(store.user.first_name);
