@@ -10,6 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			currentSection: null,
 			soundscapeSection: null,
 			tutorialSection: null,
+			track1Url: null,
 			track2Url: null,
 			binauralList: [],
 			soundscapeList: [],
@@ -83,6 +84,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// Acción para actualizar la URL del track2
             setTrack2Url: (url) => {
                 setStore({ track2Url: url });
+            },
+			setTrack1Url: (url) => {
+                setStore({ track1Url: url });
             },
 			getBinaural: async () => {
 				const uri = "https://ubiquitous-giggle-9vrj6v4p75gc7v57-3001.app.github.dev/api/binaural"

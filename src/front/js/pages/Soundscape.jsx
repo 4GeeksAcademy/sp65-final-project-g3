@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Context } from "../store/appContext"
 import "../../styles/soundscapes.css"
+import { useNavigate } from "react-router-dom";
 
 export const Soundscape = () => {
-    const { store } = useContext(Context)
+    const { store, actions } = useContext(Context)
     const soundScapes = useRef(null);
     const organic = useRef(null);
     const music = useRef(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const scrollToRef = (ref) => {
@@ -31,6 +33,12 @@ export const Soundscape = () => {
     }, [store.soundscapeSection]);
     console.log("current Section", store.soundscapeSection);
 
+    const handleLoadTrack = (url) => {
+        actions.setTrack1Url(url);
+        navigate("/mixer");
+        console.log("setTrack1Url Value:", store.setTrack1Url);
+    };
+
     return (
         <>
 
@@ -49,7 +57,7 @@ export const Soundscape = () => {
                 <div className="tm-search-form-container">
                     <div className="row">
                         <div className="col-3">
-                            <span action="index.html" method="GET" className="form-inline tm-search-form">
+                            <span className="form-inline tm-search-form">
                                 <div className="text-uppercase tm-new-release">Soundscapes </div>
                             </span>
                         </div>
@@ -142,9 +150,9 @@ export const Soundscape = () => {
                                     </div>
                                 </div>
                                 <div className="col-12 d-flex justify-content-between">
-                                    <button type="button" className="btn btn-secondary" id="glowCard5">Ocean</button>
-                                    <button type="button" className="btn btn-secondary" id="glowCard5">Forest</button>
-                                    <button type="button" className="btn btn-secondary" id="glowCard5">Night</button>
+                                    <button type="button" className="btn btn-secondary" id="glowCard5" onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2022/09/30/audio_147bbf836d.mp3")}>Ocean</button>
+                                    <button type="button" className="btn btn-secondary" id="glowCard5" onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2023/11/18/audio_092516882e.mp3")}>Forest</button>
+                                    <button type="button" className="btn btn-secondary" id="glowCard5" onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2023/03/13/audio_df248bd9ae.mp3")}>Night</button>
                                 </div>
                                 <div className="media-body textBinaural">
                                     <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
@@ -188,9 +196,9 @@ export const Soundscape = () => {
                                     </div>
                                 </div>
                                 <div className="col-12 d-flex justify-content-between">
-                                    <button type="button" className="btn btn-secondary" id="glowCard5">Synth</button>
-                                    <button type="button" className="btn btn-secondary" id="glowCard5">Musical</button>
-                                    <button type="button" className="btn btn-secondary" id="glowCard5">ASMR</button>
+                                    <button type="button" className="btn btn-secondary" id="glowCard5" onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2022/01/18/audio_70a2eceacd.mp3")}>Synth</button>
+                                    <button type="button" className="btn btn-secondary" id="glowCard5" onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/01/audio_a057a839a4.mp3")}>Musical</button>
+                                    <button type="button" className="btn btn-secondary" id="glowCard5" onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2022/11/10/audio_fc0e6a6d4d.mp3")}>ASMR</button>
                                 </div>
                                 <div className="media-body textBinaural">
                                     <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
@@ -230,9 +238,9 @@ export const Soundscape = () => {
                                     </div>
                                 </div>
                                 <div className="col-12 d-flex justify-content-between">
-                                    <button type="button" className="btn btn-secondary" id="glowCard5">60 BPM</button>
-                                    <button type="button" className="btn btn-secondary" id="glowCard5">80 BPM</button>
-                                    <button type="button" className="btn btn-secondary" id="glowCard5">100 BPM</button>
+                                    <button type="button" className="btn btn-secondary" id="glowCard5" onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2022/02/07/audio_48f80596b7.mp3")}>60 BPM</button>
+                                    <button type="button" className="btn btn-secondary" id="glowCard5" onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2022/02/07/audio_486ee27cb9.mp3")}>80 BPM</button>
+                                    <button type="button" className="btn btn-secondary" id="glowCard5" onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/01/audio_a0cef0ca9e.mp3")}>100 BPM</button>
                                 </div>
                                 <div className="media-body textBinaural">
                                     <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">

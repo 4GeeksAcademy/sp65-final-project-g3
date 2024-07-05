@@ -151,6 +151,7 @@ export const Mixer = () => {
 //   Lógica para llamar a la librería Binaural
 const handleBinauralClick = (url) => {
     actions.setTrack2Url(url);
+    setTrack2Name(item.name)
 };
 
 
