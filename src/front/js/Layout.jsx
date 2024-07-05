@@ -26,7 +26,7 @@ import { Sleep } from "./pages/Sleep.jsx";
 import { Focus } from "./pages/Focus.jsx";
 import { Dashboard } from "./pages/Dashboard.jsx";
 import { Mixer } from "./pages/Mixer.jsx"
-import { EditProfile } from "./pages/EditProfile.jsx";
+import { Profile } from "./pages/Profile.jsx";
 
 
 
@@ -55,7 +55,7 @@ const Layout = () => {
                         <Route path="/delta" element={<Delta />} />
                         <Route path="/mixes" element={<Mixes />} />
                         <Route path="/playlist" element={<Playlist />} />
-                        <Route path="/edit-profile" element={<EditProfile />} />
+                        <Route path="/profile" element={<Profile />} />
                         <Route path="/soundscape" element={<Soundscape />} />
                         <Route path="/tutorial" element={<Tutorial />} />
                         <Route path="/meditation" element={<Meditation />} />
