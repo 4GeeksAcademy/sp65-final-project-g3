@@ -22,12 +22,12 @@ export const Mixer = () => {
     const trackOneVuRef = useRef();
     const trackTwoVuRef = useRef();
 
-    useEffect(() => {
-        if (!store.isLogin) {
-            alert("Please Log-In or Sign-Up");
-            navigate("/login");
-        }
-    }, [store.isLogin, navigate]);
+    // useEffect(() => {
+    //     if (!store.isLogin) {
+    //         alert("Please Log-In or Sign-Up");
+    //         navigate("/login");
+    //     }
+    // }, [store.isLogin, navigate]);
 
     useEffect(() => {
         const updateVuMeter = (analyser, dataArray, fillRef) => {
@@ -132,25 +132,38 @@ export const Mixer = () => {
         }
     };
 
-    // const [mixes, setMixes] = useState(store.mixes.map(item => item.name ));
+// Lógica fav mixes
+const handleMix = () => {
+    // habilitar formulario para que el usuario ingreese el título del mix
+    // Formulario: Estado del mix para controlar el input
+    // Onsubmit que llame la función handleOnSubmitMix
 
-    // const toggleMix = (name) => {
-    //     if (mixes.includes(name)) {
-    //         const updatedMixes = mixes.filter(item => item !== name);
-    //         setMixes(updatedMixes);
-    //         actions.removeMix(name);
-    //     } else {
-    //         setMixes([...mixes, name]);
-    //         actions.addMixes({ name, type:"Track 1" });
-    //     }
-    // };
-    
-    // const isMix = (name) => mixes.includes(name);
 
+}
+
+// const handleOnSubmitMix = (event) => {
+//     event.preventDefault ();
+//     const dataToSend = { mix_title, track_1_url, binaural_id };  // Crear el Data to send que incluya el estado del mix_title track_1_url binaural_id
+//         const url = `${process.env.BACKEND_URL}/api/mixes`;
+//         const options = {  // Con estos 3 datos hacer el post.
+//             method: 'POST',
+//             body: JSON.stringify(dataToSend),
+//             headers: {
+//                 'Content-Type' : 'application/json'
+//             }        
+//         }
+//         // Actualizar los favoritos del usuario en el flux.
+//         const data = await response.json();
+//         setStore({ mix_title: data.results });
+//         setStore({ track_1_url: data.results });
+//         setStore({ binaural_id: data.results });
+//     }
+// };
 
 //   Lógica para llamar a la librería Binaural
 const handleBinauralClick = (url) => {
     actions.setTrack2Url(url);
+    setTrack2Name(item.name)
 };
 
 
@@ -158,10 +171,10 @@ const handleBinauralClick = (url) => {
         <>
             <div id="mixerConatiner" className="d-flex flex-column bd-highlight mb-3">
                 <div id="volumeControlers" className="d-flex justify-content-center">
-                    <input type="range" id="trackOneVolume" ref={trackOneVolumeRef} onChange={handleTrackOneVolumeChange} min="0" max="100" step="0.01" />
+                    <input type="range" id="trackOneVolume" ref={trackOneVolumeRef} onChange={handleTrackOneVolumeChange} min="0" max="1" step="0.01" />
                     <div id="trackOneVu"><div id="vuFill" className="card" ref={trackOneVuRef} ></div></div>
                     <div id="trackTwoVu"><div id="vuFill" className="card" ref={trackTwoVuRef}></div></div>
-                    <input type="range" id="trackTwoVolume" ref={trackTwoVolumeRef} onChange={handleTrackTwoVolumeChange} min="0" max="100" step="0.01" />
+                    <input type="range" id="trackTwoVolume" ref={trackTwoVolumeRef} onChange={handleTrackTwoVolumeChange} min="0" max="1" step="0.01" />
                 </div>
                 <div id="playerButtons" className="d-flex justify-content-center">
                     <button id="metalButton2" className="dropdown" type="button" data-bs-toggle="dropdown" onClick={() => handleSpotifyLists(item.url)}>
@@ -189,7 +202,8 @@ const handleBinauralClick = (url) => {
                     <input type="text" id="trackUrl" ref={trackOneUrlRef} value="https://cdn.pixabay.com/download/audio/2023/03/13/audio_df248bd9ae.mp3" />
                     <input type="text" id="trackUrl" ref={trackTwoUrlRef} value={store.track2Url} />
                     <button id="metalButton3" onClick={loadAudio}>Load</button>
-                    <span  id="favButton" onClick=""><i title="Add Mix" style={{ cursor: "pointer" }} className="fa-solid fa-heart-pulse fa-beat-fade"/></span>
+                    {/* El icono debería estar oculto hasta que ambas pistas no estén cargadas */}
+                    <span  id="favButton" onClick={handleMix} ><i title="Add Mix" style={{ cursor: "pointer" }} className="fa-solid fa-heart-pulse fa-beat-fade"/></span> 
                 </div>
             </div>
         </>
@@ -197,17 +211,17 @@ const handleBinauralClick = (url) => {
 };
 
 
-{/* <div className="d-flex" >
-<input type="input" onKeyPress={event =>{
-if (event.key == "Enter"){
-    console.log("Pressed enter");
-}}}
-onChange={event => setSearchInput(event.target.value)} placeholder="Search in Spotify"></input>
-<button onClick={search}><span className="material-symbols-outlined">search</span></button>
-</div>
-{albums.map( (album, i) => {
-console.log(album);
-return (
-<button className="d-flex" onClick={handlePlayTrack}><img src={album.images[0]} /> <div>{album.name}</div></button>)
-})
-} */}
+// <div className="d-flex" >
+// <input type="input" onKeyPress={event =>{
+// if (event.key == "Enter"){
+    // console.log("Pressed enter");
+// }}}
+// onChange={event => setSearchInput(event.target.value)} placeholder="Search in Spotify"></input>
+// <button onClick={search}><span className="material-symbols-outlined">search</span></button>
+// </div>
+// {albums.map( (album, i) => {
+// console.log(album);
+// return (
+// <button className="d-flex" onClick={handlePlayTrack}><img src={album.images[0]} /> <div>{album.name}</div></button>)
+// })
+// }

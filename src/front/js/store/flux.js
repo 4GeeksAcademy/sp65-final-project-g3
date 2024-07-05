@@ -13,6 +13,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			track2Url: null,
 			binauralList: [],
 			soundscapeList: [],
+			mixes:[],
+			mix_title:[],
+			track_1_url:[],
+			binaural_id:[],
 			spotifyAccessToken: null,
 		},
 		actions: {
@@ -85,27 +89,30 @@ const getState = ({ getStore, getActions, setStore }) => {
                 setStore({ track2Url: url });
             },
 			getBinaural: async () => {
-				const uri = "https://ubiquitous-giggle-9vrj6v4p75gc7v57-3001.app.github.dev/api/binaural"
+				const uri = `${process.env.BACKEND_URL}/api/binaural`;
+				// const uri = "https://ubiquitous-giggle-9vrj6v4p75gc7v57-3001.app.github.dev/api/binaural"
 				const response = await fetch(uri);
 				if (!response.ok) {
 					console.log('Error on Agenda', response.status, response.statusText);
 					return
 				}
 				const data = await response.json();
+				// console.log(uri, response, data);
 				setStore({ binauralList: data.results });
-				console.log('Binaural List', data.results);
+				// console.log(data);
+				// console.log('Binaural List', data.results);
 			},
 			getSoundscape: () => {
 
 			},
 
-			// lógica para Spotify
-			setSpotifyAccessToken: (accessSpotifyToken) => {
-				// Actualiza el token de acceso de Spotify en el estado
-				setStore({
-					spotifyAccessToken: accessSpotifyToken
-				});
-			},
+			// // lógica para Spotify
+			// setSpotifyAccessToken: (spToken) => {
+			// 	// Actualiza el token de acceso de Spotify en el estado
+			// 	setStore({
+			// 		spotifyAccessToken: spToken,
+			// 	});
+			// },
 
 			// getSpotifyLists: async () => {
 			// 	const response = await fetch("https://api.spotify.com/v1/playlists/{playlist_id}");
