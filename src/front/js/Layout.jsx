@@ -14,7 +14,6 @@ import { Single } from "./pages/Single.jsx";
 import { SignUp } from "./pages/SignUp.jsx";
 import { Login } from "./pages/Login.jsx";
 import { Binaural } from "./pages/Binaural.jsx";
-import { Profile } from "./pages/Profile.jsx";
 import { Playlist } from "./pages/Playlist.jsx";
 import { Soundscape } from "./pages/Soundscape.jsx";
 import { Tutorial } from "./pages/Tutorial.jsx";
@@ -27,6 +26,7 @@ import { Sleep } from "./pages/Sleep.jsx";
 import { Focus } from "./pages/Focus.jsx";
 import { Dashboard } from "./pages/Dashboard.jsx";
 import { Mixer } from "./pages/Mixer.jsx"
+import { EditProfile } from "./pages/EditProfile.jsx";
 
 
 
@@ -55,7 +55,7 @@ const Layout = () => {
                         <Route path="/delta" element={<Delta />} />
                         <Route path="/mixes" element={<Mixes />} />
                         <Route path="/playlist" element={<Playlist />} />
-                        <Route path="/profile" element={<Profile />} />
+                        <Route path="/edit-profile" element={<EditProfile />} />
                         <Route path="/soundscape" element={<Soundscape />} />
                         <Route path="/tutorial" element={<Tutorial />} />
                         <Route path="/meditation" element={<Meditation />} />

@@ -1,9 +1,8 @@
-import { useEffect } from "react";
-
 const getState = ({ getStore, getActions, setStore }) => {
+
 	return {
 		store: {
-			message: null, 
+			message: null,
 			user: null,
 			demo: [{ title: "FIRST", background: "white", initial: "white" }],
 			isLogin: false,
@@ -76,42 +75,62 @@ const getState = ({ getStore, getActions, setStore }) => {
 				window.location.href = `/tutorial#${section}`;
 			},
 
-			// lógica para Spotify
-			setSpotifyAccessToken: (token) => {
-				// Actualiza el token de acceso de Spotify en el estado
-				setStore({
-					spotifyAccessToken: token
-				});
-			},
+			EditProfile: async (dataToSend) => {
+				console.log(dataToSend);
+				const uri = `${getStore().apiContact}agenda/${getStore().agenda}/Users`
+				const options = {
+					method: 'POST',
+					header: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(dataToSend)
+				}
+				const response = await fetch(uri, options);
+				if (!response.ok) {
+					console.log('error', response.status, reponse.statusText)
+					return
+				}
 
-			// getSpotifyLists: async () => {
-			// 	const response = await fetch("https://api.spotify.com/v1/playlists/{playlist_id}");
-			// 	if (!response.ok) {
-			// 		console.log("Error");
-			// 		return;
-			// 	}
-			// 	const data = await response.json();
-			// 	console.log(data);
-			// 	setStore({ spotifyLists: data.results });
-			// },
+				getActions(), getUsers();
 
-			// settingSpotifyList: (spotifyList) => { setStore({ currentSpotifyList: spotifyList }); },
-			// settingSpotifyListUrl: (text) => { setStore({ currentSpotifyListUrl: text }); },
 
-			// getCurrentSpotifyList: async () => {
-			// 	const uri = getStore().currentSpotifyListUrl;
-			// 	const response = await fetch(uri);
-			// 	if (!response.ok) {
-			// 		console.log("Error");
-			// 		return;
-			// 	}
-			// 	const data = await response.json();
-			// 	console.log(data);
-			// 	setStore({ currentSpotifyList: data.result });
-			// },
+
+				/* 		// lógica para Spotify
+						setSpotifyAccessToken: (token) => {
+							// Actualiza el token de acceso de Spotify en el estado
+							setStore({
+								spotifyAccessToken: token
+							});
+						}, */
+
+				// getSpotifyLists: async () => {
+				// 	const response = await fetch("https://api.spotify.com/v1/playlists/{playlist_id}");
+				// 	if (!response.ok) {
+				// 		console.log("Error");
+				// 		return;
+				// 	}
+				// 	const data = await response.json();
+				// 	console.log(data);
+				// 	setStore({ spotifyLists: data.results });
+				// },
+
+				// settingSpotifyList: (spotifyList) => { setStore({ currentSpotifyList: spotifyList }); },
+				// settingSpotifyListUrl: (text) => { setStore({ currentSpotifyListUrl: text }); },
+
+				// getCurrentSpotifyList: async () => {
+				// 	const uri = getStore().currentSpotifyListUrl;
+				// 	const response = await fetch(uri);
+				// 	if (!response.ok) {
+				// 		console.log("Error");
+				// 		return;
+				// 	}
+				// 	const data = await response.json();
+				// 	console.log(data);
+				// 	setStore({ currentSpotifyList: data.result });
+				// },
+			}
 		}
 	};
-};
+}
 
-
-export default getState;
+export default getState
