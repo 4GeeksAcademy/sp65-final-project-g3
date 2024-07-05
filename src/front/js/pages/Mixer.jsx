@@ -132,36 +132,21 @@ export const Mixer = () => {
         }
     };
 
-/* 
-// Search Spotify
-async function search() {
-    console.log("Search for " + searchInput);
-    // Get request using search to get artist ID
-    const artistParameters = {
-        method: 'GET',
-        headers: {
-            'content-Type': 'application/json',
-            'Authorization': 'Bearer ' + setSpotifyAccessToken  // Revisar cómo llamé al access Token de Spotify
-        }
-    }
-    const artistID = await fetch('https://api.spotify.com/v1/search?q=' + searchInput + '&type=artist', artistParameters)
-    .then(Response => Response.json())
-    .then(data => {return data.artist.item [0].id})
-    
-    // Get request with Artist ID grab all the albums/songs from that artist
-    const returnedAlbums = await fetch('https://api.spotify.com/v1/artists/' + artistID + '/albums' + '?include_groups=album&market=US&limit=10')
-    .then(Response => Response.json())
-    .then(data => {
-        console.log(data);
-        SetAlbums(data.items);
-    });
-}
-console.log(albums); */
+    // const [mixes, setMixes] = useState(store.mixes.map(item => item.name ));
 
-/* //   Lógica para llamar a la librería
-const handleSpotifyLists = (url) => {
-    actions.settingSpotifyListUrl(url);
-}; */
+    // const toggleMix = (name) => {
+    //     if (mixes.includes(name)) {
+    //         const updatedMixes = mixes.filter(item => item !== name);
+    //         setMixes(updatedMixes);
+    //         actions.removeMix(name);
+    //     } else {
+    //         setMixes([...mixes, name]);
+    //         actions.addMixes({ name, type:"Track 1" });
+    //     }
+    // };
+    
+    // const isMix = (name) => mixes.includes(name);
+
 
 //   Lógica para llamar a la librería Binaural
 const handleBinauralClick = (url) => {
@@ -171,45 +156,41 @@ const handleBinauralClick = (url) => {
 
     return (
         <>
-            <div className="container">
-                <div id="mixerControls" className="d-flex">
-                    <button id="libraryTrackOne" className="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" onClick={() => handleSpotifyLists(item.url)}>
+            <div id="mixerConatiner" className="d-flex flex-column bd-highlight mb-3">
+                <div id="volumeControlers" className="d-flex justify-content-center">
+                    <input type="range" id="trackOneVolume" ref={trackOneVolumeRef} onChange={handleTrackOneVolumeChange} min="0" max="100" step="0.01" />
+                    <div id="trackOneVu"><div id="vuFill" className="card" ref={trackOneVuRef} ></div></div>
+                    <div id="trackTwoVu"><div id="vuFill" className="card" ref={trackTwoVuRef}></div></div>
+                    <input type="range" id="trackTwoVolume" ref={trackTwoVolumeRef} onChange={handleTrackTwoVolumeChange} min="0" max="100" step="0.01" />
+                </div>
+                <div id="playerButtons" className="d-flex justify-content-center">
+                    <button id="metalButton2" className="dropdown" type="button" data-bs-toggle="dropdown" onClick={() => handleSpotifyLists(item.url)}>
                         <span className="material-symbols-outlined">menu</span>
-                        <ul>
+                    </button>
+                        {/* <ul>
                             <li><div className="btn">Spotify Library</div></li>
                             <li><div className="btn">Soundscapes Library</div></li>
-                        </ul>
-                    </button>
-                    <input type="range" id="trackOneVolume" ref={trackOneVolumeRef} onChange={handleTrackOneVolumeChange} min="0" max="100" step="0.01" />
-                    <div className="d-flex flex-column bd-highlight mb-3">
-                        <div id="vuMeter" className="d-flex justify-content-center">
-                            <div id="trackOneVu" ref={trackOneVuRef} className="card mx-1"></div>
-                            <div id="trackTwoVu" ref={trackTwoVuRef} className="card mx-1"></div>
-                        </div>
-                        <div id="vuMeter">
-                            <button id="playButton" onClick={playAudio}>play</button>
-                            <button id="pauseButton" onClick={pauseAudio}><b>||</b></button>
-                        </div>
-                    </div>
-                    <input type="range" id="trackTwoVolume" ref={trackTwoVolumeRef} onChange={handleTrackTwoVolumeChange} min="0" max="100" step="0.01" />
-                    <button id="libraryTrackTwo" className="btn dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        </ul> */}
+                    <button id="metalButton" onClick={playAudio}>play</button>
+                    <button id="metalButton" onClick={pauseAudio}><b>||</b></button>
+                    <button id="metalButton2" className="dropdown" type="button" data-bs-toggle="dropdown">
                         <span className="material-symbols-outlined">menu</span>
                     </button>
-                    <ul className="dropdown-menu">
-                        {store.binauralList.map((item, index) => (
-                            <li key={index}>
-                                <button className="dropdown-item" onClick={() => handleBinauralClick(item.track_url)}>
-                                    {item.name}
-                                </button>
-                            </li>
-                        ))}
-                    </ul>
+                        <ul className="dropdown-menu">
+                            {store.binauralList.map((item, index) => (
+                                <li key={index}>
+                                    <button className="dropdown-item" onClick={() => handleBinauralClick(item.track_url)}>{item.name}</button>
+                                </li>
+                            ))}
+                        </ul>
                 </div>
                 {/* Estas 3 líneas se tendrán que reemplazar con la implementación de las librerias */}
-                <input type="text" id="trackOneUrl" ref={trackOneUrlRef} value="https://cdn.pixabay.com/download/audio/2023/03/13/audio_df248bd9ae.mp3" />
-                <input type="text" id="trackTwoUrl" ref={trackTwoUrlRef} value={store.track2Url} />
-                <button id="loadButton" onClick={loadAudio}>Cargar</button>
-             
+                <div id="musicLoaders" className="d-flex justify-content-center">
+                    <input type="text" id="trackUrl" ref={trackOneUrlRef} value="https://cdn.pixabay.com/download/audio/2023/03/13/audio_df248bd9ae.mp3" />
+                    <input type="text" id="trackUrl" ref={trackTwoUrlRef} value={store.track2Url} />
+                    <button id="metalButton3" onClick={loadAudio}>Load</button>
+                    <span  id="favButton" onClick=""><i title="Add Mix" style={{ cursor: "pointer" }} className="fa-solid fa-heart-pulse fa-beat-fade"/></span>
+                </div>
             </div>
         </>
     );
