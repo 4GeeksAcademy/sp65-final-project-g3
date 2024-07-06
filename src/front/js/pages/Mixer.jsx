@@ -150,16 +150,24 @@ const handleMix = () => {
 //             body: JSON.stringify(dataToSend),
 //             headers: {
 //                 'Content-Type' : 'application/json'
-//             }        
-//         }
-//         // Actualizar los favoritos del usuario en el flux.
-//         const data = await response.json();
-//         setStore({ mix_title: data.results });
-//         setStore({ track_1_url: data.results });
-//         setStore({ binaural_id: data.results });
-//     }
-// };
-
+//             },
+//             body: JSON.stringify(dataToSend)
+//           };
+//           const response = await fetch(url, options)
+//           console.log(response);
+//           if (!response.ok) {
+//             console.log('Error: ', response.status, response.statusText);
+//             return
+//           }
+//           // Actualizar los favoritos del usuario en el flux.
+//           const data = await response.json()
+//           console.log();
+//           setStore({ mix_title: data.results })
+//           setStore({ binaural_id: data.results })
+//           setStore({ track_1_url: data.results });
+//         };
+//     };        
+    
 //   Lógica para llamar a la librería Binaural
 const handleBinauralClick = (url) => {
     actions.setTrack2Url(url);
@@ -199,7 +207,7 @@ const handleBinauralClick = (url) => {
                 </div>
                 {/* Estas 3 líneas se tendrán que reemplazar con la implementación de las librerias */}
                 <div id="musicLoaders" className="d-flex justify-content-center">
-                    <input type="text" id="trackUrl" ref={trackOneUrlRef} value="https://cdn.pixabay.com/download/audio/2023/03/13/audio_df248bd9ae.mp3" />
+                    <input type="text" id="trackUrl" ref={trackOneUrlRef} value={store.track1Url} />
                     <input type="text" id="trackUrl" ref={trackTwoUrlRef} value={store.track2Url} />
                     <button id="metalButton3" onClick={loadAudio}>Load</button>
                     {/* El icono debería estar oculto hasta que ambas pistas no estén cargadas */}
