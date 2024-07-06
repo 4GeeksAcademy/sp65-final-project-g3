@@ -136,21 +136,32 @@ export const Mixer = () => {
         }
     };
 
-    // const [mixes, setMixes] = useState(store.mixes.map(item => item.name ));
+// Lógica fav mixes
+const handleMix = () => {
+    // habilitar formulario para que el usuario ingreese el título del mix
+    // Formulario: Estado del mix para controlar el input
+    // Onsubmit que llame la función handleOnSubmitMix
 
-    // const toggleMix = (name) => {
-    //     if (mixes.includes(name)) {
-    //         const updatedMixes = mixes.filter(item => item !== name);
-    //         setMixes(updatedMixes);
-    //         actions.removeMix(name);
-    //     } else {
-    //         setMixes([...mixes, name]);
-    //         actions.addMixes({ name, type:"Track 1" });
-    //     }
-    // };
+}
 
-    // const isMix = (name) => mixes.includes(name);
-
+// const handleOnSubmitMix = (event) => {
+//     event.preventDefault ();
+//     const dataToSend = { mix_title, track_1_url, binaural_id };  // Crear el Data to send que incluya el estado del mix_title track_1_url binaural_id
+//         const url = `${process.env.BACKEND_URL}/api/mixes`;
+//         const options = {  // Con estos 3 datos hacer el post.
+//             method: 'POST',
+//             body: JSON.stringify(dataToSend),
+//             headers: {
+//                 'Content-Type' : 'application/json'
+//             }        
+//         }
+//         // Actualizar los favoritos del usuario en el flux.
+//         const data = await response.json();
+//         setStore({ mix_title: data.results });
+//         setStore({ track_1_url: data.results });
+//         setStore({ binaural_id: data.results });
+//     }
+// };
 
     //   Lógica para llamar a la librería Binaural
     const handleBinauralClick = (url, name) => {
@@ -208,7 +219,8 @@ export const Mixer = () => {
                     <input type="text" id="trackUrl" ref={trackTwoUrlRef} value={store.track2Url} />
                     <label>{track2name}</label>
                     <button id="metalButton3" onClick={loadAudio}>Load</button>
-                    <span id="favButton" onClick=""><i title="Add Mix" style={{ cursor: "pointer" }} className="fa-solid fa-heart-pulse fa-beat-fade" /></span>
+                    {/* El icono debería estar oculto hasta que ambas pistas no estén cargadas */}
+                    <span  id="favButton" onClick={handleMix} ><i title="Add Mix" style={{ cursor: "pointer" }} className="fa-solid fa-heart-pulse fa-beat-fade"/></span> 
                 </div>
             </div>
         </>
@@ -216,17 +228,17 @@ export const Mixer = () => {
 };
 
 
-{/* <div className="d-flex" >
-<input type="input" onKeyPress={event =>{
-if (event.key == "Enter"){
-    console.log("Pressed enter");
-}}}
-onChange={event => setSearchInput(event.target.value)} placeholder="Search in Spotify"></input>
-<button onClick={search}><span className="material-symbols-outlined">search</span></button>
-</div>
-{albums.map( (album, i) => {
-console.log(album);
-return (
-<button className="d-flex" onClick={handlePlayTrack}><img src={album.images[0]} /> <div>{album.name}</div></button>)
-})
-} */}
+// <div className="d-flex" >
+// <input type="input" onKeyPress={event =>{
+// if (event.key == "Enter"){
+    // console.log("Pressed enter");
+// }}}
+// onChange={event => setSearchInput(event.target.value)} placeholder="Search in Spotify"></input>
+// <button onClick={search}><span className="material-symbols-outlined">search</span></button>
+// </div>
+// {albums.map( (album, i) => {
+// console.log(album);
+// return (
+// <button className="d-flex" onClick={handlePlayTrack}><img src={album.images[0]} /> <div>{album.name}</div></button>)
+// })
+// }
