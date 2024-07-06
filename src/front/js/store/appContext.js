@@ -34,6 +34,7 @@ const injectContext = PassedComponent => {
 			// state.actions.setSpotifyAccessToken();
 			// state.actions.getSpotifyLists();
 			state.actions.getBinaural()
+			state.actions.getSoundscape()
 		}, []);
 
 		// The initial value for the context is not null anymore, but the current state of this component,

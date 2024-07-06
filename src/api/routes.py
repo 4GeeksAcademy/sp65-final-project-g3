@@ -280,7 +280,6 @@ def handle_binaural_id(binaural_id):
 
 
 @api.route('/soundscapes', methods=['GET'])
-@jwt_required()
 def handle_soundscapes():
     response_body = {}
 
