@@ -17,7 +17,6 @@ export const Mixer = () => {
     const [track1name, setTrack1Name] = useState();
     const [track2name, setTrack2Name] = useState();
 
-
     const trackOneUrlRef = useRef();
     const trackTwoUrlRef = useRef();
     const trackOneVolumeRef = useRef();
@@ -25,13 +24,12 @@ export const Mixer = () => {
     const trackOneVuRef = useRef();
     const trackTwoVuRef = useRef();
 
-
-    useEffect(() => {
-        if (!store.isLogin) {
-            alert("Please Log-In or Sign-Up");
-            navigate("/login");
-        }
-    }, [store.isLogin, navigate]);
+    // useEffect(() => {
+    //     if (!store.isLogin) {
+    //         alert("Please Log-In or Sign-Up");
+    //         navigate("/login");
+    //     }
+    // }, [store.isLogin, navigate]);
 
     useEffect(() => {
         const updateVuMeter = (analyser, dataArray, fillRef) => {
@@ -142,6 +140,7 @@ const handleMix = () => {
     // Formulario: Estado del mix para controlar el input
     // Onsubmit que llame la función handleOnSubmitMix
 
+
 }
 
 // const handleOnSubmitMix = (event) => {
@@ -153,26 +152,35 @@ const handleMix = () => {
 //             body: JSON.stringify(dataToSend),
 //             headers: {
 //                 'Content-Type' : 'application/json'
-//             }        
-//         }
-//         // Actualizar los favoritos del usuario en el flux.
-//         const data = await response.json();
-//         setStore({ mix_title: data.results });
-//         setStore({ track_1_url: data.results });
-//         setStore({ binaural_id: data.results });
-//     }
-// };
+//             },
+//             body: JSON.stringify(dataToSend)
+//           };
+//           const response = await fetch(url, options)
+//           console.log(response);
+//           if (!response.ok) {
+//             console.log('Error: ', response.status, response.statusText);
+//             return
+//           }
+//           // Actualizar los favoritos del usuario en el flux.
+//           const data = await response.json()
+//           console.log();
+//           setStore({ mix_title: data.results })
+//           setStore({ binaural_id: data.results })
+//           setStore({ track_1_url: data.results });
+//         };
+//     };        
+    
+//   Lógica para llamar a la librería Binaural
+const handleBinauralClick = (url, name) => {
+    actions.setTrack2Url(url);
+    setTrack2Name(name)
+};
 
-    //   Lógica para llamar a la librería Binaural
-    const handleBinauralClick = (url, name) => {
-        actions.setTrack2Url(url);
-        setTrack2Name(name)
-    };
-
-    const handleSoundscapeClick = (url, name) => {
-        actions.setTrack1Url(url);
-        setTrack1Name(name)
-    };
+//   Lógica para llamar a la librería Soundscapes
+const handleSoundscapeClick = (url, name) => {
+    actions.setTrack1Url(url);
+    setTrack1Name(name)
+};
 
 
     return (
