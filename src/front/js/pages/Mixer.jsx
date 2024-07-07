@@ -134,53 +134,50 @@ export const Mixer = () => {
         }
     };
 
-// Lógica fav mixes
-const handleMix = () => {
+    // Lógica fav mixes
     // habilitar formulario para que el usuario ingreese el título del mix
     // Formulario: Estado del mix para controlar el input
     // Onsubmit que llame la función handleOnSubmitMix
-
-
-}
-
-// const handleOnSubmitMix = (event) => {
-//     event.preventDefault ();
-//     const dataToSend = { mix_title, track_1_url, binaural_id };  // Crear el Data to send que incluya el estado del mix_title track_1_url binaural_id
-//         const url = `${process.env.BACKEND_URL}/api/mixes`;
-//         const options = {  // Con estos 3 datos hacer el post.
-//             method: 'POST',
-//             body: JSON.stringify(dataToSend),
-//             headers: {
-//                 'Content-Type' : 'application/json'
-//             },
-//             body: JSON.stringify(dataToSend)
-//           };
-//           const response = await fetch(url, options)
-//           console.log(response);
-//           if (!response.ok) {
-//             console.log('Error: ', response.status, response.statusText);
-//             return
-//           }
-//           // Actualizar los favoritos del usuario en el flux.
-//           const data = await response.json()
-//           console.log();
-//           setStore({ mix_title: data.results })
-//           setStore({ binaural_id: data.results })
-//           setStore({ track_1_url: data.results });
-//         };
-//     };        
+    const [showInput, setShowInput] = useState(false);
+    const [mixTitle, setMixTitle] = useState('');
+    const [error, setError] = useState('');
     
-//   Lógica para llamar a la librería Binaural
-const handleBinauralClick = (url, name) => {
-    actions.setTrack2Url(url);
-    setTrack2Name(name)
-};
+    const handleMix = () => {
+          setShowInput(true);
+        };
+      
+        const handleInputChange = (event) => {
+            setMixTitle(event.target.value);
+        };
+      
+        const handleOnSubmitMix = (event) => {
+          event.preventDefault();
+          if (mixTitle.trim() === '') {
+            setError('Please enter a mix title before submitting.');
+            return;
+          }
+        // Handle the form submission
+        const dataToSend = { mix_title, track_1_url, binaural_id };  // Crear el Data to send que incluya el estado del mix_title track_1_url binaural_id
+        setStore({ mix_title: mixTitle });
+        setStore({ binaural_id: inputValue });
+        setStore({ track_1_url: inputValue });
+        setMixTitle("");
+        console.log('Datos enviados al backend:', dataToSend);
+  };
 
-//   Lógica para llamar a la librería Soundscapes
-const handleSoundscapeClick = (url, name) => {
-    actions.setTrack1Url(url);
-    setTrack1Name(name)
-};
+
+        
+    //   Lógica para llamar a la librería Binaural
+    const handleBinauralClick = (url, name) => {
+        actions.setTrack2Url(url);
+        setTrack2Name(name)
+    };
+
+    //   Lógica para llamar a la librería Soundscapes
+    const handleSoundscapeClick = (url, name) => {
+        actions.setTrack1Url(url);
+        setTrack1Name(name)
+    };
 
 
     return (
@@ -222,14 +219,23 @@ const handleSoundscapeClick = (url, name) => {
                 </div>
                 {/* Estas 3 líneas se tendrán que reemplazar con la implementación de las librerias */}
                 <div id="musicLoaders" className="d-flex justify-content-center">
-                    <input type="text" id="trackUrl" ref={trackOneUrlRef} value={store.track1Url} />
-                    <label>{track1name}</label>
-                    <input type="text" id="trackUrl" ref={trackTwoUrlRef} value={store.track2Url} />
-                    <label>{track2name}</label>
+                    {/* <input type="text" id="track1Url" ref={trackOneUrlRef} value={store.track1Url} /> */}
+                    <label type="text" className="text-center" id="track1Url" ref={trackOneUrlRef} value={store.track1Url} >{track1name}</label>
                     <button id="metalButton3" onClick={loadAudio}>Load</button>
+                    {/* <input type="text" id="track2Url" ref={trackTwoUrlRef} value={store.track2Url} /> */}
+                    <label type="text" className="text-center" id="track2Url" ref={trackTwoUrlRef} value={store.track2Url} >{track2name}</label>
                     {/* El icono debería estar oculto hasta que ambas pistas no estén cargadas */}
-                    <span  id="favButton" onClick={handleMix} ><i title="Add Mix" style={{ cursor: "pointer" }} className="fa-solid fa-heart-pulse fa-beat-fade"/></span> 
+                    <div className="btn dropdown">
+                        <span  id="favButton" onClick={handleMix}><i title="Add Mix" style={{ cursor: "pointer" }} className="fa-solid fa-heart-pulse fa-beat-fade"/></span>
+                    </div>
                 </div>
+                {showInput && (
+                    <div className="d-flex justify-content-center">
+                    <input id="mixTitleLabel" type="text" value={mixTitle} onChange={handleInputChange} placeholder="Set Mix Title" />
+                    {error && <p style={{ color: 'red' }}>{error}</p>}
+                    <button id="metalButton4"><span className="material-symbols-outlined" onClick={handleOnSubmitMix}>library_music</span></button>
+                    </div>
+                )}
             </div>
         </>
     );
