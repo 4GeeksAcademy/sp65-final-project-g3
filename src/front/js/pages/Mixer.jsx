@@ -219,11 +219,9 @@ export const Mixer = () => {
                 </div>
                 {/* Estas 3 líneas se tendrán que reemplazar con la implementación de las librerias */}
                 <div id="musicLoaders" className="d-flex justify-content-center">
-                    {/* <input type="text" id="track1Url" ref={trackOneUrlRef} value={store.track1Url} /> */}
-                    <label type="text" className="text-center" id="track1Url" ref={trackOneUrlRef} value={store.track1Url} >{track1name}</label>
+                    <label type="text" className="text-center" id="track1Url">{track1name}</label>
                     <button id="metalButton3" onClick={loadAudio}>Load</button>
-                    {/* <input type="text" id="track2Url" ref={trackTwoUrlRef} value={store.track2Url} /> */}
-                    <label type="text" className="text-center" id="track2Url" ref={trackTwoUrlRef} value={store.track2Url} >{track2name}</label>
+                    <label type="text" className="text-center" id="track2Url">{track2name}</label>
                     {/* El icono debería estar oculto hasta que ambas pistas no estén cargadas */}
                     <div className="btn dropdown">
                         <span  id="favButton" onClick={handleMix}><i title="Add Mix" style={{ cursor: "pointer" }} className="fa-solid fa-heart-pulse fa-beat-fade"/></span>
@@ -237,6 +235,8 @@ export const Mixer = () => {
                     </div>
                 )}
             </div>
+            <input type="text" id="secretUrl" ref={trackOneUrlRef} value={store.track1Url} />
+            <input type="text" id="secretUrl" ref={trackTwoUrlRef} value={store.track2Url} />
         </>
     );
 };
