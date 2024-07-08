@@ -12,6 +12,8 @@ import { useEffect } from "react";
 					tutorialSection: null,
 					track1Url: null,
 					track2Url: null,
+					trackOneName: null,
+					trackTwoName: null,
 					binauralList: [],
 					mixes:[],
 					mix_title:[],
@@ -91,6 +93,12 @@ import { useEffect } from "react";
 			},
 			setTrack1Url: (url) => {
 				setStore({ track1Url: url });
+			},
+			setTrackOneName: (name) => {
+				setStore({trackOneName: name})
+			},
+			setTrackTwoName: (name) => {
+				setStore({trackTwoName: name})
 			},
 						getBinaural: async () => {
 							const uri = `${process.env.BACKEND_URL}/api/binaural`;
