@@ -18,7 +18,7 @@ export const OffCanvas = () => {
                         Home
                     </Link>
 
-                    <Link to="/binaural">
+                    <Link id="links" to="/binaural">
                         <span className="material-symbols-outlined">music_video</span>
                         Binaurapp Content
                     </Link>
@@ -29,22 +29,22 @@ export const OffCanvas = () => {
                         Mixes
                     </Link>
 
-                    <Link to="/tutorial">
+                    <Link id="links" to="/tutorial">
                         <span className="material-symbols-outlined">movie_info</span>
                         Tutorials
                     </Link>
 
-                    <Link to="/binaural">
+                    <Link id="links" to="/binaural">
                         <span className="material-symbols-outlined">waves</span>
                         Binaural Waves
                     </Link>
 
-                    <Link to="/soundscape">
+                    <Link id="links" to="/soundscape">
                         <span className="material-symbols-outlined">stock_media</span>
                         Soundscapes
                     </Link>
 
-                    <Link to="/binaural">
+                    <Link id="links" to="/binaural">
                         <span className="material-symbols-outlined">music_video</span>
                         Binaurapp Content
                     </Link>
