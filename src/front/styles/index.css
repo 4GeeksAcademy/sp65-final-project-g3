@@ -32,3 +32,14 @@
       background-size: cover;
       overflow-x: hidden;
   }
+
+  #binaurapp {
+    color: white;
+    margin-top: 10px;
+    margin-left: 20px;
+  }
+
+  #links {
+    color: white;
+
+  }

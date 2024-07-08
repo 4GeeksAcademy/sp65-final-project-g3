@@ -178,6 +178,10 @@
     5px 0 15px rgb(50, 84, 255);
 }
 
+#secretUrl {
+  visibility: hidden;
+}
+
 #metalButton3 {
   margin-top: 5px;
   margin-bottom: 5px;
