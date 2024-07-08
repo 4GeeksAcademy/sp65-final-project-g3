@@ -128,6 +128,7 @@ def handle_mixes():
 @api.route('/mixes', methods=['POST'])
 @jwt_required()
 def handle_mixes_post():
+    print("entramos")
     response_body = {}
     current_user = get_jwt_identity()
     user_id = current_user['user_id']

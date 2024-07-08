@@ -151,19 +151,27 @@ export const Mixer = () => {
         };
       
         const handleOnSubmitMix = (event) => {
-          event.preventDefault();
-          if (mixTitle.trim() === '') {
-            setError('Please enter a mix title before submitting.');
-            return;
-          }
-        // Handle the form submission
-        const dataToSend = { mix_title, track_1_url, binaural_id };  // Crear el Data to send que incluya el estado del mix_title track_1_url binaural_id
-        setStore({ mix_title: mixTitle });
-        setStore({ binaural_id: inputValue });
-        setStore({ track_1_url: inputValue });
-        setMixTitle("");
-        console.log('Datos enviados al backend:', dataToSend);
-  };
+            event.preventDefault();
+            if (mixTitle.trim() === '') {
+                setError('Please enter a mix title before submitting.');
+                return;
+            }
+            // Crear el Data to send que incluya el estado del mix_title track_1_url binaural_id
+            const dataToSend = { 
+                mix_title: mixTitle, 
+                track_1_url: store.track1Url, 
+                /* track_1_name: track1name, */
+                binaural_id: store.track2Url, 
+                /* track_2_name: track2name */
+            };  
+            actions.addMixes(dataToSend)
+            // Aquí podrías realizar una llamada al backend para enviar dataToSend
+            console.log('Datos enviados al backend:', dataToSend);
+            setMixTitle("");
+            setShowInput(false);
+            setError('');
+        };
+    
 
 
         
