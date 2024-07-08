@@ -117,12 +117,13 @@ import { useEffect } from "react";
 							setStore({ soundscapeList: data.results });
 							console.log('Soundscape List', data.results);
 						},
-						Profile: async (dataToSend) => {
+						updateProfile: async (userId, dataToSend) => {
 							console.log(dataToSend);
-							const uri = `${getStore().apiContact}agenda/${getStore().agenda}/Users`
+							const uri = `${process.env.BACKEND_URL}/api/users/${userId}`;
 							const options = {
 								method: 'POST',
 								header: {
+									Authorization: `Bearer ${localStorage.getItem("token")}`,
 									'Content-Type': 'application/json'
 								},
 								body: JSON.stringify(dataToSend)
@@ -130,10 +131,11 @@ import { useEffect } from "react";
 							const response = await fetch(uri, options);
 							if (!response.ok) {
 								console.log('error', response.status, reponse.statusText)
-								return
+								return;
 							}
-			
-							getActions(), getUsers();
+							const data = await response.json();
+							setStore ({ user: data.results })
+
 						},
 		
 			// lógica para Spotify
