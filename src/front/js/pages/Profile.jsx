@@ -1,6 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "../../styles/profile.css"
 import { Context } from "../store/appContext.js";
+import { useNavigate } from "react-router-dom";
 
 export const Profile = () => {
     const { store, actions } = useContext(Context);
@@ -9,7 +10,15 @@ export const Profile = () => {
     const [email, setEmail] = useState(store.user.email);
     const [isActive, setIsActive] = useState(store.user.is_active);
     const [country, setCountry] = useState(store.user.country);
-    const [city, setCity] = useState(store.user.city)
+    const [city, setCity] = useState(store.user.city);
+    const navigate = useNavigate();
+
+        useEffect(() => {
+        if (!store.isLogin) {
+            alert("Please Log-In or Sign-Up");
+            navigate("/login");
+        }
+    }, [store.isLogin, navigate]);
 
 
     const handleName = (event) => { setName(event.target.value) };
@@ -21,6 +30,7 @@ export const Profile = () => {
         setName('');
         setLastName('');
         setCountry('');
+        setIsActive (false);
         setCity('');
     }
 
@@ -44,37 +54,29 @@ export const Profile = () => {
         <>
             <form className="form" onSubmit={handleSubmit}>
                 <h3 id="heading">Profile</h3>
-                <div className="mb-3 field">
-                    <label htmlFor="inputName" className="form-label">First Name</label>
-                    <input type="text" id="firt_name"
-                        value={name}
-                        onChange={handleName}
-                    />
+                <div className="field text-end">
+                    <label htmlFor="name" className="form-label2">Name <span className="text-muted">(Optional)</span></label>
+                    <input type="name" id="textResized" className="form-control" placeholder="Your name" value={name} onChange={handleName} />
                 </div>
-                <div className="mb-3 field">
-                    <label htmlFor="InputLastName" className="form-label">Last Name</label>
-                    <input type="text" id="last_name"
-                        value={lastName}
-                        onChange={handleLastName}
-                    />
+                <div className="field row-2 text-end">
+                    <label htmlFor="lastName" className="form-label2">Last Name <span className="text-muted">(Optional)</span></label>
+                    <input type="lastName" id="textResized" className="form-control" placeholder="Your last name" value={lastName} onChange={handleLastName} />
                 </div>
-                <div className="mb-3 field">
-                    <label htmlFor="InputLastName" className="form-label">Country</label>
-                    <input type="text" id="last_name"
-                        value={country}
-                        onChange={handleCountry}
-                    />
+                <div className="field row-2 text-end">
+                    <label htmlFor="email" className="form-label2">E-mail<span className="text-danger"> (Required)</span></label>
+                    <label type="email" id="textResized" className="form-control"><span className="text-muted">{email}</span></label>
                 </div>
-                <div className="mb-3 field">
-                    <label htmlFor="InputLastName" className="form-label">City</label>
-                    <input type="text" id="last_name"
-                        value={city}
-                        onChange={handleCity}
-                    />
+                <div className="field row-2 text-end">
+                    <label htmlFor="country" className="form-label2">Country <span className="text-muted">(Optional)</span></label>
+                    <input type="text" id="textResized" className="form-control" value={country} onChange={handleCountry} />
+                </div>
+                <div className="field row-2 text-end">
+                    <label htmlFor="city" className="form-label2">City <span className="text-muted">(Optional)</span></label>
+                    <input type="city" id="textResized" className="form-control" value={city} onChange={handleCity} />
                 </div>
                 <div className="d-flex justify-content-center">
-                    <button type="submit" className="button1">Save</button>
-                    <button type="reset" className="button1" onClick={handleReset}>Reset</button>
+                    <button type="submit" className="button1">&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                    <button type="reset" className="button1" onClick={handleReset}>&nbsp;&nbsp;Reset&nbsp;&nbsp;</button>
                 </div>
             </form>
         </>

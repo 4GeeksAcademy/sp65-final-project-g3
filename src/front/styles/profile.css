@@ -48,6 +48,7 @@ body {
   .form-control {
 	background: none;
 	border: none;
+	width: 290px;
 	outline: none;
 	width: 100%;
 	color: #d3d3d3;
@@ -66,6 +67,10 @@ body {
 	padding-right: 1.1em;
 	border-radius: 5px;
 	margin-right: 0.5em;
+	margin-top: 15px;
+	margin-left: 7.5px;
+	margin-right: 7.5px;
+	margin-bottom: 15px;
 	border: none;
 	outline: none;
 	transition: .4s ease-in-out;
@@ -78,18 +83,14 @@ body {
 	color: white;
   }
   
-  .typo-callout {
-	font-size: 15px;
-	line-height: 20px
+  #textResized {
+	font-size: 18px;
+	text-align: justify;
+	margin-left: 20px;
   }
+
+  .form-label2 {
+	width: 110px;
+  }
+
   
-  .border {
-  width: 40px;
-  height: 2px;
-  margin: 0 5px;
-  align-items: center;
-  }
-  
-  #termsPolicy {
-  size: 20px;
-  }

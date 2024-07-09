@@ -6,6 +6,7 @@ import { useEffect } from "react";
 					message: null, 
 					user: null,
 					demo: [{ title: "FIRST", background: "white", initial: "white" }],
+					email:[],
 					isLogin: false,
 					currentSection: null,
 					soundscapeSection: null,
@@ -140,10 +141,11 @@ import { useEffect } from "react";
 						updateProfile: async (userId, dataToSend) => {
                             console.log(dataToSend);
                             const uri = `${process.env.BACKEND_URL}/api/users/${userId}`;
+							const token = localStorage.getItem("token");
                             const options = {
-                                method: 'POST',
+                                method: 'PUT',
                                 header: {
-                                  	Authorization: `Bearer ${localStorage.getItem("token")}`,
+                                  	Authorization: `Bearer ${token}`,
                                     'Content-Type': 'application/json'
                                 },
                                 body: JSON.stringify(dataToSend)
