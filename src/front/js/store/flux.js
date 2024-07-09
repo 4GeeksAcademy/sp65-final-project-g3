@@ -143,6 +143,7 @@ import { useEffect } from "react";
                             const options = {
                                 method: 'POST',
                                 header: {
+                                  	Authorization: `Bearer ${localStorage.getItem("token")}`,
                                     'Content-Type': 'application/json'
                                 },
                                 body: JSON.stringify(dataToSend)
