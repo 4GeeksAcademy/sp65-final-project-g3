@@ -27,6 +27,9 @@ import { Sleep } from "./pages/Sleep.jsx";
 import { Focus } from "./pages/Focus.jsx";
 import { Dashboard } from "./pages/Dashboard.jsx";
 import { Mixer } from "./pages/Mixer.jsx"
+import { UploadBinaural } from "./pages/UploadBinaural.jsx"
+import { UploadSoundscape } from "./pages/UploadSoundscape.jsx"
+import { UploadTutorial } from "./pages/UploadTutorial.jsx";
 
 
 
@@ -63,6 +66,9 @@ const Layout = () => {
                         <Route path="/focus" element={<Focus />} />
                         <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="/mixer" element={<Mixer />} />
+                        <Route path="/uploadbinaural" element={<UploadBinaural />} />
+                        <Route path="/uploadsoundscape" element={<UploadSoundscape />} />
+                        <Route path="/uploadtutorial" element={<UploadTutorial />} />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <OffCanvas />
