@@ -172,6 +172,7 @@ export const Mixer = () => {
             setMixTitle("");
             setShowInput(false);
             setError('');
+        };
 
     //   Lógica para llamar a la librería Binaural
     const handleBinauralClick = (url, name) => {
