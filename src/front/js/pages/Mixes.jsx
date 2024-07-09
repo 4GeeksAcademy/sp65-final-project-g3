@@ -23,6 +23,8 @@ export const Mixes = () => {
   //   console.log("Url Values:", store.setTrack1Url, store.setTrack2Url);
   // };
 
+  
+
   return (
     <Card>
       <Card.Header>Your Mixes</Card.Header>
