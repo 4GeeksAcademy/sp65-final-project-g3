@@ -177,13 +177,17 @@ export const Mixer = () => {
         
     //   Lógica para llamar a la librería Binaural
     const handleBinauralClick = (url, name) => {
+        actions.setTrack2Url(null);
         actions.setTrack2Url(url);
+        actions.setTrackTwoName(null);
         setTrack2Name(name)
     };
 
     //   Lógica para llamar a la librería Soundscapes
     const handleSoundscapeClick = (url, name) => {
+        actions.setTrack1Url(null);
         actions.setTrack1Url(url);
+        actions.setTrackOneName(null);
         setTrack1Name(name)
     };
 
