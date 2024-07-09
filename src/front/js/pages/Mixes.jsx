@@ -25,6 +25,8 @@ export const Mixes = () => {
     console.log("Url Values:", store.setTrack1Url, store.setTrack2Url);
   };
 
+  
+
   return (
     <Card id="field">
       <h1 className="text-center">Your Mixes</h1>

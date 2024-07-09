@@ -24,12 +24,11 @@ export const Mixer = () => {
     const trackOneVuRef = useRef();
     const trackTwoVuRef = useRef();
 
-    // useEffect(() => {
-    //     if (!store.isLogin) {
-    //         alert("Please Log-In or Sign-Up");
-    //         navigate("/login");
-    //     }
-    // }, [store.isLogin, navigate]);
+    useEffect(() => {
+        if (!store.isLogin) {
+            alert("Please Log-In or Sign-Up");
+        }
+    }, [store.isLogin, navigate]);
 
     useEffect(() => {
         const updateVuMeter = (analyser, dataArray, fillRef) => {
@@ -141,7 +140,7 @@ export const Mixer = () => {
     const [showInput, setShowInput] = useState(false);
     const [mixTitle, setMixTitle] = useState('');
     const [error, setError] = useState('');
-    
+
     const handleMix = () => {
           setShowInput(true);
         };
@@ -173,11 +172,7 @@ export const Mixer = () => {
             setMixTitle("");
             setShowInput(false);
             setError('');
-        };
-    
 
-
-        
     //   Lógica para llamar a la librería Binaural
     const handleBinauralClick = (url, name) => {
         actions.setTrack2Url(null);
@@ -234,19 +229,19 @@ export const Mixer = () => {
                 </div>
                 {/* Estas 3 líneas se tendrán que reemplazar con la implementación de las librerias */}
                 <div id="musicLoaders" className="d-flex justify-content-center">
-                    <label type="text" className="text-center" id="track1Url">{store.trackOneName? store.trackOneName : track1name}</label>
+                    <label type="text" className="text-center" id="track1Url">{store.trackOneName ? store.trackOneName : track1name}</label>
                     <button id="metalButton3" onClick={loadAudio}>Load</button>
-                    <label type="text" className="text-center" id="track2Url">{store.trackTwoName? store.trackTwoName : track2name}</label>
+                    <label type="text" className="text-center" id="track2Url">{store.trackTwoName ? store.trackTwoName : track2name}</label>
                     {/* El icono debería estar oculto hasta que ambas pistas no estén cargadas */}
                     <div className="btn dropdown">
-                        <span  id="favButton" onClick={handleMix}><i title="Add Mix" style={{ cursor: "pointer" }} className="fa-solid fa-heart-pulse fa-beat-fade"/></span>
+                        <span id="favButton" onClick={handleMix}><i title="Add Mix" style={{ cursor: "pointer" }} className="fa-solid fa-heart-pulse fa-beat-fade" /></span>
                     </div>
                 </div>
                 {showInput && (
                     <div className="d-flex justify-content-center">
-                    <input id="mixTitleLabel" type="text" value={mixTitle} onChange={handleInputChange} placeholder="Set Mix Title" />
-                    {error && <p style={{ color: 'red' }}>{error}</p>}
-                    <button id="metalButton4"><span className="material-symbols-outlined" onClick={handleOnSubmitMix}>library_music</span></button>
+                        <input id="mixTitleLabel" type="text" value={mixTitle} onChange={handleInputChange} placeholder="Set Mix Title" />
+                        {error && <p style={{ color: 'red' }}>{error}</p>}
+                        <button id="metalButton4"><span className="material-symbols-outlined" onClick={handleOnSubmitMix}>library_music</span></button>
                     </div>
                 )}
             </div>
@@ -260,7 +255,7 @@ export const Mixer = () => {
 // <div className="d-flex" >
 // <input type="input" onKeyPress={event =>{
 // if (event.key == "Enter"){
-    // console.log("Pressed enter");
+// console.log("Pressed enter");
 // }}}
 // onChange={event => setSearchInput(event.target.value)} placeholder="Search in Spotify"></input>
 // <button onClick={search}><span className="material-symbols-outlined">search</span></button>

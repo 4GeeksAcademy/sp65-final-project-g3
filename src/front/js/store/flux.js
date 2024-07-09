@@ -181,6 +181,72 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await response.json();
 				setStore({ mixes: data.results })
 			},
+			addBinaural: async (dataToSend) => {
+				console.log(dataToSend);
+				const uri = `${process.env.BACKEND_URL}/api/binaural`;
+				const token = localStorage.getItem("token");
+				console.log(token);
+				const options = {
+					method: 'POST',
+					headers: {
+						'Authorization': `Bearer ${token}`,
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(dataToSend)
+				}
+				console.log("Options", options);
+				const response = await fetch(uri, options);
+				if (!response.ok) {
+					console.log('error', response.status, response.statusText)
+					return
+				}
+				const data = await response.json();
+				setStore({ binauralList: data.results })
+			},
+			addSoundscape: async (dataToSend) => {
+				console.log(dataToSend);
+				const uri = `${process.env.BACKEND_URL}/api/soundscapes`;
+				const token = localStorage.getItem("token");
+				console.log(token);
+				const options = {
+					method: 'POST',
+					headers: {
+						'Authorization': `Bearer ${token}`,
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(dataToSend)
+				}
+				console.log("Options", options);
+				const response = await fetch(uri, options);
+				if (!response.ok) {
+					console.log('error', response.status, response.statusText)
+					return
+				}
+				const data = await response.json();
+				setStore({ soundscapeList: data.results })
+			},
+			deleteSoundscape: async (dataToSend) => {
+				console.log(dataToSend);
+				const uri = `${process.env.BACKEND_URL}/api/soundscapes`;
+				const token = localStorage.getItem("token");
+				console.log(token);
+				const options = {
+					method: 'DELETE',
+					headers: {
+						'Authorization': `Bearer ${token}`,
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(dataToSend)
+				}
+				console.log("Options", options);
+				const response = await fetch(uri, options);
+				if (!response.ok) {
+					console.log('error', response.status, response.statusText)
+					return
+				}
+				const data = await response.json();
+				setStore({ soundscapeList: data.results })
+			},
 			// lógica para Spotify
 			// setSpotifyAccessToken: (accessSpotifyToken) => {
 			// Actualiza el token de acceso de Spotify en el estado
