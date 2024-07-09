@@ -151,19 +151,27 @@ export const Mixer = () => {
         };
       
         const handleOnSubmitMix = (event) => {
-          event.preventDefault();
-          if (mixTitle.trim() === '') {
-            setError('Please enter a mix title before submitting.');
-            return;
-          }
-        // Handle the form submission
-        const dataToSend = { mix_title, track_1_url, binaural_id };  // Crear el Data to send que incluya el estado del mix_title track_1_url binaural_id
-        setStore({ mix_title: mixTitle });
-        setStore({ binaural_id: inputValue });
-        setStore({ track_1_url: inputValue });
-        setMixTitle("");
-        console.log('Datos enviados al backend:', dataToSend);
-  };
+            event.preventDefault();
+            if (mixTitle.trim() === '') {
+                setError('Please enter a mix title before submitting.');
+                return;
+            }
+            // Crear el Data to send que incluya el estado del mix_title track_1_url binaural_id
+            const dataToSend = { 
+                mix_title: mixTitle, 
+                track_1_url: store.track1Url, 
+                /* track_1_name: track1name, */
+                binaural_id: store.track2Url, 
+                /* track_2_name: track2name */
+            };  
+            actions.addMixes(dataToSend)
+            // Aquí podrías realizar una llamada al backend para enviar dataToSend
+            console.log('Datos enviados al backend:', dataToSend);
+            setMixTitle("");
+            setShowInput(false);
+            setError('');
+        };
+    
 
 
         
@@ -219,11 +227,9 @@ export const Mixer = () => {
                 </div>
                 {/* Estas 3 líneas se tendrán que reemplazar con la implementación de las librerias */}
                 <div id="musicLoaders" className="d-flex justify-content-center">
-                    {/* <input type="text" id="track1Url" ref={trackOneUrlRef} value={store.track1Url} /> */}
-                    <label type="text" className="text-center" id="track1Url" ref={trackOneUrlRef} value={store.track1Url} >{track1name}</label>
+                    <label type="text" className="text-center" id="track1Url">{store.trackOneName? store.trackOneName : track1name}</label>
                     <button id="metalButton3" onClick={loadAudio}>Load</button>
-                    {/* <input type="text" id="track2Url" ref={trackTwoUrlRef} value={store.track2Url} /> */}
-                    <label type="text" className="text-center" id="track2Url" ref={trackTwoUrlRef} value={store.track2Url} >{track2name}</label>
+                    <label type="text" className="text-center" id="track2Url">{store.trackTwoName? store.trackTwoName : track2name}</label>
                     {/* El icono debería estar oculto hasta que ambas pistas no estén cargadas */}
                     <div className="btn dropdown">
                         <span  id="favButton" onClick={handleMix}><i title="Add Mix" style={{ cursor: "pointer" }} className="fa-solid fa-heart-pulse fa-beat-fade"/></span>
@@ -237,6 +243,8 @@ export const Mixer = () => {
                     </div>
                 )}
             </div>
+            <input type="text" id="secretUrl" ref={trackOneUrlRef} value={store.track1Url} />
+            <input type="text" id="secretUrl" ref={trackTwoUrlRef} value={store.track2Url} />
         </>
     );
 };

@@ -12,12 +12,15 @@ import { useEffect } from "react";
 					tutorialSection: null,
 					track1Url: null,
 					track2Url: null,
+					trackOneName: null,
+					trackTwoName: null,
 					binauralList: [],
 					mixes:[],
 					mix_title:[],
 					track_1_url:[],
 					binaural_id:[],
 					soundscapeList: [],
+					mixesList: [],
 					spotifyAccessToken: null,
 				},
 				actions: {
@@ -92,6 +95,12 @@ import { useEffect } from "react";
 			setTrack1Url: (url) => {
 				setStore({ track1Url: url });
 			},
+			setTrackOneName: (name) => {
+				setStore({trackOneName: name})
+			},
+			setTrackTwoName: (name) => {
+				setStore({trackTwoName: name})
+			},
 						getBinaural: async () => {
 							const uri = `${process.env.BACKEND_URL}/api/binaural`;
 							// const uri = "https://ubiquitous-giggle-9vrj6v4p75gc7v57-3001.app.github.dev/api/binaural"
@@ -116,28 +125,59 @@ import { useEffect } from "react";
 							const data = await response.json();
 							setStore({ soundscapeList: data.results });
 							console.log('Soundscape List', data.results);
-						},
-						updateProfile: async (userId, dataToSend) => {
-							console.log(dataToSend);
-							const uri = `${process.env.BACKEND_URL}/api/users/${userId}`;
-							const options = {
-								method: 'POST',
-								header: {
-									Authorization: `Bearer ${localStorage.getItem("token")}`,
-									'Content-Type': 'application/json'
-								},
-								body: JSON.stringify(dataToSend)
-							}
-							const response = await fetch(uri, options);
+						},				
+						getMixes: async () => {
+							const uri = `${process.env.BACKEND_URL}/api/mixes`;
+							const response = await fetch(uri);
 							if (!response.ok) {
-								console.log('error', response.status, reponse.statusText)
-								return;
+								console.log('Error on Agenda', response.status, response.statusText);
+								return
 							}
 							const data = await response.json();
-							setStore ({ user: data.results })
-
+							setStore({ mixesList: data.results });
+							console.log('Mixes List', data.results);
 						},
-		
+						updateProfile: async (userId, dataToSend) => {
+                            console.log(dataToSend);
+                            const uri = `${process.env.BACKEND_URL}/api/users/${userId}`;
+                            const options = {
+                                method: 'POST',
+                                header: {
+                                  	Authorization: `Bearer ${localStorage.getItem("token")}`,
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(dataToSend)
+                            }
+                            const response = await fetch(uri, options);
+                            if (!response.ok) {
+                                console.log('error', response.status, reponse.statusText)
+                                return
+                            }
+                            const data = await response.json();
+                            setStore ({ user: data.results })
+                        },
+						addMixes: async (dataToSend) => {
+                            console.log(dataToSend);
+                            const uri = `${process.env.BACKEND_URL}/api/mixes`;
+							const token = localStorage.getItem("token");
+							console.log(token);
+                            const options = {
+                                method: 'POST',
+                                header: {
+									'Authorization': `Bearer ${token}`,
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(dataToSend)
+                            }
+							console.log("Options", options);
+                            const response = await fetch(uri, options);
+                            if (!response.ok) {
+                                console.log('error', response.status, response.statusText)
+                                return
+                            }
+                            const data = await response.json();
+                            setStore ({ mixes: data.results })
+                        },
 			// lógica para Spotify
 			// setSpotifyAccessToken: (accessSpotifyToken) => {
 				// Actualiza el token de acceso de Spotify en el estado
