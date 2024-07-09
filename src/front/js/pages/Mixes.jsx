@@ -1,164 +1,47 @@
-import React from "react";
-// import { Context } from "./store/appContext";
+import React, { useContext } from "react";
+import { Context } from "../store/appContext"
 import "../../styles/mixes.css"
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
+import { useNavigate } from "react-router-dom";
 
 export const Mixes = () => {
+  const { store, actions } = useContext(Context);
+  const navigate = useNavigate();
 
-    return (
-        <div className="row">
-    
-        <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-          <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 className="h2" id="Headers">My Mixes</h1>
-          </div>
-    
-    
-          <h2 id="Headers">Section title</h2>
-          <div className="table-responsive small">
-            <table className="table table-striped table-sm">
-              <thead>
-                <tr>
-                  <th scope="col" id="column">#id</th>
-                  <th scope="col" id="column">Mix Title</th>
-                  <th scope="col" id="column">Track 1 url</th>
-                  <th scope="col" id="column">Binaural id</th>
-                  <th scope="col" id="column">Date</th>
-                  <th scope="col" id="column">Acumulator Concurrency</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td id="column2">1,001</td>
-                  <td id="column2">random</td>
-                  <td id="column2">data</td>
-                  <td id="column2">1,001</td>
-                  <td id="column2">placeholder</td>
-                  <td id="column2">text</td>
-                </tr>
-                <tr>
-                  <td id="column2">1,002</td>
-                  <td id="column2">placeholder</td>
-                  <td id="column2">irrelevant</td>
-                  <td id="column2">1,002</td>
-                  <td id="column2">visual</td>
-                  <td id="column2">layout</td>
-                </tr>
-                <tr>
-                  <td id="column2">1,003</td>
-                  <td id="column2">data</td>
-                  <td id="column2">rich</td>
-                  <td id="column2">1,003</td>
-                  <td id="column2">dashboard</td>
-                  <td id="column2">tabular</td>
-                </tr>
-                <tr>
-                  <td id="column2">1,003</td>
-                  <td id="column2">information</td>
-                  <td id="column2">placeholder</td>
-                  <td id="column2">1,003</td>
-                  <td id="column2">illustrative</td>
-                  <td id="column2">data</td>
-                </tr>
-                <tr>
-                  <td id="column2">1,004</td>
-                  <td id="column2">text</td>
-                  <td id="column2">random</td>
-                  <td id="column2">1,004</td>
-                  <td id="column2">layout</td>
-                  <td id="column2">dashboard</td>
-                </tr>
-                <tr>
-                  <td id="column2">1,005</td>
-                  <td id="column2">dashboard</td>
-                  <td id="column2">irrelevant</td>
-                  <td id="column2">1,005</td>
-                  <td id="column2">text</td>
-                  <td id="column2">placeholder</td>
-                </tr>
-                <tr>
-                  <td id="column2">1,006</td>
-                  <td id="column2">dashboard</td>
-                  <td id="column2">illustrative</td>
-                  <td id="column2">1,006</td>
-                  <td id="column2">rich</td>
-                  <td id="column2">data</td>
-                </tr>
-                <tr>
-                  <td id="column2">1,007</td>
-                  <td id="column2">placeholder</td>
-                  <td id="column2">tabular</td>
-                  <td id="column2">1,007</td>
-                  <td id="column2">information</td>
-                  <td id="column2">irrelevant</td>
-                </tr>
-                <tr>
-                  <td id="column2">1,008</td>
-                  <td id="column2">random</td>
-                  <td id="column2">data</td>
-                  <td id="column2">1,008</td>
-                  <td id="column2">placeholder</td>
-                  <td id="column2">text</td>
-                </tr>
-                <tr>
-                  <td id="column2">1,009</td>
-                  <td id="column2">placeholder</td>
-                  <td id="column2">irrelevant</td>
-                  <td id="column2">1,009</td>
-                  <td id="column2">visual</td>
-                  <td id="column2">layout</td>
-                </tr>
-                <tr>
-                  <td id="column2">1,010</td>
-                  <td id="column2">data</td>
-                  <td id="column2">rich</td>
-                  <td id="column2">1,010</td>
-                  <td id="column2">dashboard</td>
-                  <td id="column2">tabular</td>
-                </tr>
-                <tr>
-                  <td id="column2">1,011</td>
-                  <td id="column2">information</td>
-                  <td id="column2">placeholder</td>
-                  <td id="column2">1,011</td>
-                  <td id="column2">illustrative</td>
-                  <td id="column2">data</td>
-                </tr>
-                <tr>
-                  <td id="column2">1,012</td>
-                  <td id="column2">text</td>
-                  <td id="column2">placeholder</td>
-                  <td id="column2">1,012</td>
-                  <td id="column2">layout</td>
-                  <td id="column2">dashboard</td>
-                </tr>
-                <tr>
-                  <td id="column2">1,013</td>
-                  <td id="column2">dashboard</td>
-                  <td id="column2">irrelevant</td>
-                  <td id="column2">1,013</td>
-                  <td id="column2">text</td>
-                  <td id="column2">visual</td>
-                </tr>
-                <tr>
-                  <td id="column2">1,014</td>
-                  <td id="column2">dashboard</td>
-                  <td id="column2">illustrative</td>
-                  <td id="column2">1,014</td>
-                  <td id="column2">rich</td>
-                  <td id="column2">data</td>
-                </tr>
-                <tr>
-                  <td id="column2">1,015</td>
-                  <td id="column2">random</td>
-                  <td id="column2">tabular</td>
-                  <td id="column2">1,015</td>
-                  <td id="column2">information</td>
-                  <td id="column2">text</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </main>
-      </div>
-    )
+  const { first_name, last_name, email } = store.user;
+  // const { track_1_name, track_2_name, mix_title, track_1_url, track_2_url } = store.mixesList;
+
+  const handleLoadMix = (track_1_name, track_2_name, track_1_url, binaural_id) => {
+    console.log("Loading mix with:", track_1_name, track_2_name, track_1_url, binaural_id);
+    actions.setTrack1Url(track_1_url);
+    actions.setTrackOneName(track_1_name);
+    actions.setTrack2Url(binaural_id);
+    actions.setTrackTwoName(track_2_name)
+    navigate("/mixer");
+    console.log("Url Values:", store.setTrack1Url, store.setTrack2Url);
+  };
+
+  return (
+    <Card>
+      <Card.Header>Your Mixes</Card.Header>
+      <Card.Body>
+        <Card.Title>{first_name} {last_name}</Card.Title>
+        <ListGroup variant="flush">
+          {store.mixesList.map((item, index) => (
+            <ListGroup.Item key={index}>
+              {item.mix_title} with Track 1 {item.track_1_name} and Track 2 {item.track_2_name}
+              <Button
+                variant="primary"
+                onClick={() => handleLoadMix(item.track_1_name, item.track_2_name, item.track_1_url, item.binaural_id)}
+              >
+                Load Mix
+              </Button>
+            </ListGroup.Item>
+          ))}
+        </ListGroup>
+      </Card.Body>
+    </Card>
+  )
 }

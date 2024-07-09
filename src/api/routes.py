@@ -137,7 +137,9 @@ def handle_mixes_post():
     row.mix_title = data['mix_title']
     row.user_id = user_id,
     row.track_1_url = data['track_1_url']
-    row.binaural_id = data['binaural_id']  # Se debería verificar si el binaural id existe
+    row.track_1_name = data['track_1_name']
+    row.binaural_id = data['binaural_id']
+    row.track_2_name = data['track_2_name'] 
     row.date = datetime.today()
     row.acumulator_concurrency = 0  # Pendiente de decidir si dejarlo o no.
     db.session.add(row)

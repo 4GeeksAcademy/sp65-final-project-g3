@@ -160,9 +160,9 @@ export const Mixer = () => {
             const dataToSend = { 
                 mix_title: mixTitle, 
                 track_1_url: store.track1Url, 
-                /* track_1_name: track1name, */
+                track_1_name: track1name,
                 binaural_id: store.track2Url, 
-                /* track_2_name: track2name */
+                track_2_name: track2name
             };  
             actions.addMixes(dataToSend)
             // Aquí podrías realizar una llamada al backend para enviar dataToSend

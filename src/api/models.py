@@ -55,7 +55,9 @@ class Mixes(db.Model):
     mix_title = db.Column(db.String(120), unique=True, nullable=False)
     user_id = db.Column(db.Integer)
     track_1_url = db.Column(db.String, unique=True, nullable=False)
-    binaural_id = db.Column(db.String)
+    track_1_name = db.Column(db.String)    
+    binaural_id = db.Column(db.String, unique=True, nullable=False)
+    track_2_name = db.Column(db.String)
     date = db.Column(db.Date)
     acumulator_concurrency = db.Column(db.Integer)
     
@@ -67,7 +69,9 @@ class Mixes(db.Model):
                 'mix_title': self.mix_title,
                 'user_id': self.user_id,
                 'track_1_url': self.track_1_url,
+                'track_1_name': self.track_1_name,
                 'binaural_id': self.binaural_id,
+                'track_2_name': self.track_2_name,
                 'date': self.date,
                 'acumulator_concurrency': self.acumulator_concurrency}
              
