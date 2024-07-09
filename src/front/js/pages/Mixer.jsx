@@ -161,6 +161,9 @@ export const Mixer = () => {
                 mix_title: mixTitle, 
                 track_1_url: store.track1Url, 
                 track_1_name: track1name,
+                type: type,
+                genre: genre,
+                duration: duration,
                 binaural_id: store.track2Url, 
                 track_2_name: track2name
             };  

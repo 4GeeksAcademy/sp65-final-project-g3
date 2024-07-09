@@ -21,6 +21,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			track_1_url: [],
 			binaural_id: [],
 			soundscapeList: [],
+			type: null,
 			mixesList: [],
 			spotifyAccessToken: null,
 		},
@@ -100,6 +101,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ trackOneName: name })
 			},
 			setTrackTwoName: (name) => {
+				setStore({ trackTwoName: name })
 			},
 			getBinaural: async () => {
 				const uri = `${process.env.BACKEND_URL}/api/binaural`;
