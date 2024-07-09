@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: ba88b09fa38e
+Revision ID: 29e0f39ae901
 Revises: 
-Create Date: 2024-07-08 19:13:17.046786
+Create Date: 2024-07-09 10:49:56.230479
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'ba88b09fa38e'
+revision = '29e0f39ae901'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -33,10 +33,13 @@ def upgrade():
     sa.Column('mix_title', sa.String(length=120), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('track_1_url', sa.String(), nullable=False),
-    sa.Column('binaural_id', sa.String(), nullable=True),
+    sa.Column('track_1_name', sa.String(), nullable=True),
+    sa.Column('binaural_id', sa.String(), nullable=False),
+    sa.Column('track_2_name', sa.String(), nullable=True),
     sa.Column('date', sa.Date(), nullable=True),
     sa.Column('acumulator_concurrency', sa.Integer(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('binaural_id'),
     sa.UniqueConstraint('mix_title'),
     sa.UniqueConstraint('track_1_url')
     )

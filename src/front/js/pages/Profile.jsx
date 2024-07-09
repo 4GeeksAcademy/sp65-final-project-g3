@@ -63,7 +63,7 @@ export const Profile = () => {
                     <input type="lastName" id="textResized" className="form-control" placeholder="Your last name" value={lastName} onChange={handleLastName} />
                 </div>
                 <div className="field row-2 text-end">
-                    <label htmlFor="email" className="form-label2">E-mail<span className="text-danger"> (Required)</span></label>
+                    <label htmlFor="email" className="form-label2">E-mail</label>
                     <label type="email" id="textResized" className="form-control"><span className="text-muted">{email}</span></label>
                 </div>
                 <div className="field row-2 text-end">

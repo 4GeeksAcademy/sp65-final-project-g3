@@ -100,7 +100,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ trackOneName: name })
 			},
 			setTrackTwoName: (name) => {
-				setStore({ trackTwoName: name })
 			},
 			getBinaural: async () => {
 				const uri = `${process.env.BACKEND_URL}/api/binaural`;
@@ -144,7 +143,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const token = localStorage.getItem("token");
 				const options = {
 					method: 'PUT',
-					header: {
+					headers: {
 						Authorization: `Bearer ${token}`,
 						'Content-Type': 'application/json'
 					},
