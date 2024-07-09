@@ -503,6 +503,8 @@ def handle_user(user_id):
             user.is_active = data['is_active']
             user.last_name = data['last_name']
             user.first_name = data['first_name']
+            user.country = data['country']
+            user.city = data['city']
             db.session.commit()
             response_body['message'] = 'User updated'
             response_body['results'] = user.serialize()

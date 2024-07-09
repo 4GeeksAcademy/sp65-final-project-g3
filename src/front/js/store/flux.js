@@ -144,7 +144,7 @@ import { useEffect } from "react";
 							const token = localStorage.getItem("token");
                             const options = {
                                 method: 'PUT',
-                                header: {
+                                headers: {
                                   	Authorization: `Bearer ${token}`,
                                     'Content-Type': 'application/json'
                                 },
