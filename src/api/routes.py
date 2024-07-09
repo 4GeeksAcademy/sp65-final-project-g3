@@ -128,18 +128,20 @@ def handle_mixes():
 @api.route('/mixes', methods=['POST'])
 @jwt_required()
 def handle_mixes_post():
+    print("entramos")
     response_body = {}
     current_user = get_jwt_identity()
     user_id = current_user['user_id']
     data = request.json
     row = Mixes()
-    row.mix_title = data['mix_title'],
+    row.mix_title = data['mix_title']
     row.user_id = user_id,
-    row.track_1_url = data['track_1_url'],
-    row.binaural_id = data['binaural_id'],
-    row.image_url = data.get('image_url', None),
-    row.date = datetime.today(),
-    row.acumulator_concurrency = data.get('acumulator_concurrency', 0)  # Pendiente de decidir si dejarlo o no.
+    row.track_1_url = data['track_1_url']
+    row.track_1_name = data['track_1_name']
+    row.binaural_id = data['binaural_id']
+    row.track_2_name = data['track_2_name'] 
+    row.date = datetime.today()
+    row.acumulator_concurrency = 0  # Pendiente de decidir si dejarlo o no.
     db.session.add(row)
     db.session.commit()
     response_body['results'] = row.serialize()
@@ -281,7 +283,6 @@ def handle_binaural_id(binaural_id):
 
 
 @api.route('/soundscapes', methods=['GET'])
-@jwt_required()
 def handle_soundscapes():
     response_body = {}
 
@@ -502,6 +503,8 @@ def handle_user(user_id):
             user.is_active = data['is_active']
             user.last_name = data['last_name']
             user.first_name = data['first_name']
+            user.country = data['country']
+            user.city = data['city']
             db.session.commit()
             response_body['message'] = 'User updated'
             response_body['results'] = user.serialize()

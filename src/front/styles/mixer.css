@@ -1,33 +1,46 @@
+#mixerConatiner {
+  border-radius: 5%;
+  background-image: -webkit-repeating-linear-gradient(left, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0)   6%, hsla(0,0%,100%, .1) 7.5%),
+    -webkit-repeating-linear-gradient(left, hsla(0,0%,  0%,0) 0%, hsla(0,0%,  0%,0)   4%, hsla(0,0%,  0%,.03) 4.5%),
+    -webkit-repeating-linear-gradient(left, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 1.2%, hsla(0,0%,100%,.15) 2.2%),
+    linear-gradient(180deg, hsl(0,0%,78%)  0%, 
+    hsl(0,0%,90%) 47%, 
+    hsl(0,0%,78%) 53%,
+    hsl(0,0%,70%)100%);
+}
+
+#volumeControlers {
+  margin-top: 10px;
+}
+
 /* código original Matias */
 #trackOneVolume {
-  width: 300px;
+  width: 350px;
   height: 30px;
-  margin-top: 150px;
+  margin-top: 165px;
   margin-right: -125px;
   /* writing-mode: bt-lr; */
   rotate: -90deg;
 
 }
 #trackTwoVolume {
-  width: 300px;
+  width: 350px;
   height: 30px;
-  margin-top: 150px;
+  margin-top: 165px;
   margin-left: -125px;
   /* writing-mode: bt-lr; */
   rotate: -90deg;
-
 }
-/* .vumeter {
-  width: 30px;
-  height: 100px;
-  background-color: #ddd;
-  margin: 10px 0;
-  position: relative;
-} */
-.vu-fill {
+
+#vuFill {
   height: 0;
-  width: 100%;
+  position: relative;
+  margin-left: -15px;
+  margin-top: 325px;
+  width: 45px;
   background-color: #4CAF50;
+  box-shadow: #adffb0;
+
 }
  /* HASTA AQUI */
 
@@ -41,8 +54,9 @@
   align-items: end;
   padding: 1em;
   border-radius: 0.3em;
-  background: #fee6;
-  box-shadow: 0 0.25em 0.5em #1006;
+  background: black;
+  margin: 5px;
+  box-shadow: 0 0.25em 0.5em rgba(78, 78, 78, 0.4);
  }
 
  #trackTwoVu {
@@ -53,58 +67,207 @@
   align-items: end;
   padding: 1em;
   border-radius: 0.3em;
-  background: #fee6;
-  box-shadow: 0 0.25em 0.5em #1006;
+  background: black;
+  margin: 5px;
+  box-shadow: 0 0.25em 0.5em rgba(78, 78, 78, 0.4);
  }
 
  /* Buttons Play-Pause */
-#playButton {
-  margin: 20px;
-  height: 50px;
-  width: 50px;
-  border-radius: 25px;
-  background-color:#00ff08;
-}
+#metalButton {
+  margin: 5px;
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+  box-shadow: 0 0.25em 0.5em rgba(98, 68, 104, 0.4);
+    background-image: -webkit-radial-gradient(  50%   0%,  8% 50%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
+      -webkit-radial-gradient(  50% 100%, 12% 50%, hsla(0,0%,100%,.6) 0%, hsla(0,0%,100%,0) 100%),
+      -webkit-radial-gradient(   0%  50%, 50%  7%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
+      -webkit-radial-gradient( 100%  50%, 50%  5%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),    
+      -webkit-repeating-radial-gradient( 50% 50%, 100% 100%, hsla(0,0%,  0%,0) 0%, hsla(0,0%,  0%,0)   3%, hsla(0,0%,  0%,.1) 3.5%),
+      -webkit-repeating-radial-gradient( 50% 50%, 100% 100%, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0)   6%, hsla(0,0%,100%,.1) 7.5%),
+      -webkit-repeating-radial-gradient( 50% 50%, 100% 100%, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 1.2%, hsla(0,0%,100%,.2) 2.2%),
+      -webkit-radial-gradient( 50% 50%, 200% 50%, hsla(0,0%,90%,1) 5%, hsla(0,0%,85%,1) 30%, hsla(0,0%,60%,1) 100%);
+  }
 
-#playButton:hover {
-  box-shadow: 0 0 10px 5px #5bff60;
-}
-
- #pauseButton {
-  margin: 20px;
-  height: 50px;
-  width: 50px;
-  border-radius: 25px;
-  background-color:#0026ff;
-}
-
-#pauseButton:hover {
-  box-shadow: 0 0 10px 5px #6f84ff;
+#metalButton:hover {
+  color: hsl(210, 100%, 40%);
+  text-shadow: hsla(210,100%,20%,.3) 0 -1px 0, hsl(210,100%,85%) 0 2px 1px, hsla(200,100%,80%,1) 0 0 5px, hsla(210,100%,50%,.6) 0 0 20px;
+  box-shadow: 
+    inset hsla(210,100%,30%,  1) 0  0px 0px 4px, /* border */
+    inset hsla(210,100%,15%, .4) 0 -1px 5px 4px, /* soft SD */
+    inset hsla(210,100%,20%,.25) 0 -1px 0px 7px, /* bottom SD */
+    inset hsla(210,100%,100%,.7) 0  2px 1px 7px, /* top HL */
+    
+    hsla(210,100%,75%, .8) 0  0px 3px 2px, /* outer SD */
+    hsla(210,50%,40%, .25) 0 -5px 6px 4px, /* outer SD */
+    hsla(210,80%,95%,   1) 0  5px 6px 4px; /* outer HL */
 }
 
 /* Library */
-#libraryTrackOne {
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  margin-right: -150px;
-  margin-top: 370px;
-  background-color: rgb(251, 255, 0);
+ /* Buttons Play-Pause */
+ #metalButton2 {
+  margin: 5px;
+  margin-top: 25px;
+  height: 40px;
+  width: 40px;
+  border-radius: 25%;
+  box-shadow: 0 0.25em 0.5em rgba(98, 68, 104, 0.4);
+    background-image: -webkit-radial-gradient(  50%   0%,  8% 50%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
+      -webkit-radial-gradient(  50% 100%, 12% 50%, hsla(0,0%,100%,.6) 0%, hsla(0,0%,100%,0) 100%),
+      -webkit-radial-gradient(   0%  50%, 50%  7%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
+      -webkit-radial-gradient( 100%  50%, 50%  5%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),    
+      -webkit-repeating-radial-gradient( 50% 50%, 100% 100%, hsla(0,0%,  0%,0) 0%, hsla(0,0%,  0%,0)   3%, hsla(0,0%,  0%,.1) 3.5%),
+      -webkit-repeating-radial-gradient( 50% 50%, 100% 100%, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0)   6%, hsla(0,0%,100%,.1) 7.5%),
+      -webkit-repeating-radial-gradient( 50% 50%, 100% 100%, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 1.2%, hsla(0,0%,100%,.2) 2.2%),
+      -webkit-radial-gradient( 50% 50%, 200% 50%, hsla(0,0%,90%,1) 5%, hsla(0,0%,85%,1) 30%, hsla(0,0%,60%,1) 100%);
+  }
+
+#metalButton2:hover {
+  color: hsl(210, 100%, 40%);
+  text-shadow: hsla(210,100%,20%,.3) 0 -1px 0, hsl(210,100%,85%) 0 2px 1px, hsla(200,100%,80%,1) 0 0 5px, hsla(210,100%,50%,.6) 0 0 20px;
+  box-shadow: 
+    inset hsla(210,100%,30%,  1) 0  0px 0px 4px, /* border */
+    inset hsla(210,100%,15%, .4) 0 -1px 5px 4px, /* soft SD */
+    inset hsla(210,100%,20%,.25) 0 -1px 0px 7px, /* bottom SD */
+    inset hsla(210,100%,100%,.7) 0  2px 1px 7px, /* top HL */
+    
+    hsla(210,100%,75%, .8) 0  0px 3px 2px, /* outer SD */
+    hsla(210,50%,40%, .25) 0 -5px 6px 4px, /* outer SD */
+    hsla(210,80%,95%,   1) 0  5px 6px 4px; /* outer HL */
 }
 
-#libraryTrackTwo {
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  margin-left: -150px;
-  margin-top: 370px;
-  background-color: rgb(251, 255, 0);
+#musicLoaders {
+  margin-bottom: 10px;
 }
 
-#libraryTrackOne:hover {
-  box-shadow: 0 0 10px 5px #fff48d;
+#track1Url {
+  height: 30px;
+  width: 60px;
+  margin-top: 5px;
+  margin-right: 25px;
+  border-radius: 15%;
+  color: rgb(0, 229, 255);
+  text-align: center;
+  box-shadow:
+    inset 0 0 10px rgb(0, 0, 0),
+    inset 10px 0 40px rgb(0, 183, 255),
+    inset -10px 0 40px rgb(25, 0, 255),
+    inset 10px 0 150px rgb(0, 30, 255),
+    inset -10px 0 150px rgb(0, 21, 255),
+    0 0 12.5px rgb(0, 119, 255),
+    -5px 0 10px rgb(59, 88, 255),
+    5px 0 15px rgb(50, 84, 255);
 }
 
-#libraryTrackTwo:hover {
-  box-shadow: 0 0 10px 5px #fff48d;
+#track2Url {
+  height: 30px;
+  width: 60px;
+  margin-top: 5px;
+  margin-left: 25px;
+  border-radius: 15%;
+  color: rgb(0, 229, 255);
+  text-align: center;
+  box-shadow:
+    inset 0 0 10px rgb(0, 0, 0),
+    inset 10px 0 40px rgb(0, 183, 255),
+    inset -10px 0 40px rgb(25, 0, 255),
+    inset 10px 0 150px rgb(0, 30, 255),
+    inset -10px 0 150px rgb(0, 21, 255),
+    0 0 12.5px rgb(0, 119, 255),
+    -5px 0 10px rgb(59, 88, 255),
+    5px 0 15px rgb(50, 84, 255);
+}
+
+#secretUrl {
+  visibility: hidden;
+}
+
+#metalButton3 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  height: 30px;
+  width: 60px;
+  border-radius: 15%;
+  text-shadow: hsla(210,100%,20%,.3) 0 -1px 0, hsl(210,100%,85%) 0 2px 1px, hsla(200,100%,80%,1) 0 0 5px, hsla(210,100%,50%,.6) 0 0 20px;
+  box-shadow: 0 0.25em 0.5em rgba(98, 68, 104, 0.4);
+    background-image: -webkit-radial-gradient(  50%   0%,  8% 50%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
+      -webkit-radial-gradient(  50% 100%, 12% 50%, hsla(0,0%,100%,.6) 0%, hsla(0,0%,100%,0) 100%),
+      -webkit-radial-gradient(   0%  50%, 50%  7%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
+      -webkit-radial-gradient( 100%  50%, 50%  5%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),    
+      -webkit-repeating-radial-gradient( 50% 50%, 100% 100%, hsla(0,0%,  0%,0) 0%, hsla(0,0%,  0%,0)   3%, hsla(0,0%,  0%,.1) 3.5%),
+      -webkit-repeating-radial-gradient( 50% 50%, 100% 100%, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0)   6%, hsla(0,0%,100%,.1) 7.5%),
+      -webkit-repeating-radial-gradient( 50% 50%, 100% 100%, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 1.2%, hsla(0,0%,100%,.2) 2.2%),
+      -webkit-radial-gradient( 50% 50%, 200% 50%, hsla(0,0%,90%,1) 5%, hsla(0,0%,85%,1) 30%, hsla(0,0%,60%,1) 100%);
+  }
+
+#metalButton3:hover {
+  color: hsl(103, 100%, 23%);
+  text-shadow: hsla(210,100%,20%,.3) 0 -1px 0, hsl(121, 100%, 85%) 0 2px 1px, rgb(153, 255, 165) 0 0 5px, hsla(121, 100%, 50%, 0.6) 0 0 20px;
+  box-shadow: 
+    inset rgb(0, 153, 0) 0  0px 0px 4px, /* border */
+    inset hsla(210,100%,15%, .4) 0 -1px 5px 4px, /* soft SD */
+    inset hsla(210,100%,20%,.25) 0 -1px 0px 7px, /* bottom SD */
+    inset hsla(210,100%,100%,.7) 0  2px 1px 7px, /* top HL */
+    
+    hsla(123, 100%, 75%, 0.8) 0  0px 3px 2px, /* outer SD */
+    hsla(210,50%,40%, .25) 0 -5px 6px 4px, /* outer SD */
+    hsla(210,80%,95%,   1) 0  5px 6px 4px; /* outer HL */
+}
+
+#favButton {
+  color:#000000;
+}
+
+#favButton:hover {
+  color: hsl(331, 100%, 50%);
+  text-shadow: hsla(210,100%,20%,.3) 0 -1px 0, hsl(306, 100%, 85%) 0 2px 1px, rgb(255, 153, 235) 0 0 5px, hsla(303, 100%, 50%, 0.6) 0 0 20px;
+}
+
+#mixTitleLabel {
+  height: 40px;
+  width: 300px;
+  margin: 5px;
+  margin-bottom: 25px;
+  text-align: center;
+  border-radius: 5%;
+  color: rgb(0, 229, 255);
+  box-shadow:
+    inset 0 0 10px rgb(0, 0, 0),
+    inset 10px 0 40px rgb(0, 183, 255),
+    inset -10px 0 40px rgb(25, 0, 255),
+    inset 10px 0 150px rgb(0, 30, 255),
+    inset -10px 0 150px rgb(0, 21, 255),
+    0 0 12.5px rgb(0, 119, 255),
+    -5px 0 10px rgb(59, 88, 255),
+    5px 0 15px rgb(50, 84, 255);
+}
+
+#metalButton4 {
+  margin: 5px;
+  height: 40px;
+  width: 40px;
+  border-radius: 25%;
+  box-shadow: 0 0.25em 0.5em rgba(98, 68, 104, 0.4);
+    background-image: -webkit-radial-gradient(  50%   0%,  8% 50%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
+      -webkit-radial-gradient(  50% 100%, 12% 50%, hsla(0,0%,100%,.6) 0%, hsla(0,0%,100%,0) 100%),
+      -webkit-radial-gradient(   0%  50%, 50%  7%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
+      -webkit-radial-gradient( 100%  50%, 50%  5%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),    
+      -webkit-repeating-radial-gradient( 50% 50%, 100% 100%, hsla(0,0%,  0%,0) 0%, hsla(0,0%,  0%,0)   3%, hsla(0,0%,  0%,.1) 3.5%),
+      -webkit-repeating-radial-gradient( 50% 50%, 100% 100%, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0)   6%, hsla(0,0%,100%,.1) 7.5%),
+      -webkit-repeating-radial-gradient( 50% 50%, 100% 100%, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 1.2%, hsla(0,0%,100%,.2) 2.2%),
+      -webkit-radial-gradient( 50% 50%, 200% 50%, hsla(0,0%,90%,1) 5%, hsla(0,0%,85%,1) 30%, hsla(0,0%,60%,1) 100%);
+}
+
+#metalButton4:hover {
+  color: hsl(210, 100%, 40%);
+  text-shadow: hsla(210,100%,20%,.3) 0 -1px 0, hsl(210,100%,85%) 0 2px 1px, hsla(200,100%,80%,1) 0 0 5px, hsla(210,100%,50%,.6) 0 0 20px;
+  box-shadow: 
+    inset hsla(210,100%,30%,  1) 0  0px 0px 4px, /* border */
+    inset hsla(210,100%,15%, .4) 0 -1px 5px 4px, /* soft SD */
+    inset hsla(210,100%,20%,.25) 0 -1px 0px 7px, /* bottom SD */
+    inset hsla(210,100%,100%,.7) 0  2px 1px 7px, /* top HL */
+    
+    hsla(210,100%,75%, .8) 0  0px 3px 2px, /* outer SD */
+    hsla(210,50%,40%, .25) 0 -5px 6px 4px, /* outer SD */
+    hsla(210,80%,95%,   1) 0  5px 6px 4px; /* outer HL */
 }

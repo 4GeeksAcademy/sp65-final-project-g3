@@ -1,70 +1,84 @@
-import React from "react";
-import "../../styles/profile.css";
+import React, { useContext, useState, useEffect } from "react";
+import "../../styles/profile.css"
+import { Context } from "../store/appContext.js";
+import { useNavigate } from "react-router-dom";
 
 export const Profile = () => {
+    const { store, actions } = useContext(Context);
+    const [name, setName] = useState(store.user.first_name);
+    const [lastName, setLastName] = useState(store.user.last_name);
+    const [email, setEmail] = useState(store.user.email);
+    const [isActive, setIsActive] = useState(store.user.is_active);
+    const [country, setCountry] = useState(store.user.country);
+    const [city, setCity] = useState(store.user.city);
+    const navigate = useNavigate();
 
-/*     const user = {
-        id: 2,
-        email: "gaby@gmail.com",
-        first_name: "gaby",
-        last_name = db.Column(db.String(120), unique = False, nullable = True),
-        country = db.Column(db.String(120), unique = False, nullable = True),
-        city = db.Column(db.String(120), unique = False, nullable = True),
-        date_of_birth = db.Column(db.Date, unique = False, nullable = True),
-    } */
+        useEffect(() => {
+        if (!store.isLogin) {
+            alert("Please Log-In or Sign-Up");
+            navigate("/login");
+        }
+    }, [store.isLogin, navigate]);
+
+
+    const handleName = (event) => { setName(event.target.value) };
+    const handleLastName = (event) => { setLastName(event.target.value) };
+    const handleCountry = (event) => { setCountry(event.target.value) };
+    const handleCity = (event) => { setCity(event.target.value) };
+
+    const handleReset = () => {
+        setName('');
+        setLastName('');
+        setCountry('');
+        setIsActive (false);
+        setCity('');
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const userId = store.user.id;
+        const dataToSend = {
+            first_name: name,
+            last_name: lastName,
+            email: email,
+            is_active: isActive,
+            country: country,
+            city: city
+        }
+        actions.updateProfile(userId, dataToSend);
+
+        handleReset();
+    }
 
     return (
         <>
-            {/*        <section className="player-section set-bg" data-setbg="img/player-bg.jpg" style="background-image: url(&quot;img/player-bg.jpg&quot;);"> */}
-            <section className="player-section set-bg" data-setbg="img/player-bg.jpg" style={{ "background-image": "url(&quot;img/player-bg.jpg&quot;)" }}>
-
-                <div className="player-box">
-                    <div className="tarck-thumb-warp">
-                        <div className="tarck-thumb">
-                            <img src="img/wave-thumb.jpg" alt="" />
-                            <button /* onClick="wavesurfer.playPause();" */ className="wp-play"></button>
-                        </div>
-                    </div>
-                    <div className="wave-player-warp">
-                        <div className="row">
-                            <div className="col-lg-8">
-                                <div className="wave-player-info">
-                                    <h2>Michael Smith</h2>
-                                    <p>One Night in Ibiza</p>
-                                </div>
-                            </div>
-                            <div className="col-lg-4">
-                                <div className="songs-links">
-                                    <a href=""><img src="img/icons/p-1.png" alt="" /></a>
-                                    <a href=""><img src="img/icons/p-2.png" alt="" /></a>
-                                    <a href=""><img src="img/icons/p-3.png" alt="" /></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="wavePlayer" className="clierfix">
-                            <div id="audiowave" data-waveurl="music-files/8.mp3">
-                                <wave style={{ display: "block", position: "relative", "user-select": "none", height: "80px", width: "100%", overflow: "auto hidden" }}>
-                                    <wave style={{ position: "absolute", "z-index": 3, left: "0px", top: "0px", bottom: "0px", overflow: "hidden", width: "0px", display: "none", "box-sizing": "border-box", "border-right": "0px solid rgb(51, 51, 51)", "pointer-events": "none" }}>
-                                        <canvas style={{ position: "absolute", left: "0px", top: "0px", bottom: "0px", height: "100%" }}></canvas>
-                                        <div id="currentTime"></div>
-                                    </wave>
-                                    <canvas style={{ position: "absolute", "z-index": 2, left: "0px", top: "0px", bottom: "0px", height: "100%", "pointer-events": "none" }}></canvas>
-                                </wave>
-                            </div>
-
-                            <div id="clipTime"></div>
-
-                            <div className="wavePlayer_controls">
-                                <button className="jp-prev player_button" onClick="wavesurfer.skipBackward();"></button>
-                                <button className="jp-play player_button" onClick="wavesurfer.playPause();"></button>
-                                <button className="jp-next player_button" onClick="wavesurfer.skipForward();"></button>
-                                <button className="jp-stop player_button" onClick="wavesurfer.stop();"></button>
-                            </div>
-                        </div>
-                    </div>
-
+            <form className="form" onSubmit={handleSubmit}>
+                <h3 id="heading">Profile</h3>
+                <div className="field text-end">
+                    <label htmlFor="name" className="form-label2">Name <span className="text-muted">(Optional)</span></label>
+                    <input type="name" id="textResized" className="form-control" placeholder="Your name" value={name} onChange={handleName} />
                 </div>
-            </section >
+                <div className="field row-2 text-end">
+                    <label htmlFor="lastName" className="form-label2">Last Name <span className="text-muted">(Optional)</span></label>
+                    <input type="lastName" id="textResized" className="form-control" placeholder="Your last name" value={lastName} onChange={handleLastName} />
+                </div>
+                <div className="field row-2 text-end">
+                    <label htmlFor="email" className="form-label2">E-mail</label>
+                    <label type="email" id="textResized" className="form-control"><span className="text-muted">{email}</span></label>
+                </div>
+                <div className="field row-2 text-end">
+                    <label htmlFor="country" className="form-label2">Country <span className="text-muted">(Optional)</span></label>
+                    <input type="text" id="textResized" className="form-control" value={country} onChange={handleCountry} />
+                </div>
+                <div className="field row-2 text-end">
+                    <label htmlFor="city" className="form-label2">City <span className="text-muted">(Optional)</span></label>
+                    <input type="city" id="textResized" className="form-control" value={city} onChange={handleCity} />
+                </div>
+                <div className="d-flex justify-content-center">
+                    <button type="submit" className="button1">&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                    <button type="reset" className="button1" onClick={handleReset}>&nbsp;&nbsp;Reset&nbsp;&nbsp;</button>
+                </div>
+            </form>
         </>
-    )
-}
+    );
+};

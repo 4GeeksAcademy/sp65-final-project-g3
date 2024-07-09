@@ -3,16 +3,25 @@ import { useEffect } from "react";
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			message: null, 
+			message: null,
 			user: null,
 			demo: [{ title: "FIRST", background: "white", initial: "white" }],
+			email: [],
 			isLogin: false,
 			currentSection: null,
 			soundscapeSection: null,
 			tutorialSection: null,
+			track1Url: null,
 			track2Url: null,
+			trackOneName: null,
+			trackTwoName: null,
 			binauralList: [],
+			mixes: [],
+			mix_title: [],
+			track_1_url: [],
+			binaural_id: [],
 			soundscapeList: [],
+			mixesList: [],
 			spotifyAccessToken: null,
 		},
 		actions: {
@@ -69,7 +78,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setUser: (user) => { setStore({ user: user }) },
 			navigateToSection: (section) => {
 				setStore({ currentSection: section });
-			/* 	window.location.href = `/binaural#${section}`; */
+				/* 	window.location.href = `/binaural#${section}`; */
 			},
 			navigateToSoundscape: (section) => {
 				setStore({ soundscapeSection: section });
@@ -81,32 +90,102 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			// Track 2 Url
 			// Acción para actualizar la URL del track2
-            setTrack2Url: (url) => {
-                setStore({ track2Url: url });
-            },
+			setTrack2Url: (url) => {
+				setStore({ track2Url: url });
+			},
+			setTrack1Url: (url) => {
+				setStore({ track1Url: url });
+			},
+			setTrackOneName: (name) => {
+				setStore({ trackOneName: name })
+			},
+			setTrackTwoName: (name) => {
+			},
 			getBinaural: async () => {
-				const uri = "https://ubiquitous-giggle-9vrj6v4p75gc7v57-3001.app.github.dev/api/binaural"
+				const uri = `${process.env.BACKEND_URL}/api/binaural`;
+				// const uri = "https://ubiquitous-giggle-9vrj6v4p75gc7v57-3001.app.github.dev/api/binaural"
 				const response = await fetch(uri);
 				if (!response.ok) {
 					console.log('Error on Agenda', response.status, response.statusText);
 					return
 				}
 				const data = await response.json();
+				// console.log(uri, response, data);
 				setStore({ binauralList: data.results });
+				// console.log(data);
 				console.log('Binaural List', data.results);
 			},
-			getSoundscape: () => {
-
+			getSoundscape: async () => {
+				const uri = `${process.env.BACKEND_URL}/api/soundscapes`;
+				const response = await fetch(uri);
+				if (!response.ok) {
+					console.log('Error on Agenda', response.status, response.statusText);
+					return
+				}
+				const data = await response.json();
+				setStore({ soundscapeList: data.results });
+				console.log('Soundscape List', data.results);
 			},
-
+			getMixes: async () => {
+				const uri = `${process.env.BACKEND_URL}/api/mixes`;
+				const response = await fetch(uri);
+				if (!response.ok) {
+					console.log('Error on Agenda', response.status, response.statusText);
+					return
+				}
+				const data = await response.json();
+				setStore({ mixesList: data.results });
+				console.log('Mixes List', data.results);
+			},
+			updateProfile: async (userId, dataToSend) => {
+				console.log(dataToSend);
+				const uri = `${process.env.BACKEND_URL}/api/users/${userId}`;
+				const token = localStorage.getItem("token");
+				const options = {
+					method: 'PUT',
+					headers: {
+						Authorization: `Bearer ${token}`,
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(dataToSend)
+				}
+				const response = await fetch(uri, options);
+				if (!response.ok) {
+					console.log('error', response.status, reponse.statusText)
+					return
+				}
+				const data = await response.json();
+				setStore({ user: data.results })
+			},
+			addMixes: async (dataToSend) => {
+				console.log(dataToSend);
+				const uri = `${process.env.BACKEND_URL}/api/mixes`;
+				const token = localStorage.getItem("token");
+				console.log(token);
+				const options = {
+					method: 'POST',
+					headers: {
+						'Authorization': `Bearer ${token}`,
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(dataToSend)
+				}
+				console.log("Options", options);
+				const response = await fetch(uri, options);
+				if (!response.ok) {
+					console.log('error', response.status, response.statusText)
+					return
+				}
+				const data = await response.json();
+				setStore({ mixes: data.results })
+			},
 			// lógica para Spotify
-			setSpotifyAccessToken: (accessSpotifyToken) => {
-				// Actualiza el token de acceso de Spotify en el estado
-				setStore({
-					spotifyAccessToken: accessSpotifyToken
-				});
-			},
-
+			// setSpotifyAccessToken: (accessSpotifyToken) => {
+			// Actualiza el token de acceso de Spotify en el estado
+			// 	setStore({
+			// 		spotifyAccessToken: accessSpotifyToken
+			// 	});
+			// },
 			// getSpotifyLists: async () => {
 			// 	const response = await fetch("https://api.spotify.com/v1/playlists/{playlist_id}");
 			// 	if (!response.ok) {
@@ -133,8 +212,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// 	setStore({ currentSpotifyList: data.result });
 			// },
 		}
-	};
+	}
 };
-
-
 export default getState;

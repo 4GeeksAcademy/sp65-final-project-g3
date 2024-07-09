@@ -22,3 +22,24 @@
     /* Support for IE. */
     font-feature-settings: 'liga';
   }
+  
+  body {
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    font-size: 17px;
+      font-weight: 300;
+      background: rgb(12, 12, 12);
+      background: linear-gradient(180deg, rgb(12, 12, 12) 0%, rgba(37,37,51,1) 74%, rgba(12, 12, 12) 100%);
+      background-size: cover;
+      overflow-x: hidden;
+  }
+
+  #binaurapp {
+    color: white;
+    margin-top: 10px;
+    margin-left: 20px;
+  }
+
+  #links {
+    color: white;
+
+  }
