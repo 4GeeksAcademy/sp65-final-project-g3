@@ -21,6 +21,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			track_1_url: [],
 			binaural_id: [],
 			soundscapeList: [],
+			type: null,
 			mixesList: [],
 			spotifyAccessToken: null,
 		},

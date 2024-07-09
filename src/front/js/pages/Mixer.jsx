@@ -142,37 +142,36 @@ export const Mixer = () => {
     const [error, setError] = useState('');
 
     const handleMix = () => {
-        setShowInput(true);
-    };
-
-    const handleInputChange = (event) => {
-        setMixTitle(event.target.value);
-    };
-
-    const handleOnSubmitMix = (event) => {
-        event.preventDefault();
-        if (mixTitle.trim() === '') {
-            setError('Please enter a mix title before submitting.');
-            return;
-        }
-        // Crear el Data to send que incluya el estado del mix_title track_1_url binaural_id
-        const dataToSend = {
-            mix_title: mixTitle,
-            track_1_url: store.track1Url,
-            track_1_name: track1name,
-            binaural_id: store.track2Url,
-            track_2_name: track2name
+          setShowInput(true);
         };
-        actions.addMixes(dataToSend)
-        // Aquí podrías realizar una llamada al backend para enviar dataToSend
-        console.log('Datos enviados al backend:', dataToSend);
-        setMixTitle("");
-        setShowInput(false);
-        setError('');
-    };
-
-
-
+      
+        const handleInputChange = (event) => {
+            setMixTitle(event.target.value);
+        };
+      
+        const handleOnSubmitMix = (event) => {
+            event.preventDefault();
+            if (mixTitle.trim() === '') {
+                setError('Please enter a mix title before submitting.');
+                return;
+            }
+            // Crear el Data to send que incluya el estado del mix_title track_1_url binaural_id
+            const dataToSend = { 
+                mix_title: mixTitle, 
+                track_1_url: store.track1Url, 
+                track_1_name: track1name,
+                type: type,
+                genre: genre,
+                duration: duration,
+                binaural_id: store.track2Url, 
+                track_2_name: track2name
+            };  
+            actions.addMixes(dataToSend)
+            // Aquí podrías realizar una llamada al backend para enviar dataToSend
+            console.log('Datos enviados al backend:', dataToSend);
+            setMixTitle("");
+            setShowInput(false);
+            setError('');
 
     //   Lógica para llamar a la librería Binaural
     const handleBinauralClick = (url, name) => {
