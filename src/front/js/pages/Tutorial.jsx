@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export const Tutorial = () => {
     const { store } = useContext(Context)
     const navigate = useNavigate();
-    
+
     const start = useRef(null);
     const mixer = useRef(null);
     const playlist = useRef(null);
@@ -37,12 +37,14 @@ export const Tutorial = () => {
                 scrollToRef(playlist);
             case "what-section":
                 scrollToRef(what);
-                break;                
+                break;
             default:
                 break;
         }
     }, [store.tutorialSection]);
     console.log("current Section", store.tutorialSection);
+
+
 
     return (
         <>
@@ -268,13 +270,13 @@ export const Tutorial = () => {
                                             <div className="tm-description-box">
                                                 <h5 className="tm-text-pink">What is Binaurapp?</h5>
                                                 <p className="mb-0 fs-6">
-                                                   In this section you will find interesting content to tell you a little more about what is Binaurapp. The idea is to give you a better understanding of what is Binaural to begin with, and the different uses that word has (and lots of miss-uses too).
+                                                    In this section you will find interesting content to tell you a little more about what is Binaurapp. The idea is to give you a better understanding of what is Binaural to begin with, and the different uses that word has (and lots of miss-uses too).
                                                 </p>
                                                 <p>
-                                                 There is also an explanation on Matias Kamelman´s theory of entrainment through moving binaural waves and how this method is completelly different to what has been used so far. 
+                                                    There is also an explanation on Matias Kamelman´s theory of entrainment through moving binaural waves and how this method is completelly different to what has been used so far.
                                                 </p>
                                                 <p>
-                                                 
+
                                                 </p>
 
                                             </div>
@@ -285,21 +287,33 @@ export const Tutorial = () => {
                                         </div>
                                     </div>
                                 </div>
-                                    <div className="col-12 d-flex justify-content-between">
-                                    <button type="button" className="btn btn-secondary">What is Binaural?</button>
-                                    <button type="button" className="btn btn-secondary">What is Entrainment?</button>
-                                    <button type="button" className="btn btn-secondary">Moving Binaural Waves</button>
+                                <div className="col-12 d-flex justify-content-between">
+                                    <span onClick={() => window.open('https://www.instagram.com/reel/Cz9f8J5tquS/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==', '_blank', 'noopener,noreferrer')}>
+                                        <button type="button" className="btn btn-secondary">
+                                            What is Binaural?
+                                        </button>
+                                    </span>
+                                    <span onClick={() => window.open('https://www.instagram.com/reel/C0R4sS5IdLR/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==', '_blank', 'noopener,noreferrer')}>
+                                        <button type="button" className="btn btn-secondary">
+                                            What is Entrainment?
+                                        </button>
+                                    </span>
+                                    <span onClick={() => window.open('https://www.instagram.com/reel/C1bXltjoElL/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==', '_blank', 'noopener,noreferrer')}>
+                                        <button type="button" className="btn btn-secondary">
+                                            Moving Binaural Waves
+                                        </button>
+                                    </span>
                                 </div>
                                 <div className="media-body textBinaural">
                                     <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
                                         <h5>Typical Questions:</h5>
                                         <p>
-                                            Well there are several questions in these subjects, we hope to clear some of them with the videos but, nevertheless you may feel you need more info. 
+                                            Well there are several questions in these subjects, we hope to clear some of them with the videos but, nevertheless you may feel you need more info.
                                         </p>
                                         <p>
-                                           One of the biggest challenges of our times is filtering information, especially from one´s self cause we are inclined to look for corroboration of what we already believe in. 
-                                           The Theory of Moving Binaural Waves came from many years of researching on what was taken to the lab by researchers of all kinds, and the need to find something new. 
-                                           If you need more info, browse the net, read a lot and of course wirte to us if you feel you have questions. 
+                                            One of the biggest challenges of our times is filtering information, especially from one´s self cause we are inclined to look for corroboration of what we already believe in.
+                                            The Theory of Moving Binaural Waves came from many years of researching on what was taken to the lab by researchers of all kinds, and the need to find something new.
+                                            If you need more info, browse the net, read a lot and of course wirte to us if you feel you have questions.
                                         </p>
                                     </div>
                                     <div className="tm-buy-box">
