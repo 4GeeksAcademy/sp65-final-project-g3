@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext"
 import "../../styles/mixes.css"
 import Button from 'react-bootstrap/Button';
@@ -6,14 +6,19 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { useNavigate } from "react-router-dom";
 
+
 export const Mixes = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
-
+  
   const { first_name, last_name, email } = store.user;
   const { genre, duration } = store.soundscapeList;
   const { type } = store.binauralList;
   const { track_1_url, track_1_name, binaural_id, track_2_name, date, mix_title} = store.mixesList;
+  
+  useEffect(() => {
+    actions.getMixes();
+  }, []);
 
   const handleLoadMix = (track_1_name, track_2_name, track_1_url, binaural_id) => {
     console.log("Loading mix with:", track_1_name, track_2_name, track_1_url, binaural_id);

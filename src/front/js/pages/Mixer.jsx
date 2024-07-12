@@ -4,6 +4,9 @@ import "../../styles/mixer.css";
 import { useNavigate } from "react-router-dom";
 
 
+
+
+
 export const Mixer = () => {
     const { store, actions } = useContext(Context);
     const navigate = useNavigate();
@@ -23,6 +26,11 @@ export const Mixer = () => {
     const trackTwoVolumeRef = useRef();
     const trackOneVuRef = useRef();
     const trackTwoVuRef = useRef();
+
+    const [showInput, setShowInput] = useState(false);
+    const [mixTitle, setMixTitle] = useState('');
+    const [error, setError] = useState('');
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         if (!store.isLogin) {
@@ -137,39 +145,47 @@ export const Mixer = () => {
     // habilitar formulario para que el usuario ingreese el título del mix
     // Formulario: Estado del mix para controlar el input
     // Onsubmit que llame la función handleOnSubmitMix
-    const [showInput, setShowInput] = useState(false);
-    const [mixTitle, setMixTitle] = useState('');
-    const [error, setError] = useState('');
+
 
     const handleMix = () => {
-          setShowInput(true);
+        setShowInput(true);
+    };
+
+    const handleInputChange = (event) => {
+        setMixTitle(event.target.value);
+    };
+
+    const handleOnSubmitMix = (event) => {
+        event.preventDefault();
+        if (mixTitle.trim() === '') {
+            setError('Please enter a mix title before submitting.');
+            return;
+        }
+        // Crear el Data to send que incluya el estado del mix_title track_1_url binaural_id
+        const dataToSend = {
+            mix_title: mixTitle,
+            track_1_url: store.track1Url,
+            track_1_name: track1name ? track1name : store.trackOneName,
+            binaural_id: store.track2Url,
+            track_2_name: track2name ? track2name : store.trackTwoName
         };
-      
-        const handleInputChange = (event) => {
-            setMixTitle(event.target.value);
-        };
-      
-        const handleOnSubmitMix = (event) => {
-            event.preventDefault();
-            if (mixTitle.trim() === '') {
-                setError('Please enter a mix title before submitting.');
-                return;
-            }
-            // Crear el Data to send que incluya el estado del mix_title track_1_url binaural_id
-            const dataToSend = { 
-                mix_title: mixTitle, 
-                track_1_url: store.track1Url, 
-                track_1_name: track1name,
-                binaural_id: store.track2Url, 
-                track_2_name: track2name
-            };  
-            actions.addMixes(dataToSend)
-            // Aquí podrías realizar una llamada al backend para enviar dataToSend
-            console.log('Datos enviados al backend:', dataToSend);
-            setMixTitle("");
-            setShowInput(false);
-            setError('');
-        };
+
+        actions.addMixes(dataToSend)
+        .then(() => {
+            setShowModal(true); // Mostrar la ventana modal de éxito
+            setTimeout(() => {
+                setShowModal(false); // Ocultar la ventana modal después de 5 segundos
+            }, 5000);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+        // Aquí podrías realizar una llamada al backend para enviar dataToSend
+        console.log('Datos enviados al backend:', dataToSend);
+        setMixTitle("");
+        setShowInput(false);
+        setError('');
+    };
 
     //   Lógica para llamar a la librería Binaural
     const handleBinauralClick = (url, name) => {
@@ -245,6 +261,20 @@ export const Mixer = () => {
             </div>
             <input type="text" id="secretUrl" ref={trackOneUrlRef} value={store.track1Url} />
             <input type="text" id="secretUrl" ref={trackTwoUrlRef} value={store.track2Url} />
+
+            <div className="modal" tabIndex="-1" role="dialog" style={{ display: showModal ? 'block' : 'none' }}>
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title">Success!</h5>
+                            <button type="button" className="btn-close" onClick={() => setShowModal(false)} aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            Your Mix was successfully stored! Check your Mixes to find all of them.
+                        </div>
+                    </div>
+                </div>
+            </div>
         </>
     );
 };
