@@ -133,6 +133,7 @@ def handle_mixes_post():
     current_user = get_jwt_identity()
     user_id = current_user['user_id']
     data = request.json
+    print("Data received:", data)
     row = Mixes()
     row.mix_title = data['mix_title']
     row.user_id = user_id,
