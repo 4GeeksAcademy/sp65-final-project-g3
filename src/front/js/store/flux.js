@@ -130,7 +130,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getMixes: async () => {
 				const uri = `${process.env.BACKEND_URL}/api/mixes`;
-				const response = await fetch(uri);
+				const token = localStorage.getItem("token");
+				const options = {
+					method: 'GET',
+					headers: {
+						Authorization: `Bearer ${token}`,
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify()
+				}
+				const response = await fetch(uri,options);
 				if (!response.ok) {
 					console.log('Error on Agenda', response.status, response.statusText);
 					return

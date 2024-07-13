@@ -103,6 +103,7 @@ def login():
 def profile():
     response_body = {}
     current_user = get_jwt_identity()
+    user_id = current_user['user_id']
     print(current_user)
     response_body["message"] = f'User succesfully logged in as: {current_user}'
     return response_body, 200
@@ -116,9 +117,12 @@ def handle_hello():
 
 
 @api.route('/mixes', methods=['GET'])
+@jwt_required()
 def handle_mixes():
+    current_user = get_jwt_identity()
+    user_id = current_user['user_id']
     response_body = {}
-    rows =db.session.execute(db.select(Mixes)).scalars()
+    rows =db.session.execute(db.select(Mixes).where(Mixes.user_id == user_id)).scalars()
     results = [row.serialize() for row in rows]
     response_body['results'] = results
     response_body['message'] = 'Mixes List. These are indeed the mixes you are looking for!!!'
@@ -158,7 +162,7 @@ def handle_mixes_id(mixes_id):
     user_id = current_user['user_id']
     print(current_user)
     if request.method == 'GET':
-        mix = db.session.execute(db.select(Mixes).where(Mixes.user_id == user_id)).scalar()
+        mix = db.session.execute(db.select(Mixes).where(Mixes.mixes_id == mixes_id)).scalar()
         if mix:
             response_body['results'] = mix.serialize()
             response_body['message'] = "Mix Found"
