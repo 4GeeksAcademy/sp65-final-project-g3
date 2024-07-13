@@ -67,12 +67,13 @@ export const Mixes = () => {
 <></>
             {store.mixesList.map((item, index) => (
               <ListGroup.Item id="Contenedores" className="justify-content-center" key={index}>
-                <h3> {item.mix_title} </h3>                
-                  <h5 > Track </h5>
+                <h3 className="text-info"> {item.mix_title} </h3>                
+                  <h6 className="text-secondary" > Track 1</h6>
                   {/* <span className="mx-5 text-center"> Url </span> */}                
-                  <h6 > {item.track_1_name} </h6>
-                  {/* <span className="mx-5 text-start"> {item.track_1_url} </span>                                     */}                
-                  <h6 > {item.track_2_name} </h6>
+                  <h5 > {item.track_1_name} </h5>
+                  {/* <span className="mx-5 text-start"> {item.track_1_url} </span> */}   
+                  <h6 className="text-secondary" > Moving Binaural Wave </h6>             
+                  <h5 > {item.track_2_name} </h5>
                   {/* <span className="mx-5 text-start"> {item.binaural_id} </span>                                     */}               
                 <Button className="button1" onClick={() => handleLoadMix(item.track_1_name, item.track_2_name, item.track_1_url, item.binaural_id)}>Load Mix</Button>
               </ListGroup.Item>
