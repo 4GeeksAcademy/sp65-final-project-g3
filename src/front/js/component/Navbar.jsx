@@ -11,6 +11,7 @@ export const Navbar = () => {
 	const logout = () => {
 		console.log("estoy en logout");
 		actions.setIsLogin(false)
+		actions.setUser(null)
 		localStorage.removeItem("token")
 	}
 

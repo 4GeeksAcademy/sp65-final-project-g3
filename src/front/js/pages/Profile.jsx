@@ -5,12 +5,12 @@ import { useNavigate } from "react-router-dom";
 
 export const Profile = () => {
     const { store, actions } = useContext(Context);
-    const [name, setName] = useState(store.user.first_name);
-    const [lastName, setLastName] = useState(store.user.last_name);
-    const [email, setEmail] = useState(store.user.email);
-    const [isActive, setIsActive] = useState(store.user.is_active);
-    const [country, setCountry] = useState(store.user.country);
-    const [city, setCity] = useState(store.user.city);
+    const [name, setName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [isActive, setIsActive] = useState("");
+    const [country, setCountry] = useState("");
+    const [city, setCity] = useState("");
     const navigate = useNavigate();
 
         useEffect(() => {
@@ -19,6 +19,18 @@ export const Profile = () => {
             navigate("/login");
         }
     }, [store.isLogin, navigate]);
+
+    useEffect(() => {
+        if (store.user) {
+            setName(store.user.first_name || '')
+            setLastName(store.user.last_name || '')
+            setEmail(store.user.email)
+            setIsActive(store.user.is_active)
+            setCountry(store.user.country || '')
+            setCity(store.user.city || '')
+        }
+
+    }, [store.user])
 
 
     const handleName = (event) => { setName(event.target.value) };

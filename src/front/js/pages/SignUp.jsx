@@ -66,6 +66,7 @@ export const SignUp = () => {
       console.log();
       localStorage.setItem("token", data.access_token)
       actions.setIsLogin(true)
+      actions.setUser(data.results)
       console.log(data.access_token);
       navigate('/profile')
     };
