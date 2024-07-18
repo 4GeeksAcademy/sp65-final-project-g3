@@ -46,7 +46,7 @@ export const Binaural = () => {
         actions.setTrack2Url(url);
         actions.setTrackTwoName(name);
         navigate("/mixer");
-        console.log("setTrackUrl Value:", store.setTrack2Url);
+        console.log("setTrackUrl Value:", store.setTrack2Url, store.setTrackTwoName);
     };
 
     return (

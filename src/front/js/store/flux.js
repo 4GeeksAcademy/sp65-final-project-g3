@@ -21,6 +21,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			track_1_url: [],
 			binaural_id: [],
 			soundscapeList: [],
+			type: null,
 			mixesList: [],
 			spotifyAccessToken: null,
 		},
@@ -100,6 +101,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ trackOneName: name })
 			},
 			setTrackTwoName: (name) => {
+				setStore({ trackTwoName: name })
 			},
 			getBinaural: async () => {
 				const uri = `${process.env.BACKEND_URL}/api/binaural`;
@@ -128,7 +130,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getMixes: async () => {
 				const uri = `${process.env.BACKEND_URL}/api/mixes`;
-				const response = await fetch(uri);
+				const token = localStorage.getItem("token");
+				const options = {
+					method: 'GET',
+					headers: {
+						Authorization: `Bearer ${token}`,
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify()
+				}
+				const response = await fetch(uri,options);
 				if (!response.ok) {
 					console.log('Error on Agenda', response.status, response.statusText);
 					return
@@ -178,6 +189,72 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				const data = await response.json();
 				setStore({ mixes: data.results })
+			},
+			addBinaural: async (dataToSend) => {
+				console.log(dataToSend);
+				const uri = `${process.env.BACKEND_URL}/api/binaural`;
+				const token = localStorage.getItem("token");
+				console.log(token);
+				const options = {
+					method: 'POST',
+					headers: {
+						'Authorization': `Bearer ${token}`,
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(dataToSend)
+				}
+				console.log("Options", options);
+				const response = await fetch(uri, options);
+				if (!response.ok) {
+					console.log('error', response.status, response.statusText)
+					return
+				}
+				const data = await response.json();
+				setStore({ binauralList: data.results })
+			},
+			addSoundscape: async (dataToSend) => {
+				console.log(dataToSend);
+				const uri = `${process.env.BACKEND_URL}/api/soundscapes`;
+				const token = localStorage.getItem("token");
+				console.log(token);
+				const options = {
+					method: 'POST',
+					headers: {
+						'Authorization': `Bearer ${token}`,
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(dataToSend)
+				}
+				console.log("Options", options);
+				const response = await fetch(uri, options);
+				if (!response.ok) {
+					console.log('error', response.status, response.statusText)
+					return
+				}
+				const data = await response.json();
+				setStore({ soundscapeList: data.results })
+			},
+			deleteSoundscape: async (dataToSend) => {
+				console.log(dataToSend);
+				const uri = `${process.env.BACKEND_URL}/api/soundscapes`;
+				const token = localStorage.getItem("token");
+				console.log(token);
+				const options = {
+					method: 'DELETE',
+					headers: {
+						'Authorization': `Bearer ${token}`,
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(dataToSend)
+				}
+				console.log("Options", options);
+				const response = await fetch(uri, options);
+				if (!response.ok) {
+					console.log('error', response.status, response.statusText)
+					return
+				}
+				const data = await response.json();
+				setStore({ soundscapeList: data.results })
 			},
 			// lógica para Spotify
 			// setSpotifyAccessToken: (accessSpotifyToken) => {
