@@ -31,6 +31,8 @@ import { UploadBinaural } from "./pages/UploadBinaural.jsx"
 import { UploadSoundscape } from "./pages/UploadSoundscape.jsx"
 import { UploadTutorial } from "./pages/UploadTutorial.jsx";
 
+// Spotify Auth App
+import { SpotifyCallback } from './component/SpotifyCallback.jsx';
 
 
 // Create your first component
@@ -69,7 +71,7 @@ const Layout = () => {
                         <Route path="/uploadbinaural" element={<UploadBinaural />} />
                         <Route path="/uploadsoundscape" element={<UploadSoundscape />} />
                         <Route path="/uploadtutorial" element={<UploadTutorial />} />
-                        
+                        <Route path="/callback" element={<SpotifyCallback />} />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <OffCanvas />
