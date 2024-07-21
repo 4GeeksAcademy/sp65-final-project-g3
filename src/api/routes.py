@@ -1,58 +1,26 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
+import os
+import requests
 from flask import Flask, request, jsonify, url_for, Blueprint, session, redirect
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
-from datetime import datetime
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import get_jwt_identity
 from api.models import db, Users, Soundscapes, Mixes, Tutorials, Binaural
 from datetime import datetime
-from spotipy import Spotify
-from spotipy.oauth2 import SpotifyOAuth
-from spotipy.cache_handler import FlaskSessionCacheHandler
 
 api = Blueprint('api', __name__)
 CORS(api)  # Allow CORS requests to this API.  ¡'09876ui
 '0'
 
 
-# @api.route('/')  # Así sería el login de Spotify para la obtención del token del usuario.
-# def home():
-#     if not sp_oauth.validate_token(cache_handler.get_cached_token()):
-#         auth_url = sp_oauth.get_authorize_url()
-#         return redirect(auth_url)
-#     return redirect(url_for('get_playlists'))
-
-
 @api.route('/logout')  # Así sería el logout de Spotify que redirigiría a la página inicial del login (o donde queramos redirigirlo).
 def logout():
     session.clear()
     return redirect(url_for('home'))
-
-
-# @api.route('/callback')  # Este Endpoint sirve para evitar el continuo relogin del usuario; refresca el token de acceso de forma automática.
-# def callback():
-#     sp_oauth.get_access_token(request.args['code'])
-#     return redirect(url_for('get_playlists'))
-
-
-# @api.route('/get_playlists', methods=['GET'])  # Este Endpoint sirve para traer las playlists del usuario (al menos en teoría, ENDPOINT SPOTIFY==>https://api.spotify.com/v1/playlists/{playlist_id})
-# def get_playlists():
-#     if not sp_oauth.validate_token(cache_handler.get_cached_token()):
-#         auth_url = sp_oauth.get_authorize_url()
-#         return redirect(auth_url)
-
-#     playlists = sp.current_user.get_playlists()
-#     playlists_info = [(pl['name'], pl['external_urls']['spotify']) for pl in playlists ['items']]
-#     playlists_html = '<br>'.join([f'{name}: {url}' for name, url in playlists_info])
-
-#     return playlists_display
-
-
-# @app.route('/spotify', methods=['GET'])
 
 
 @api.route('/signup', methods=['POST'])
@@ -101,6 +69,16 @@ def login():
 @api.route("/profile", methods=["GET"])
 @jwt_required()
 def profile():
+    response_body = {}
+    current_user = get_jwt_identity()
+    user_id = current_user['user_id']
+    print(current_user)
+    response_body["message"] = f'User succesfully logged in as: {current_user}'
+    return response_body, 200
+
+@api.route("/admin", methods=["GET"])
+@jwt_required()
+def admin():
     response_body = {}
     current_user = get_jwt_identity()
     user_id = current_user['user_id']
@@ -510,6 +488,7 @@ def handle_user(user_id):
             user.first_name = data['first_name']
             user.country = data['country']
             user.city = data['city']
+            user.is_admin = data['is_admin']
             db.session.commit()
             response_body['message'] = 'User updated'
             response_body['results'] = user.serialize()
@@ -528,3 +507,52 @@ def handle_user(user_id):
         response_body['message'] = 'Usuario inexistente'
         response_body['results'] = {}
         return response_body, 200
+
+@api.route('/spotify/callback', methods=['POST'])
+def spotify_callback():
+    code = request.json['code']
+    try:
+        code = request.json['code']
+        print(f"Received code: {code}")
+        
+        token_url = 'https://accounts.spotify.com/api/token'
+        token_data = {
+            'grant_type': 'authorization_code',
+            'code': code,
+            'redirect_uri': os.getenv('REDIRECT_URI'),
+            'client_id': os.getenv('CLIENT_ID'),
+            'client_secret': os.getenv('CLIENT_SECRET'),
+        }
+        
+        token_response = requests.post(token_url, data=token_data)
+        token_response.raise_for_status()  # This will raise an exception for HTTP errors
+        
+        tokens = token_response.json()
+        print(f"Received tokens: {tokens}")
+        
+        user_url = 'https://api.spotify.com/v1/me'
+        headers = {'Authorization': f"Bearer {tokens['access_token']}"}
+        
+        user_response = requests.get(user_url, headers=headers)
+        user_response.raise_for_status()
+        
+        user_data = user_response.json()
+        print(f"Received user data: {user_data}")
+        
+        return jsonify({
+            'access_token': tokens['access_token'],
+            'refresh_token': tokens['refresh_token'],
+            'user': user_data
+        })
+    
+    except KeyError as e:
+        print(f"KeyError: {str(e)}")
+        return jsonify({'error': 'Missing required data'}), 400
+    
+    except requests.RequestException as e:
+        print(f"RequestException: {str(e)}")
+        return jsonify({'error': 'Error communicating with Spotify API'}), 500
+    
+    except Exception as e:
+        print(f"Unexpected error: {str(e)}")
+        return jsonify({'error': 'An unexpected error occurred'}), 500

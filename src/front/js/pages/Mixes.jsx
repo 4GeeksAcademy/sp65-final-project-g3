@@ -10,12 +10,12 @@ import { useNavigate } from "react-router-dom";
 export const Mixes = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
-  
+
   const { first_name, last_name, email } = store.user;
   const { genre, duration } = store.soundscapeList;
   const { type } = store.binauralList;
-  const { track_1_url, track_1_name, binaural_id, track_2_name, date, mix_title} = store.mixesList;
-  
+  const { track_1_url, track_1_name, binaural_id, track_2_name, date, mix_title } = store.mixesList;
+
   useEffect(() => {
     actions.getMixes();
   }, []);
@@ -30,53 +30,27 @@ export const Mixes = () => {
     console.log("Url Values:", store.setTrack1Url, store.setTrack2Url);
   };
 
-  
+
 
   return (
     <Card id="field">
       <h1 className="text-center">Your Mixes</h1>
       <Card.Body>
-          <div>
-            <p className="text-start">Hey {first_name} {last_name}! <br></br> These are your Mixes</p>
-          </div>    
+        <div>
+          <p className="text-start">Hey {first_name} {last_name}! <br></br> These are your Mixes</p>
+        </div>
 
-          {/* <ListGroup.Item id="field2">
-            <h2> item.mix_title</h2>
-            <div className="d-flex col-9">
-              <h5 className="col-4 mx-3 text-center"> Track </h5>
-              <span className="col-2 mx-5 text-center"> Genre </span>
-              <span className="col-3 mx-5 text-center"> Duration </span>
-            </div>
-            <div className="d-flex col-9">
-              <h5 className="col-4 mx-3 text-center"> item.track_1_name</h5>
-              <span className="col-2 mx-5 text-center"> genre </span>
-              <span className="col-3 mx-5 text-center"> duration </span>
-            </div>
-            <div className="d-flex col-9">
-              <h5 className="col-4 mx-3 text-center"> item.track_2_name</h5>
-              <span className="col-2 mx-5 text-center"> genre </span>
-              <span className="col-3 mx-5 text-center"> duration </span>
-            </div>
-            <Button className="button1">Load Mix</Button>
+        {store.mixesList.map((item, index) => (
+          <ListGroup.Item id="Contenedores" className="justify-content-center" key={index}>
+            <h3 className="text-info"> {item.mix_title} </h3>
+            <h5 className="text-secondary"> Soundtrack </h5>
+            <h6 > {item.track_1_name} </h6>
+            <h5 className="text-secondary"> Binaural Track </h5>
+            <h6 > {item.track_2_name} </h6>
+            {/* <span className="mx-5 text-start"> {item.binaural_id} </span>                                     */}
+            <Button className="button1" onClick={() => handleLoadMix(item.track_1_name, item.track_2_name, item.track_1_url, item.binaural_id)}>Load Mix</Button>
           </ListGroup.Item>
-          
-      </Card.Body>
-    </Card>
-  )
-} */}
-<></>
-            {store.mixesList.map((item, index) => (
-              <ListGroup.Item id="Contenedores" className="justify-content-center" key={index}>
-                <h3> {item.mix_title} </h3>                
-                  <h5 > Track </h5>
-                  {/* <span className="mx-5 text-center"> Url </span> */}                
-                  <h6 > {item.track_1_name} </h6>
-                  {/* <span className="mx-5 text-start"> {item.track_1_url} </span>                                     */}                
-                  <h6 > {item.track_2_name} </h6>
-                  {/* <span className="mx-5 text-start"> {item.binaural_id} </span>                                     */}               
-                <Button className="button1" onClick={() => handleLoadMix(item.track_1_name, item.track_2_name, item.track_1_url, item.binaural_id)}>Load Mix</Button>
-              </ListGroup.Item>
-            ))}
+        ))}
       </Card.Body>
     </Card>
   )

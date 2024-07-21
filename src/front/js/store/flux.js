@@ -150,8 +150,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			updateProfile: async (userId, dataToSend) => {
 				console.log(dataToSend);
+				console.log(userId);
 				const uri = `${process.env.BACKEND_URL}/api/users/${userId}`;
 				const token = localStorage.getItem("token");
+				console.log(token);
 				const options = {
 					method: 'PUT',
 					headers: {
@@ -162,7 +164,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				const response = await fetch(uri, options);
 				if (!response.ok) {
-					console.log('error', response.status, reponse.statusText)
+					console.log('error', response.status, response.statusText)
 					return
 				}
 				const data = await response.json();
