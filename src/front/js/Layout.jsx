@@ -69,6 +69,7 @@ const Layout = () => {
                         <Route path="/uploadbinaural" element={<UploadBinaural />} />
                         <Route path="/uploadsoundscape" element={<UploadSoundscape />} />
                         <Route path="/uploadtutorial" element={<UploadTutorial />} />
+                        
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <OffCanvas />
