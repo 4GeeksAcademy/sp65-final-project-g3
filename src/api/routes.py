@@ -76,6 +76,16 @@ def profile():
     response_body["message"] = f'User succesfully logged in as: {current_user}'
     return response_body, 200
 
+@api.route("/admin", methods=["GET"])
+@jwt_required()
+def admin():
+    response_body = {}
+    current_user = get_jwt_identity()
+    user_id = current_user['user_id']
+    print(current_user)
+    response_body["message"] = f'User succesfully logged in as: {current_user}'
+    return response_body, 200
+
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
@@ -478,6 +488,7 @@ def handle_user(user_id):
             user.first_name = data['first_name']
             user.country = data['country']
             user.city = data['city']
+            user.is_admin = data['is_admin']
             db.session.commit()
             response_body['message'] = 'User updated'
             response_body['results'] = user.serialize()
