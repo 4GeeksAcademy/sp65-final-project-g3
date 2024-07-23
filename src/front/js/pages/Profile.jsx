@@ -91,7 +91,7 @@ export const Profile = () => {
                 </div>
                 <div className="field row-2 text-end">
                     <label htmlFor="city" className="form-label2">ADMIN <span className="text-muted">(Optional)</span></label>
-                    <button type="button" className="btn btn-danger" value={admin} onClick={handleAdmin}>Danger</button>
+                    <button type="button" className="btn btn-danger" value={admin} onClick={handleAdmin}>Make Admin</button>
                 </div>
                 <div className="d-flex justify-content-center">
                     <button type="submit" className="button1">&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
