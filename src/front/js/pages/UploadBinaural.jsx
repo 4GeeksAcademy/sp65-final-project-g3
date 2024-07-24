@@ -41,6 +41,7 @@ export const UploadBinaural = () => {
         };
         actions.addBinaural(dataToSend);
         handleReset();
+        alert('Binaural successfully uploaded!');
     };
 
     return (

@@ -30,6 +30,12 @@ export const Mixes = () => {
     console.log("Url Values:", store.setTrack1Url, store.setTrack2Url);
   };
 
+  const handleEditMix = (item) => {
+    actions.setMixId(item)
+    navigate("/editmixes");
+    console.log("this is de item", item);
+  };
+  
 
 
   return (
@@ -49,23 +55,11 @@ export const Mixes = () => {
             <h6 > {item.track_2_name} </h6>
             {/* <span className="mx-5 text-start"> {item.binaural_id} </span>                                     */}
             <Button className="button1" onClick={() => handleLoadMix(item.track_1_name, item.track_2_name, item.track_1_url, item.binaural_id)}>Load Mix</Button>
+            <Button className="button1" onClick={() => handleEditMix(item)}><i className="fa-regular fa-pen-to-square"></i></Button>
+            <Button className="button1" onClick={() => handleDeleteMix(item.track_1_name, item.track_2_name, item.track_1_url, item.binaural_id)}><i className="fa-solid fa-trash"></i></Button>
           </ListGroup.Item>
         ))}
       </Card.Body>
     </Card>
   )
 }
-{/* <Card.Title>{first_name} {last_name}</Card.Title>
-<ListGroup variant="flush">
-  {store.mixesList.map((item, index) => (
-    <ListGroup.Item key={index}>
-      <h4>{item.mix_title}</h4> with Track 1 {item.track_1_name} and Track 2 {item.track_2_name}
-      <Button
-        variant="primary"
-        onClick={() => handleLoadMix(item.track_1_name, item.track_2_name, item.track_1_url, item.binaural_id)}
-      >
-        Load Mix
-      </Button>
-    </ListGroup.Item>
-  ))}
-</ListGroup> */}

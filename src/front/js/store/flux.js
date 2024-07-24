@@ -24,6 +24,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			type: null,
 			mixesList: [],
 			spotifyAccessToken: null,
+			MixId: []
 		},
 		actions: {
 			exampleFunction: () => { getActions().changeColor(0, "green"); },  // Use getActions to call a function within a fuction
@@ -102,6 +103,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			setTrackTwoName: (name) => {
 				setStore({ trackTwoName: name })
+			},
+			setMixId: (item) => {
+				setStore( {MixId: item})
 			},
 			getBinaural: async () => {
 				const uri = `${process.env.BACKEND_URL}/api/binaural`;
@@ -238,7 +242,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			deleteSoundscape: async (dataToSend) => {
 				console.log(dataToSend);
-				const uri = `${process.env.BACKEND_URL}/api/soundscapes`;
+				const uri = `${process.env.BACKEND_URL}/api/soundscapes/${dataToSend.soundscapes_id}`;
 				const token = localStorage.getItem("token");
 				console.log(token);
 				const options = {
