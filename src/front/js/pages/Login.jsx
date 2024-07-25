@@ -12,6 +12,7 @@ export const Login = () => {
     const [password, setPassword] = useState("");
     const [rememberMe, setRememberMe] = useState (false);
     const [accessSpotifyToken, setAccessSpotifyToken] = useState("");
+    const [errorMessage, setErrorMessage] = useState(""); 
     const navigate = useNavigate()
 
     const handleEmailChange = (e) => { setEmail(e.target.value) };
@@ -22,6 +23,7 @@ export const Login = () => {
       setEmail('');
       setPassword('');
       setRememberMe(false);
+      setErrorMessage(''); 
     }
 
     const handleSubmit = async (e) => {
@@ -37,9 +39,13 @@ export const Login = () => {
         }
         const response = await fetch(url, options)
         if (!response.ok) {
-            console.log('Error: ', response.status, response.statusText);
-            return 
-        }
+          if (response.status === 404) {
+              setErrorMessage("User not found"); // Usuario no encontrado
+          } else {
+              setErrorMessage("Login failed"); // Fallo general
+          }
+          return;
+      }
         const data = await response.json();
         localStorage.setItem("token", data.access_token);
         localStorage.setItem("user", JSON.stringify(data.results));
@@ -70,6 +76,7 @@ export const Login = () => {
         </button>
         <button type="reset" className="button1 mx-auto" onClick={handleReset}>&nbsp;&nbsp;&nbsp;&nbsp;Cancel&nbsp;&nbsp;&nbsp;&nbsp;</button>
       </div>
+      {errorMessage && <div className="alert alert-danger mt-3">{errorMessage}</div>} 
       <button className="button1">Forgot Password</button>
       <div className="d-flex mx-auto justify-content-center text-white mb-2">
         <div className="border align-self-center"></div>

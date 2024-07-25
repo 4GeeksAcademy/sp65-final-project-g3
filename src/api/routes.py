@@ -157,7 +157,9 @@ def handle_mixes_id(mixes_id):
             mix.mix_title = data['mix_title'],
             mix.user_id = data['user_id'],
             mix.track_1_url = data['track_1_url'],
+            mix.track_1_name = data['track_1_name']
             mix.binaural_id = data['binaural_id'],
+            mix.track_2_name = data['track_2_name'] 
             mix.image_url = data.get('image_url', None),
             mix.date = datetime.today(),
             mix.acumulator_concurrency = data.get('acumulator_concurrency', 0)

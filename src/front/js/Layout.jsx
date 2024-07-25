@@ -33,6 +33,7 @@ import { UploadTutorial } from "./pages/UploadTutorial.jsx";
 
 // Spotify Auth App
 import { SpotifyCallback } from './component/SpotifyCallback.jsx';
+import { EditMixes } from "./pages/EditMixes.jsx";
 
 
 // Create your first component
@@ -59,6 +60,7 @@ const Layout = () => {
                         <Route path="/theta" element={<Theta />} />
                         <Route path="/delta" element={<Delta />} />
                         <Route path="/mixes" element={<Mixes />} />
+                        <Route path="/editmixes" element={<EditMixes />} />
                         <Route path="/playlist" element={<Playlist />} />
                         <Route path="/profile" element={<Profile />} />
                         <Route path="/soundscape" element={<Soundscape />} />

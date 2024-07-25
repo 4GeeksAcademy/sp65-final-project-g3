@@ -46,6 +46,7 @@ export const UploadSoundscape = () => {
         actions.addSoundscape(dataToSend);
         console.log(dataToSend);
         handleReset();
+        alert('Soundscape successfully uploaded!');
     };
 
     const handleDelete = (event) => {
@@ -56,6 +57,7 @@ export const UploadSoundscape = () => {
         actions.deleteSoundscape(dataToSend);
         console.log(dataToSend);
         handleReset();
+        alert('Soundscape successfully deleted!');
     };
 
     return (
@@ -100,6 +102,9 @@ export const UploadSoundscape = () => {
                         <button type="reset" className="button1" onClick={handleReset}>&nbsp;&nbsp;Reset&nbsp;&nbsp;</button>
                     </div>
                 </form>
+                
+
+                
             )}
         </>
     );
