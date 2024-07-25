@@ -262,6 +262,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await response.json();
 				setStore({ soundscapeList: data.results })
 			},
+			editMix: async (mixes_id, dataToSend) => {
+				console.log(dataToSend);					
+				const uri = `${process.env.BACKEND_URL}/api/mixes/${mixes_id}`;
+				console.log("uri a la que apunta", uri);
+				const token = localStorage.getItem("token");
+				console.log(token);
+				const options = {
+					method: 'PUT',
+					headers: {
+						Authorization: `Bearer ${token}`,
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(dataToSend)
+				}
+				const response = await fetch(uri, options);
+				if (!response.ok) {
+					console.log('error', response.status, response.statusText)
+					return
+				}
+				const data = await response.json();
+				setStore({ MixId: data })
+				console.log("updated Mix", MixId);
+			}
 			// lógica para Spotify
 			// setSpotifyAccessToken: (accessSpotifyToken) => {
 			// Actualiza el token de acceso de Spotify en el estado

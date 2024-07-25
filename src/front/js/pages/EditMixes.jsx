@@ -2,45 +2,73 @@ import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 
+
 export const EditMixes = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
 
-  // Obtén el mix actual del store usando MixId
-  const currentMix = store.MixId[0] || {}; // Asumiendo que MixId es un array y tomas el primer elemento
-
   // Estados para los campos del formulario
-  const [mixTitle, setMixTitle] = useState(currentMix.mix_title || "");
-  const [track1Url, setTrack1Url] = useState(currentMix.track_1_url || "");
-  const [track1Name, setTrack1Name] = useState(currentMix.track_1_name || "");
-  const [binauralId, setBinauralId] = useState(currentMix.binaural_id || "");
-  const [track2Name, setTrack2Name] = useState(currentMix.track_2_name || "");
+  const [mixTitle, setMixTitle] = useState("");
+  const [track1Url, setTrack1Url] = useState("");
+  const [track1Name, setTrack1Name] = useState("");
+  const [binauralId, setBinauralId] = useState("");
+  const [track2Name, setTrack2Name] = useState("");
+  
+
+  const [binauralDropdownVisible, setBinauralDropdownVisible] = useState(false);
+  const [soundscapeDropdownVisible, setSoundscapeDropdownVisible] = useState(false);
 
   useEffect(() => {
-    // Actualiza los campos del formulario cuando cambie currentMix
-    setMixTitle(currentMix.mix_title || "");
-    setTrack1Url(currentMix.track_1_url || "");
-    setTrack1Name(currentMix.track_1_name || "");
-    setBinauralId(currentMix.binaural_id || "");
-    setTrack2Name(currentMix.track_2_name || "");
-  }, [currentMix]);
+    setMixTitle(store.MixId.mix_title || "");
+    setTrack1Url(store.MixId.track_1_url || "");
+    setTrack1Name(store.MixId.track_1_name || "");
+    setBinauralId(store.MixId.binaural_id || "");
+    setTrack2Name(store.MixId.track_2_name || "");  
+  }, [store.MixId]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const updatedMix = {
+    const userId = store.user.id;
+    const mixes_id = store.MixId.id;
+    console.log("el Id del Mix que quiero editar", mixes_id);
+    const dataToSend = {
       mix_title: mixTitle,
+      user_id: userId,
       track_1_url: track1Url,
       track_1_name: track1Name,
       binaural_id: binauralId,
-      track_2_name: track2Name
+      track_2_name: track2Name,
+      acumulator_concurrency: 0,
+      date: Date(),
+
     };
-    actions.updateMix(currentMix.id, updatedMix).then(() => {
-      navigate("/mixes"); // Redirige después de actualizar
-    });
+    actions.editMix(mixes_id, dataToSend);
+    console.log(mixes_id, "estos son los datos", dataToSend);
+    navigate("/mixes");
   };
 
   const handleChange = (setter) => (e) => {
     setter(e.target.value);
+  };
+
+  const handleBinauralClick = (track_url, name) => {
+    setBinauralId(track_url);
+    setTrack2Name(name);
+    setBinauralDropdownVisible(false);
+  };
+
+  const handleSoundscapeClick = (url_jamendo, name) => {
+    setTrack1Url(url_jamendo);
+    setTrack1Name(name);
+    setSoundscapeDropdownVisible(false);
+  };
+
+  const toggleBinauralDropdown = () => {
+    setBinauralDropdownVisible(!binauralDropdownVisible);
+  };
+
+  const toggleSoundscapeDropdown = () => {
+    setSoundscapeDropdownVisible(!soundscapeDropdownVisible);
   };
 
   return (
@@ -59,18 +87,7 @@ export const EditMixes = () => {
           />
         </div>
         <div className="field row-2 text-end">
-          <label htmlFor="track1Url" className="form-label2">Soundscape Track URL</label>
-          <input
-            type="text"
-            id="track1Url"
-            className="form-control"
-            placeholder="Soundscape track URL"
-            value={track1Url}
-            onChange={handleChange(setTrack1Url)}
-          />
-        </div>
-        <div className="field row-2 text-end">
-          <label htmlFor="track1Name" className="form-label2">Soundscape Track Name</label>
+          <label htmlFor="track1Name" className="form-label2">Soundscape</label>
           <input
             type="text"
             id="track1Name"
@@ -78,21 +95,26 @@ export const EditMixes = () => {
             placeholder="Soundscape track name"
             value={track1Name}
             onChange={handleChange(setTrack1Name)}
+            onClick={toggleSoundscapeDropdown}
           />
+          {soundscapeDropdownVisible && (
+            <ul className="dropdown-menu show">
+              {store.soundscapeList.map((item, index) => (
+                <li key={index}>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => handleSoundscapeClick(item.url_jamendo, item.name)}
+                  >
+                    {item.name}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
         <div className="field row-2 text-end">
-          <label htmlFor="binauralId" className="form-label2">Binaural Track ID</label>
-          <input
-            type="text"
-            id="binauralId"
-            className="form-control"
-            placeholder="Binaural track ID"
-            value={binauralId}
-            onChange={handleChange(setBinauralId)}
-          />
-        </div>
-        <div className="field row-2 text-end">
-          <label htmlFor="track2Name" className="form-label2">Binaural Track Name</label>
+          <label htmlFor="track2Name" className="form-label2">Binaural Track</label>
           <input
             type="text"
             id="track2Name"
@@ -100,17 +122,39 @@ export const EditMixes = () => {
             placeholder="Binaural track name"
             value={track2Name}
             onChange={handleChange(setTrack2Name)}
+            onClick={toggleBinauralDropdown}
           />
+          {binauralDropdownVisible && (
+            <ul className="dropdown-menu show">
+              {store.binauralList.map((item, index) => (
+                <li key={index}>
+                  <button
+                    className="dropdown-item"
+                    type="button"
+                    onClick={() => handleBinauralClick(item.track_url, item.name)}
+                  >
+                    {item.name}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
         <div className="d-flex justify-content-center">
           <button type="submit" className="button1">&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
-          <button type="reset" className="button1" onClick={() => {
-            setMixTitle('');
-            setTrack1Url('');
-            setTrack1Name('');
-            setBinauralId('');
-            setTrack2Name('');
-          }}>&nbsp;&nbsp;Reset&nbsp;&nbsp;</button>
+          <button
+            type="reset"
+            className="button1"
+            onClick={() => {
+              setMixTitle('');
+              setTrack1Url('');
+              setTrack1Name('');
+              setBinauralId('');
+              setTrack2Name('');
+            }}
+          >
+            &nbsp;&nbsp;Reset&nbsp;&nbsp;
+          </button>
         </div>
       </form>
     </>
