@@ -58,7 +58,7 @@ export const Profile = () => {
             is_active: isActive,
             country: country,
             city: city,
-            /* is_admin: admin  */
+            is_admin: false
         }
         actions.updateProfile(userId, dataToSend);
 
