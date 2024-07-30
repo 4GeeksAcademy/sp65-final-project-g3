@@ -12,12 +12,12 @@ export const Binaural = () => {
     const deltaRef = useRef(null);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (!store.isLogin) {
-            alert("Please Log-In or Sign-Up");
-            navigate("/login");
-        }
-    }, [store.isLogin, navigate]);
+    // useEffect(() => {
+    //     if (!store.isLogin) {
+    //         alert("Please Log-In or Sign-Up");
+    //         navigate("/login");
+    //     }
+    // }, [store.isLogin, navigate]);
 
     useEffect(() => {
         const scrollToRef = (ref) => {
@@ -49,10 +49,28 @@ export const Binaural = () => {
         console.log("setTrackUrl Value:", store.setTrack2Url, store.setTrackTwoName);
     };
 
-    const [isVisible, setIsVisible] = useState(false);
+    const [isVisibleFirst, setIsVisibleFirst] = useState(false);
 
-    const handleDisplayInfo = () => {
-        setIsVisible(true);
+    const handleDisplayInfoFirst = () => {
+        setIsVisibleFirst(prev => !prev);
+    };
+
+    const [isVisibleSecond, setIsVisibleSecond] = useState(false);
+
+    const handleDisplayInfoSecond = () => {
+        setIsVisibleSecond(prev => !prev);
+    };
+
+    const [isVisibleThird, setIsVisibleThird] = useState(false);
+
+    const handleDisplayInfoThird = () => {
+        setIsVisibleThird(prev => !prev);
+    };
+
+    const [isVisibleFourth, setIsVisibleFourth] = useState(false);
+
+    const handleDisplayInfoFourth = () => {
+        setIsVisibleFourth(prev => !prev);
     };
 
     return (
@@ -120,7 +138,9 @@ export const Binaural = () => {
                                 <div className="col-md-3 order-md-1">
                                     <img id="imageCard" src={"https://t3.ftcdn.net/jpg/08/20/12/24/240_F_820122410_ofHPpJwDAjs919R7IcVto7h8AG2IiqEp.jpg"} alt="Image" />
                                     <div className="overlay">
-                                        <button id="moreInfo" onClick={handleDisplayInfo}>+</button>
+                                        <div id="moreInfo" onClick={handleDisplayInfoFirst}><span class="material-symbols-outlined">info</span>
+                                        <span className="helpTextInfo">More Info</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="col-md-6 order-md-2 mx-5">
@@ -142,7 +162,7 @@ export const Binaural = () => {
                             </div>
                         </div>
 
-                        {isVisible && (
+                        {isVisibleFirst && (
                         <div id="infoText">
                             <h5>You may choose to use this kind of waves for:</h5>
                             <p>
@@ -159,7 +179,8 @@ export const Binaural = () => {
                                 <div className="col-md-3 order-md-1">
                                     <img id="imageCard" src={"https://t4.ftcdn.net/jpg/08/02/43/63/240_F_802436395_BB2TxiEuws6vA4dqWO7efJJxSe2qg3KV.jpg"} alt="Image" />
                                     <div className="overlay">
-                                        <button id="moreInfo"  onClick={handleDisplayInfo}>+</button>
+                                        <div id="moreInfo"  onClick={handleDisplayInfoSecond}><span class="material-symbols-outlined">info</span>
+                                        <span className="helpTextInfo">More Info</span></div>
                                     </div>
                                 </div>
                                 <div className="col-md-6 order-md-2 mx-5">
@@ -181,7 +202,7 @@ export const Binaural = () => {
                             </div>
                         </div>
 
-                        {isVisible && (
+                        {isVisibleSecond && (
                         <div id="infoText">
                             <h5>You may choose to use this kind of waves for:</h5>
                             <p>
@@ -198,7 +219,8 @@ export const Binaural = () => {
                                 <div className="col-md-3 order-md-1">
                                     <img id="imageCard" src={"https://t3.ftcdn.net/jpg/07/27/79/86/240_F_727798659_GVhb4YANpW9sRoYjptqB6XQKwW9t5Jyo.jpg"} alt="Image" />
                                     <div className="overlay">
-                                        <button id="moreInfo" onClick={handleDisplayInfo}>+</button>
+                                        <div id="moreInfo" onClick={handleDisplayInfoThird}><span class="material-symbols-outlined">info</span>
+                                        <span className="helpTextInfo">More Info</span></div>
                                     </div>
                                 </div>
                                 <div className="col-md-6 order-md-2 mx-5">
@@ -219,7 +241,7 @@ export const Binaural = () => {
                             </div>
                         </div>
 
-                        {isVisible && (
+                        {isVisibleThird && (
                         <div id="infoText">
                             <h5>You may choose to use this kind of waves for:</h5>
                             <p>
@@ -237,7 +259,8 @@ export const Binaural = () => {
                                 <div className="col-md-3 order-md-1">
                                     <img id="imageCard2" src={"https://t4.ftcdn.net/jpg/08/02/43/63/240_F_802436395_BB2TxiEuws6vA4dqWO7efJJxSe2qg3KV.jpg"} alt="Image" />
                                     <div className="overlay">
-                                        <button id="moreInfo" onClick={handleDisplayInfo}>+</button>
+                                        <div id="moreInfo" onClick={handleDisplayInfoFourth}><span class="material-symbols-outlined">info</span>
+                                        <span className="helpTextInfo">More Info</span></div>
                                     </div>
                                 </div>
                                 <div className="col-md-8 order-md-2 mx-5">
@@ -255,7 +278,7 @@ export const Binaural = () => {
                             </Link>
                         </div>
 
-                        {isVisible && (
+                        {isVisibleFourth && (
                         <div id="infoText">
                             <h5>There is plenty of information about Entrainment</h5>
                             <p>Binaurapp´s approach intends to keep within the parameters of the scientific method, so we can´t guarantee this works in all cases, in all available corroborated papers, when it comes to sound there is always the subjectie facot that can´t be eluded, but it can be used.
