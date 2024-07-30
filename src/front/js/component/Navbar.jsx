@@ -3,10 +3,9 @@ import { Link } from "react-router-dom";
 import "../../styles/navbar.css"
 import { Context } from "../store/appContext";
 
+
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
-
-
 
 	const logout = () => {
 		console.log("estoy en logout");
@@ -18,7 +17,7 @@ export const Navbar = () => {
 	return (
 		<nav className="navbar navbar-expand-sm bg-rgb(12, 12, 12) d-flex" data-bs-theme="dark">
 			<div className="container-fluid d-flex align-items-center justify-content-center">
-				<Link to="/home">
+				<Link to="/">
 					<button type="button" className="btn btn-outline-light d-flex justify-content-between">Home</button>
 				</Link>
 				<div>
@@ -35,7 +34,6 @@ export const Navbar = () => {
 										<button type="button" className="btn btn-outline-danger">Sign Up</button>
 									</Link>
 								}
-
 
 								{store.isLogin ?
 									<Link to="/dashboard">
@@ -61,30 +59,8 @@ export const Navbar = () => {
 									</Link>
 								}
 							</li>
-							{/* 	<li className="nav-item dropdown">
-								<span className="btn bg-primary btn-outline-light dropdown-toggle" data-bs-toggle="dropdown"
-									role="button" aria-haspopup="true" aria-expanded="false">
-									Mixes
-									<span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-										{store.mixes.length}
-									</span>
-								</span>
-								<div className="dropdown-menu dropdown-menu-end">
-									{store.mixes.map((item, index) =>
-										<span className="dropdown-item d-flex justify-content-between align-items-center position-relative" key={index}>
-											{item}
-											<span>
-												<i className="fas fa-trash ms-2 text-danger" onClick={() => actions.removeMixes(index)}></i>
-											</span>
-										</span>
-									)}
-									<div className="dropdown-divider"></div>
-									<span className="dropdown-item" onClick={handleClearAll}>Clear All</span>
-
-								</div>
-							</li> */}
 						</ul>
-					</div>
+					</div> *B1n4ur4pp*
 				</div>
 			</div>
 		</nav>

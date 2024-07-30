@@ -284,39 +284,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await response.json();
 				setStore({ MixId: data })
 				console.log("updated Mix", MixId);
-			}
-			// lógica para Spotify
-			// setSpotifyAccessToken: (accessSpotifyToken) => {
-			// Actualiza el token de acceso de Spotify en el estado
-			// 	setStore({
-			// 		spotifyAccessToken: accessSpotifyToken
-			// 	});
-			// },
-			// getSpotifyLists: async () => {
-			// 	const response = await fetch("https://api.spotify.com/v1/playlists/{playlist_id}");
-			// 	if (!response.ok) {
-			// 		console.log("Error");
-			// 		return;
-			// 	}
-			// 	const data = await response.json();
-			// 	console.log(data);
-			// 	setStore({ spotifyLists: data.results });
-			// },
-
-			// settingSpotifyList: (spotifyList) => { setStore({ currentSpotifyList: spotifyList }); },
-			// settingSpotifyListUrl: (text) => { setStore({ currentSpotifyListUrl: text }); },
-
-			// getCurrentSpotifyList: async () => {
-			// 	const uri = getStore().currentSpotifyListUrl;
-			// 	const response = await fetch(uri);
-			// 	if (!response.ok) {
-			// 		console.log("Error");
-			// 		return;
-			// 	}
-			// 	const data = await response.json();
-			// 	console.log(data);
-			// 	setStore({ currentSpotifyList: data.result });
-			// },
+			},
 		}
 	}
 };

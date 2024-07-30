@@ -36,6 +36,7 @@ import { SpotifyCallback } from './component/SpotifyCallback.jsx';
 import { EditMixes } from "./pages/EditMixes.jsx";
 
 
+
 // Create your first component
 const Layout = () => {
     //the basename is used when your project is published in a subdirectory and not in the root of the domain
