@@ -1,13 +1,22 @@
-.thumb {
-    height: 100%;
-    width: 100%;
+.baumans-regular {
+    font-family: "Baumans", system-ui;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+#binaurappLogoName {
+    color: #c8f560;
+    font-family: "Baumans-Regular", Helvetica;
+    font-size: 32px;
 }
 
-.logo-container {
-    width: 20px;
-    height: 20px;
+#binauralLogo {
+    /* color: #7862F8; */
+    height: 10%;
+    width: 10%;
 }
 
-.navbar {
-    background: rgb(12, 12, 12)
+#navbarText {
+    font-family: "Baumans-Regular", Helvetica;
+    font-size: 16px;
 }
