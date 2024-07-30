@@ -18,9 +18,9 @@ export const OffCanvas = () => {
                         Home
                     </Link>
 
-                    <Link id="links" to="/binaural">
+                    <Link id="links" to="/dashboard">
                         <span className="material-symbols-outlined">music_video</span>
-                        Binaurapp Content
+                        Dashboard
                     </Link>
 
                     <Link id="links" to="/mixes">

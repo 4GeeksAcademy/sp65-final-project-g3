@@ -16,36 +16,50 @@ export const Navbar = () => {
 	}
 
 	return (
-		<nav className="navbar navbar-expand-sm">
-			<div id="logo" className="container-fluid">
-				<div className="navbar-nav me-auto mb-2">
-					<img id="binauralLogo" src={Binaural_Logo} alt="Binaural_logo" />
-					<h2 className="nav-link link-light left" id="binaurappLogoName">Binaurapp</h2>
-				</div>
-			</div>
-			<div className="d-flex justify-content-middle">
-				<Link id="navbarText" className="nav-link link-light" to="/">What's Binaurapp</Link>
-				<Link id="navbarText" className="nav-link link-light" to="/">About Us</Link>
-			</div>
-			<div className="d-flex justify-content-end">
-				{store.isLogin ?
-					"" :
-					<Link id="navbarText" className="nav-link link-light px-1" to="/signup">Signup</Link>
-				}
-				<p id="navbarText" className="nav-link link-light px-1">/</p>
-				{store.isLogin ?
-					<Link id="navbarText" className="nav-link link-light px-1" to="/dashboard">Dashboard</Link>
-					: ""}
-				{store.isLogin ?
-					<>
-						<Link id="navbarText" className="nav-link link-light px-1" onClick={logout} to="/">Logout</Link>
-						<Link id="navbarText" className="nav-link link-light px-1" to="/profile">Profile</Link>
-					</>
-					:
-					<Link id="navbarText" className="nav-link link-light px-1" to="/login">Login</Link>
-				}
-			</div>
-        </nav>
+		<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div className="container-fluid">
+		  <Link className="navbar-brand d-flex align-items-center" to="/">
+			<img src={Binaural_Logo} alt="Binaural_logo" width="30" height="30" className="d-inline-block align-top" />
+			<span className="ms-2">Binaurapp</span>
+		  </Link>
+		  <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span className="navbar-toggler-icon"></span>
+		  </button>
+		  <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
+			<ul className="navbar-nav">
+			  <li className="nav-item">
+				<Link className="nav-link" to="/">What's Binaurapp</Link>
+			  </li>
+			  <li className="nav-item">
+				<Link className="nav-link" to="/">About Us</Link>
+			  </li>
+			  {!store.isLogin && (
+				<>
+				  <li className="nav-item">
+					<Link className="nav-link" to="/signup">Signup</Link>
+				  </li>
+				  <li className="nav-item">
+					<Link className="nav-link" to="/login">Login</Link>
+				  </li>
+				</>
+			  )}
+			  {store.isLogin && (
+				<>
+				  <li className="nav-item">
+					<Link className="nav-link" to="/dashboard">Dashboard</Link>
+				  </li>
+				  <li className="nav-item">
+					<Link className="nav-link" onClick={logout} to="/">Logout</Link>
+				  </li>
+				  <li className="nav-item">
+					<Link className="nav-link" to="/profile">Profile</Link>
+				  </li>
+				</>
+			  )}
+			</ul>
+		  </div>
+		</div>
+	  </nav>
 	);
 };
 
