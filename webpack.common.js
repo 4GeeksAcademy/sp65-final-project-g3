@@ -52,7 +52,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-        favicon: '4geeks.ico',
+        favicon: 'src/front/img/binaural_logos/Logo_binaurapp.webp',
         template: 'template.html'
     }),
     new Dotenv({ safe: true, systemvars: true })

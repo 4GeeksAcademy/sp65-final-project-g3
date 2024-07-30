@@ -1,16 +1,4 @@
-/* * {
-    box-sizing: border-box;
-  }
-  
-  body {
-    margin: 0;
-    background: #1d1b24;
-    color: rgb(255 255 255 / 95%);
-    height: 100vh;
-    font-family: "Euclid Circular A";
-  } */
-  
-  .sidebar {
+.sidebar {
     overflow: hidden;
     position: fixed;
     top: 0;
@@ -20,7 +8,7 @@
     flex-direction: column;
     gap: 8px;
     width: 64px;
-    background: linear-gradient(180deg, rgb(12, 12, 12) 0%, rgba(37,37,51,1) 74%, rgba(12, 12, 12) 100%);
+    background-color: #1416135b;
     transition: width 0.4s;
   }
   
@@ -93,6 +81,6 @@
   }
   
   .sidebar a:hover {
-    background: linear-gradient(180deg, rgb(21, 21, 21) 0%, rgba(37,37,51,1) 74%, rgba(21, 21, 21) 100%);
+    background-color: #1416135b;
     opacity: 1;
   }

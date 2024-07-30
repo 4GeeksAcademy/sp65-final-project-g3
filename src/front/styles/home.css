@@ -1,7 +1,87 @@
-/*
-    home.css: This website contains selectors only used in home.css
-
-    All pages share the styles on index.css but you should create 
-    one more css for each page that will contain the selected used 
-    on that page only (the ones not reused in other pages).
-*/
+.home {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .home .div {
+    height: 1614px;
+    position: relative;
+    width: 1200px;
+  }
+  
+  .home .text-wrapper {
+    color: #ffffff;
+    font-family: "Baumans-Regular", Helvetica;
+    font-size: 64px;
+    font-weight: 400;
+    left: 71px;
+    letter-spacing: -1.28px;
+    line-height: 76.8px;
+    position: absolute;
+    text-align: center;
+    top: 184px;
+    width: 1059px;
+  }
+  
+  .home #greenButton {
+    background-color: #c8f560;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4.6px 5px #00000040;
+    height: 64px;
+    left: 486px;
+    overflow: hidden;
+    position: absolute;
+    top: 1400px;
+    width: 227px;
+  }
+  
+  .home .text-wrapper-2 {
+    color: #000000cc;
+    font-family: "Baumans-Regular", Helvetica;
+    font-size: 20px;
+    font-weight: 400;
+    height: 26px;
+    left: 73px;
+    letter-spacing: 0;
+    line-height: 26px;
+    position: absolute;
+    top: 18px;
+    white-space: nowrap;
+  }
+  
+  .home .content {
+    color: #ffffff;
+    font-family: "Baumans-Regular", Helvetica;
+    font-size: 20px;
+    font-weight: 400;
+    left: 71px;
+    letter-spacing: 0;
+    line-height: 32px;
+    position: absolute;
+    top: 860px;
+    width: 1059px;
+  }
+  
+  .home .caption {
+    color: #ffffff;
+    font-family: "Baumans-Regular", Helvetica;
+    font-size: 14px;
+    font-weight: 400;
+    left: 76px;
+    letter-spacing: -0.14px;
+    line-height: 22.4px;
+    position: absolute;
+    top: 791px;
+    width: 1054px;
+  }
+  
+  .home .home-image {
+    height: 480px;
+    left: 71px;
+    object-fit: cover;
+    position: absolute;
+    top: 299px;
+    width: 1059px;
+  }
