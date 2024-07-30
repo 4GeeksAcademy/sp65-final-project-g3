@@ -13,6 +13,7 @@ import { Demo } from "./pages/Demo.jsx";
 import { Single } from "./pages/Single.jsx";
 import { SignUp } from "./pages/SignUp.jsx";
 import { Login } from "./pages/Login.jsx";
+import { AboutUs } from "./pages/AboutUs.jsx";
 import { Binaural } from "./pages/Binaural.jsx";
 import { Profile } from "./pages/Profile.jsx";
 import { Playlist } from "./pages/Playlist.jsx";
@@ -34,6 +35,7 @@ import { UploadTutorial } from "./pages/UploadTutorial.jsx";
 // Spotify Auth App
 import { SpotifyCallback } from './component/SpotifyCallback.jsx';
 import { EditMixes } from "./pages/EditMixes.jsx";
+
 
 // Componente para manejar la lógica de renderizado condicional
 const ConditionalNavbarOrSidebar = () => {
@@ -70,6 +72,7 @@ const Layout = () => {
                         <Route element={<Single />} path="/single/:theid" />
                         <Route path="/signup" element={<SignUp />} />
                         <Route path="/login" element={<Login />} />
+                        <Route path="/aboutus" element={<AboutUs />} />
                         <Route path="/binaural" element={<Binaural />} />
                         <Route path="/alpha" element={<Alpha />} />
                         <Route path="/theta" element={<Theta />} />
