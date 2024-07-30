@@ -111,12 +111,12 @@ export const Login = () => {
       </div>
       {errorMessage && <div className="alert alert-danger mt-3">{errorMessage}</div>} 
       <button className="button1">Forgot Password</button>
-      {/* <div className="d-flex mx-auto justify-content-center text-white mb-2">
+      <div className="d-flex mx-auto justify-content-center text-white mb-2">
         <div className="border align-self-center"></div>
         <span>Or login with</span>
         <div className="border align-self-center"></div>
       </div>      
-      <SpotifyAuth /> */}
+      <SpotifyAuth />
       {/* <SoundCloudAuth /> */}
       {/* <JamendoAuth /> */}
     </form>

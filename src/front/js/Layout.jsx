@@ -77,7 +77,7 @@ const Layout = () => {
                         <Route path="/callback" element={<SpotifyCallback />} />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
-                    {/* <OffCanvas /> */}
+                    <OffCanvas />
                     <Footer />
                 </ScrollToTop>
             </BrowserRouter>

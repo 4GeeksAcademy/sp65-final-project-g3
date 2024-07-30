@@ -2,6 +2,9 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 
+// Spotify Auth App
+import { SpotifyAuth } from "../component/SpotifyAuth.jsx";
+
 export const SignUp = () => {
   const { actions } = useContext(Context)
   const [email, setEmail] = useState("");
@@ -102,7 +105,7 @@ export const SignUp = () => {
           <span>Or sign up with</span>
           <div className="border align-self-center"></div>
         </div>
-        <button type="reset" className="button1 text-success mb-3"><b>Spotify</b></button> 
+        <SpotifyAuth />
         {/* <p className="text-muted" id="termsPolicy">By registering, you are agreeing to Binaurapp's Privacy Policy and Terms of Use.</p> */}
 </form>
   );
