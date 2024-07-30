@@ -37,7 +37,7 @@ export const SpotifyCallback = () => {
         localStorage.setItem('spotifyRefreshToken', data.refresh_token);        
         actions.setUser(data.user);
         actions.setIsLogin(true);
-        navigate('/mixer');
+        navigate('/dashboard');
         console.log('Arriving!!');
       })
     } else {
