@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Context } from "../store/appContext"
 import { Link, useNavigate } from "react-router-dom";
-import "../../styles/binaural.css";
+import "../../styles/binaural.css"
 
 
 export const Binaural = () => {
@@ -49,9 +49,14 @@ export const Binaural = () => {
         console.log("setTrackUrl Value:", store.setTrack2Url, store.setTrackTwoName);
     };
 
+    const [isVisible, setIsVisible] = useState(false);
+
+    const handleDisplayInfo = () => {
+        setIsVisible(true);
+    };
+
     return (
         <>
-
             <div className="tm-welcome-section">
                 <div className="container text-center tm-welcome-container">
                     <div className="tm-welcome">
@@ -60,24 +65,9 @@ export const Binaural = () => {
                         <p className="tm-site-description">Binaural Waves</p>
                     </div>
                 </div>
-
             </div>
-
             <div className="container">
-                <div className="tm-search-form-container">
-                    <div className="row">
-                        <div className="col-3">
-                            <span action="index.html" method="GET" className="form-inline tm-search-form">
-                                <div className="text-uppercase tm-new-release">Moving Binaural Waves</div>
-                            </span>
-                        </div>
-                        <div className="col-9">
-                            <p className="textBinaural mt-2 mb-2">Entrainment through moving binaural waves is based on Matias Kamelman´s theory based in the usage of a perciavable moving sound around one´s head using ambisonic technology </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="row tm-albums-container grid">
+                <div id="indexImg" className="row tm-albums-container grid">
                     <div className="col-sm-6 col-12 col-md-6 col-lg-3 col-xl-3 tm-album-col">
                         <figure className="effect-sadie" id="glowCard1">
                             <a href="#alpha-section">
@@ -123,213 +113,158 @@ export const Binaural = () => {
                         </figure>
                     </div>
                 </div>
-
-                <div className="row">
-                    <div className="col-lg-12">
-                        <div className="tm-tag-line">
-                            <h2 className="tm-tag-line-title">Use these waves to help getting to a desired state</h2>
+                <div className="row tm-albums-container grid">
+                    <div className="row featurette">
+                        <div id="binaurappCard" className="card">
+                            <div className="row featurette">
+                                <div className="col-md-3 order-md-1">
+                                    <img id="imageCard" src={"https://t3.ftcdn.net/jpg/08/20/12/24/240_F_820122410_ofHPpJwDAjs919R7IcVto7h8AG2IiqEp.jpg"} alt="Image" />
+                                    <div className="overlay">
+                                        <button id="moreInfo" onClick={handleDisplayInfo}>+</button>
+                                    </div>
+                                </div>
+                                <div className="col-md-6 order-md-2 mx-5">
+                                    <h5 id="textHeader">Apha Waves</h5>
+                                    <p id="textBody">(8Hz – 13Hz) The fastest in the binaural-wave spectrum. These waves are observable on an EGG in the moments of pre-sleep, essential to fading into it.
+                                        It is the passage from consciousness to semi-consciousness and light sleep.
+                                        These 3 are actually quite mixed when Alpha waves are predominant.
+                                        We also see Alpha predominance in Meditation, both delivered as in Vipassana or when a musician is in a deep state of concentration executing a piece.
+                                    </p>
+                                </div>
+                                <div id="buttonContainer" className="col-md-2 order-md-3">
+                                    <button type="button" id="greenButton"
+                                        onClick={() => handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_64483b3bf3.mp3", "12Hz")}>Load 12Hz Wave</button>
+                                    <button type="button" id="greenButton"
+                                        onClick={() => handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_47cb2f4c97.mp3", "10Hz")}>Load 10Hz Wave</button>
+                                    <button type="button" id="greenButton"
+                                        onClick={() => handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_4c9fa5db17.mp3", "8Hz")}>Load 8Hz Wave</button>
+                                </div>
+                            </div>
                         </div>
+
+                        {isVisible && (
+                        <div id="infoText">
+                            <h5>You may choose to use this kind of waves for:</h5>
+                            <p>
+                                -	Relaxation or for meditation (in which case we recommend you choose music which´s BPM is not higher than 100 or soundscapes).
+                            </p>
+                            <p>
+                                -	Focus and concentration (we recommend using the soundscapes but any music you choose may work along).
+                            </p>
+                        </div>
+                        )}
+
+                        <div id="binaurappCard" className="card">
+                            <div className="row featurette">
+                                <div className="col-md-3 order-md-1">
+                                    <img id="imageCard" src={"https://t4.ftcdn.net/jpg/08/02/43/63/240_F_802436395_BB2TxiEuws6vA4dqWO7efJJxSe2qg3KV.jpg"} alt="Image" />
+                                    <div className="overlay">
+                                        <button id="moreInfo"  onClick={handleDisplayInfo}>+</button>
+                                    </div>
+                                </div>
+                                <div className="col-md-6 order-md-2 mx-5">
+                                    <h5 id="textHeader">Theta Waves</h5>
+                                    <p id="textBody">(3hz – 8Hz) Until quite recent we knew very few about these brain state.
+                                        We knew it was a passing phase between light sleep, REM and deep sleep.
+                                        They are necessary and present in most sane sleep architecture.
+                                        They became prominently interesting when they were observed to have peaks during decision making, and intellectual activity.
+                                    </p>
+                                </div>
+                                <div id="buttonContainer" className="col-md-2 order-md-3">
+                                    <button type="button" id="greenButton"
+                                        onClick={() => handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_f14d1f916c.mp3", "7Hz")}>Load 7Hz Wave</button>
+                                    <button type="button" id="greenButton"
+                                        onClick={() => handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_c8de14825f.mp3", "5Hz")}>Load 5Hz Wave</button>
+                                    <button type="button" id="greenButton"
+                                        onClick={() => handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_b8d92c6e5b.mp3", "3Hz")}>Load 3Hz Wave</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        {isVisible && (
+                        <div id="infoText">
+                            <h5>You may choose to use this kind of waves for:</h5>
+                            <p>
+                                -	You can use Theta to induce sleep, since they are present in phase change, especially when entering deep sleep, so exposing to them might help you conceive sleep or improve your sleep.
+                            </p>
+                            <p>
+                                -	You can also experiment with Theta for improving cognition, focus and decision making, either on it´s own or combining it with high-energy music, high BPM´s or even Rock Music & Heavy Metal (Not a joke, actually classical music would work perfect too or Jazz, the more complex the music is the better it will work).
+                            </p>
+                        </div>
+                        )}
+
+                        <div id="binaurappCard" className="card">
+                            <div className="row featurette">
+                                <div className="col-md-3 order-md-1">
+                                    <img id="imageCard" src={"https://t3.ftcdn.net/jpg/07/27/79/86/240_F_727798659_GVhb4YANpW9sRoYjptqB6XQKwW9t5Jyo.jpg"} alt="Image" />
+                                    <div className="overlay">
+                                        <button id="moreInfo" onClick={handleDisplayInfo}>+</button>
+                                    </div>
+                                </div>
+                                <div className="col-md-6 order-md-2 mx-5">
+                                    <h5 id="textHeader">Delta Waves</h5>
+                                    <p id="textBody">(0,1HZ – 3HZ) These are the slowest of the binaural spectrum, considering 0 would be brain death (clinically at least).
+                                        There is a lot of bibliography about them and they are present in deep sleep (sleep without dreams) and associated with all the neurochemistry release necessary for regeneration.
+                                        (see “about” for a deeper explanation).
+                                    </p>
+                                </div>
+                                <div id="buttonContainer" className="col-md-2 order-md-3">
+                                    <button type="button" id="greenButton"
+                                        onClick={() => handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_b8229380b3.mp3", "2Hz")}>Load 2Hz Wave</button>
+                                    <button type="button" id="greenButton"
+                                        onClick={() => handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_6cc67ed962.mp3", "1Hz")}>Load 1Hz Wave</button>
+                                    <button type="button" id="greenButton"
+                                        onClick={() => handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_cb9a98b9bf.mp3", "0,5Hz")}>Load 0,5Hz Wave</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        {isVisible && (
+                        <div id="infoText">
+                            <h5>You may choose to use this kind of waves for:</h5>
+                            <p>
+                                Exposing yourself to Delta waves may help you conceive sleep if you have trouble sleeping, but also it may improve your sleep and make your Delta states achievable or even enhance them.
+                                If you are into meditation, these are great waves to expose yourself too.
+                            </p>
+                            <p>
+                                Recent discoveries have also shown Delta activity in decision making, especially in highly risk trained people and difficult situations handling, so there is no harm in experimenting with these waves for studying and focus, though it may help to use some active music to accompany it in training.
+                            </p>
+                        </div>
+                        )}
+
+                        <div id="binaurappCard" className="card">
+                            <div className="row featurette">
+                                <div className="col-md-3 order-md-1">
+                                    <img id="imageCard2" src={"https://t4.ftcdn.net/jpg/08/02/43/63/240_F_802436395_BB2TxiEuws6vA4dqWO7efJJxSe2qg3KV.jpg"} alt="Image" />
+                                    <div className="overlay">
+                                        <button id="moreInfo" onClick={handleDisplayInfo}>+</button>
+                                    </div>
+                                </div>
+                                <div className="col-md-8 order-md-2 mx-5">
+                                    <h5 id="textHeader">Entrainemt</h5>
+                                    <p id="textBody">In a nut shell, think of entrainment as synchronization. Your brain is a natural entrainer, so is your heart.</p>
+                                    <p id="textBody">It naturally synchs to certain external stimuli, especially if these stimuli are repetitive and constant.
+                                        There are several approaches to get the brain to synchronize. Of those involving sound, when taken to the lab have never passed the test, upon learning this, Matias Kamelman had the idea of using cutting edge technology to generate immersive audio, to use a perceivable sound source to move on constant cycles around your head to promote entrainment.
+                                        This theory of “moving binaural waves” is yet to be proved and we will gladly appreciate any feedback you can produce.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="buttonContainer" className="col-12 d-flex justify-content-center" >
+                            <Link to="/tutorial">
+                                <button type="button" id="greenButtonAuto">Learn more in the Tutorial Section</button>
+                            </Link>
+                        </div>
+
+                        {isVisible && (
+                        <div id="infoText">
+                            <h5>There is plenty of information about Entrainment</h5>
+                            <p>Binaurapp´s approach intends to keep within the parameters of the scientific method, so we can´t guarantee this works in all cases, in all available corroborated papers, when it comes to sound there is always the subjectie facot that can´t be eluded, but it can be used.
+                                That´s why we developed an app that allows you to choose your music or background to use that in favor of your desired state</p>
+                        </div>
+                        )}
                     </div>
                 </div>
-
-                <div className="row mb-5">
-                    <div className="col-xl-12">
-                        <div className="media-boxes">
-                            <div className="media" id="alpha-section">
-                                <div className="row d-flex align-items-stretch">
-                                    <div className="col-3 d-flex align-items-stretch">
-                                        <img src={"https://t3.ftcdn.net/jpg/08/20/12/24/240_F_820122410_ofHPpJwDAjs919R7IcVto7h8AG2IiqEp.jpg"} alt="Image" className="align-self-stretch" />
-                                    </div>
-                                    <div className="col-9">
-                                        <div className="media-body tm-bg-gray ">
-                                            <div className="tm-description-box">
-                                                <h5 className="tm-text-blue">Apha Waves</h5>
-                                                <p className="mb-0 fs-6">(8Hz – 13Hz) The fastest in the binaural-wave spectrum. These waves are observable on an EGG in the moments of pre-sleep, essential to fading into it.
-                                                    It is the passage from consciousness to semi-consciousness and light sleep.
-                                                    These 3 are actually quite mixed when Alpha waves are predominant.
-                                                    We also see Alpha predominance in Meditation, both delivered as in Vipassana or when a musician is in a deep state of concentration executing a piece.
-                                                </p>
-                                            </div>
-                                            <div className="tm-buy-box">
-                                                <a href="#" className="tm-bg-blue tm-text-white tm-buy">Load</a>
-                                                <span className="tm-text-blue tm-price-tag">Track 2</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-12 d-flex justify-content-between">
-                                    <button type="button" className="btn btn-secondary" id="glowCard5" 
-                                    onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_64483b3bf3.mp3", "12Hz")}>Load 12Hz Wave</button>
-                                    <button type="button" className="btn btn-secondary" id="glowCard5" 
-                                    onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_47cb2f4c97.mp3", "10Hz")}>Load 10Hz Wave</button>
-                                    <button type="button" className="btn btn-secondary" id="glowCard5" 
-                                    onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_4c9fa5db17.mp3", "8Hz")}>Load 8Hz Wave</button>
-                                </div>
-                                <div className="media-body textBinaural">
-                                    <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
-                                        <h5>You may choose to use this kind of waves for:</h5>
-                                        <p>
-                                            -	Relaxation or for meditation (in which case we recommend you choose music which´s BPM is not higher than 100 or soundscapes).
-                                        </p>
-                                        <p>
-                                            -	Focus and concentration (we recommend using the soundscapes but any music you choose may work along).
-                                        </p>
-                                    </div>
-                                    <div className="tm-buy-box">
-                                        <span className="tm-text-blue tm-price-tag me-5">Uses:</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="media" id="theta-section">
-                                <div className="row d-flex align-items-stretch">
-                                    <div className="col-3 d-flex align-items-stretch container-fluid">
-                                        <img src={"https://t4.ftcdn.net/jpg/08/02/43/63/240_F_802436395_BB2TxiEuws6vA4dqWO7efJJxSe2qg3KV.jpg"} alt="Image" className="align-self-strech" />
-                                    </div>
-                                    <div className="col-9">
-                                        <div className="media-body tm-bg-pink-light">
-                                            <div className="tm-description-box">
-                                                <h5 className="tm-text-pink">Theta Waves</h5>
-                                                <p className="mb-0 fs-6">(3hz – 8Hz) Until quite recent we knew very few about these brain state.
-                                                    We knew it was a passing phase between light sleep, REM and deep sleep.
-
-                                                </p>
-                                                <p>
-                                                    They are necessary and present in most sane sleep architecture.
-                                                    They became prominently interesting when they were observed to have peaks during decision making, and intellectual activity.
-                                                </p>
-                                            </div>
-                                            <div className="tm-buy-box">
-                                                <a href="#" className="tm-bg-pink tm-text-white tm-buy">Load</a>
-                                                <span className="tm-text-pink tm-price-tag">Track 2</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-12 d-flex justify-content-between">
-                                    <button type="button" className="btn btn-secondary" id="glowCard5" 
-                                    onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_f14d1f916c.mp3", "7Hz")}>Load 7Hz Wave</button>
-                                    <button type="button" className="btn btn-secondary" id="glowCard5" 
-                                    onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_c8de14825f.mp3", "5Hz")}>Load 5Hz Wave</button>
-                                    <button type="button" className="btn btn-secondary" id="glowCard5" 
-                                    onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_b8d92c6e5b.mp3", "3Hz")}>Load 3Hz Wave</button>
-                                </div>
-                                <div className="media-body textBinaural">
-                                    <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
-                                        <h5>You may choose to use this kind of waves for:</h5>
-                                        <p>
-                                            -	You can use Theta to induce sleep, since they are present in phase change, especially when entering deep sleep, so exposing to them might help you conceive sleep or improve your sleep.
-                                        </p>
-                                        <p>
-                                            -	You can also experiment with Theta for improving cognition, focus and decision making, either on it´s own or combining it with high-energy music, high BPM´s or even Rock Music & Heavy Metal (Not a joke, actually classical music would work perfect too or Jazz, the more complex the music is the better it will work).
-                                        </p>
-                                    </div>
-                                    <div className="tm-buy-box">
-                                        <span className="tm-text-pink tm-price-tag me-5">Uses:</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="media" id="delta-section">
-                                <div className="row d-flex align-items-stretch">
-                                    <div className="col-3 d-flex align-items-stretch">
-                                        <img src={"https://t3.ftcdn.net/jpg/07/27/79/86/240_F_727798659_GVhb4YANpW9sRoYjptqB6XQKwW9t5Jyo.jpg"} alt="Image" className="align-self-stretch" />
-                                    </div>
-                                    <div className="col-9">
-                                        <div className="media-body tm-bg-gray ">
-                                            <div className="tm-description-box">
-                                                <h5 className="tm-text-blue">Delta Waves</h5>
-                                                <p className="mb-0 fs-6">(: (0,1HZ – 3HZ) These are the slowest of the binaural spectrum, considering 0 would be brain death (clinically at least).</p>
-                                                <p>There is a lot of bibliography about them and they are present in deep sleep (sleep without dreams) and associated with all the neurochemistry release necessary for regeneration.
-                                                    (see “about” for a deeper explanation)</p>
-                                            </div>
-                                            <div className="tm-buy-box">
-                                                <a href="#" className="tm-bg-blue tm-text-white tm-buy">Load</a>
-                                                <span className="tm-text-blue tm-price-tag">Track 2</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-12 d-flex justify-content-between">
-                                    <button type="button" className="btn btn-secondary" id="glowCard5" 
-                                    onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_b8229380b3.mp3", "2Hz")}>Load 2Hz Wave</button>
-                                    <button type="button" className="btn btn-secondary" id="glowCard5" 
-                                    onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_6cc67ed962.mp3", "1Hz")}>Load 1Hz Wave</button>
-                                    <button type="button" className="btn btn-secondary" id="glowCard5" 
-                                    onClick={()=> handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_cb9a98b9bf.mp3", "0,5Hz")}>Load 0,5Hz Wave</button>
-                                </div>
-                                <div className="media-body textBinaural">
-                                    <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
-                                        <h5>You may choose to use this kind of waves for:</h5>
-                                        <p>
-                                            Exposing yourself to Delta waves may help you conceive sleep if you have trouble sleeping, but also it may improve your sleep and make your Delta states achievable or even enhance them.
-                                            If you are into meditation, these are great waves to expose yourself too.
-                                        </p>
-                                        <p>
-                                            Recent discoveries have also shown Delta activity in decision making, especially in highly risk trained people and difficult situations handling, so there is no harm in experimenting with these waves for studying and focus, though it may help to use some active music to accompany it in training.
-                                        </p>
-                                    </div>
-                                    <div className="tm-buy-box">
-                                        <span className="tm-text-blue tm-price-tag me-5">Uses:</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="media" id="entrainment-section">
-                                <div className="row d-flex align-items-stretch">
-                                    <div className="col-3 d-flex align-items-stretch container-fluid">
-                                        <img src={"https://t4.ftcdn.net/jpg/08/02/43/63/240_F_802436395_BB2TxiEuws6vA4dqWO7efJJxSe2qg3KV.jpg"} alt="Image" className="align-self-strech" />
-                                    </div>
-                                    <div className="col-9">
-                                        <div className="media-body tm-bg-pink-light">
-                                            <div className="tm-description-box">
-                                                <h5 className="tm-text-pink">Entrainemt</h5>
-                                                <p className="mb-0 fs-6">
-                                                    In a nut shell, think of entrainment as synchronization.
-                                                </p>
-                                                <p>
-                                                    Your brain is a natural entrainer, so is your heart.
-                                                </p>
-                                                <p>
-                                                    It naturally synchs to certain external stimuli, especially if these stimuli are repetitive and constant.
-                                                    There are several approaches to get the brain to synchronize. Of those involving sound, when taken to the lab have never passed the test, upon learning this, Matias Kamelman had the idea of using cutting edge technology to generate immersive audio, to use a perceivable sound source to move on constant cycles around your head to promote entrainment.
-                                                    This theory of “moving binaural waves” is yet to be proved and we will gladly appreciate any feedback you can produce.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-12 d-flex justify-content-center">
-                                    <Link to="/tutorial" >
-                                    <button type="button" className="btn btn-secondary">Learn more in the Tutorial Section</button>                                    
-                                    </Link>
-                                </div>
-                                <div className="media-body textBinaural">
-                                    <div className="text-align fw-leighter fst-italic me-3 ms-3 mt-3">
-                                        <h5>There is plenty of information about Entrainment</h5>
-                                        <p>
-                                            Binaurapp´s approach intends to keep within the parameters of the scientific method, so we can´t guarantee this works in all cases, in all available corroborated papers, when it comes to sound there is always the subjectie facot that can´t be eluded, but it can be used.
-                                            That´s why we developed an app that allows you to choose your music or background to use that in favor of your desired state
-                                        </p>
-                                        <p>
-
-                                        </p>
-                                    </div>
-                                    <div className="tm-buy-box">
-                                        <span className="tm-text-pink tm-price-tag me-5">Uses:</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div> {/* <!-- media-boxes --> */}
-                    </div>
-                </div>
-
-
-
-            </div>{/*  <!-- .container --> */}
-
-
+            </div>
         </>
     )
 }
