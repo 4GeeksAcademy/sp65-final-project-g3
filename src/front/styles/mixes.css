@@ -1,36 +1,43 @@
+/* Container to center the card */
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Card styles */
 #field {
-    width: 400px;
-	  display: flex;
-    flex-direction: column;
-    position: absolute;
-    gap: 10px;
-    padding-left: 2em;
-    padding-right: 2em;
-    padding-bottom: 0.4em;
-	color: white;
-    background-color: #171717;
-    border-radius: 25px;
-    transition: .4s ease-in-out;
-  }
-  
-  #field:hover {
-    transform: scale(1.05);
-    border: 1px solid black;
-  }
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 2em;
+  color: white;
+  background-color: #171717;
+  border-radius: 25px;
+  transition: .4s ease-in-out;
+}
 
-  #field2 {
-	  align-items: center;
-    width: 350px;
-    justify-content: center;
-    border-radius: 25px;
-    border: none;
-    outline: none;
-    color: white;
-    background-color: rgb(44, 44, 53);
-    box-shadow: inset 5px 5px 10px rgb(59, 59, 70);
-  }
+#field:hover {
+  transform: scale(1.05);
+  border: 1px solid black;
+}
 
-  #Contenedores{
-    border-radius: 5%;
-    margin-bottom: 15px;
-  }
+#field2 {
+  align-items: center;
+  width: 350px;
+  justify-content: center;
+  border-radius: 25px;
+  border: none;
+  outline: none;
+  color: white;
+  background-color: rgb(44, 44, 53);
+  box-shadow: inset 5px 5px 10px rgb(59, 59, 70);
+}
+
+#Contenedores {
+  border-radius: 5%;
+  margin-bottom: 15px;
+}
