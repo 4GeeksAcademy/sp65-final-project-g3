@@ -4,7 +4,9 @@ const client_id = `${process.env.CLIENT_ID}`; // your clientId
 // const client_secret = `${process.env.CLIENT_SECRET}`; // Your secret
 const redirect_uri = `${process.env.REDIRECT_URI}`; // Your redirect uri
 const spotify_auth_uri = `${process.env.SPOTIFY_AUTH_URL}`; // Your redirect uri
-const scopes = ["user-read-private", "user-read-email", "playlist-read-private"];
+const scopes = ["user-read-private", "user-read-email", "playlist-read-private",
+  'playlist-modify-public', 'playlist-read-private', 'playlist-modify-private',
+  'user-library-modify', 'user-library-read', 'user-top-read',];
 
 export const SpotifyAuth = () => {
   const handleSpotifyLogin = () => {

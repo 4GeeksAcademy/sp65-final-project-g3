@@ -2,27 +2,33 @@ import React, { useEffect, useContext } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Context } from "../store/appContext";
 
-export const SpotifyCallback = () => {
+export const SoundCloudCallback = () => {
   const { actions } = useContext(Context);
   const navigate = useNavigate();
   const location = useLocation();
 
-  console.log("spotifyCallback")
-
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const code = urlParams.get('code');
+    const state = urlParams.get('state');
+
+    // Verify the state to prevent CSRF attacks
+    const storedState = localStorage.getItem('soundcloud_auth_state');
+    if (state !== storedState) {
+      console.error('State mismatch. Possible CSRF attack.');
+      navigate('/login');
+      return;
+    }
 
     if (code) {
-      // Send the code to your backend to exchange for tokens
-      console.log(code)
-      fetch(`${process.env.BACKEND_URL}/api/spotify/callback`, {
+      const codeVerifier = localStorage.getItem('soundcloud_code_verifier');
+      
+      fetch(`${process.env.BACKEND_URL}/api/soundcloud/callback`, {
         method: 'POST',
         headers: {
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-          'Content-Type': 'application/json'          
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ code }),
+        body: JSON.stringify({ code, code_verifier: codeVerifier }),
       })
       .then(response => {
         if (!response.ok) {
@@ -31,24 +37,24 @@ export const SpotifyCallback = () => {
         return response.json();
       })
       .then(data => {
-        // Store tokens and user info
-        console.log("**ENTERED**")
-        localStorage.setItem('spotifyAccessToken', data.access_token);        
-        localStorage.setItem('spotifyRefreshToken', data.refresh_token);        
+        localStorage.setItem('soundcloudAccessToken', data.access_token);
+        localStorage.setItem('soundcloudRefreshToken', data.refresh_token);
         actions.setUser(data.user);
         actions.setIsLogin(true);
         navigate('/mixer');
-        console.log('Arriving!!');
       })
-    } else {
-      console.log ("**NOT ENTERED**")
       .catch(error => {
         console.error('Error:', error);
         navigate('/login');
       });
+    } else {
+      navigate('/login');
     }
+
+    // Clean up
+    localStorage.removeItem('soundcloud_auth_state');
+    localStorage.removeItem('soundcloud_code_verifier');
   }, [location, actions, navigate]);
-  // }, []);
 
   return <div>Loading...</div>;
 };

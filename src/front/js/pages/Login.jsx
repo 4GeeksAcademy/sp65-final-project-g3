@@ -1,17 +1,22 @@
-import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useState, useEffect  } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/loginForm.css";
 
 // Spotify Auth App
 import { SpotifyAuth } from "../component/SpotifyAuth.jsx";
 
+// SoundCloud Auth App
+import { SoundCloudAuth } from "../component/SoundCloudAuth.jsx";
+
+// Jamendo Auth App
+// import { JamendoAuth } from "../component/JamendoAuth.jsx";
+
 export const Login = () => {
     const {store, actions} = useContext(Context)
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [rememberMe, setRememberMe] = useState (false);
-    const [accessSpotifyToken, setAccessSpotifyToken] = useState("");
     const [errorMessage, setErrorMessage] = useState(""); 
     const navigate = useNavigate()
 
@@ -24,7 +29,7 @@ export const Login = () => {
       setPassword('');
       setRememberMe(false);
       setErrorMessage(''); 
-    }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -55,6 +60,34 @@ export const Login = () => {
     };
 
 
+    const location = useLocation();
+
+    useEffect(() => {
+        const urlParams = new URLSearchParams(location.search);
+        const code = urlParams.get('code');
+        if (code) {
+            // This is a callback from Jamendo
+            fetchJamendoToken(code);
+        }
+    }, [location]);
+
+    const fetchJamendoToken = async (code) => {
+        try {
+            const response = await fetch(`${process.env.BACKEND_URL}/api/jamendo/callback?code=${code}`);
+            if (response.ok) {
+                const data = await response.json();
+                // Handle the token data (e.g., save it to state or localStorage)
+                console.log('Jamendo token:', data);
+                // You might want to set some state or redirect the user
+            } else {
+                console.error('Failed to fetch Jamendo token');
+            }
+        } catch (error) {
+            console.error('Error fetching Jamendo token:', error);
+        }
+    };
+
+
   return (
     <form className="form" onSubmit={handleSubmit}>
       <p id="heading">Login To Binaurapp</p>
@@ -78,12 +111,14 @@ export const Login = () => {
       </div>
       {errorMessage && <div className="alert alert-danger mt-3">{errorMessage}</div>} 
       <button className="button1">Forgot Password</button>
-      <div className="d-flex mx-auto justify-content-center text-white mb-2">
+      {/* <div className="d-flex mx-auto justify-content-center text-white mb-2">
         <div className="border align-self-center"></div>
         <span>Or login with</span>
         <div className="border align-self-center"></div>
       </div>      
-      <SpotifyAuth />
+      <SpotifyAuth /> */}
+      {/* <SoundCloudAuth /> */}
+      {/* <JamendoAuth /> */}
     </form>
   );
 };

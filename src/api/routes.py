@@ -3,6 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 import os
 import requests
+import secrets
 from flask import Flask, request, jsonify, url_for, Blueprint, session, redirect
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
@@ -510,6 +511,8 @@ def handle_user(user_id):
         response_body['results'] = {}
         return response_body, 200
 
+
+# Spotify Backend
 @api.route('/spotify/callback', methods=['POST'])
 def spotify_callback():
     code = request.json['code']
@@ -558,3 +561,178 @@ def spotify_callback():
     except Exception as e:
         print(f"Unexpected error: {str(e)}")
         return jsonify({'error': 'An unexpected error occurred'}), 500
+
+
+# SoundCloud Backend
+# @api.route('/soundcloud/callback', methods=['POST'])
+# def soundcloud_callback():
+#     code = request.json.get('code')
+#     code_verifier = request.json.get('code_verifier')
+    
+#     if not code or not code_verifier:
+#         return jsonify({"error": "Missing code or code_verifier"}), 400
+
+#     token_url = 'https://api.soundcloud.com/oauth2/token'
+#     client_id = os.getenv('SOUNDCLOUD_CLIENT_ID')
+#     client_secret = os.getenv('SOUNDCLOUD_CLIENT_SECRET')
+#     redirect_uri = os.getenv('SOUNDCLOUD_REDIRECT_URI')
+
+#     data = {
+#         'grant_type': 'authorization_code',
+#         'client_id': client_id,
+#         'client_secret': client_secret,
+#         'code': code,
+#         'redirect_uri': redirect_uri,
+#         'code_verifier': code_verifier
+#     }
+
+#     response = requests.post(token_url, data=data)
+    
+#     if response.status_code != 200:
+#         return jsonify({"error": "Failed to obtain access token"}), response.status_code
+
+#     token_data = response.json()
+
+#     # Get user info
+#     user_url = 'https://api.soundcloud.com/me'
+#     headers = {'Authorization': f"Bearer {token_data['access_token']}"}
+#     user_response = requests.get(user_url, headers=headers)
+
+#     if user_response.status_code != 200:
+#         return jsonify({"error": "Failed to get user info"}), user_response.status_code
+
+#     user_data = user_response.json()
+
+#     # Check if user exists in your database, if not, create a new user
+#     user = Users.query.filter_by(soundcloud_id=user_data['id']).first()
+#     if not user:
+#         user = Users(
+#             soundcloud_id=user_data['id'],
+#             username=user_data['username'],
+#             email=user_data.get('email'),  # SoundCloud might not provide email
+#             is_active=True
+#         )
+#         db.session.add(user)
+#         db.session.commit()
+
+#     # Create access token for your app
+#     access_token = create_access_token(identity={'user_id': user.id, 'is_admin': user.is_admin})
+
+#     return jsonify({
+#         'access_token': access_token,
+#         'soundcloud_access_token': token_data['access_token'],
+#         'soundcloud_refresh_token': token_data['refresh_token'],
+#         'user': user_data
+#     }), 200
+
+# # Jamendo Backend
+# def generate_random_state():
+#     return secrets.token_urlsafe(16)
+
+# @api.route('/jamendo/authorize')
+# def jamendo_authorize():
+#     jamendo_auth_url = os.getenv('JAMENDO_AUTH_URL')
+#     client_id = os.getenv('JAMENDO_CLIENT_ID')
+#     redirect_uri = os.getenv('REDIRECT_JAMENDO_URI')
+#     state = generate_random_state()
+#     session['jamendo_state'] = state  # Store the state in the session
+#     authorize_url = f"{jamendo_auth_url}?client_id={client_id}&redirect_uri={redirect_uri}&response_type=code&state={state}&scope=music"
+#     return redirect(authorize_url)
+
+# @api.route('/jamendo/callback')
+# def jamendo_callback():
+#     code = request.args.get('code')
+#     state = request.args.get('state')
+#     if not code:
+#         return jsonify({"error": "No code provided"}), 400
+#     if not state or state != session.get('jamendo_state'):
+#         return jsonify({"error": "Invalid state"}), 400
+
+#     token_url = 'https://api.jamendo.com/v3.0/oauth/grant'
+#     client_id = os.getenv('JAMENDO_CLIENT_ID')
+#     client_secret = os.getenv('JAMENDO_CLIENT_SECRET')
+#     redirect_uri = os.getenv('REDIRECT_JAMENDO_URI')
+
+#     data = {
+#         'grant_type': 'authorization_code',
+#         'client_id': client_id,
+#         'client_secret': client_secret,
+#         'code': code,
+#         'redirect_uri': redirect_uri
+#     }
+
+#     response = requests.post(token_url, data=data)
+    
+#     if response.status_code == 200:
+#         token_data = response.json()
+#         # Store tokens securely (e.g., in a database)
+#         store_tokens(token_data)
+#         return jsonify({"message": "Authentication successful"}), 200
+#     else:
+#         error_data = response.json()
+#         error_message = error_data.get('error_description', 'Unknown error occurred')
+#         return jsonify({"error": error_message}), response.status_code
+
+# @api.route('/jamendo/refresh_token', methods=['POST'])
+# def jamendo_refresh_token():
+#     refresh_token = request.json.get('refresh_token')
+#     if not refresh_token:
+#         return jsonify({"error": "No refresh token provided"}), 400
+
+#     token_url = 'https://api.jamendo.com/v3.0/oauth/grant'
+#     client_id = os.getenv('JAMENDO_CLIENT_ID')
+#     client_secret = os.getenv('JAMENDO_CLIENT_SECRET')
+
+#     data = {
+#         'grant_type': 'refresh_token',
+#         'client_id': client_id,
+#         'client_secret': client_secret,
+#         'refresh_token': refresh_token
+#     }
+
+#     response = requests.post(token_url, data=data)
+#     if response.status_code == 200:
+#         new_token_data = response.json()
+#         # Update stored tokens
+#         update_stored_tokens(new_token_data)
+#         return jsonify({"message": "Tokens refreshed successfully"}), 200
+#     else:
+#         error_data = response.json()
+#         error_message = error_data.get('error_description', 'Failed to refresh token')
+#         return jsonify({"error": error_message}), response.status_code
+
+# def store_tokens(token_data):
+#     # Implement secure token storage (e.g., in a database)
+#     # This is a placeholder function
+#     print("Storing tokens:", token_data)
+
+# def update_stored_tokens(new_token_data):
+#     # Implement secure token update
+#     # This is a placeholder function
+#     print("Updating tokens:", new_token_data)
+
+# # Example of an authenticated API call
+# @api.route('/jamendo/user_playlists')
+# def get_user_playlists():
+#     access_token = get_stored_access_token()  # Implement this function to retrieve the stored access token
+#     if not access_token:
+#         return jsonify({"error": "No access token available"}), 401
+
+#     headers = {'Authorization': f"Bearer {access_token}"}
+#     response = requests.get('https://api.jamendo.com/v3.0/users/playlists', headers=headers)
+    
+#     if response.status_code == 200:
+#         return jsonify(response.json()), 200
+#     elif response.status_code == 401:
+#         # Token might be expired, try refreshing
+#         new_tokens = refresh_access_token()  # Implement this function to refresh the token
+#         if new_tokens:
+#             # Retry the request with the new access token
+#             headers = {'Authorization': f"Bearer {new_tokens['access_token']}"}
+#             response = requests.get('https://api.jamendo.com/v3.0/users/playlists', headers=headers)
+#             if response.status_code == 200:
+#                 return jsonify(response.json()), 200
+    
+#     error_data = response.json()
+#     error_message = error_data.get('error_message', 'Failed to fetch playlists')
+#     return jsonify({"error": error_message}), response.status_code
