@@ -5,31 +5,31 @@
 }
 
 #greenButton {
-background-color: #c8f560;
-border-radius: 8px;
-box-shadow: 0px 2px 4.6px 5px #00000040;
-font-family: "Baumans-Regular", Helvetica;
-height: 64px;
-width: 200px;
-overflow: hidden;
-margin-top: 8px;
-margin-bottom: 8px;
-margin-right: 4px;
-align-items: end;
+    background-color: #c8f560;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4.6px 5px #00000040;
+    font-family: "Baumans-Regular", Helvetica;
+    height: 64px;
+    width: 200px;
+    overflow: hidden;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-right: 4px;
+    align-items: end;
 }
 
 #greenButtonAuto {
-background-color: #c8f560;
-border-radius: 8px;
-box-shadow: 0px 2px 4.6px 5px #00000040;
-font-family: "Baumans-Regular", Helvetica;
-height: 64px;
-width: auto;
-overflow: hidden;
-margin-top: 4px;
-margin-bottom: 4px;
-margin-right: 4px;
-align-items: end;
+    background-color: #c8f560;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4.6px 5px #00000040;
+    font-family: "Baumans-Regular", Helvetica;
+    height: 64px;
+    width: auto;
+    overflow: hidden;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-right: 4px;
+    align-items: end;
 }
 
 #binaurappCard {
@@ -64,22 +64,34 @@ align-items: end;
 }
 
 #moreInfo {
-    height: 25px;
-    width: 25px;
+    height: 24px;
+    width: 24px;
     border-radius: 50%;
     background-color: #7862F8;
-    box-shadow: 0px 2px 4.6px 5px #00000040;
+    /* box-shadow: 0px 2px 4.6px 5px #00000040; */
     font-family: "Baumans-Regular", Helvetica;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 400;
-    text-align: center;
-    align-items: center;
     position: absolute;
     top: 25px;
     bottom: 0;
     left: 305px;
     right: 0;
-    text-align: center;
+}
+
+#moreInfo:hover .helpTextInfo {
+    visibility: visible;
+    transition-delay: 0.3s;
+  }
+
+.helpTextInfo {
+    visibility: hidden;
+  padding: 0.25em 0.5em;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 0.25em;
+  white-space: nowrap;
 }
 
 #textHeader {
