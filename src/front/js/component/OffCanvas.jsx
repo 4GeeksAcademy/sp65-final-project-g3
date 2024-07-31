@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../../styles/offCanvas.css";
+import "../../styles/navbar.css";
+import Binaural_Logo from "../../img/binaural_logos/Logo_binaurapp.png"
 
 export const OffCanvas = () => {
 
@@ -8,110 +9,75 @@ export const OffCanvas = () => {
         <>
             <aside className="sidebar col align-items-left text-white">
                 <div className="header d-flex mx-3">
-                    <span className="material-symbols-outlined m-2">network_intelligence_update</span>
+                <img id="BinaurappLogo" src={Binaural_Logo} alt="Binaural_logo" className="d-inline-block" />
                     <p id="binaurapp">Binaurapp</p>
                 </div>
-                <nav>
+                <div>
 
-                    <Link id="links" to="/">
-                        <span className="material-symbols-outlined">home</span>
-                        Home
-                    </Link>
+                    <div className="">
+                        <br/>
+                        <br/>
+                        <br/>
+                        <Link id="sidebarIcons" to="/">
+                            <span id="BinaurappIcons" className="material-symbols-outlined">home</span>
+                            <p id="sidebarText">Home</p>
+                        </Link>
 
-                    <Link id="links" to="/dashboard">
-                        <span className="material-symbols-outlined">music_video</span>
-                        Dashboard
-                    </Link>
+                        <Link id="sidebarIcons" to="/dashboard">
+                            <span id="BinaurappIcons" className="material-symbols-outlined">music_video</span>
+                            <p id="sidebarText">Dashboard</p>
+                        </Link>
 
-                    <Link id="links" to="/mixes">
-                    <span className="material-symbols-outlined">instant_mix</span>
-                        {/* <i className="fa-brands fa-mixer" /> */}
-                        Mixes
-                    </Link>
+                        <Link id="sidebarIcons" to="/mixes">
+                        <span id="BinaurappIcons" className="material-symbols-outlined">instant_mix</span>
+                            {/* <i className="fa-brands fa-mixer" /> */}
+                            <p id="sidebarText">Mixes</p>
+                        </Link>
 
-                    <Link id="links" to="/tutorial">
-                        <span className="material-symbols-outlined">movie_info</span>
-                        Tutorials
-                    </Link>
+                        <Link id="sidebarIcons" to="/tutorial">
+                            <span id="BinaurappIcons" className="material-symbols-outlined">movie_info</span>
+                            <p id="sidebarText">Tutorials</p>
+                        </Link>
 
-                    <Link id="links" to="/binaural">
-                        <span className="material-symbols-outlined">waves</span>
-                        Binaural Waves
-                    </Link>
+                        <Link id="sidebarIcons" to="/binaural">
+                            <span id="BinaurappIcons" className="material-symbols-outlined">waves</span>
+                            <p id="sidebarText">Binaural Waves</p>
+                        </Link>
 
-                    <Link id="links" to="/soundscape">
-                        <span className="material-symbols-outlined">stock_media</span>
-                        Soundscapes
-                    </Link>
+                        <Link id="sidebarIcons" to="/soundscape">
+                            <span id="BinaurappIcons" className="material-symbols-outlined">stock_media</span>
+                            <p id="sidebarText">Soundscapes</p>
+                        </Link>
 
-                    <Link id="links" to="/playlist">
-                        <span className="material-symbols-outlined">library_music</span>
-                        Playlist
-                    </Link>
+                        <Link id="sidebarIcons" to="/playlist">
+                            <span id="BinaurappIcons" className="material-symbols-outlined">library_music</span>
+                            <p id="sidebarText">Playlist</p>
+                        </Link>
+                    </div>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
 
-               {/*      <a>
-                        <span className="material-symbols-outlined">movie_info</span>
-                        <Link to="/tutorial" type="button" data-bs-toggle="dropdown" >Tutorials</Link>
-                        <ul className="dropdown-menu">
-                            <Link id="links" to="/tutorial">
-                                <li className="dropdown-item" >Tutorials</li>
-                            </Link>
-                            <Link id="links" to="/tutorial" onClick={() => actions.navigateToTutorial("mixer-section")}>
-                                <li className="dropdown-item">Mixer</li>
-                            </Link>
-                            <Link id="links" to="/tutorial" onClick={() => actions.navigateToTutorial("playlist-section")}>
-                                <li className="dropdown-item">Playlist</li>
-                            </Link>
-                            <Link id="links" to="/tutorial">
-                                <li className="dropdown-item">Binaural</li>
-                            </Link>
-                        </ul> 
-                    </a> */}
-               {/*      <a>
-                        <span className="material-symbols-outlined">waves</span>
-                        <a type="button" data-bs-toggle="dropdown">Binaural Waves</a>
-                        <ul className="dropdown-menu">
-                            <Link to="/binaural" onClick={() => actions.navigateToSection("alpha-section")}>
-                                <li className="dropdown-item">Alpha</li>
-                            </Link>
-                            <Link to="/binaural" onClick={() => actions.navigateToSection("theta-section")}>
-                                <li className="dropdown-item">Theta</li>
-                            </Link>
-                            <Link to="/binaural" onClick={() => actions.navigateToSection("delta-section")}>
-                                <li className="dropdown-item">Delta</li>
-                            </Link>
-                        </ul>
-                    </a> */}
-               {/*      <a>
-                        <span className="material-symbols-outlined">stock_media</span>
-                        <a id="links" type="button" data-bs-toggle="dropdown">Soundscapes</a>
-                        <ul className="dropdown-menu">
-                            <Link to="/soundscape" onClick={() => actions.navigateToSoundscape("nature-section")}>
-                                <li className="dropdown-item">Soundscapes</li>
-                            </Link>
-                            <Link to="/soundscape" onClick={() => actions.navigateToSoundscape("music-section")}>
-                            <i className="fa-solid fa-headphones" />
-                            <li className="dropdown-item">Music</li>
-                            </Link>
-                          <Link to="/playlist">
-                                    <i className="fa-brands fa-spotify"/>
-                                    <li className="dropdown-item">Spotify</li>
-                                </Link> 
-                        </ul>
-                    </a> */}
-                    {/* <a>
-                        <span className="material-symbols-outlined">diversity_2</span>
-                        <a>Team</a>
-                    </a> */}
-                    {/* <a>
-                        <span className="material-symbols-outlined">mail</span>
-                        <a>Support</a>
-                    </a> */}
-                  {/*   <a id="links">
-                        <span className="material-symbols-outlined">settings_slow_motion</span>
-                        <a>Settings</a>
-                    </a> */}
-                </nav>
+                    {/* Esto debe ir al final */}
+                    <div className="">
+                        <hr/>
+                        <Link id="sidebarIconsBottom" to="/profile">
+                            <img id="profileImg" src={Binaural_Logo} alt="Binaural_logo"/>
+                            <p id="sidebarTextBottom">Profile</p>
+                        </Link>
+
+                        <Link id="sidebarIconsBottom" to="/">
+                            <span id="BinaurappIcons" className="material-symbols-outlined">logout</span>
+                            <p id="sidebarText">Logout</p>
+                        </Link>
+                    </div>
+                </div>
             </aside>
         </>
     )

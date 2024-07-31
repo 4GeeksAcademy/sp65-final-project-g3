@@ -1,22 +1,149 @@
+@import url("https://fonts.googleapis.com/css2?family=Baumans&display=swap");
+
 .baumans-regular {
     font-family: "Baumans", system-ui;
     font-weight: 400;
     font-style: normal;
-  }
+}
+
+#navbar {    
+    background-color: #1416135b;
+    box-shadow: 0px 0px 10px 2px #1416135b;
+}
+
+#BinaurappLogo {
+    height: 40px;
+    width: 40px;
+    margin-top: 10px;
+}
+
+#BinaurappIcons {
+    color: #c8f560;
+    height: 40px;
+    width: 40px;
+    margin-top: 12px;
+    margin-left: 5px;
+}
 
 #binaurappLogoName {
     color: #c8f560;
-    font-family: "Baumans-Regular", Helvetica;
+    font-family: "Baumans", system-ui;
     font-size: 32px;
 }
 
-#binauralLogo {
-    /* color: #7862F8; */
-    height: 10%;
-    width: 10%;
+#binaurapp {
+    color: #c8f560;
+    font-family: "Baumans", system-ui;
+    font-size: 20px;
+    margin-left: 15px;
+    margin-top: 20px;
+}
+
+#profileImg {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    margin-left: 3px;
 }
 
 #navbarText {
-    font-family: "Baumans-Regular", Helvetica;
+    color: #ffffff;
+    font-family: "Baumans", system-ui;
     font-size: 16px;
+}
+
+#sidebarIcons {
+    color: #ffffff;
+    margin-top: 20px;
+}
+
+#sidebarText {
+    color: #ffffff;
+    font-family: "Baumans", system-ui;
+    font-size: 16px;
+    margin-top: -3px;
+    margin-left: 30px;
+}
+
+#sidebarIconsBottom {
+    color: #ffffff;
+    margin-top: 20px;
+    align-items: bottom;
+}
+
+#sidebarTextBottom {
+    color: #ffffff;
+    font-family: "Baumans", system-ui;
+    font-size: 16px;
+    margin-top: 2px;
+    margin-left: 30px;
+}
+
+#sidebarAdjustments {
+    margin-left: 30px;
+}
+
+.sidebar {
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 64px;
+    background-color: #1416135b;
+    transition: width 0.4s;
+}
+
+.sidebar nav {
+    padding: 0 10px;
+}
+
+.sidebar a p {
+    position: absolute;
+    top: 50%;
+    left: 42px;
+    translate: 0 -50%;
+    opacity: 0;
+    margin: 0;
+    font-size: 12px;
+    white-space: nowrap;
+    transition: 0.175s;
+}
+
+.sidebar i {
+    font-size: 15px;
+}
+
+.sidebar:hover {
+    width: 180px;
+}
+
+.sidebar:hover :is( p) {
+    opacity: 1;
+}
+
+.sidebar a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    height: 44px;
+    width: 100%;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+    padding: 0 0 0 16px;
+    opacity: 0.75;
+    cursor: pointer;
+}
+
+.sidebar a:hover {
+    background-color: #1416135b;
+    opacity: 1;
 }
