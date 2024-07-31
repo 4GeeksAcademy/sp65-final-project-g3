@@ -10,8 +10,8 @@
   
   .home .text-wrapper {
     color: #ffffff;
-    font-family: "Baumans-Regular", Helvetica;
-    font-size: 5rem; /* Bootstrap 4 uses rem for font sizes */
+    font-family: "Baumans", system-ui;
+    font-size: 64px;
     font-weight: 400;
     letter-spacing: -0.1em;
     line-height: 1.2;
@@ -31,7 +31,7 @@
   
   .home .text-wrapper-2 {
     color: #000000cc;
-    font-family: "Baumans-Regular", Helvetica;
+    font-family: "Baumans", system-ui;
     font-size: 20px;
     font-weight: 400;
     white-space: nowrap;
@@ -39,8 +39,8 @@
   
   .home .content {
     color: #ffffff;
-    font-family: "Baumans-Regular", Helvetica;
-    font-size: 1.2rem; /* Bootstrap 4 uses rem for font sizes */
+    font-family: "Baumans", system-ui;
+    font-size: 20px;
     font-weight: 400;
     letter-spacing: 0;
     line-height: 1.6;
@@ -49,7 +49,7 @@
 /*   
   .home .caption {
     color: #ffffff;
-    font-family: "Baumans-Regular", Helvetica;
+    font-family: "Baumans", system-ui;
     font-size: 14px;
     font-weight: 400;
     left: 76px;
