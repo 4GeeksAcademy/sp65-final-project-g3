@@ -140,6 +140,23 @@ a:hover, a:focus, a.active {
     margin-top: 60px;
 }
 
+.soundscape-welcome-section {
+    height: 83vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #21251F;
+    background-image: url("https://live.staticflickr.com/5055/5502797659_2f597c26c3_b.jpg");
+    background-repeat: no-repeat;
+    background-size: 2400px;
+    background-position: center center;
+    color: white;
+    max-height: 700px;
+    min-height: 400px;
+    margin-top: 60px;
+}
+
 @media (max-width: 991px) {
     .tm-welcome-section { height: 70vh; }
 }
