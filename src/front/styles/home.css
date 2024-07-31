@@ -1,28 +1,20 @@
 .home {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 100%;
+  padding: 20px;
   }
   
-  .home .div {
+ /*  .home .div {
     height: 1614px;
     position: relative;
     width: 1200px;
-  }
+  } */
   
   .home .text-wrapper {
     color: #ffffff;
     font-family: "Baumans", system-ui;
     font-size: 64px;
     font-weight: 400;
-    left: 71px;
-    letter-spacing: -1.28px;
-    line-height: 76.8px;
-    position: absolute;
-    text-align: center;
-    top: 184px;
-    width: 1059px;
+    letter-spacing: -0.1em;
+    line-height: 1.2;
   }
   
   .home #greenButton {
@@ -31,9 +23,9 @@
     box-shadow: 0px 2px 4.6px 5px #00000040;
     height: 64px;
     left: 486px;
-    overflow: hidden;
+   /*  overflow: hidden;
     position: absolute;
-    top: 1400px;
+    top: 1400px; */
     width: 227px;
   }
   
@@ -42,12 +34,6 @@
     font-family: "Baumans", system-ui;
     font-size: 20px;
     font-weight: 400;
-    height: 26px;
-    left: 73px;
-    letter-spacing: 0;
-    line-height: 26px;
-    position: absolute;
-    top: 18px;
     white-space: nowrap;
   }
   
@@ -56,14 +42,11 @@
     font-family: "Baumans", system-ui;
     font-size: 20px;
     font-weight: 400;
-    left: 71px;
     letter-spacing: 0;
-    line-height: 32px;
-    position: absolute;
-    top: 860px;
-    width: 1059px;
+    line-height: 1.6;
+    text-align: justify;
   }
-  
+/*   
   .home .caption {
     color: #ffffff;
     font-family: "Baumans", system-ui;
@@ -75,13 +58,13 @@
     position: absolute;
     top: 791px;
     width: 1054px;
-  }
+  } */
   
-  .home .home-image {
+/*   .home .home-image {
     height: 480px;
     left: 71px;
     object-fit: cover;
     position: absolute;
     top: 299px;
     width: 1059px;
-  }
+  } */
