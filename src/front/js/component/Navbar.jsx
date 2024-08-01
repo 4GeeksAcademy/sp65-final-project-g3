@@ -16,7 +16,7 @@ export const Navbar = () => {
 	}
 
 	return (
-		<nav id="navbar" className="navbar navbar-expand-lg">
+		<nav id="navbar" className="navbar navbar-expand">
 		<div className="container-fluid">
 		  <Link className="navbar-brand d-flex align-items-center" to="/">
 			<img src={Binaural_Logo} alt="Binaural_logo" width="50" height="50" className="d-inline-block align-top" />
@@ -31,7 +31,7 @@ export const Navbar = () => {
 				<Link id="navbarText" className="nav-link" to="/">What's Binaurapp</Link>
 			  </li>
 			  <li className="nav-item">
-				<Link id="navbarText" className="nav-link" to="/">About Us</Link>
+				<Link id="navbarText" className="nav-link" to="/aboutus">About Us</Link>
 			  </li>
 			  {!store.isLogin && (
 				<>

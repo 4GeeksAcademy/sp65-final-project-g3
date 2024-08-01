@@ -17,6 +17,13 @@ export const Mixes = () => {
   const { track_1_url, track_1_name, binaural_id, track_2_name, date, mix_title } = store.mixesList;
 
   useEffect(() => {
+    if (!store.isLogin) {
+        alert("Please Log-In or Sign-Up");
+        navigate("/login");
+    }
+}, [store.isLogin, navigate]);
+
+  useEffect(() => {
     actions.getMixes();
   }, []);
 
