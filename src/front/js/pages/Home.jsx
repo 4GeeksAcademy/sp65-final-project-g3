@@ -14,7 +14,7 @@ export const Home = () => {
 					<div className="className div">
 						<img className="home-image img-fluid mb-4" alt="Stocksy" src={homepic} />
 						<div className="text-wrapper mb-4">What’s Binaurapp?</div>
-						<div className="col-12 col-md-6 col-lg-8 col-sm-10 mx-auto mb-4">
+						<div className="col-5 col-md-5 col-lg-5 col-sm-5 mx-auto mb-4">
 							<p className="content">
 								Binaurapp is an innovative application designed to enhance your mental well-being through binaural audio.
 								Our goal is to help you achieve states of sleep, relaxation, concentration, and well-being using advanced sound technologies.

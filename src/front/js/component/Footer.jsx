@@ -1,12 +1,13 @@
 import React from "react";
+import "../../styles/navbar.css";
 
 export const Footer = () => (
-	<footer className="container justify-content-between">
-		<p>© 2024 Binaurapp, Inc.</p>
-		<p>Terms</p>
-		<p>Privacy</p>
-		<p>Security</p>
-		<p>Contact</p>
-		<p>Manage cookies</p>
+	<footer className="container d-flex justify-content-around">
+		<p id="navbarText">© 2024 Binaurapp, Inc.</p>
+		<p id="navbarText">Terms</p>
+		<p id="navbarText">Privacy</p>
+		<p id="navbarText">Security</p>
+		<p id="navbarText">Contact</p>
+		<p id="navbarText">Manage cookies</p>
 	</footer>
 );

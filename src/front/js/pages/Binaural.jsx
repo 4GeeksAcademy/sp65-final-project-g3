@@ -134,7 +134,7 @@ export const Binaural = () => {
                 <div className="row tm-albums-container grid">
                     <div className="row featurette">
                         <div id="binaurappCard" className="card">
-                            <div className="row featurette">
+                            <div id="alpha-section" className="row featurette">
                                 <div className="col-md-3 order-md-1">
                                     <img id="imageCard" src={"https://t3.ftcdn.net/jpg/08/20/12/24/240_F_820122410_ofHPpJwDAjs919R7IcVto7h8AG2IiqEp.jpg"} alt="Image" />
                                     <div className="overlay">
@@ -175,7 +175,7 @@ export const Binaural = () => {
                         )}
 
                         <div id="binaurappCard" className="card">
-                            <div className="row featurette">
+                            <div id="tetha-section" className="row featurette">
                                 <div className="col-md-3 order-md-1">
                                     <img id="imageCard" src={"https://t4.ftcdn.net/jpg/08/02/43/63/240_F_802436395_BB2TxiEuws6vA4dqWO7efJJxSe2qg3KV.jpg"} alt="Image" />
                                     <div className="overlay">
@@ -215,7 +215,7 @@ export const Binaural = () => {
                         )}
 
                         <div id="binaurappCard" className="card">
-                            <div className="row featurette">
+                            <div id="delta-section" className="row featurette">
                                 <div className="col-md-3 order-md-1">
                                     <img id="imageCard" src={"https://t3.ftcdn.net/jpg/07/27/79/86/240_F_727798659_GVhb4YANpW9sRoYjptqB6XQKwW9t5Jyo.jpg"} alt="Image" />
                                     <div className="overlay">
@@ -255,7 +255,7 @@ export const Binaural = () => {
                         )}
 
                         <div id="binaurappCard" className="card">
-                            <div className="row featurette">
+                            <div id="entrainment-section" className="row featurette">
                                 <div className="col-md-3 order-md-1">
                                     <img id="imageCard2" src={"https://t4.ftcdn.net/jpg/08/02/43/63/240_F_802436395_BB2TxiEuws6vA4dqWO7efJJxSe2qg3KV.jpg"} alt="Image" />
                                     <div className="overlay">

@@ -104,7 +104,7 @@ export const Playlist = () => {
                 <div className="row tm-albums-container grid">
                     <div className="row featurette">
                         <div id="binaurappCard" className="card">
-                            <div className="row featurette">
+                            <div id="soundscape-section" className="row featurette">
                                 <div className="col-md-3 order-md-1">
                                     <img id="imageCard" src={img1} alt="Image" />
                                 </div>
@@ -129,7 +129,7 @@ export const Playlist = () => {
                             </div>
                         </div>
                         <div id="binaurappCard" className="card">
-                            <div className="row featurette">
+                            <div id="music-section" className="row featurette">
                                 <div className="col-md-3 order-md-1">
                                     <img id="imageCard" src={"https://t4.ftcdn.net/jpg/07/33/55/15/240_F_733551554_8EeuHjqKGXQj0GjNvw9EJgEb6KbY3fB1.jpg"} alt="Image" />
                                 </div>
@@ -154,7 +154,7 @@ export const Playlist = () => {
                             </div>
                         </div>
                         <div id="binaurappCard" className="card">
-                            <div className="row featurette">
+                            <div id="spoti-section" className="row featurette">
                                 <div className="col-md-3 order-md-1">
                                     <img id="imageCard" src={"https://t4.ftcdn.net/jpg/04/87/69/93/240_F_487699333_0R5Asoup6cWlpD1TUlMlqyQJEIMtAAKP.jpg"} alt="Image" />
                                 </div>
@@ -179,7 +179,7 @@ export const Playlist = () => {
                             </div>
                         </div>
                         <div id="binaurappCard" className="card">
-                            <div className="row featurette">
+                            <div id="mixes-section" className="row featurette">
                                 <div className="col-md-3 order-md-1">
                                     <img id="imageCard" src={img2} alt="Image" />
                                 </div>
