@@ -12,12 +12,12 @@ export const Tutorial = () => {
     const playlist = useRef(null);
     const what = useRef(null);
 
-    // useEffect(() => {
-    //     if (!store.isLogin) {
-    //         alert("Please Log-In or Sign-Up");
-    //         navigate("/login");
-    //     }
-    // }, [store.isLogin, navigate]);
+    useEffect(() => {
+        if (!store.isLogin) {
+            alert("Please Log-In or Sign-Up");
+            navigate("/login");
+        }
+    }, [store.isLogin, navigate]);
 
     useEffect(() => {
         const scrollToRef = (ref) => {
