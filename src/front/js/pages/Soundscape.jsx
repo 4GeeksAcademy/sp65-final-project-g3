@@ -11,6 +11,13 @@ export const Soundscape = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        if (!store.isLogin) {
+            alert("Please Log-In or Sign-Up");
+            navigate("/login");
+        }
+    }, [store.isLogin, navigate]);
+
+    useEffect(() => {
         const scrollToRef = (ref) => {
             if (ref.current) {
                 ref.current.scrollIntoView({ behavior: "smooth", block: "start" });

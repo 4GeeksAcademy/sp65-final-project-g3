@@ -66,6 +66,7 @@ export const UploadSoundscape = () => {
                 <button className="btn btn-primary me-2" onClick={() => setUploadMode(true)}>Upload Mode</button>
                 <button className="btn btn-secondary" onClick={() => setUploadMode(false)}>Delete Mode</button>
             </div>
+        <div className="container d-flex justify-content-center mt-5">
             {uploadMode ? (
                 <form className="form" onSubmit={handleSubmit}>
                     <h3 id="heading">Upload Soundscape Track</h3>
@@ -106,6 +107,7 @@ export const UploadSoundscape = () => {
 
                 
             )}
+            </div>
         </>
     );
 };

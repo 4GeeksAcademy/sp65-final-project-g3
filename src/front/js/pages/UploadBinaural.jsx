@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
-import "../../styles/profile.css";
+/* import "../../styles/profile.css"; */
 import { useNavigate } from "react-router-dom";
 
 export const UploadBinaural = () => {
@@ -32,7 +32,7 @@ export const UploadBinaural = () => {
     };
 
     const handleSubmit = (event) => {
-        event.preventDefault();       
+        event.preventDefault();
         const dataToSend = {
             name: name,
             type: type,
@@ -46,29 +46,31 @@ export const UploadBinaural = () => {
 
     return (
         <>
-            <form className="form" onSubmit={handleSubmit}>
-                <h3 id="heading">Upload Binaural Track</h3>
-                <div className="field text-end">
-                    <label htmlFor="name" className="form-label2">Track Name <span className="text-muted">(Optional)</span></label>
-                    <input type="text" id="textResized" className="form-control" placeholder="Track Name" value={name} onChange={handleName} />
-                </div>
-                <div className="field row-2 text-end">
-                    <label htmlFor="trackUrl" className="form-label2">Track URL <span className="text-muted">(Optional)</span></label>
-                    <input type="text" id="textResized" className="form-control" placeholder="Track URL" value={track_url} onChange={handleTrackUrl} />
-                </div>             
-                <div className="field row-2 text-end">
-                    <label htmlFor="type" className="form-label2">Type <span className="text-muted">(Optional)</span></label>
-                    <input type="text" id="textResized" className="form-control" value={type} onChange={handleType} />
-                </div>
-                <div className="field row-2 text-end">
-                    <label htmlFor="description" className="form-label2">Description <span className="text-muted">(Optional)</span></label>
-                    <input type="text" id="textResized" className="form-control" value={description} onChange={handleDescription} />
-                </div>
-                <div className="d-flex justify-content-center">
-                    <button type="submit" className="button1">&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
-                    <button type="reset" className="button1" onClick={handleReset}>&nbsp;&nbsp;Reset&nbsp;&nbsp;</button>
-                </div>
-            </form>
+            <div className="container d-flex justify-content-center mt-5">
+                <form className="form" onSubmit={handleSubmit}>
+                    <h3 id="heading">Upload Binaural Track</h3>
+                    <div className="field text-end">
+                        <label htmlFor="name" className="form-label2">Track Name <span className="text-muted">(Optional)</span></label>
+                        <input type="text" id="textResized" className="form-control" placeholder="Track Name" value={name} onChange={handleName} />
+                    </div>
+                    <div className="field row-2 text-end">
+                        <label htmlFor="trackUrl" className="form-label2">Track URL <span className="text-muted">(Optional)</span></label>
+                        <input type="text" id="textResized" className="form-control" placeholder="Track URL" value={track_url} onChange={handleTrackUrl} />
+                    </div>
+                    <div className="field row-2 text-end">
+                        <label htmlFor="type" className="form-label2">Type <span className="text-muted">(Optional)</span></label>
+                        <input type="text" id="textResized" className="form-control" value={type} onChange={handleType} />
+                    </div>
+                    <div className="field row-2 text-end">
+                        <label htmlFor="description" className="form-label2">Description <span className="text-muted">(Optional)</span></label>
+                        <input type="text" id="textResized" className="form-control" value={description} onChange={handleDescription} />
+                    </div>
+                    <div className="d-flex justify-content-center">
+                        <button type="submit" className="button1">&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                        <button type="reset" className="button1" onClick={handleReset}>&nbsp;&nbsp;Reset&nbsp;&nbsp;</button>
+                    </div>
+                </form>
+            </div>
         </>
     );
 };
