@@ -28,7 +28,7 @@ export const AboutUs = () => {
                             
                         </div>
                         <div className="d-flex justify-content-center mb-4">
-                            <Link to="/signup"> <button id="greenButton" className="text-wrapper-2">Try Now </button></Link>
+                            <Link to="/mail"> <button id="greenButton" className="text-wrapper-2">Send Feedback </button></Link>
                         </div>
                     </div>
                 </div>

@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/binaural.css";
 import { useNavigate } from "react-router-dom";
+import back1 from "../../img/headphones.png"
+
 
 export const Tutorial = () => {
     const { store } = useContext(Context)
@@ -70,7 +72,7 @@ export const Tutorial = () => {
 
     return (
         <>
-            <div className="tutorial-welcome-section">
+            <div className="tutorial-welcome-section" style={{ backgroundImage: `url(${back1})` }}>
                 <div className="container text-center tm-welcome-container">
                     <div className="tm-welcome">
                         <i className="fas tm-fa-big fa-music tm-fa-mb-big"></i>
