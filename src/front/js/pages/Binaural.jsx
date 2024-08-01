@@ -175,7 +175,7 @@ export const Binaural = () => {
                         )}
 
                         <div id="binaurappCard" className="card">
-                            <div id="tetha-section" className="row featurette">
+                            <div id="theta-section" className="row featurette">
                                 <div className="col-md-3 order-md-1">
                                     <img id="imageCard" src={"https://t4.ftcdn.net/jpg/08/02/43/63/240_F_802436395_BB2TxiEuws6vA4dqWO7efJJxSe2qg3KV.jpg"} alt="Image" />
                                     <div className="overlay">
