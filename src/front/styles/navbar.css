@@ -96,6 +96,7 @@
     width: 64px;
     background-color: #1416135b;
     transition: width 0.4s;
+    z-index: 1;
 }
 
 .sidebar nav {
@@ -145,5 +146,5 @@
 
 .sidebar a:hover {
     background-color: #1416135b;
-    opacity: 1;
+    opacity: 1;    
 }
