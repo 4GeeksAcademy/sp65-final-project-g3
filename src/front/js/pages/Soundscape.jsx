@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/binaural.css";
 import { useNavigate } from "react-router-dom";
+import back from "../../img/soundscape1.jpg"
 
 export const Soundscape = () => {
     const { store, actions } = useContext(Context)
@@ -75,7 +76,7 @@ export const Soundscape = () => {
 
     return (
         <>
-            <div className="soundscape-welcome-section">
+            <div className="soundscape-welcome-section" style={{ backgroundImage: `url(${back})` }}>
                 <div className="container text-center tm-welcome-container">
                     <div className="tm-welcome">
                         <i className="fas tm-fa-big fa-music tm-fa-mb-big"></i>

@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "../../styles/binaural.css"
 import img1 from "../../img/soundscape.jpg"
 import img2 from "../../img/mixes.jpg"
+import playlistback from "../../img/playlistback.jpg"
 
 export const Playlist = () => {
     const { store, actions } = useContext(Context)
@@ -45,7 +46,7 @@ export const Playlist = () => {
 
     return (
         <>
-            <div className="playlist-welcome-section">
+                     <div className="playlist-welcome-section" style={{ backgroundImage: `url(${playlistback})` }}>
                 <div className="container text-center tm-welcome-container">
                     <div className="tm-welcome">
                         <i className="fas tm-fa-big fa-music tm-fa-mb-big"></i>

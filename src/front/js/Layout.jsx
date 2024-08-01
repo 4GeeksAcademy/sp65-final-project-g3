@@ -31,10 +31,12 @@ import { Mixer } from "./pages/Mixer.jsx";
 import { UploadBinaural } from "./pages/UploadBinaural.jsx";
 import { UploadSoundscape } from "./pages/UploadSoundscape.jsx";
 import { UploadTutorial } from "./pages/UploadTutorial.jsx";
+import { Mail } from "./pages/Mail.jsx";
 
 // Spotify Auth App
 import { SpotifyCallback } from './component/SpotifyCallback.jsx';
 import { EditMixes } from "./pages/EditMixes.jsx";
+
 
 
 // Componente para manejar la lógica de renderizado condicional
@@ -92,6 +94,7 @@ const Layout = () => {
                         <Route path="/uploadsoundscape" element={<UploadSoundscape />} />
                         <Route path="/uploadtutorial" element={<UploadTutorial />} />
                         <Route path="/callback" element={<SpotifyCallback />} />
+                        <Route path="/mail" element={<Mail />} />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />

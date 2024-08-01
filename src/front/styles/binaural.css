@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Baumans&display=swap");
 
+
 .baumans-regular {
     font-family: "Baumans", system-ui;
     font-weight: 400;
@@ -178,7 +179,7 @@ a:hover, a:focus, a.active {
     background-color: #21251F;
     background-image: url("https://img.pikbest.com/wp/202405/copy-space-vibrant-3d-illustration-with-luminous-neon-lights-and-reflective-glare-perfect-for_9854323.jpg!bw700");
     background-repeat: no-repeat;
-    background-size: 2400px;
+    background-size: 1600px;
     background-position: center center;
     color: white;
     max-height: 700px;
@@ -195,8 +196,8 @@ a:hover, a:focus, a.active {
     background-color: #21251F;
     background-image: url("https://live.staticflickr.com/5055/5502797659_2f597c26c3_b.jpg");
     background-repeat: no-repeat;
-    background-size: 2400px;
-    background-position: center center;
+    background-size: 1600px;
+    background-position: top center;
     color: white;
     max-height: 700px;
     min-height: 400px;
@@ -210,9 +211,9 @@ a:hover, a:focus, a.active {
     align-items: center;
     justify-content: center;
     background-color: #21251F;
-    background-image: url("https://t3.ftcdn.net/jpg/05/92/17/70/360_F_592177001_AfRPYr9bO7n64PqP7UjlaDRrXklYYmI3.jpg");
+  /*   background-image: url("https://cdn.pixabay.com/photo/2024/02/26/14/13/energy-8598060_640.jpg"); */
     background-repeat: no-repeat;
-    background-size: 2400px;
+    background-size: 1600px;
     background-position: center center;
     color: white;
     max-height: 700px;
@@ -227,10 +228,10 @@ a:hover, a:focus, a.active {
     align-items: center;
     justify-content: center;
     background-color: #21251F;
-    background-image: url("https://t4.ftcdn.net/jpg/08/49/24/17/240_F_849241740_CLnSg8QLqaYNtxEZLaKFCssMdmwoSuH6.jpg");
+    /* background-image: url("../../front/img/playlistback.jpg"); */
     background-repeat: no-repeat;
-    background-size: 2400px;
-    background-position: center center;
+    background-size: 1600px;
+    background-position: top center;
     color: white;
     max-height: 700px;
     min-height: 400px;

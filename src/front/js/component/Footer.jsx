@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"
 import "../../styles/navbar.css";
 
 export const Footer = () => (
@@ -7,7 +8,7 @@ export const Footer = () => (
 		<p id="navbarText">Terms</p>
 		<p id="navbarText">Privacy</p>
 		<p id="navbarText">Security</p>
-		<p id="navbarText">Contact</p>
+		<Link to="/mail" id="navbarText">Contact</Link>
 		<p id="navbarText">Manage cookies</p>
 	</footer>
 );
