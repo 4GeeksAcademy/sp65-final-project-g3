@@ -285,6 +285,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ MixId: data })
 				console.log("updated Mix", MixId);
 			},
+			deleteMix: async (id) => {
+				console.log("Deleting mix with ID:", id); 
+				const uri = `${process.env.BACKEND_URL}/api/mixes/${id}`;
+				const token = localStorage.getItem("token");
+				console.log(token);
+				const options = {
+					method: 'DELETE',
+					headers: {
+						'Authorization': `Bearer ${token}`,
+						'Content-Type': 'application/json'
+					},					
+				}				
+				const response = await fetch(uri, options);
+				if (!response.ok) {
+					console.log('error in delete mix', response.status, response.statusText)
+					return
+				}
+				const data = await response.json();
+				setStore({ mixesList: data.results })
+			},
 		}
 	}
 };
