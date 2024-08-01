@@ -14,7 +14,7 @@ export const AboutUs = () => {
                     <div className="className div">
                         <img className="home-image img-fluid mb-4" alt="Stocksy" src={aboutus} />
                         <div className="text-wrapper mb-4">Meet the Binaurapp Team!</div>
-                        <div className="col-12 col-md-6 col-lg-8 col-sm-10 mx-auto mb-4">
+                        <div className="col-5 col-md-5 col-lg-5 col-sm-5 mx-auto mb-4">
                             <p className="content">
                                 We’re a passionate duo of developers who poured our hearts and skills into creating Binaurapp. Over the past few years, we've not only built every aspect of this app ourselves but also crafted a unique audio player from scratch. Our journey has been deeply influenced by years of research in neuroscience and music, culminating in the groundbreaking theory of “Moving Binaural Waves” (MBW) by Matias Kamelman.
                                 </p>

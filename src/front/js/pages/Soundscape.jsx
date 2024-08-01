@@ -130,7 +130,7 @@ export const Soundscape = () => {
                     <div className="row featurette">
 
                         <div id="binaurappCard" className="card">
-                            <div className="row featurette">
+                            <div id="nature-section" className="row featurette">
                                 <div className="col-md-3 order-md-1">
                                     <img id="imageCard" src={"https://t3.ftcdn.net/jpg/02/22/63/26/240_F_222632647_uMPpbpn4QnJptPz6P3ikfdDkNTDb4ACp.jpg"} alt="Image" />
                                     <div className="overlay">
@@ -165,7 +165,7 @@ export const Soundscape = () => {
                         )}
 
                         <div id="binaurappCard" className="card">
-                            <div className="row featurette">
+                            <div id="organic-section" className="row featurette">
                                 <div className="col-md-3 order-md-1">
                                     <img id="imageCard" src={"https://t4.ftcdn.net/jpg/08/02/43/63/240_F_802436395_BB2TxiEuws6vA4dqWO7efJJxSe2qg3KV.jpg"} alt="Image" />
                                     <div className="overlay">
@@ -201,7 +201,7 @@ export const Soundscape = () => {
                         )}
 
                         <div id="binaurappCard" className="card">
-                            <div className="row featurette">
+                            <div id="music-section" className="row featurette">
                                 <div className="col-md-3 order-md-1">
                                     <img id="imageCard" src={"https://t4.ftcdn.net/jpg/06/57/98/19/240_F_657981926_WYtt9d9vRmcrQqvp5Hy5MTT6G6BoL0n0.jpg"} alt="Image" />
                                     <div className="overlay">
@@ -235,7 +235,7 @@ export const Soundscape = () => {
                         )}
 
                         <div id="binaurappCard" className="card">
-                            <div className="row featurette">
+                            <div id="lists-section" className="row featurette">
                                 <div className="col-md-3 order-md-1">
                                     <img id="imageCard2" src={"https://t3.ftcdn.net/jpg/05/54/95/76/240_F_554957692_l55wWG1XGkV33Anr0WtV2REAbE6Am3e3.jpg"} alt="Image" />
                                     <div className="overlay">

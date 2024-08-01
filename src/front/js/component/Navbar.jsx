@@ -31,7 +31,7 @@ export const Navbar = () => {
 				<Link id="navbarText" className="nav-link" to="/">What's Binaurapp</Link>
 			  </li>
 			  <li className="nav-item">
-				<Link id="navbarText" className="nav-link" to="/">About Us</Link>
+				<Link id="navbarText" className="nav-link" to="/aboutus">About Us</Link>
 			  </li>
 			  {!store.isLogin && (
 				<>
