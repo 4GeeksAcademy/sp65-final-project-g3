@@ -70,6 +70,10 @@ export const Tutorial = () => {
         setIsVisibleFourth(prev => !prev);
     };
 
+    const openYouTubeVideo = (url) => {
+        window.open(url, '_blank', 'noopener,noreferrer');
+    };
+
     return (
         <>
             <div className="tutorial-welcome-section" style={{ backgroundImage: `url(${back1})` }}>
@@ -148,7 +152,7 @@ export const Tutorial = () => {
                                     <p id="textBody">PUT ON YOUR HEADPHONES! Sorry for the shout out! but yeah, you don´t get any of the fun without them. Why? basically all the "magic" happens thanks to ambisonics technology which you can appreciate in this case only by usisng headphones.
                                     So that´s the first thing you need to do. Right after that, we recommend getting familiar with the use of the mixer, and the different options you get for backing tracks (not karaoke kind, the actual track that backs the binaural waves up) and of course the uses of the Moving Binaural Waves.
                                     </p>
-                                    <button type="button" id="greenButtonAlone" onClick={() => handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_64483b3bf3.mp3", "12Hz")}>Tutorial Video</button>
+                                    <button type="button" id="greenButtonAlone" onClick={() => openYouTubeVideo("https://youtu.be/8xeGxvje4ts")}>Tutorial Video</button>
                                 </div>                                
                             </div>
                         </div>
@@ -175,7 +179,7 @@ export const Tutorial = () => {
                                     <p id="textBody">One of the key differentiators in Binaurapp is that you get to choose the level of exposure to the entrainment agent. You get two tracks, one for the background and one for the entrainer, each with it´s own volume control.
                                                 In the video you will see a basic explanation of the mixer, but it´s not rocket science. You can choose to upload the tracks from the very mixer or you can navigate to the playlist pages and binaural pages respectively for a more detailed explanation of each track.
                                                 </p>
-                                    <button type="button" id="greenButtonAlone" onClick={() => handleLoadTrack("https://cdn.pixabay.com/download/audio/2024/07/02/audio_f14d1f916c.mp3", "7Hz")}>Tutorial Video</button>
+                                    <button type="button" id="greenButtonAlone" onClick={() => openYouTubeVideo("https://youtu.be/Jemx6oVleI4")}>Tutorial Video</button>
                                 </div>
                             </div>
                         </div>
@@ -231,7 +235,7 @@ export const Tutorial = () => {
                                 </div>
                                 <div id="buttonContainer" className="col-md-2 order-md-3">
                                     <button type="button" id="greenButton"
-                                        onClick={() => window.open('https://www.instagram.com/reel/Cz9f8J5tquS/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==', '_blank', 'noopener,noreferrer')}>What is Binaural?</button>
+                                        onClick={() => openYouTubeVideo("https://youtu.be/V8SikUqVPaU")}>What is Binaural?</button>
                                     <button type="button" id="greenButton"
                                         onClick={() => window.open('https://www.instagram.com/reel/C0R4sS5IdLR/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==', '_blank', 'noopener,noreferrer')}>What is Entrainment?</button>
                                     <button type="button" id="greenButton"
