@@ -299,12 +299,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}				
 				const response = await fetch(uri, options);
 				if (!response.ok) {
-					console.log('error in delete mix', response.status, response.statusText)
-					return
+					throw new Error(`Error deleting mix: ${response.status} ${response.statusText}`);
 				}
-				const data = await response.json();
-				setStore({ mixesList: data.results })
-			},
+				},
+				// Add this new action to update mixesList
+				setMixesList: (mixes) => {
+				setStore({ mixesList: mixes });
+				},
 		}
 	}
 };
