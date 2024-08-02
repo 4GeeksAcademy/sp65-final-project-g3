@@ -171,15 +171,15 @@ export const Mixer = () => {
         };
 
         actions.addMixes(dataToSend)
-        .then(() => {
-            setShowModal(true); // Mostrar la ventana modal de éxito
-            setTimeout(() => {
-                setShowModal(false); // Ocultar la ventana modal después de 5 segundos
-            }, 5000);
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+            .then(() => {
+                setShowModal(true); // Mostrar la ventana modal de éxito
+                setTimeout(() => {
+                    setShowModal(false); // Ocultar la ventana modal después de 5 segundos
+                }, 5000);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
         // Aquí podrías realizar una llamada al backend para enviar dataToSend
         console.log('Datos enviados al backend:', dataToSend);
         setMixTitle("");
@@ -210,77 +210,79 @@ export const Mixer = () => {
     const handleTrackSelect = ({ trackOneUrl, track1name }) => {
         setTrackOneUrl(trackOneUrl);
         setTrack1Name(track1name);
-      };
+    };
 
 
     return (
         <>
-            <div id="mixerConatiner" className="d-flex flex-column bd-highlight mb-3">
-            {/* <SpotifySearch onTrackSelect={handleTrackSelect} /> */}
-                <div id="volumeControlers" className="d-flex justify-content-center">
-                    <input type="range" id="trackOneVolume" ref={trackOneVolumeRef} onChange={handleTrackOneVolumeChange} min="0" max="1" step="0.01" />
-                    <div id="trackOneVu"><div id="vuFill" className="card" ref={trackOneVuRef} ></div></div>
-                    <div id="trackTwoVu"><div id="vuFill" className="card" ref={trackTwoVuRef}></div></div>
-                    <input type="range" id="trackTwoVolume" ref={trackTwoVolumeRef} onChange={handleTrackTwoVolumeChange} min="0" max="1" step="0.01" />
-                </div>
-                <div id="playerButtons" className="d-flex justify-content-center">
-                    <button id="metalButton2" className="dropdown" type="button" data-bs-toggle="dropdown"/*  onClick={() => handleSpotifyLists(item.url)} */>
-                        <span className="material-symbols-outlined">menu</span>
-                    </button>
-                    {/* <ul>
+            <div id="mainContainer">
+                <div id="mixerConatiner" className="d-flex flex-column bd-highlight mb-3">
+                    {/* <SpotifySearch onTrackSelect={handleTrackSelect} /> */}
+                    <div id="volumeControlers" className="d-flex justify-content-center">
+                        <input type="range" id="trackOneVolume" ref={trackOneVolumeRef} onChange={handleTrackOneVolumeChange} min="0" max="1" step="0.01" />
+                        <div id="trackOneVu"><div id="vuFill" className="card" ref={trackOneVuRef} ></div></div>
+                        <div id="trackTwoVu"><div id="vuFill" className="card" ref={trackTwoVuRef}></div></div>
+                        <input type="range" id="trackTwoVolume" ref={trackTwoVolumeRef} onChange={handleTrackTwoVolumeChange} min="0" max="1" step="0.01" />
+                    </div>
+                    <div id="playerButtons" className="d-flex justify-content-center">
+                        <button id="metalButton2" className="dropdown" type="button" data-bs-toggle="dropdown"/*  onClick={() => handleSpotifyLists(item.url)} */>
+                            <span className="material-symbols-outlined">menu</span>
+                        </button>
+                        {/* <ul>
                             <li><div className="btn">Spotify Library</div></li>
                             <li><div className="btn">Soundscapes Library</div></li>
                         </ul> */}
-                    <ul className="dropdown-menu">
-                        {store.soundscapeList.map((item, index) => (
-                            <li key={index}>
-                                <button className="dropdown-item" onClick={() => handleSoundscapeClick(item.url_jamendo, item.name)}>{item.name}</button>
-                            </li>
-                        ))}
-                    </ul>
-                    <button id="metalButton" onClick={playAudio}>play</button>
-                    <button id="metalButton" onClick={pauseAudio}><b>||</b></button>
-                    <button id="metalButton2" className="dropdown" type="button" data-bs-toggle="dropdown">
-                        <span className="material-symbols-outlined">menu</span>
-                    </button>
-                    <ul className="dropdown-menu">
-                        {store.binauralList.map((item, index) => (
-                            <li key={index}>
-                                <button className="dropdown-item" onClick={() => handleBinauralClick(item.track_url, item.name)}>{item.name}</button>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-                {/* Estas 3 líneas se tendrán que reemplazar con la implementación de las librerias */}
-                <div id="musicLoaders" className="d-flex justify-content-center">
-                    <label type="text" className="text-center" id="track1Url">{store.trackOneName ? store.trackOneName : track1name}</label>
-                    <button id="metalButton3" onClick={loadAudio}>Load</button>
-                    <label type="text" className="text-center" id="track2Url">{store.trackTwoName ? store.trackTwoName : track2name}</label>
-                    {/* El icono debería estar oculto hasta que ambas pistas no estén cargadas */}
-                    <div className="btn dropdown">
-                        <span id="favButton" onClick={handleMix}><i title="Add Mix" style={{ cursor: "pointer" }} className="fa-solid fa-heart-pulse fa-beat-fade" /></span>
+                        <ul className="dropdown-menu">
+                            {store.soundscapeList.map((item, index) => (
+                                <li key={index}>
+                                    <button className="dropdown-item" onClick={() => handleSoundscapeClick(item.url_jamendo, item.name)}>{item.name}</button>
+                                </li>
+                            ))}
+                        </ul>
+                        <button id="metalButton" onClick={playAudio}>play</button>
+                        <button id="metalButton" onClick={pauseAudio}><b>||</b></button>
+                        <button id="metalButton2" className="dropdown" type="button" data-bs-toggle="dropdown">
+                            <span className="material-symbols-outlined">menu</span>
+                        </button>
+                        <ul className="dropdown-menu">
+                            {store.binauralList.map((item, index) => (
+                                <li key={index}>
+                                    <button className="dropdown-item" onClick={() => handleBinauralClick(item.track_url, item.name)}>{item.name}</button>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
-                </div>
-                {showInput && (
-                    <div className="d-flex justify-content-center">
-                        <input id="mixTitleLabel" type="text" value={mixTitle} onChange={handleInputChange} placeholder="Set Mix Title" />
-                        {error && <p style={{ color: 'red' }}>{error}</p>}
-                        <button id="metalButton4"><span className="material-symbols-outlined" onClick={handleOnSubmitMix}>library_music</span></button>
-                    </div>
-                )}
-            </div>
-            <input type="text" id="secretUrl" ref={trackOneUrlRef} value={store.track1Url} />
-            <input type="text" id="secretUrl" ref={trackTwoUrlRef} value={store.track2Url} />
-
-            <div className="modal" tabIndex="-1" role="dialog" style={{ display: showModal ? 'block' : 'none' }}>
-                <div className="modal-dialog" role="document">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title">Success!</h5>
-                            <button type="button" className="btn-close" onClick={() => setShowModal(false)} aria-label="Close"></button>
+                    {/* Estas 3 líneas se tendrán que reemplazar con la implementación de las librerias */}
+                    <div id="musicLoaders" className="d-flex justify-content-center">
+                        <label type="text" className="text-center" id="track1Url">{store.trackOneName ? store.trackOneName : track1name}</label>
+                        <button id="metalButton3" onClick={loadAudio}>Load</button>
+                        <label type="text" className="text-center" id="track2Url">{store.trackTwoName ? store.trackTwoName : track2name}</label>
+                        {/* El icono debería estar oculto hasta que ambas pistas no estén cargadas */}
+                        <div className="btn dropdown">
+                            <span id="favButton" onClick={handleMix}><i title="Add Mix" style={{ cursor: "pointer" }} className="fa-solid fa-heart-pulse fa-beat-fade" /></span>
                         </div>
-                        <div className="modal-body">
-                            Your Mix was successfully stored! Check your Mixes to find all of them.
+                    </div>
+                    {showInput && (
+                        <div className="d-flex justify-content-center">
+                            <input id="mixTitleLabel" type="text" value={mixTitle} onChange={handleInputChange} placeholder="Set Mix Title" />
+                            {error && <p style={{ color: 'red' }}>{error}</p>}
+                            <button id="metalButton4"><span className="material-symbols-outlined" onClick={handleOnSubmitMix}>library_music</span></button>
+                        </div>
+                    )}
+                </div>
+                <input type="text" id="secretUrl" ref={trackOneUrlRef} value={store.track1Url} />
+                <input type="text" id="secretUrl" ref={trackTwoUrlRef} value={store.track2Url} />
+
+                <div className="modal" tabIndex="-1" role="dialog" style={{ display: showModal ? 'block' : 'none' }}>
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title">Success!</h5>
+                                <button type="button" className="btn-close" onClick={() => setShowModal(false)} aria-label="Close"></button>
+                            </div>
+                            <div className="modal-body">
+                                Your Mix was successfully stored! Check your Mixes to find all of them.
+                            </div>
                         </div>
                     </div>
                 </div>
