@@ -1,12 +1,4 @@
-body {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	min-height: 90vh;
-	background-color: #000000;
-  }
-  
-  .form {
+   .form {
 	display: flex;
 	flex-direction: column;
 	position: absolute;

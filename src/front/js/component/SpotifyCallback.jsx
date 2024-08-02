@@ -32,19 +32,20 @@ export const SpotifyCallback = () => {
       })
       .then(data => {
         // Store tokens and user info
-        console.log("**ENTRO**")
-        localStorage.setItem('spotifyAccessToken', data.access_token);
-        localStorage.setItem('spotifyRefreshToken', data.refresh_token);
+        console.log("**ENTERED**")
+        localStorage.setItem('spotifyAccessToken', data.access_token);        
+        localStorage.setItem('spotifyRefreshToken', data.refresh_token);        
         actions.setUser(data.user);
         actions.setIsLogin(true);
         navigate('/dashboard');
+        console.log('Arriving!!');
       })
+    } else {
+      console.log ("**NOT ENTERED**")
       .catch(error => {
         console.error('Error:', error);
         navigate('/login');
       });
-    } else {
-      console.log ("+NO ENTRO+")
     }
   }, [location, actions, navigate]);
   // }, []);

@@ -3,8 +3,8 @@ import { Context } from "../store/appContext";
 import "../../styles/mixer.css";
 import { useNavigate } from "react-router-dom";
 
-
-
+//Spotify Search
+import SpotifySearch from '../component/SpotifySearch.jsx';
 
 
 export const Mixer = () => {
@@ -203,10 +203,20 @@ export const Mixer = () => {
         setTrack1Name(name)
     };
 
+    //Spotify Selection
+    const [trackOneUrl, setTrackOneUrl] = useState('');
+
+
+    const handleTrackSelect = ({ trackOneUrl, track1name }) => {
+        setTrackOneUrl(trackOneUrl);
+        setTrack1Name(track1name);
+      };
+
 
     return (
         <>
             <div id="mixerConatiner" className="d-flex flex-column bd-highlight mb-3">
+            {/* <SpotifySearch onTrackSelect={handleTrackSelect} /> */}
                 <div id="volumeControlers" className="d-flex justify-content-center">
                     <input type="range" id="trackOneVolume" ref={trackOneVolumeRef} onChange={handleTrackOneVolumeChange} min="0" max="1" step="0.01" />
                     <div id="trackOneVu"><div id="vuFill" className="card" ref={trackOneVuRef} ></div></div>
@@ -278,19 +288,3 @@ export const Mixer = () => {
         </>
     );
 };
-
-
-// <div className="d-flex" >
-// <input type="input" onKeyPress={event =>{
-// if (event.key == "Enter"){
-// console.log("Pressed enter");
-// }}}
-// onChange={event => setSearchInput(event.target.value)} placeholder="Search in Spotify"></input>
-// <button onClick={search}><span className="material-symbols-outlined">search</span></button>
-// </div>
-// {albums.map( (album, i) => {
-// console.log(album);
-// return (
-// <button className="d-flex" onClick={handlePlayTrack}><img src={album.images[0]} /> <div>{album.name}</div></button>)
-// })
-// }
