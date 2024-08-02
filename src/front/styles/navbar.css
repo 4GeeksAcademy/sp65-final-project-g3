@@ -149,7 +149,6 @@
     opacity: 1;    
 }
 
-
 #profileMixImg {
     height: 100px;
     width: 100px;
@@ -158,8 +157,20 @@
     margin-left: 3px;
 }
 
+#mixes {
+    margin-top: 20px;
+    margin-left: 60px;
+    margin-bottom: 100px;
+}
+
 #mixesList {
     background-color:#21251F;
+}
+
+#editMixButtons {
+    margin: -10px;
+    align-items: center;
+    background-color: #ffffff00;
 }
 
 #listHeader {
@@ -170,10 +181,12 @@
 #userHeader {
     color: #ffffff;
     background-color: #21251F;
+    margin-top: 50px;
+    margin-bottom: 20px;
 }
 
 #userHeaderText {
-    margin-top: 25px;
+    margin-top: 50px;
     margin-left: 10px;
     font-family: "Baumans", system-ui;
     font-size: 22px;
@@ -182,14 +195,18 @@
 
 #mixDetails {
     color: #ffffff;
-    background-color:#21251F;
+    /* background-color: #353b3250; */
+}
+
+#mixDetailsTitle {
+    text-align: center;
 }
 
 #trackImg {
     image-resolution: cover;
-    margin: 10px;
-    height: 200px;
-    width: 200px;
+    margin: 20px;
+    height: 240px;
+    width: 400px;
 }
 
 #blockHeaderList {
