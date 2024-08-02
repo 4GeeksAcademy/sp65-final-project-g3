@@ -148,3 +148,70 @@
     background-color: #1416135b;
     opacity: 1;    
 }
+
+
+#profileMixImg {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    margin-left: 3px;
+}
+
+#mixesList {
+    background-color:#21251F;
+}
+
+#listHeader {
+    background-color: #21251F;
+    display: flex;
+}
+
+#userHeader {
+    color: #ffffff;
+    background-color: #21251F;
+}
+
+#userHeaderText {
+    margin-top: 25px;
+    margin-left: 10px;
+    font-family: "Baumans", system-ui;
+    font-size: 22px;
+    font-weight: 400;
+}
+
+#mixDetails {
+    color: #ffffff;
+    background-color:#21251F;
+}
+
+#trackImg {
+    image-resolution: cover;
+    margin: 10px;
+    height: 200px;
+    width: 200px;
+}
+
+#blockHeaderList {
+    height: 40px;
+    background-color: #21251F;
+}
+
+#blockListOdd {
+    height: 40px;
+    background-color: #353b3250;
+}
+#blockListPair {
+    height: 40px;
+    background-color: #21251F;
+}
+
+#tableData {
+    color: #ffffff;
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-family: "Baumans", system-ui;
+    font-size: 16px;
+    font-weight: 400;
+}
