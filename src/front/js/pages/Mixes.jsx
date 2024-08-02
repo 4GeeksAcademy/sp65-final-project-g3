@@ -18,10 +18,10 @@ export const Mixes = () => {
 
   useEffect(() => {
     if (!store.isLogin) {
-        alert("Please Log-In or Sign-Up");
-        navigate("/login");
+      alert("Please Log-In or Sign-Up");
+      navigate("/login");
     }
-}, [store.isLogin, navigate]);
+  }, [store.isLogin, navigate]);
 
   useEffect(() => {
     actions.getMixes();
@@ -43,30 +43,35 @@ export const Mixes = () => {
     console.log("this is de item", item);
   };
 
-  return (
-    <div className="center-container">
-      <Card id="field">
-        <h1 className="text-center">Your Mixes</h1>
-        <Card.Body>
-          <div>
-            <p className="text-start">Hey {first_name} {last_name}! <br></br> These are your Mixes</p>
-          </div>
+  const handleDeleteMix = (id) => {
+    console.log("Deleting mix with ID:", id);  // Log to verify ID
+    actions.deleteMix(id);
+  };
 
-          {store.mixesList.map((item, index) => (
-            <ListGroup.Item id="Contenedores" className="justify-content-center" key={index}>
-              <h3 className="text-info"> {item.mix_title} </h3>
-              <h5 className="text-secondary"> Soundtrack </h5>
-              <h6 > {item.track_1_name} </h6>
-              <h5 className="text-secondary"> Binaural Track </h5>
-              <h6 > {item.track_2_name} </h6>
-              {/* <span className="mx-5 text-start"> {item.binaural_id} </span>                                     */}
-              <Button className="button1" onClick={() => handleLoadMix(item.track_1_name, item.track_2_name, item.track_1_url, item.binaural_id)}>Load Mix</Button>
-              <Button className="button1" onClick={() => handleEditMix(item)}><i className="fa-regular fa-pen-to-square"></i></Button>
-              <Button className="button1" onClick={() => handleDeleteMix(item.track_1_name, item.track_2_name, item.track_1_url, item.binaural_id)}><i className="fa-solid fa-trash"></i></Button>
-            </ListGroup.Item>
-          ))}
-        </Card.Body>
-      </Card>
-    </div>
-  )
+return (
+  <div className="center-container">
+    <Card id="field">
+      <h1 className="text-center">Your Mixes</h1>
+      <Card.Body>
+        <div>
+          <p className="text-start">Hey {first_name} {last_name}! <br></br> These are your Mixes</p>
+        </div>
+
+        {store.mixesList.map((item, index) => (
+          <ListGroup.Item id="Contenedores" className="justify-content-center" key={index}>
+            <h3 className="text-info"> {item.mix_title} </h3>
+            <h5 className="text-secondary"> Soundtrack </h5>
+            <h6 > {item.track_1_name} </h6>
+            <h5 className="text-secondary"> Binaural Track </h5>
+            <h6 > {item.track_2_name} </h6>
+            {/* <span className="mx-5 text-start"> {item.binaural_id} </span>                                     */}
+            <Button className="button1" onClick={() => handleLoadMix(item.track_1_name, item.track_2_name, item.track_1_url, item.binaural_id)}>Load Mix</Button>
+            <Button className="button1" onClick={() => handleEditMix(item)}><i className="fa-regular fa-pen-to-square"></i></Button>
+            <Button className="button1" onClick={() => handleDeleteMix(item.id)}><i className="fa-solid fa-trash"></i></Button>
+          </ListGroup.Item>
+        ))}
+      </Card.Body>
+    </Card>
+  </div>
+)
 }
