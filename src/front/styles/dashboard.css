@@ -15,3 +15,8 @@
     object-fit: cover; /* Ajustar la imagen para cubrir el contenedor */
     border-radius: 15px; /* Bordes redondeados */
 }
+
+#linkText {    
+    color: #ffffff;
+    text-decoration: none;
+}
