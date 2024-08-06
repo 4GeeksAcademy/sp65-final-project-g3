@@ -31,37 +31,37 @@ export const Dashboard = () => {
                 <div className="mix col-lg-6 col-md-6 col-sm-6 col-xsm-6 genres">
                     <div className="playlist-item">
                         <img src={mixes} alt="" />
-                        <h5><Link to="/mixes">Mixes</Link></h5>
+                        <h5><Link id="linkText" to="/mixes">Mixes</Link></h5>
                     </div>
                 </div>
                 <div className="mix col-lg-6 col-md-6 col-sm-6 col-xsm-6 genres">
                     <div className="playlist-item">
                         <img src={binaural} alt="" />
-                        <h5><Link to="/binaural">Binaural</Link></h5>
+                        <h5><Link id="linkText" to="/binaural">Binaural</Link></h5>
                     </div>
                 </div>
                 <div className="mix col-lg-6 col-md-6 col-sm-6 col-xsm-6 genres">
                     <div className="playlist-item">
                         <img src={playlist} alt="" />
-                        <h5><Link to="/playlist">Playlist</Link></h5>
+                        <h5><Link id="linkText" to="/playlist">Playlist</Link></h5>
                     </div>
                 </div>
                 <div className="mix col-lg-6 col-md-6 col-sm-6 col-xsm-6 genres">
                     <div className="playlist-item">
                         <img src={soundscape} alt="" />
-                        <h5><Link to="/soundscape">Soundscape</Link></h5>
+                        <h5><Link id="linkText" to="/soundscape">Soundscape</Link></h5>
                     </div>
                 </div>
                 <div className="mix col-lg-6 col-md-6 col-sm-6 col-xsm-6 genres">
                     <div className="playlist-item">
                         <img src={tutorial} alt="" />
-                        <h5><Link to="/tutorial">Tutorial</Link></h5>
+                        <h5><Link id="linkText" to="/tutorial">Tutorial</Link></h5>
                     </div>
                 </div>
                 <div className="mix col-lg-6 col-md-6 col-sm-6 col-xsm-6 genres">
                     <div className="playlist-item">
                         <img src={mixer} alt="" />
-                        <h5><Link to="/mixer">Mixer</Link></h5>
+                        <h5><Link id="linkText" to="/mixer">Mixer</Link></h5>
                     </div>
                 </div>
                 {store.user.is_admin && (
@@ -69,19 +69,19 @@ export const Dashboard = () => {
                         <div className="mix col-lg-6 col-md-6 col-sm-6 col-xsm-6 genres">
                             <div className="playlist-item">
                                 <img src={upload} alt="" />
-                                <h5><Link to="/uploadbinaural">Upload Binaural</Link></h5>
+                                <h5><Link id="linkText" to="/uploadbinaural">Upload Binaural</Link></h5>
                             </div>
                         </div>
                         <div className="mix col-lg-6 col-md-6 col-sm-6 col-xsm-6 genres">
                             <div className="playlist-item">
                                 <img src={upload} alt="" />
-                                <h5><Link to="/uploadsoundscape">Upload Soundscape</Link></h5>
+                                <h5><Link id="linkText" to="/uploadsoundscape">Upload Soundscape</Link></h5>
                             </div>
                         </div>
                         <div className="mix col-lg-6 col-md-6 col-sm-6 col-xsm-6 genres">
                             <div className="playlist-item">
                                 <img src={upload} alt="" />
-                                <h5><Link to="/uploadtutorial">Upload Tutorial</Link></h5>
+                                <h5><Link id="linkText" to="/uploadtutorial">Upload Tutorial</Link></h5>
                             </div>
                         </div>
                     </>
