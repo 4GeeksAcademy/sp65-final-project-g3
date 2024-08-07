@@ -36,22 +36,23 @@ import { Mail } from "./pages/Mail.jsx";
 // Spotify Auth App
 import { SpotifyCallback } from './component/SpotifyCallback.jsx';
 import { EditMixes } from "./pages/EditMixes.jsx";
-import { Techologies } from "./pages/Technologies.jsx";
-
-
 
 // Componente para manejar la lógica de renderizado condicional
 const ConditionalNavbarOrSidebar = () => {
     const location = useLocation();
 
+    // Rutas donde no se debe mostrar ni el Navbar ni el OffCanvas
+    const excludedRoutes = ["/signup", "/login"];
+    
     // Rutas donde se debe mostrar el Navbar
     const navbarRoutes = ["/", "/dashboard"];
     
     const showNavbar = navbarRoutes.includes(location.pathname);
+    const showOffCanvas = !excludedRoutes.includes(location.pathname) && !showNavbar;
 
     return (
         <>
-            {showNavbar ? <Navbar /> : <OffCanvas />}
+            {excludedRoutes.includes(location.pathname) ? null : showNavbar ? <Navbar /> : <OffCanvas />}
         </>
     );
 };
@@ -96,7 +97,6 @@ const Layout = () => {
                         <Route path="/uploadtutorial" element={<UploadTutorial />} />
                         <Route path="/callback" element={<SpotifyCallback />} />
                         <Route path="/mail" element={<Mail />} />
-                        <Route path="/technologies" element={<Techologies />} />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />
