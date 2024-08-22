@@ -13,7 +13,7 @@ export const Mail = () => {
 
         // Codifica el contenido para ser utilizado en una URL
         const encodedComments = encodeURIComponent(comments);
-        const mailtoLink = `mailto:infobinaurapp@gmail.com?subject=Feedback&body=${encodedComments}`;
+        const mailtoLink = `mailto:info@binaurapp.com?subject=Feedback&body=${encodedComments}`;
 
         // Abre el cliente de correo con el enlace mailto
         window.location.href = mailtoLink;
